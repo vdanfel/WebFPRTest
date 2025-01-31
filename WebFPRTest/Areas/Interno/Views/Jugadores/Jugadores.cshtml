@@ -1,0 +1,122 @@
+﻿@{
+    Layout = "_LayoutInterno";
+}
+<div class="container">
+    <div class="row mt-2 g-2">
+        <div class="col-12 col-sm-12 col-md-9 col-lg-9">
+            <div class="form-floating">
+                <select class="form-select" id="equipo">
+                    <option value="0">Seleccione Equipo</option>
+                    <option value="1">Los Tigres</option>
+                    <option value="2">Guerreros Z</option>
+                    <option value="3">Las Aguilas</option>
+                </select>
+                <label for="equipo">Seleccione Equipo</label>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+            <div class="form-floating">
+                <select class="form-select" id="categoria">
+                    <option value="0">Seleccione Categoria</option>
+                    <option value="1">M16</option>
+                    <option value="2">M18</option>
+                    <option value="3">Femenino</option>
+                </select>
+                <label for="categoria">seleccione Categoria</label>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="form-floating">
+                <input class="form-control" id="apePaterno" placeholder="Apellido Paterno" />
+                <label for="apePaterno">Ape.Paterno</label>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="form-floating">
+                <input class="form-control" id="apeMaterno" placeholder="Apellido Materno" />
+                <label for="apeMaterno">Ape.Materno</label>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6">
+            <div class="form-floating">
+                <input class="form-control" id="nombres" placeholder="Nombres" />
+                <label for="nombres">Nombres</label>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="form-floating">
+                <input class="form-control" id="documento" placeholder="N° Documento" />
+                <label for="documento">N° Documento</label>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 m-auto" style="text-align:end">
+            <button class="btn btn-outline-primary">
+                Filtrar <i class="bi-search"></i>
+            </button>
+        </div>
+    </div>
+    <div class="table-responsive-md mt-3 ">
+        <table class="table table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>N°</th>
+                    <th>Equipo</th>
+                    <th>Jugador</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Guerreros Z</td>
+                    <td>Oscar Martinez</td>
+                    <td>
+                        <a class="btn btn-outline-secondary">
+                            <i class="bi-eye"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Guerreros Z</td>
+                    <td>Cesar Vasquez</td>
+                    <td>
+                        <a class="btn btn-outline-secondary">
+                            <i class="bi-eye"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Los Leones</td>
+                    <td>Jorge Chavez</td>
+                    <td>
+                        <a class="btn btn-outline-secondary">
+                            <i class="bi-eye"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Los Tigres</td>
+                    <td>Aldo Coz</td>
+                    <td>
+                        <a class="btn btn-outline-secondary">
+                            <i class="bi-eye"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>ThunderCats</td>
+                    <td>Gonzalo Iglesias</td>
+                    <td>
+                        <a class="btn btn-outline-secondary">
+                            <i class="bi-eye"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
