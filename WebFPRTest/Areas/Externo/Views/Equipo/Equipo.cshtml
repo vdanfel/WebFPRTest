@@ -2,7 +2,7 @@
 @{
     Layout = "_LayoutExterno";
 }
-<form method="post" asp-area="Externo" asp-action="Equipo" asp-controller="Equipo">
+<form method="post" asp-area="Externo" asp-action="Equipo" asp-controller="Equipo" enctype="multipart/form-data">
     <input type="text" asp-for="@Model.Id_Equipo" hidden />
     <div class="container">
         <div class="row g-2">
@@ -32,7 +32,7 @@
             </div>
             <div class="col-12 d-flex align-items-center">
                 <div class="container-input">
-                    <input type="file" name="file-1" id="file-1" class="inputfile inputfile-1" asp-for="@Model.RutaLogo" accept=".jpg,.jpeg,.png" onchange="previewImage(event)" />
+                    <input type="file" id="file-1" class="inputfile inputfile-1" asp-for="@Model.Logo" accept=".jpg,.jpeg,.png" onchange="previewImage(event)" />
                     <label for="file-1">
                         <div class="label-text">Ruta Logo</div>
                         <span class="iborrainputfile">Seleccionar Logo</span>

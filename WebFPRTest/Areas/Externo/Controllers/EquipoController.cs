@@ -20,16 +20,33 @@ namespace WebFPRTest.Areas.Externo.Controllers
         }
 
         [HttpGet]
-        public IActionResult Equipo(int Id_Equipo)
+        public async Task<IActionResult> Equipo()
         {
             var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
             if (tipoUsuario == null || tipoUsuario != "409")
             {
                 return RedirectToAction("Login", "Login");
             }
+            var idEquipoClaim = User.Claims.FirstOrDefault(c => c.Type == "Id_Equipo")?.Value;
+            if (string.IsNullOrEmpty(idEquipoClaim) || !int.TryParse(idEquipoClaim, out int Id_Equipo) || Id_Equipo <= 0)
+            {
+                // Si no se encuentra un Id_Equipo válido, puedes redirigir o mostrar un mensaje especial
+                return RedirectToAction("AsignarEquipo", "Equipo"); // O mostrar una vista donde el cliente asigne un equipo
+            }
+
             EquipoViewModel equipo = new EquipoViewModel();
             HorariosEntrenamientoModel horarios = new HorariosEntrenamientoModel();
             equipo.Horarios = horarios;
+            if (Id_Equipo > 0)
+            {
+                equipo = await _equipoService.Equipo_Listar(Id_Equipo);
+                bool archivoExiste = await _equipoService.Archivo_Existe(Id_Equipo, 0, 417);
+                if (archivoExiste) 
+                {
+                    equipo.RutaLogo = "Archivos\\4\\4_Logo.jpg";
+                }
+            }
+
             return View(equipo);
         }
         [HttpPost]
@@ -38,6 +55,7 @@ namespace WebFPRTest.Areas.Externo.Controllers
             // Obtener Id_Usuario del Claim
             var idUsuarioStr = User.FindFirst("Id_Usuario")?.Value ?? "0";
             var Id_Usuario = int.Parse(idUsuarioStr);
+            var archivo = new ArchivosModel();
             if (Id_Usuario == 0)
             {
                 return RedirectToAction("Login", "Account");
@@ -55,9 +73,11 @@ namespace WebFPRTest.Areas.Externo.Controllers
             {
                 await _equipoService.Equipo_Actualizar(equipo, Id_Usuario);
             }
-            bool archivoExiste = await _equipoService.Archivo_Existe(equipo.Id_Equipo, 0, 1);
+            equipo.Id_Equipo = 4;
+            bool archivoExiste = await _equipoService.Archivo_Existe(equipo.Id_Equipo, 0, 417);
             if (archivoExiste && equipo.Logo != null && equipo.Logo.Length > 0)
             {
+                equipo.RutaLogo = "Archivos\\4\\4_Logo.jpg";
                 string archivoAnterior = equipo.RutaLogo;
                 EliminarArchivo(archivoAnterior);
             }

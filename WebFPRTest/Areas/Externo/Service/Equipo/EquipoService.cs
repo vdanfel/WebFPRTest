@@ -48,7 +48,7 @@ namespace WebFPRTest.Areas.Externo.Service.Equipo
         }
         public async Task Equipo_Actualizar(EquipoViewModel equipo, int Usuario)
         {
-            var procedure = "usp_Archivos_Insert";
+            var procedure = "usp_Equipo_Update";
             try
             {
                 var parameters = new DynamicParameters();
@@ -99,6 +99,32 @@ namespace WebFPRTest.Areas.Externo.Service.Equipo
                 _connection.Close();
             }
         }
+        public async Task<EquipoViewModel> Equipo_Listar(int Id_Equipo)
+        {
+            var procedure = "usp_Equipo_List";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Equipo", Id_Equipo);
+
+                var equipo = await _connection.QueryFirstOrDefaultAsync<EquipoViewModel>(
+                    procedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return equipo;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error inesperado al obtener el equipo.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+
         public async Task Archivo_Insertar(int Id_Equipo, int Id_Jugador, int Id_013_TipoArchivo, string RutaArchivo, int Usuario)
         {
             var procedure = "usp_Archivos_Insert";

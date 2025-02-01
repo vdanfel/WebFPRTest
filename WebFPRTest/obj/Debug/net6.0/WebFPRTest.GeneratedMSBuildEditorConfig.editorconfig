@@ -9,75 +9,73 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WebFPRTest
 build_property.RootNamespace = WebFPRTest
-build_property.ProjectDir = D:\Desarrollos\WebFPRTest\WebFPRTest\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.ProjectDir = E:\WebFPRTest\WebFPRTest\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Desarrollos\WebFPRTest\WebFPRTest
+build_property.MSBuildProjectDirectory = E:\WebFPRTest\WebFPRTest
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Desarrollos/WebFPRTest/WebFPRTest/Areas/Externo/Views/Equipo/Equipo.cshtml]
+[E:/WebFPRTest/WebFPRTest/Areas/Externo/Views/Equipo/Equipo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRXh0ZXJub1xWaWV3c1xFcXVpcG9cRXF1aXBvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Desarrollos/WebFPRTest/WebFPRTest/Areas/Externo/Views/Shared/_LayoutExterno.cshtml]
+[E:/WebFPRTest/WebFPRTest/Areas/Externo/Views/Shared/_LayoutExterno.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRXh0ZXJub1xWaWV3c1xTaGFyZWRcX0xheW91dEV4dGVybm8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Desarrollos/WebFPRTest/WebFPRTest/Areas/Externo/Views/_ViewImports.cshtml]
+[E:/WebFPRTest/WebFPRTest/Areas/Externo/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRXh0ZXJub1xWaWV3c1xfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Desarrollos/WebFPRTest/WebFPRTest/Areas/Externo/Views/_ViewStart.cshtml]
+[E:/WebFPRTest/WebFPRTest/Areas/Externo/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRXh0ZXJub1xWaWV3c1xfVmlld1N0YXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Desarrollos/WebFPRTest/WebFPRTest/Areas/Interno/Views/Jugadores/Jugadores.cshtml]
+[E:/WebFPRTest/WebFPRTest/Areas/Interno/Views/Jugadores/Jugadores.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW50ZXJub1xWaWV3c1xKdWdhZG9yZXNcSnVnYWRvcmVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Desarrollos/WebFPRTest/WebFPRTest/Areas/Interno/Views/Shared/_LayoutInterno.cshtml]
+[E:/WebFPRTest/WebFPRTest/Areas/Interno/Views/Shared/_LayoutInterno.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW50ZXJub1xWaWV3c1xTaGFyZWRcX0xheW91dEludGVybm8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Desarrollos/WebFPRTest/WebFPRTest/Areas/Interno/Views/_ViewImports.cshtml]
+[E:/WebFPRTest/WebFPRTest/Areas/Interno/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW50ZXJub1xWaWV3c1xfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Desarrollos/WebFPRTest/WebFPRTest/Areas/Interno/Views/_ViewStart.cshtml]
+[E:/WebFPRTest/WebFPRTest/Areas/Interno/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW50ZXJub1xWaWV3c1xfVmlld1N0YXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Desarrollos/WebFPRTest/WebFPRTest/Views/Home/Index.cshtml]
+[E:/WebFPRTest/WebFPRTest/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Desarrollos/WebFPRTest/WebFPRTest/Views/Home/Privacy.cshtml]
+[E:/WebFPRTest/WebFPRTest/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Desarrollos/WebFPRTest/WebFPRTest/Views/Login/Login.cshtml]
+[E:/WebFPRTest/WebFPRTest/Views/Login/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Desarrollos/WebFPRTest/WebFPRTest/Views/Shared/Error.cshtml]
+[E:/WebFPRTest/WebFPRTest/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Desarrollos/WebFPRTest/WebFPRTest/Views/Shared/_ValidationScriptsPartial.cshtml]
+[E:/WebFPRTest/WebFPRTest/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Desarrollos/WebFPRTest/WebFPRTest/Views/_ViewImports.cshtml]
+[E:/WebFPRTest/WebFPRTest/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Desarrollos/WebFPRTest/WebFPRTest/Views/_ViewStart.cshtml]
+[E:/WebFPRTest/WebFPRTest/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Desarrollos/WebFPRTest/WebFPRTest/Views/Shared/_Layout.cshtml]
+[E:/WebFPRTest/WebFPRTest/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-dywtd19fon
