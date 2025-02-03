@@ -30,11 +30,18 @@
                     <label for="razonSocial">Razón Social</label>
                 </div>
             </div>
+            <input type="hidden" id="rutaLogoHidden" value="@Model.RutaLogo" />
             <div class="col-12 d-flex align-items-center">
                 <div class="container-input">
-                    <input type="file" id="file-1" class="inputfile inputfile-1" asp-for="@Model.Logo" accept=".jpg,.jpeg,.png" onchange="previewImage(event)" />
+                    <input type="file"
+                           id="file-1"
+                           class="inputfile inputfile-1"
+                           asp-for="@Model.Logo"
+                           accept=".jpg,.jpeg,.png"
+                           onchange="previewImage(event)"
+                           data-val="false" /> <!-- Agregar esto para hacerlo no requerido -->
                     <label for="file-1">
-                        <div class="label-text">Ruta Logo</div>
+                        <div class="label-text">Ruta Logo (Opcional)</div>
                         <span class="iborrainputfile">Seleccionar Logo</span>
                     </label>
                 </div>
@@ -73,19 +80,19 @@
                     <div class="row row-cols-3 g-2">
                         <div class="col d-flex align-items-center">
                             <div class="form-check form-switch ms-0 ms-sm-0 ms-md-0 ms-lg-4">
-                                <input type="checkbox" class="form-check-input" asp-for="@Model.Horarios.Lunes" />
+                                <input type="checkbox" id="Lunes" class="form-check-input" asp-for="@Model.Horarios.Lunes" />
                                 <label>Lunes</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <input type="time" class="form-control" asp-for="@Model.Horarios.Lunes_HI" />
+                                <input type="time" id="Lunes_HI" class="form-control" asp-for="@Model.Horarios.Lunes_HI" />
                                 <label>Inicio</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <input type="time" class="form-control" asp-for="@Model.Horarios.Lunes_HF" />
+                                <input type="time" id="Lunes_HF" class="form-control" asp-for="@Model.Horarios.Lunes_HF" />
                                 <label>Fin</label>
                             </div>
                         </div>
@@ -95,19 +102,19 @@
                     <div class="row row-cols-3 g-2">
                         <div class="col d-flex align-items-center">
                             <div class="form-check form-switch ms-0 ms-sm-0 ms-md-0 ms-lg-4">
-                                <input type="checkbox" class="form-check-input" asp-for="@Model.Horarios.Martes" />
+                                <input type="checkbox" id="Martes" class="form-check-input" asp-for="@Model.Horarios.Martes" />
                                 <label>Martes</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <input type="time" class="form-control" asp-for="@Model.Horarios.Martes_HI" />
+                                <input type="time" id="Martes_HI" class="form-control" asp-for="@Model.Horarios.Martes_HI" />
                                 <label>Inicio</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <input type="time" class="form-control" asp-for="@Model.Horarios.Martes_HF" />
+                                <input type="time" id="Martes_HF" class="form-control" asp-for="@Model.Horarios.Martes_HF" />
                                 <label>Fin</label>
                             </div>
                         </div>
@@ -117,19 +124,19 @@
                     <div class="row row-cols-3 g-2">
                         <div class="col d-flex align-items-center">
                             <div class="form-check form-switch ms-0 ms-sm-0 ms-md-0 ms-lg-4">
-                                <input type="checkbox" class="form-check-input" asp-for="@Model.Horarios.Miercoles" />
+                                <input type="checkbox" id="Miercoles" class="form-check-input" asp-for="@Model.Horarios.Miercoles" />
                                 <label>Miércoles</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <input type="time" class="form-control" asp-for="@Model.Horarios.Miercoles_HI" />
+                                <input type="time" id="Miercoles_HI" class="form-control" asp-for="@Model.Horarios.Miercoles_HI" />
                                 <label>Inicio</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <input type="time" class="form-control" asp-for="@Model.Horarios.Miercoles_HF" />
+                                <input type="time" id="Miercoles_HF" class="form-control" asp-for="@Model.Horarios.Miercoles_HF" />
                                 <label>Fin</label>
                             </div>
                         </div>
@@ -139,19 +146,19 @@
                     <div class="row row-cols-3 g-2">
                         <div class="col d-flex align-items-center">
                             <div class="form-check form-switch ms-0 ms-sm-0 ms-md-0 ms-lg-4">
-                                <input type="checkbox" class="form-check-input" asp-for="@Model.Horarios.Jueves" />
+                                <input type="checkbox" id="Jueves" class="form-check-input" asp-for="@Model.Horarios.Jueves" />
                                 <label>Jueves</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <input type="time" class="form-control" asp-for="@Model.Horarios.Jueves_HI" />
+                                <input type="time" id="Jueves_HI" class="form-control" asp-for="@Model.Horarios.Jueves_HI" />
                                 <label>Inicio</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <input type="time" class="form-control" asp-for="@Model.Horarios.Jueves_HF" />
+                                <input type="time" id="Jueves_HF" class="form-control" asp-for="@Model.Horarios.Jueves_HF" />
                                 <label>Fin</label>
                             </div>
                         </div>
@@ -161,19 +168,19 @@
                     <div class="row row-cols-3 g-2">
                         <div class="col d-flex align-items-center">
                             <div class="form-check form-switch ms-0 ms-sm-0 ms-md-0 ms-lg-4">
-                                <input type="checkbox" class="form-check-input" asp-for="@Model.Horarios.Viernes" />
+                                <input type="checkbox" id="Viernes" class="form-check-input" asp-for="@Model.Horarios.Viernes" />
                                 <label>Viernes</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <input type="time" class="form-control" asp-for="@Model.Horarios.Viernes_HI" />
+                                <input type="time" id="Viernes_HI" class="form-control" asp-for="@Model.Horarios.Viernes_HI" />
                                 <label>Inicio</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <input type="time" class="form-control" asp-for="@Model.Horarios.Viernes_HF" />
+                                <input type="time" id="Viernes_HF" class="form-control" asp-for="@Model.Horarios.Viernes_HF" />
                                 <label>Fin</label>
                             </div>
                         </div>
@@ -183,19 +190,19 @@
                     <div class="row row-cols-3 g-2">
                         <div class="col d-flex align-items-center">
                             <div class="form-check form-switch ms-0 ms-sm-0 ms-md-0 ms-lg-4">
-                                <input type="checkbox" class="form-check-input" asp-for="@Model.Horarios.Sabado" />
+                                <input type="checkbox" id="Sabado" class="form-check-input" asp-for="@Model.Horarios.Sabado" />
                                 <label>Sábado</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <input type="time" class="form-control" asp-for="@Model.Horarios.Sabado_HI" />
+                                <input type="time" id="Sabado_HI" class="form-control" asp-for="@Model.Horarios.Sabado_HI" />
                                 <label>Inicio</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <input type="time" class="form-control" asp-for="@Model.Horarios.Sabado_HF" />
+                                <input type="time" id="Sabado_HF" class="form-control" asp-for="@Model.Horarios.Sabado_HF" />
                                 <label>Fin</label>
                             </div>
                         </div>
@@ -205,19 +212,19 @@
                     <div class="row row-cols-3 g-2">
                         <div class="col d-flex align-items-center">
                             <div class="form-check form-switch ms-0 ms-sm-0 ms-md-0 ms-lg-4">
-                                <input type="checkbox" class="form-check-input" asp-for="@Model.Horarios.Domingo" />
+                                <input type="checkbox" id="Domingo" class="form-check-input" asp-for="@Model.Horarios.Domingo" />
                                 <label>Domingo</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <input type="time" class="form-control" asp-for="@Model.Horarios.Domingo_HI" />
+                                <input type="time" id="Domingo_HI" class="form-control" asp-for="@Model.Horarios.Domingo_HI" />
                                 <label>Inicio</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <input type="time" class="form-control" asp-for="@Model.Horarios.Domingo_HF" />
+                                <input type="time" id="Domingo_HF" class="form-control" asp-for="@Model.Horarios.Domingo_HF" />
                                 <label>Fin</label>
                             </div>
                         </div>
@@ -230,25 +237,57 @@
         </div>
     </div>
 </form>
+<!-- Modal para el mensaje de del TempData -->
+@if (TempData["Mensaje"] != null)
+{
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @TempData["Mensaje"] 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
 <!-- Modal para mostrar la miniatura de la imagen -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="imageModalLabel">Vista previa del Logo</h5>
+                <h5 class="modal-title" id="imageModalLabel">Vista previa del logo</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <img id="logoPreview" src="" alt="Vista previa del logo" class="img-fluid" />
+            <div class="modal-body text-center">
+                <img id="logoPreview" src="" alt="Logo preview" style="max-width: 100%; height: auto;" />
+            </div>
+            <div class="modal-footer">
+                <!-- Botón para descargar la imagen original -->
+                <a id="downloadBtn" href="#" class="btn btn-primary" download>
+                    Descargar Imagen Original
+                </a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
 </div>
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
+    $(document).ready(function () {
+        var mensaje = '@TempData["Mensaje"]';  
+        if (mensaje && mensaje.trim() !== '') {
+            $('#myModal').modal('show');  
+        }
+    });
+
     'use strict';
     (function (document, window, index) {
         var inputs = document.querySelectorAll('.inputfile');
@@ -274,21 +313,108 @@
         });
     }(document, window, 0));
 
+    let selectedFile = null; // Variable global para mantener el archivo seleccionado
 
     // Función para previsualizar la imagen seleccionada
     function previewImage(event) {
-        const file = event.target.files[0]; // Obtener el archivo seleccionado
-        const reader = new FileReader(); // Crear un lector de archivos
-
-        // Cuando la imagen se haya cargado
-        reader.onload = function (e) {
-            // Establecer la imagen en el modal
-            const image = document.getElementById('logoPreview');
-            image.src = e.target.result; // Establecer la URL de la imagen cargada
-        }
-
+        const file = event.target.files[0];
         if (file) {
-            reader.readAsDataURL(file); // Leer la imagen como una URL de datos
+            selectedFile = file; // Guardamos el archivo seleccionado
+
+            // Actualizar el texto del input para mostrar el nombre del archivo
+            const span = document.querySelector('.iborrainputfile');
+            if (span) {
+                span.textContent = file.name;
+            }
         }
     }
+
+    // Función para mostrar la imagen en el modal
+    function showImagePreview() {
+        const image = document.getElementById('logoPreview');
+        const rutaLogo = document.getElementById('rutaLogoHidden').value;
+
+        // Si hay un archivo nuevo seleccionado
+        if (selectedFile) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                image.src = e.target.result;
+            }
+            reader.readAsDataURL(selectedFile);
+        }
+        // Si no hay archivo nuevo pero hay una ruta existente
+        else if (rutaLogo) {
+            // Limpiar la ruta para acceder desde el navegador
+            let webPath = rutaLogo
+                .replace('wwwroot\\', '')  // Quitar wwwroot si existe
+                .replace('wwwroot/', '')   // Por si acaso usa forward slash
+                .replace(/\\/g, '/');      // Reemplazar todos los backslash por forward slash
+
+            // Asegurarnos que la ruta empiece con /
+            if (!webPath.startsWith('/')) {
+                webPath = '/' + webPath;
+            }
+
+            console.log('Ruta web final:', webPath); // Para debugging
+            image.src = webPath;
+
+            // Establecer el enlace de descarga para la imagen original
+            const downloadButton = document.getElementById('downloadBtn');
+            downloadButton.href = webPath;  // Asigna la ruta de la imagen original
+        }
+    }
+
+
+    // Inicialización cuando el documento está listo
+    document.addEventListener('DOMContentLoaded', function () {
+        // Obtener la ruta del logo del modelo
+        const rutaLogo = document.getElementById('rutaLogoHidden')?.value;
+
+        // Si hay una ruta existente, mostrar el nombre del archivo en el input
+        if (rutaLogo) {
+            const span = document.querySelector('.iborrainputfile');
+            if (span) {
+                // Obtener solo el nombre del archivo de la ruta completa
+                const fileName = rutaLogo.split('\\').pop().split('/').pop();
+                span.textContent = fileName;
+            }
+        }
+
+        // Agregar el evento click al botón "Ver"
+        document.getElementById('verLogo').addEventListener('click', showImagePreview);
+
+        // Función que habilita o deshabilita los campos de horario según el estado del checkbox
+        function toggleHorario(dia) {
+            let checkbox = document.getElementById(dia);
+            let inputInicio = document.getElementById(dia + "_HI");
+            let inputFin = document.getElementById(dia + "_HF");
+
+            if (checkbox.checked) {
+                inputInicio.removeAttribute("disabled");
+                inputFin.removeAttribute("disabled");
+            } else {
+                inputInicio.setAttribute("disabled", "disabled");
+                inputFin.setAttribute("disabled", "disabled");
+                inputInicio.value = ""; // Limpiar valores
+                inputFin.value = "";
+            }
+        }
+
+        // Lista de los días de la semana
+        let dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"];
+
+        // Agregar evento a cada checkbox
+        dias.forEach(dia => {
+            let checkbox = document.getElementById(dia);
+            if (checkbox) {
+                checkbox.addEventListener("change", function () {
+                    toggleHorario(dia);
+                });
+
+                // Llamar la función al cargar la página para establecer el estado inicial
+                toggleHorario(dia);
+            }
+        });
+
+    });
 </script>

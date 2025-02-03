@@ -31,12 +31,12 @@ namespace WebFPRTest.Controllers
             {
                 // Crear la identidad del usuario con los Claims
                 var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.Name, usuario.Usuario), // Nombre del usuario
-            new Claim("Id_Usuario", usuario.Id_Usuario.ToString()), // ID del usuario
-            new Claim("Id_011_TipoUsuario", usuario.Id_011_TipoUsuario.ToString()), // Tipo de usuario
-            new Claim("Id_Equipo",usuario.Id_Equipo.ToString())
-        };
+                {
+                    new Claim(ClaimTypes.Name, usuario.Usuario), // Nombre del usuario
+                    new Claim("Id_Usuario", usuario.Id_Usuario.ToString()), // ID del usuario
+                    new Claim("Id_011_TipoUsuario", usuario.Id_011_TipoUsuario.ToString()), // Tipo de usuario
+                    new Claim("Id_Equipo",usuario.Id_Equipo.ToString())
+                };
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var authProperties = new AuthenticationProperties
@@ -54,7 +54,7 @@ namespace WebFPRTest.Controllers
                 }
                 else if (usuario.Id_011_TipoUsuario == 407)
                 {
-                    return RedirectToAction("Jugadores", "Jugadores", new { area = "Interno" });
+                    return RedirectToAction("ListJugadores", "ListJugadores", new { area = "Interno" });
                 }
             }
 

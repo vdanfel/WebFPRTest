@@ -8,7 +8,9 @@ namespace WebFPRTest.Areas.Externo.Interface.Equipo
         Task<int> Equipo_Existe(string nombre, string ruc);
         Task Equipo_Actualizar(EquipoViewModel equipo, int Usuario);
         Task<EquipoViewModel> Equipo_Listar(int Id_Equipo);
-        Task<bool> Archivo_Existe(int idEquipo, int idJugador, int idTipoArchivo);
+        Task<string> Archivo_RutaLogo(int idEquipo, int idJugador, int idTipoArchivo);
         Task Archivo_Insertar(int Id_Equipo, int Id_Jugador, int Id_013_TipoArchivo, string RutaArchivo, int Usuario);
+        Task HorariosEntrenamientos_Insertar(HorariosEntrenamientoModel horarios, int usuario);
+        Task<HorariosEntrenamientoModel> HorariosEntrenamiento_Listar(int Id_Equipo);
     }
 }

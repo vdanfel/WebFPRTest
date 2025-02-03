@@ -13,4 +13,8 @@
     <PackageReference Include="System.Security.Permissions" Version="9.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Interno\Result\" />
+  </ItemGroup>
+
 </Project>

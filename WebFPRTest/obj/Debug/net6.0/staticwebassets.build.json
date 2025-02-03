@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kGwBxFxjC8UOWhL3iQyRMPLZyyHng+C2IuLeVFex5F8=",
+  "Hash": "N6SGjjo68LWdhmwlTdC7kJdLYMuFiPJjckO2vrMasJc=",
   "Source": "WebFPRTest",
   "BasePath": "_content/WebFPRTest",
   "Mode": "Default",
@@ -51,12 +51,12 @@
       "OriginalItemSpec": "E:\\WebFPRTest\\WebFPRTest\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\WebFPRTest.bundle.scp.css"
     },
     {
-      "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\0\\0_Logo.jpg",
+      "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\12\\12_Logo.jpg",
       "SourceId": "WebFPRTest",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\",
       "BasePath": "_content/WebFPRTest",
-      "RelativePath": "Archivos/0/0_Logo.jpg",
+      "RelativePath": "Archivos/12/12_Logo.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -65,15 +65,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Archivos\\0\\0_Logo.jpg"
+      "OriginalItemSpec": "wwwroot\\Archivos\\12\\12_Logo.jpg"
     },
     {
-      "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\3\\3_Logo.jpeg",
+      "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\13\\13_Logo.jpg",
       "SourceId": "WebFPRTest",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\",
       "BasePath": "_content/WebFPRTest",
-      "RelativePath": "Archivos/3/3_Logo.jpeg",
+      "RelativePath": "Archivos/13/13_Logo.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -82,24 +82,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Archivos\\3\\3_Logo.jpeg"
-    },
-    {
-      "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\4_Logo.jpg",
-      "SourceId": "WebFPRTest",
-      "SourceType": "Discovered",
-      "ContentRoot": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\",
-      "BasePath": "_content/WebFPRTest",
-      "RelativePath": "Archivos/4/4_Logo.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Archivos\\4\\4_Logo.jpg"
+      "OriginalItemSpec": "wwwroot\\Archivos\\13\\13_Logo.jpg"
     },
     {
       "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\css\\site.css",

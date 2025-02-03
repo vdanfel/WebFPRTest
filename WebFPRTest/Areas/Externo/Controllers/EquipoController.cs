@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using WebFPRTest.Areas.Externo.Interface.Equipo;
@@ -28,11 +30,8 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 return RedirectToAction("Login", "Login");
             }
             var idEquipoClaim = User.Claims.FirstOrDefault(c => c.Type == "Id_Equipo")?.Value;
-            if (string.IsNullOrEmpty(idEquipoClaim) || !int.TryParse(idEquipoClaim, out int Id_Equipo) || Id_Equipo <= 0)
-            {
-                // Si no se encuentra un Id_Equipo válido, puedes redirigir o mostrar un mensaje especial
-                return RedirectToAction("AsignarEquipo", "Equipo"); // O mostrar una vista donde el cliente asigne un equipo
-            }
+            int Id_Equipo = (string.IsNullOrEmpty(idEquipoClaim) || !int.TryParse(idEquipoClaim, out int idEquipoTemp)) ? 0 : idEquipoTemp;
+
 
             EquipoViewModel equipo = new EquipoViewModel();
             HorariosEntrenamientoModel horarios = new HorariosEntrenamientoModel();
@@ -40,13 +39,9 @@ namespace WebFPRTest.Areas.Externo.Controllers
             if (Id_Equipo > 0)
             {
                 equipo = await _equipoService.Equipo_Listar(Id_Equipo);
-                bool archivoExiste = await _equipoService.Archivo_Existe(Id_Equipo, 0, 417);
-                if (archivoExiste) 
-                {
-                    equipo.RutaLogo = "Archivos\\4\\4_Logo.jpg";
-                }
+                equipo.RutaLogo = await _equipoService.Archivo_RutaLogo(Id_Equipo, 0, 417);
+                equipo.Horarios = await _equipoService.HorariosEntrenamiento_Listar(Id_Equipo);
             }
-
             return View(equipo);
         }
         [HttpPost]
@@ -55,32 +50,37 @@ namespace WebFPRTest.Areas.Externo.Controllers
             // Obtener Id_Usuario del Claim
             var idUsuarioStr = User.FindFirst("Id_Usuario")?.Value ?? "0";
             var Id_Usuario = int.Parse(idUsuarioStr);
-            var archivo = new ArchivosModel();
+            
             if (Id_Usuario == 0)
             {
                 return RedirectToAction("Login", "Account");
             }
+
             int existe = await _equipoService.Equipo_Existe(equipo.Nombre, equipo.RUC);
             if (existe == 0)
             {
                 equipo.Id_Equipo = await _equipoService.Equipo_Insertar(equipo, Id_Usuario);
+                await ActualizarClaimIdEquipo(equipo.Id_Equipo);
+                TempData["Mensaje"] = "Equipo registrado con éxito";
             }
             else if (existe == 1)
             {
+                TempData["Mensaje"] = "El nombre del Equipo ya está siendo utilizado por otro equipo";
                 return View(equipo);
             }
             else if (existe == 2)
             {
                 await _equipoService.Equipo_Actualizar(equipo, Id_Usuario);
+                TempData["Mensaje"] = "Equipo actualizado con éxito";
             }
-            equipo.Id_Equipo = 4;
-            bool archivoExiste = await _equipoService.Archivo_Existe(equipo.Id_Equipo, 0, 417);
-            if (archivoExiste && equipo.Logo != null && equipo.Logo.Length > 0)
+            equipo.Horarios.Id_Equipo = equipo.Id_Equipo;
+            await _equipoService.HorariosEntrenamientos_Insertar(equipo.Horarios,Id_Usuario);
+            var rutaExistente = await _equipoService.Archivo_RutaLogo(equipo.Id_Equipo, 0, 417);
+            if (!string.IsNullOrEmpty(rutaExistente))
             {
-                equipo.RutaLogo = "Archivos\\4\\4_Logo.jpg";
-                string archivoAnterior = equipo.RutaLogo;
-                EliminarArchivo(archivoAnterior);
+                EliminarArchivo(rutaExistente);
             }
+
             if (equipo.Logo != null && equipo.Logo.Length > 0)
             {
                 // Extensiones permitidas
@@ -114,13 +114,31 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 }
                 // Asignar la ruta final del archivo al modelo
                 equipo.RutaLogo = Path.Combine("Archivos", equipo.Id_Equipo.ToString(), fileName);
-                if (!archivoExiste)
-                {
-                    await _equipoService.Archivo_Insertar(equipo.Id_Equipo, 0, 417, equipo.RutaLogo, Id_Usuario);
-                }
+                await _equipoService.Archivo_Insertar(equipo.Id_Equipo, 0, 417, equipo.RutaLogo, Id_Usuario);
             }
-            return View(equipo);
+            return RedirectToAction("Equipo");
         }
+        private async Task ActualizarClaimIdEquipo(int nuevoIdEquipo)
+        {
+            var identity = (ClaimsIdentity)User.Identity;
+
+            // Remover el Claim anterior si existe
+            var claimExistente = identity.FindFirst("Id_Equipo");
+            if (claimExistente != null)
+            {
+                identity.RemoveClaim(claimExistente);
+            }
+
+            // Agregar el nuevo Claim
+            identity.AddClaim(new Claim("Id_Equipo", nuevoIdEquipo.ToString()));
+
+            // Crear una nueva instancia de ClaimsPrincipal con la identidad actualizada
+            var nuevoPrincipal = new ClaimsPrincipal(identity);
+
+            // Actualizar la autenticación del usuario
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, nuevoPrincipal);
+        }
+
         public void EliminarArchivo(string rutaArchivo)
         {
             try
@@ -140,5 +158,6 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 throw new Exception($"Ocurrió un error al eliminar el archivo: {rutaArchivo}", ex);
             }
         }
+        
     }
 }

@@ -2,6 +2,8 @@
 using System.Data.SqlClient;
 using WebFPRTest.Areas.Externo.Interface.Equipo;
 using WebFPRTest.Areas.Externo.Service.Equipo;
+using WebFPRTest.Areas.Interno.Interface.Usuario;
+using WebFPRTest.Areas.Interno.Service.Usuario;
 using WebFPRTest.Interface;
 using WebFPRTest.Service;
 
@@ -13,7 +15,8 @@ builder.Services.AddControllersWithViews();
 // Para llamar a los servicios y a las interfaces
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IEquipoService, EquipoService>();
-
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<ITiposService, TiposService>();
 
 // Para conectar a la BD
 builder.Services.AddScoped<SqlConnection>(sp =>

@@ -1,0 +1,16 @@
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\WebFPRTest.exe
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\appsettings.json
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\WebFPRTest.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\WebFPRTest.deps.json
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\WebFPRTest.runtimeconfig.json
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\WebFPRTest.pdb
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\Dapper.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\System.Data.SqlClient.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\System.Diagnostics.PerformanceCounter.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\System.Security.Permissions.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\runtimes\win-arm64\native\sni.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\runtimes\win-x64\native\sni.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\runtimes\win-x86\native\sni.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\runtimes\unix\lib\net6.0\System.Data.SqlClient.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\runtimes\win\lib\net6.0\System.Data.SqlClient.dll
