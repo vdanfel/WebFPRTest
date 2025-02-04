@@ -77,9 +77,6 @@
                             <td>@usuarios.TipoUsuario</td>
                             <td>@usuarios.NombreEquipo</td>
                             <td class="text-end">
-                                @*<a class="btn btn-outline-warning" asp-action="Usuario" asp-controller="Usuario" asp-route-Id_Usuario="@usuarios.Id_Usuario">
-                                    <i class="bi-eye"></i>
-                                </a>*@
                                 <a class="btn btn-outline-warning" asp-action="GuardarUsuarioSeleccionado" asp-controller="Usuario" asp-route-id_Usuario="@usuarios.Id_Usuario">
                                     <i class="bi-eye"></i>
                                 </a>

@@ -50,17 +50,17 @@
               "target": "Package",
               "version": "[2.1.35, )"
             },
-            "System.Data.SqlClient": {
+            "Microsoft.Data.SqlClient": {
               "target": "Package",
-              "version": "[4.9.0, )"
+              "version": "[5.2.0, )"
             },
             "System.Diagnostics.PerformanceCounter": {
               "target": "Package",
-              "version": "[9.0.1, )"
+              "version": "[7.0.0, )"
             },
             "System.Security.Permissions": {
               "target": "Package",
-              "version": "[9.0.1, )"
+              "version": "[7.0.0, )"
             }
           },
           "imports": [

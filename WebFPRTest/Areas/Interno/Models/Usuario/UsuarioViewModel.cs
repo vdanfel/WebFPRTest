@@ -9,7 +9,6 @@ namespace WebFPRTest.Areas.Interno.Models.Usuario
         public string Paterno { get; set; }
         public string Materno { get; set; }
         public string Nombres { get; set; }
-        //public string ApellidosYNombre { get; set; }
         public int? Id_011_TipoUsuario { get; set; }
         public List<ParametrosTipoResult> TipoUsuarioList { get; set; }
         public string TipoUsuario { get; set; }

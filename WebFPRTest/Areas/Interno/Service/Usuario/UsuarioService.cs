@@ -1,8 +1,9 @@
 ﻿using Dapper;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using WebFPRTest.Areas.Interno.Interface.Usuario;
 using WebFPRTest.Areas.Interno.Models.Usuario;
+using WebFPRTest.Result;
 
 namespace WebFPRTest.Areas.Interno.Service.Usuario
 {
@@ -61,6 +62,32 @@ namespace WebFPRTest.Areas.Interno.Service.Usuario
             catch (Exception ex)
             {
                 throw new Exception("Ocurrió un error al buscar el usuario por ID.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+        public async Task<UsuarioViewModel> Usuario_ValidarPersona(int idTipoDocumento, string documento)
+        {
+            var procedure = "usp_Persona_BuscarPorDocumento";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_001_TipoDocumento", idTipoDocumento);
+                parameters.Add("@Documento", documento);
+
+                var persona = await _connection.QueryFirstOrDefaultAsync<UsuarioViewModel>(
+                    procedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return persona;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al buscar la persona por documento.", ex);
             }
             finally
             {

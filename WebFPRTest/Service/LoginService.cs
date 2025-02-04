@@ -1,6 +1,6 @@
 ﻿using Dapper;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
 using WebFPRTest.Interface;

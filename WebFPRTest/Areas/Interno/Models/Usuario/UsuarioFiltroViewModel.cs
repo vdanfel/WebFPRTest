@@ -2,11 +2,11 @@
 {
     public class UsuarioFiltroViewModel
     {
-        public string Paterno { get; set; }
-        public string Materno { get; set; }
-        public string Nombres { get; set; }
-        public string Documento { get; set; }
-        public string Correo { get; set; }
+        public string? Paterno { get; set; }
+        public string? Materno { get; set; }
+        public string? Nombres { get; set; }
+        public string? Documento { get; set; }
+        public string? Correo { get; set; }
 
         public List<UsuarioViewModelTabla> ListaUsuarios { get; set; }
 

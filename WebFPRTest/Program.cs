@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using WebFPRTest.Areas.Externo.Interface.Equipo;
 using WebFPRTest.Areas.Externo.Service.Equipo;
 using WebFPRTest.Areas.Interno.Interface.Usuario;

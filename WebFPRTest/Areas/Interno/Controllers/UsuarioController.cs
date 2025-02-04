@@ -48,20 +48,6 @@ namespace WebFPRTest.Areas.Interno.Controllers
             index.ListaUsuarios = await _usuarioService.Usuario_Bandeja(index);
             return View(index);
         }
-        /*[HttpGet]
-        public async Task<IActionResult> Usuario(int Id_Usuario)
-        {
-            var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
-            if (tipoUsuario == null || tipoUsuario != "407")
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            UsuarioViewModel usuario = new UsuarioViewModel();
-            usuario.TipoUsuarioList = await _tiposService.ParametroTipo_Listar(11);
-            usuario.TipoDocumentoList = await _tiposService.ParametroTipo_Listar(1);
-            return View(usuario);
-        }*/
-
         public IActionResult GuardarUsuarioSeleccionado(int id_Usuario)
         {
             // Opción 1: Usando TempData
@@ -84,9 +70,28 @@ namespace WebFPRTest.Areas.Interno.Controllers
             {
                 usuario = await _usuarioService.Usuario_BuscarId_Usuario(Id_Usuario);
             }
-            usuario.TipoUsuarioList = await _tiposService.ParametroTipo_Listar(11);
+            usuario.TipoUsuarioList = await _tiposService.ParametroTipo_Listar(11); 
             usuario.TipoDocumentoList = await _tiposService.ParametroTipo_Listar(1);
             return View(usuario);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Usuario(UsuarioViewModel usuario)
+        {
+            var idUsuarioStr = User.FindFirst("Id_Usuario")?.Value ?? "0";
+            var Id_Usuario = int.Parse(idUsuarioStr);
+
+            if (Id_Usuario == 0)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            return View(usuario);
+        }
+        [HttpGet]
+        public async Task<IActionResult> ValidarPersona(int idTipoDocumento, string documento)
+        {
+            var persona = await _usuarioService.Usuario_ValidarPersona(idTipoDocumento, documento);
+
+            return Json(persona);
         }
 
     }

@@ -2,9 +2,27 @@
 @{
     Layout = "_LayoutInterno";
 }
-<form>
+<form asp-controller="Usuario" asp-action="Usuario" method="post" asp-area="Interno">
     <div class="container">
         <div class="row mt-2 g-2">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                <div class="form-floating">
+                    <select class="form-select" asp-for="Id_001_TipoDocumento" id="Id_001_TipoDocumento" onchange="ValidarPersona()">
+                        <option></option>
+                        @foreach (var tipoDocumento in Model.TipoDocumentoList)
+                        {
+                            <option value="@tipoDocumento.Id_Parametros">@tipoDocumento.Abreviatura</option>
+                        }
+                    </select>
+                    <label>Tipo Documento</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                <div class="form-floating">
+                    <input type="text" id="Documento" class="form-control" asp-for="Documento" onblur="ValidarPersona()" />
+                    <label for="Documento">N° Documento</label>
+                </div>
+            </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="form-floating">
                     <input type="text" id="Paterno" class="form-control" asp-for="Paterno" />
@@ -23,25 +41,6 @@
                     <label for="Nombres">Nombres</label>
                 </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-3">
-               <div class="form-floating">
-                    <select class="form-select" asp-for="Id_011_TipoUsuario" id="Id_011_TipoUsuario">
-                       <option></option>
-                        @foreach (var tipoUsuario in Model.TipoUsuarioList)
-                        {
-                            <option value="@tipoUsuario.Id_Parametro">@tipoUsuario.Descripcion</option>
-                        }
-                    </select>
-                   <label></label>
-               </div>
-               
-            </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-3">
-                <div class="form-floating">
-                    <input type="text" id="Documento" class="form-control" asp-for="Documento"/>
-                    <label for="Documento">N° Documento</label>
-                </div>
-            </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="form-floating">
                     <input type="text" id="Correo" class="form-control" asp-for="Correo" />
@@ -50,14 +49,21 @@
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="form-floating">
-                    <select class="form-select" asp-for="Id_001_TipoDocumento" id="Id_001_TipoDocumento">
+                    <input type="text" id="Celular" class="form-control" asp-for="Celular" />
+                    <label for="Celular">Celular</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+
+                <div class="form-floating">
+                    <select class="form-select" asp-for="Id_011_TipoUsuario" id="Id_011_TipoUsuario">
                         <option></option>
-                        @foreach (var tipoDocumento in Model.TipoDocumentoList)
+                        @foreach (var tipoUsuario in Model.TipoUsuarioList)
                         {
-                            <option value="@tipoDocumento.Id_Parametro">@tipoDocumento.Abreviatura</option>
+                            <option value="@tipoUsuario.Id_Parametros">@tipoUsuario.Descripcion</option>
                         }
                     </select>
-                    <label></label>
+                    <label>Tipo Usuario</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
@@ -68,13 +74,13 @@
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" id="Clave" class="form-control" asp-for="Clave" />
+                    <input type="password" id="Clave" class="form-control" asp-for="Clave" />
                     <label for="Clave">Clave</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" id="ClaveConfirmacion" class="form-control" asp-for="ClaveConfirmacion" />
+                    <input type="password" id="ClaveConfirmacion" class="form-control" asp-for="ClaveConfirmacion" />
                     <label for="ClaveConfirmacion">Confirmar Clave</label>
                 </div>
             </div>
@@ -89,4 +95,25 @@
     <partial name="_ValidationScriptsPartial" />
 }
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-
+<script>
+    function ValidarPersona() {
+        var idTipoDocumento = $("#Id_001_TipoDocumento").val();
+        var documento = $("#Documento").val();
+        console.log(idTipoDocumento);
+        console.log(documento);
+        if (idTipoDocumento && documento) {
+            $.get("/Usuario/ValidarPersona", { idTipoDocumento: idTipoDocumento, documento: documento }, function (data) {
+                if (data) {
+                    // Si la persona existe, llenar los campos
+                    $("#Id_Persona").val(data.id_Persona);
+                    $("#Paterno").val(data.paterno);
+                    $("#Materno").val(data.materno);
+                    $("#Nombres").val(data.nombres);
+                    $("#Celular").val(data.celular);
+                    $("#Correo").val(data.correo);
+                }
+                // Si no se encuentra la persona, no hacer nada (los datos actuales se mantienen)
+            });
+        }
+    }
+</script>

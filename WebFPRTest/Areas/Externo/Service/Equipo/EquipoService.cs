@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Data;
 using WebFPRTest.Areas.Externo.Interface.Equipo;
 using WebFPRTest.Areas.Externo.Models.Equipo;
