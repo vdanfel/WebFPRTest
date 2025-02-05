@@ -12,7 +12,7 @@ namespace WebFPRTest.Areas.Interno.Controllers
         public IActionResult ListJugadores() 
         {
             var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
-            if (tipoUsuario == null || tipoUsuario != "407")
+            if (tipoUsuario == null || (tipoUsuario != "406" && tipoUsuario != "407" && tipoUsuario != "408"))
             {
                 return RedirectToAction("Login", "Login");
             }

@@ -20,7 +20,7 @@ namespace WebFPRTest.Areas.Interno.Models.Usuario
         public string Correo { get; set; }
         public string Usuario { get; set; }
         public string ClaveHash { get; set; }
-        public string Clave { get; set; }
-        public string ClaveConfirmacion { get; set; }
+        public string? Clave { get; set; }
+        public string? ClaveConfirmacion { get; set; }
     }
 }

@@ -94,6 +94,32 @@ namespace WebFPRTest.Areas.Interno.Service.Usuario
                 _connection.Close();
             }
         }
+        public async Task<int> Usuario_Existe(string usuario, int Id_Persona)
+        {
+            var procedure = "usp_Usuario_Existe";
+            try 
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Usuario ", usuario);
+                parameters.Add("@Id_Persona", Id_Persona);
 
+                var existe = await _connection.QuerySingleAsync<int>(
+                procedure,
+                parameters,
+                commandType: CommandType.StoredProcedure
+                );
+
+                return existe;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error inesperado. Intenta nuevamente.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        
+        }
     }
 }

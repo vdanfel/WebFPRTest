@@ -27,7 +27,7 @@ namespace WebFPRTest.Areas.Interno.Controllers
         public async Task<IActionResult> Index() 
         {
             var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
-            if (tipoUsuario == null || tipoUsuario != "407")
+            if (tipoUsuario == null || (tipoUsuario != "406" && tipoUsuario != "407" && tipoUsuario != "408"))
             {
                 return RedirectToAction("Login", "Login");
             }
@@ -50,15 +50,24 @@ namespace WebFPRTest.Areas.Interno.Controllers
         }
         public IActionResult GuardarUsuarioSeleccionado(int id_Usuario)
         {
-            // Opción 1: Usando TempData
+            var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
+
+            if (tipoUsuario == null || (tipoUsuario != "406" && tipoUsuario != "407"))
+            {
+                TempData["Mensaje"] = "Usted no tiene permisos para entrar a esta ventana.";
+                return RedirectToAction("Index", "Usuario", new { area = "Interno" });
+            }
+
+            // Guardar en TempData el usuario seleccionado
             TempData["UsuarioSeleccionado"] = id_Usuario;
-            return RedirectToAction("Usuario", "Usuario");
+            return RedirectToAction("Usuario", "Usuario", new { area = "Interno" });
         }
+
         [HttpGet]
         public async Task<IActionResult> Usuario()
         {
             var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
-            if (tipoUsuario == null || tipoUsuario != "407")
+            if (tipoUsuario == null || (tipoUsuario != "406" && tipoUsuario != "407"))
             {
                 return RedirectToAction("Login", "Login");
             }
@@ -84,13 +93,25 @@ namespace WebFPRTest.Areas.Interno.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+            int existe = await _usuarioService.Usuario_Existe(usuario.Usuario, usuario.Id_Persona);
+            if (existe == 0)
+            {
+                TempData["Mensaje"] = "Usuario registrado con éxito";
+            }
+            else if (existe == 1)
+            {
+                TempData["Mensaje"] = "El nombre del Usuario ya está siendo utilizado por otro usuario";
+            }
+            else if (existe == 2)
+            {
+                TempData["Mensaje"] = "Usuario actualizado con éxito";
+            }
             return View(usuario);
         }
         [HttpGet]
         public async Task<IActionResult> ValidarPersona(int idTipoDocumento, string documento)
         {
             var persona = await _usuarioService.Usuario_ValidarPersona(idTipoDocumento, documento);
-
             return Json(persona);
         }
 

@@ -52,7 +52,7 @@ namespace WebFPRTest.Controllers
                 {
                     return RedirectToAction("Equipo", "Equipo", new { area = "Externo" });
                 }
-                else if (usuario.Id_011_TipoUsuario == 407)
+                else if (usuario.Id_011_TipoUsuario == 406 || usuario.Id_011_TipoUsuario == 407 || usuario.Id_011_TipoUsuario == 408)
                 {
                     return RedirectToAction("ListJugadores", "ListJugadores", new { area = "Interno" });
                 }

@@ -118,3 +118,4 @@ E:\WebFPRTest\WebFPRTest\obj\Debug\net6.0\refint\WebFPRTest.dll
 E:\WebFPRTest\WebFPRTest\obj\Debug\net6.0\WebFPRTest.pdb
 E:\WebFPRTest\WebFPRTest\obj\Debug\net6.0\WebFPRTest.genruntimeconfig.cache
 E:\WebFPRTest\WebFPRTest\obj\Debug\net6.0\ref\WebFPRTest.dll
+E:\WebFPRTest\WebFPRTest\bin\Debug\net6.0\Newtonsoft.Json.dll

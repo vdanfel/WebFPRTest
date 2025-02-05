@@ -3,6 +3,8 @@
     Layout = "_LayoutInterno";
 }
 <form asp-controller="Usuario" asp-action="Usuario" method="post" asp-area="Interno">
+    <input type="text" asp-for="Id_Usuario" />
+    <input type="text" asp-for="Id_Persona" />
     <div class="container">
         <div class="row mt-2 g-2">
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
@@ -86,23 +88,49 @@
             </div>
         </div>
         <div class="mt-2">
-            <button class="btn btn-outline-success">Registrar</button>
-            <button class="btn btn-outline-danger">Anular</button>
+            <button type="submit" class="btn btn-outline-success">Registrar</button>
+            <button type="button" class="btn btn-outline-danger">Anular</button>
+            <button type="button" class="btn btn-outline-secondary">Regresar</button>
         </div>
     </div>
 </form>
+<!-- Modal para el mensaje de del TempData -->
+@if (TempData["Mensaje"] != null)
+{
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @TempData["Mensaje"]
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
-    function ValidarPersona() {
+    $(document).ready(function () {
+        var mensaje = '@TempData["Mensaje"]';
+        if (mensaje && mensaje.trim() !== '') {
+            $('#myModal').modal('show');
+        }
+    });
+    function ValidarPersona()
+    {
         var idTipoDocumento = $("#Id_001_TipoDocumento").val();
         var documento = $("#Documento").val();
-        console.log(idTipoDocumento);
-        console.log(documento);
-        if (idTipoDocumento && documento) {
-            $.get("/Usuario/ValidarPersona", { idTipoDocumento: idTipoDocumento, documento: documento }, function (data) {
+        if (idTipoDocumento && documento)
+        {
+            console.log(idTipoDocumento);
+            console.log(documento);
+            $.get("/Interno/Usuario/ValidarPersona", { idTipoDocumento: idTipoDocumento, documento: documento }, function (data)
+            {
                 if (data) {
                     // Si la persona existe, llenar los campos
                     $("#Id_Persona").val(data.id_Persona);
@@ -111,8 +139,7 @@
                     $("#Nombres").val(data.nombres);
                     $("#Celular").val(data.celular);
                     $("#Correo").val(data.correo);
-                }
-                // Si no se encuentra la persona, no hacer nada (los datos actuales se mantienen)
+                    }
             });
         }
     }
