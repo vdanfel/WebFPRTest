@@ -2,7 +2,7 @@
 @{
     Layout = "_LayoutInterno";
 }
-<form asp-action="Index" asp-asp-controller="Usario" method="post">
+<form asp-action="Index" asp-controller="Usuario" method="post" asp-area="Interno">
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -77,7 +77,7 @@
                             <td>@usuarios.TipoUsuario</td>
                             <td>@usuarios.NombreEquipo</td>
                             <td class="text-end">
-                                <a class="btn btn-outline-warning" asp-action="GuardarUsuarioSeleccionado" asp-controller="Usuario" asp-route-id_Usuario="@usuarios.Id_Usuario">
+                                <a class="btn btn-outline-warning" asp-action="GuardarUsuarioSeleccionado" asp-controller="Usuario" asp-route-Id_Usuario="@usuarios.Id_Usuario" asp-route-Id_Persona="@usuarios.Id_Persona">
                                     <i class="bi-eye"></i>
                                 </a>
                             </td>

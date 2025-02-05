@@ -4,6 +4,9 @@ using Microsoft.Data.SqlClient;
 using WebFPRTest.Areas.Interno.Interface.Usuario;
 using WebFPRTest.Areas.Interno.Models.Usuario;
 using WebFPRTest.Result;
+using System.Text;
+using System.Security.Cryptography;
+using Microsoft.IdentityModel.Tokens;
 
 namespace WebFPRTest.Areas.Interno.Service.Usuario
 {
@@ -120,6 +123,123 @@ namespace WebFPRTest.Areas.Interno.Service.Usuario
                 _connection.Close();
             }
         
+        }
+        public async Task<int> Persona_Insertar(UsuarioViewModel usuario, int Id_Usuario)
+        {
+            var procedure = "usp_Persona_Insert"; // Nombre del procedimiento almacenado
+            try
+            {
+                // Crear los parámetros dinámicos
+                var parameters = new DynamicParameters();
+                parameters.Add("@Paterno", usuario.Paterno, DbType.String);
+                parameters.Add("@Materno", usuario.Materno, DbType.String);
+                parameters.Add("@Nombres", usuario.Nombres, DbType.String);
+                parameters.Add("@Id_001_TipoDocumento", usuario.Id_001_TipoDocumento, DbType.Int32);
+                parameters.Add("@Documento", usuario.Documento, DbType.String);
+                parameters.Add("@Correo", usuario.Correo, DbType.String);
+                parameters.Add("@Celular", usuario.Celular, DbType.String);
+                parameters.Add("@Usuario", Id_Usuario);
+
+                // Ejecutar el procedimiento almacenado
+                var idPersona = await _connection.ExecuteScalarAsync<int>(
+                    procedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return idPersona;  // Devuelves el Id de la persona recién insertada
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al insertar la persona.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+        public async Task<int> Usuario_Insertar(UsuarioViewModel usuario, int Id_Usuario)
+        {
+            var claveHash = EncriptarClave(usuario.ClaveConfirmacion);
+            var procedure = "usp_Usuario_Insert"; // Nombre del procedimiento almacenado
+            try
+            {
+                // Crear los parámetros dinámicos
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Persona", usuario.Id_Persona, DbType.Int32);
+                parameters.Add("@Usuario", usuario.Usuario, DbType.String);
+                parameters.Add("@ClaveHash", claveHash, DbType.String);
+                parameters.Add("@Id_011_TipoUsuario", usuario.Id_011_TipoUsuario, DbType.Int32);
+                parameters.Add("@UsuarioCreacion", Id_Usuario);
+
+                // Ejecutar el procedimiento almacenado
+                var idPersona = await _connection.ExecuteScalarAsync<int>(
+                    procedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return idPersona;  // Devuelves el Id de la persona recién insertada
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al insertar la persona.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+        public async Task Usuario_Actualizar(UsuarioViewModel usuario, int Id_Usuario)
+        {
+            string claveHash = "";
+            if (!usuario.ClaveConfirmacion.IsNullOrEmpty())
+            {
+                claveHash = EncriptarClave(usuario.ClaveConfirmacion);
+            }
+            
+            var procedure = "usp_Usuario_Update";
+
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Usuario", usuario.Id_Usuario, DbType.String);
+                parameters.Add("@ClaveHash", claveHash, DbType.String);
+                parameters.Add("@Id_011_TipoUsuario", usuario.Id_011_TipoUsuario, DbType.Int32);
+                parameters.Add("@Id_UsuarioModificacion", Id_Usuario, DbType.Int32);
+
+                // Ejecutar el procedimiento almacenado
+                await _connection.ExecuteAsync(procedure, parameters, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al actualizar el usuario.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+        private string EncriptarClave(string password)
+        {
+            if (password == null)
+            {
+                return password;
+            }
+            else
+            {
+                using (var sha256 = SHA256.Create())
+                {
+                    byte[] data = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                    StringBuilder sBuilder = new StringBuilder();
+                    for (int i = 0; i < data.Length; i++)
+                    {
+                        sBuilder.Append(data[i].ToString("x2"));
+                    }
+
+                    return sBuilder.ToString();
+                }
+            }
         }
     }
 }

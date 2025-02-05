@@ -2,9 +2,9 @@
 @{
     Layout = "_LayoutInterno";
 }
-<form asp-controller="Usuario" asp-action="Usuario" method="post" asp-area="Interno">
-    <input type="text" asp-for="Id_Usuario" />
-    <input type="text" asp-for="Id_Persona" />
+<form asp-controller="Usuario" asp-action="Usuario" method="post">
+    <input type="text" asp-for="Id_Usuario" id="Id_Usuario" hidden/>
+    <input type="text" asp-for="Id_Persona" id="Id_Persona" hidden/>
     <div class="container">
         <div class="row mt-2 g-2">
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
@@ -76,19 +76,19 @@
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="form-floating">
-                    <input type="password" id="Clave" class="form-control" asp-for="Clave" />
+                    <input type="password" id="Clave" class="form-control" asp-for="Clave" onblur="validarClaves()" />
                     <label for="Clave">Clave</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="form-floating">
-                    <input type="password" id="ClaveConfirmacion" class="form-control" asp-for="ClaveConfirmacion" />
+                    <input type="password" id="ClaveConfirmacion" class="form-control" asp-for="ClaveConfirmacion" onblur="validarClaves()" />
                     <label for="ClaveConfirmacion">Confirmar Clave</label>
                 </div>
             </div>
         </div>
         <div class="mt-2">
-            <button type="submit" class="btn btn-outline-success">Registrar</button>
+            <button type="submit" class="btn btn-outline-success" id="btnRegistrar" disabled>Registrar</button>
             <button type="button" class="btn btn-outline-danger">Anular</button>
             <button type="button" class="btn btn-outline-secondary">Regresar</button>
         </div>
@@ -110,12 +110,30 @@
         </div>
     </div>
 }
+<!-- Modal de Error Claves-->
+<div class="modal fade" id="modalErrorClave" tabindex="-1" aria-labelledby="modalErrorLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalErrorLabel">Error</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Las claves ingresadas no coinciden. Por favor, verifique.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
     $(document).ready(function () {
+        validarClaves();
         var mensaje = '@TempData["Mensaje"]';
         if (mensaje && mensaje.trim() !== '') {
             $('#myModal').modal('show');
@@ -127,8 +145,6 @@
         var documento = $("#Documento").val();
         if (idTipoDocumento && documento)
         {
-            console.log(idTipoDocumento);
-            console.log(documento);
             $.get("/Interno/Usuario/ValidarPersona", { idTipoDocumento: idTipoDocumento, documento: documento }, function (data)
             {
                 if (data) {
@@ -143,4 +159,26 @@
             });
         }
     }
+    function validarClaves() {
+        var clave = document.getElementById("Clave").value;
+        var claveConfirmacion = document.getElementById("ClaveConfirmacion").value;
+        var btnRegistrar = document.getElementById("btnRegistrar");
+        var modalElement = document.getElementById("modalErrorClave");
+        var modalInstance = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
+
+        // Si ambos están vacíos, habilitar el botón
+        if ((clave === "" || clave === null) && (claveConfirmacion === "" || claveConfirmacion === null)) {
+            btnRegistrar.disabled = false;
+        } else if (clave !== "" && claveConfirmacion !== "" && clave !== claveConfirmacion) {
+            // Si las claves no coinciden y el modal no está visible, mostrar el modal
+            if (!modalElement.classList.contains("show")) {
+                modalInstance.show();
+            }
+            btnRegistrar.disabled = true;
+        } else {
+            // Si las claves coinciden, habilitar el botón
+            btnRegistrar.disabled = false;
+        }
+    }
+
 </script>

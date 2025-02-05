@@ -31,12 +31,12 @@ namespace WebFPRTest.Areas.Interno.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
-            UsuarioFiltroViewModel index = new UsuarioFiltroViewModel();
-            index.ListaUsuarios = await _usuarioService.Usuario_Bandeja(index);
-            return View(index);
+            UsuarioFiltroViewModel indexView = new UsuarioFiltroViewModel();
+            indexView.ListaUsuarios = await _usuarioService.Usuario_Bandeja(indexView);
+            return View(indexView);
         }
         [HttpPost]
-        public async Task<IActionResult> Index(UsuarioFiltroViewModel index)
+        public async Task<IActionResult> Index(UsuarioFiltroViewModel indexView)
         {
             var idUsuarioStr = User.FindFirst("Id_Usuario")?.Value ?? "0";
             var Id_Usuario = int.Parse(idUsuarioStr);
@@ -45,10 +45,10 @@ namespace WebFPRTest.Areas.Interno.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            index.ListaUsuarios = await _usuarioService.Usuario_Bandeja(index);
-            return View(index);
+            indexView.ListaUsuarios = await _usuarioService.Usuario_Bandeja(indexView);
+            return View(indexView);
         }
-        public IActionResult GuardarUsuarioSeleccionado(int id_Usuario)
+        public IActionResult GuardarUsuarioSeleccionado(int Id_Usuario, int Id_Persona)
         {
             var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
 
@@ -59,7 +59,8 @@ namespace WebFPRTest.Areas.Interno.Controllers
             }
 
             // Guardar en TempData el usuario seleccionado
-            TempData["UsuarioSeleccionado"] = id_Usuario;
+            TempData["Id_Usuario"] = Id_Usuario;
+            TempData["Id_Persona"] = Id_Persona;
             return RedirectToAction("Usuario", "Usuario", new { area = "Interno" });
         }
 
@@ -72,31 +73,47 @@ namespace WebFPRTest.Areas.Interno.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            int Id_Usuario = TempData["UsuarioSeleccionado"] as int? ?? 0;
-            UsuarioViewModel usuario = new UsuarioViewModel();
             
-            if (Id_Usuario > 0)
+            UsuarioViewModel usuario = new UsuarioViewModel();
+            usuario.Id_Usuario = TempData.Peek("Id_Usuario") as int? ?? 0;
+            usuario.Id_Persona = TempData.Peek("Id_Persona") as int? ?? 0;
+            if (usuario.Id_Usuario > 0)
             {
-                usuario = await _usuarioService.Usuario_BuscarId_Usuario(Id_Usuario);
+                usuario = await _usuarioService.Usuario_BuscarId_Usuario(usuario.Id_Usuario);
             }
             usuario.TipoUsuarioList = await _tiposService.ParametroTipo_Listar(11); 
             usuario.TipoDocumentoList = await _tiposService.ParametroTipo_Listar(1);
             return View(usuario);
         }
         [HttpPost]
-        public async Task<IActionResult> Usuario(UsuarioViewModel usuario)
+        public async Task<IActionResult> Usuario(UsuarioViewModel usuarioView)
         {
             var idUsuarioStr = User.FindFirst("Id_Usuario")?.Value ?? "0";
-            var Id_Usuario = int.Parse(idUsuarioStr);
-
-            if (Id_Usuario == 0)
+            var IdUsuario = int.Parse(idUsuarioStr);
+            if (IdUsuario == 0)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Login", "Login");
             }
-            int existe = await _usuarioService.Usuario_Existe(usuario.Usuario, usuario.Id_Persona);
+
+            int existe = await _usuarioService.Usuario_Existe(usuarioView.Usuario, usuarioView.Id_Persona);
             if (existe == 0)
             {
-                TempData["Mensaje"] = "Usuario registrado con éxito";
+                if (usuarioView.ClaveConfirmacion == null)
+                {
+                    TempData["Mensaje"] = "Debe colocar una clave";
+                    return RedirectToAction("GuardarUsuarioSeleccionado", "Usuario", new { area = "Interno", Id_Usuario = usuarioView.Id_Usuario });
+                }
+                else
+                {
+                    if (usuarioView.Id_Persona == 0)
+                    {
+                        usuarioView.Id_Persona = await _usuarioService.Persona_Insertar(usuarioView, IdUsuario);
+                    }
+                    usuarioView.ClaveHash = usuarioView.ClaveConfirmacion;
+                    usuarioView.Id_Usuario = await _usuarioService.Usuario_Insertar(usuarioView, IdUsuario);
+                    TempData["Mensaje"] = "Usuario registrado con éxito";
+                    return RedirectToAction("GuardarUsuarioSeleccionado", "Usuario", new { area = "Interno", Id_Usuario = usuarioView.Id_Usuario });
+                }
             }
             else if (existe == 1)
             {
@@ -104,9 +121,10 @@ namespace WebFPRTest.Areas.Interno.Controllers
             }
             else if (existe == 2)
             {
+                await _usuarioService.Usuario_Actualizar(usuarioView, IdUsuario);
                 TempData["Mensaje"] = "Usuario actualizado con éxito";
             }
-            return View(usuario);
+            return RedirectToAction("GuardarUsuarioSeleccionado", "Usuario", new { area = "Interno" ,Id_Usuario = usuarioView.Id_Usuario});
         }
         [HttpGet]
         public async Task<IActionResult> ValidarPersona(int idTipoDocumento, string documento)

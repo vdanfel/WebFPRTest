@@ -19,6 +19,7 @@
     {
         public int Indice { get; set; }  // Para numerar la tabla
         public int Id_Usuario { get; set; }
+        public int Id_Persona { get; set; }
         public string ApellidosYNombre { get; set; }  // "Paterno Materno, Nombres"
         public string Usuario { get; set; }
         public string TipoUsuario { get; set; }
