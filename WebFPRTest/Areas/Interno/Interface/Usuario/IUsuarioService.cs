@@ -11,5 +11,7 @@ namespace WebFPRTest.Areas.Interno.Interface.Usuario
         Task<int> Persona_Insertar(UsuarioViewModel usuario, int Id_Usuario);
         Task<int> Usuario_Insertar(UsuarioViewModel usuario, int Id_Usuario);
         Task Usuario_Actualizar(UsuarioViewModel usuario, int Id_Usuario);
+        Task Persona_Actualizar(UsuarioViewModel usuario, int Id_Usuario);
+        Task Usuario_Eliminar(int Id_Usuario);
     }
 }

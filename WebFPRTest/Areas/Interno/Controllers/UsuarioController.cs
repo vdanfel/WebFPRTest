@@ -63,7 +63,20 @@ namespace WebFPRTest.Areas.Interno.Controllers
             TempData["Id_Persona"] = Id_Persona;
             return RedirectToAction("Usuario", "Usuario", new { area = "Interno" });
         }
+        [HttpGet]
+        public async Task<IActionResult> Usuario_Eliminar(int Id_Usuario)
+        {
+            var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
 
+            if (tipoUsuario == null || (tipoUsuario != "406" && tipoUsuario != "407"))
+            {
+                TempData["Mensaje"] = "Usted no tiene permisos para entrar a esta ventana.";
+                return RedirectToAction("Index", "Usuario", new { area = "Interno" });
+            }
+            await _usuarioService.Usuario_Eliminar(Id_Usuario);
+            TempData["Mensaje"] = "Usuario Eliminado con éxito";
+            return RedirectToAction("Index", "Usuario", new { area = "Interno" });
+        }
         [HttpGet]
         public async Task<IActionResult> Usuario()
         {
@@ -109,6 +122,10 @@ namespace WebFPRTest.Areas.Interno.Controllers
                     {
                         usuarioView.Id_Persona = await _usuarioService.Persona_Insertar(usuarioView, IdUsuario);
                     }
+                    else
+                    {
+                        await _usuarioService.Persona_Actualizar(usuarioView, IdUsuario);
+                    }
                     usuarioView.ClaveHash = usuarioView.ClaveConfirmacion;
                     usuarioView.Id_Usuario = await _usuarioService.Usuario_Insertar(usuarioView, IdUsuario);
                     TempData["Mensaje"] = "Usuario registrado con éxito";
@@ -121,6 +138,7 @@ namespace WebFPRTest.Areas.Interno.Controllers
             }
             else if (existe == 2)
             {
+                await _usuarioService.Persona_Actualizar(usuarioView, IdUsuario);
                 await _usuarioService.Usuario_Actualizar(usuarioView, IdUsuario);
                 TempData["Mensaje"] = "Usuario actualizado con éxito";
             }

@@ -89,7 +89,12 @@
         </div>
         <div class="mt-2">
             <button type="submit" class="btn btn-outline-success" id="btnRegistrar" disabled>Registrar</button>
-            <button type="button" class="btn btn-outline-danger">Anular</button>
+            <a class="btn btn-outline-danger"
+               onclick="mostrarModalEliminar('@Url.Action("Usuario_Eliminar", "Usuario", new { area = "Interno", Id_Usuario = Model.Id_Usuario })', '@Model.Usuario')">
+                <i class="bi bi-trash"></i>
+            </a>
+
+
             <button type="button" class="btn btn-outline-secondary">Regresar</button>
         </div>
     </div>
@@ -127,6 +132,23 @@
         </div>
     </div>
 </div>
+
+<!-- Modal de confirmación para eliminar usuario -->
+<div class="modal fade" id="modalEliminarUsuario" tabindex="-1" role="dialog" aria-labelledby="modalEliminarUsuarioLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p id="mensajeConfirmacion"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="btnConfirmarEliminar">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
@@ -139,6 +161,27 @@
             $('#myModal').modal('show');
         }
     });
+
+    function mostrarModalEliminar(url, nombreUsuario) {
+        // Establecer el mensaje en el modal
+        document.getElementById("mensajeConfirmacion").innerText =
+            "¿Está seguro que desea eliminar al usuario " + nombreUsuario + "?";
+
+        // Guardar la URL en un atributo del botón
+        document.getElementById("btnConfirmarEliminar").setAttribute("data-url", url);
+
+        // Mostrar el modal
+        $("#modalEliminarUsuario").modal("show");
+    }
+    
+    document.getElementById("btnConfirmarEliminar").addEventListener("click", function () {
+        var url = this.getAttribute("data-url");
+
+        // Redirigir a la acción de eliminación
+        window.location.href = url;
+    });
+    
+
     function ValidarPersona()
     {
         var idTipoDocumento = $("#Id_001_TipoDocumento").val();

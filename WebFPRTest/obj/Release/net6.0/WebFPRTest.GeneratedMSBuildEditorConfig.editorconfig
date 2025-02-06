@@ -20,6 +20,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRXh0ZXJub1xWaWV3c1xFcXVpcG9cRXF1aXBvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/WebFPRTest/WebFPRTest/Areas/Externo/Views/Jugador/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRXh0ZXJub1xWaWV3c1xKdWdhZG9yXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/WebFPRTest/WebFPRTest/Areas/Externo/Views/Shared/_LayoutExterno.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRXh0ZXJub1xWaWV3c1xTaGFyZWRcX0xheW91dEV4dGVybm8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

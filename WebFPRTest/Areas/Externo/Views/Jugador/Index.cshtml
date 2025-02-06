@@ -1,0 +1,154 @@
+﻿@{
+    Layout = "_LayoutExterno";
+}
+<form>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2  align-content-between">
+                    <div class="col">
+                        <h1>Nombre del Equipo</h1>
+                    </div>
+                    <div class="col d-flex justify-content-end align-items-center">
+                        <a class="me-2" href="#">Descargar Excel</a>
+                        <a class="me-2 btn btn-outline-primary">Carga Masiva</a>
+                        <a class="me-2 btn btn-outline-success">Nuevo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row mt-2 g-2">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" placeholder="Apellido Paterno" @*asp-for="Paterno"*@ id="Paterno" />
+                            <label for="Paterno">Apellido Paterno</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" placeholder="Apellido Materno" @*asp-for="Materno"*@ id="Materno" />
+                            <label>Apellido Materno</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" placeholder="Nombres" @*asp-for="Nombres"*@ id="Nombres" />
+                            <label>Nombres</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" placeholder="Numero Documento" @*asp-for="Documento"*@ id="Documento" />
+                            <label>Numero Documento</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" placeholder="Correo Electronico" @*asp-for="Correo"*@ id="Correo" />
+                            <label>Correo Electronico</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3 d-flex justify-content-end align-items-center">
+                        <button type="submit" class="btn btn-outline-primary me-2">Filtrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive-md mt-2">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>N°</th>
+                        <th>Nombres</th>
+                        <th>Tipo Documento</th>
+                        <th>Documento</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="align-middle">
+                        <td>1</td>
+                        <td>Chavez Noriega, Jorge</td>
+                        <td>DNI</td>
+                        <td>45494645</td>
+                        <td class="text-end">
+                            <a class="btn btn-outline-warning">
+                                <i class="bi-eye"></i>
+                            </a>
+                        </td>
+                        <td class="text-end">
+                            <a class="btn btn-outline-primary">
+                                <i class="bi-files"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Chavez Noriega, Jorge</td>
+                        <td>DNI</td>
+                        <td>45494645</td>
+                        <td>
+                            <a class="btn btn-outline-warning">
+                                <i class="bi-eye"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-primary">
+                                <i class="bi-files"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Chavez Noriega, Jorge</td>
+                        <td>DNI</td>
+                        <td>45494645</td>
+                        <td>
+                            <a class="btn btn-outline-warning">
+                                <i class="bi-eye"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-primary">
+                                <i class="bi-files"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Chavez Noriega, Jorge</td>
+                        <td>DNI</td>
+                        <td>45494645</td>
+                        <td>
+                            <a class="btn btn-outline-warning">
+                                <i class="bi-eye"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-primary">
+                                <i class="bi-files"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Chavez Noriega, Jorge</td>
+                        <td>DNI</td>
+                        <td>45494645</td>
+                        <td>
+                            <a class="btn btn-outline-warning">
+                                <i class="bi-eye"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-primary">
+                                <i class="bi-files"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>

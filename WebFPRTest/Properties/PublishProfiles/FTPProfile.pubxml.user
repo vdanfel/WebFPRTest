@@ -7,7 +7,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAwGAqFg1BTkC6WpwCgLjefAAAAAACAAAAAAAQZgAAAAEAACAAAADaRwz0++i8WE3t8y12oVa0HrzBYrpxQRBLUG3p+kuj1gAAAAAOgAAAAAIAACAAAACcka3C6TgskwHa3Y2TzIqJ4BHUpftYDAkimA0VSFwItyAAAABGa+ZzFYvfjJQA6s/hUmqpPld9a35TtFWjarCTsUjX4kAAAABsozECE8a8A8pRNj7PSqLcufywnea+FvRH3Fle/IiK4nZkk09QPLif3bR+voCAg6gwRB5UayLMsksQpekJZwY+</EncryptedPassword>
     <_PublishTargetUrl>ftp://FPRTest.somee.com/www.FPRTest.somee.com</_PublishTargetUrl>
-    <History>True|2025-02-02T22:03:22.6884403Z;True|2025-02-02T10:20:36.6520091-05:00;True|2025-02-02T10:08:21.7800260-05:00;True|2025-02-02T09:12:00.7344608-05:00;True|2025-02-02T01:03:37.2204567-05:00;False|2025-02-02T00:57:28.5619442-05:00;</History>
+    <History>True|2025-02-06T05:19:12.8102113Z;True|2025-02-02T17:03:22.6884403-05:00;True|2025-02-02T10:20:36.6520091-05:00;True|2025-02-02T10:08:21.7800260-05:00;True|2025-02-02T09:12:00.7344608-05:00;True|2025-02-02T01:03:37.2204567-05:00;False|2025-02-02T00:57:28.5619442-05:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -17,50 +17,179 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="appsettings.json">
       <publishTime>01/31/2025 21:32:44</publishTime>
     </File>
+    <File Include="Azure.Core.dll">
+      <publishTime>09/07/2023 12:50:30</publishTime>
+    </File>
+    <File Include="Azure.Identity.dll">
+      <publishTime>10/18/2023 14:59:42</publishTime>
+    </File>
     <File Include="Dapper.dll">
-      <publishTime>03/06/2024 10:03:30</publishTime>
+      <publishTime>06/03/2024 10:03:30</publishTime>
+    </File>
+    <File Include="de/Microsoft.Data.SqlClient.resources.dll">
+      <publishTime>02/27/2024 22:33:26</publishTime>
+    </File>
+    <File Include="es/Microsoft.Data.SqlClient.resources.dll">
+      <publishTime>02/27/2024 22:33:14</publishTime>
+    </File>
+    <File Include="fr/Microsoft.Data.SqlClient.resources.dll">
+      <publishTime>02/27/2024 22:32:52</publishTime>
+    </File>
+    <File Include="it/Microsoft.Data.SqlClient.resources.dll">
+      <publishTime>02/27/2024 22:32:52</publishTime>
+    </File>
+    <File Include="ja/Microsoft.Data.SqlClient.resources.dll">
+      <publishTime>02/27/2024 22:32:52</publishTime>
+    </File>
+    <File Include="ko/Microsoft.Data.SqlClient.resources.dll">
+      <publishTime>02/27/2024 22:32:52</publishTime>
+    </File>
+    <File Include="Microsoft.Bcl.AsyncInterfaces.dll">
+      <publishTime>04/14/2020 17:39:12</publishTime>
+    </File>
+    <File Include="Microsoft.Data.SqlClient.dll">
+      <publishTime>02/27/2024 22:33:14</publishTime>
+    </File>
+    <File Include="Microsoft.Identity.Client.dll">
+      <publishTime>09/05/2023 13:25:28</publishTime>
+    </File>
+    <File Include="Microsoft.Identity.Client.Extensions.Msal.dll">
+      <publishTime>09/05/2023 13:31:58</publishTime>
+    </File>
+    <File Include="Microsoft.IdentityModel.Abstractions.dll">
+      <publishTime>11/30/2023 23:56:56</publishTime>
+    </File>
+    <File Include="Microsoft.IdentityModel.JsonWebTokens.dll">
+      <publishTime>11/30/2023 23:34:00</publishTime>
+    </File>
+    <File Include="Microsoft.IdentityModel.Logging.dll">
+      <publishTime>11/30/2023 23:35:22</publishTime>
+    </File>
+    <File Include="Microsoft.IdentityModel.Protocols.dll">
+      <publishTime>11/30/2023 23:37:28</publishTime>
+    </File>
+    <File Include="Microsoft.IdentityModel.Protocols.OpenIdConnect.dll">
+      <publishTime>11/30/2023 23:48:08</publishTime>
+    </File>
+    <File Include="Microsoft.IdentityModel.Tokens.dll">
+      <publishTime>11/30/2023 23:41:50</publishTime>
+    </File>
+    <File Include="Microsoft.SqlServer.Server.dll">
+      <publishTime>01/27/2022 12:19:08</publishTime>
+    </File>
+    <File Include="Microsoft.Win32.SystemEvents.dll">
+      <publishTime>10/18/2022 11:20:10</publishTime>
+    </File>
+    <File Include="Newtonsoft.Json.dll">
+      <publishTime>03/08/2023 02:09:54</publishTime>
+    </File>
+    <File Include="pt-BR/Microsoft.Data.SqlClient.resources.dll">
+      <publishTime>02/27/2024 22:32:52</publishTime>
+    </File>
+    <File Include="ru/Microsoft.Data.SqlClient.resources.dll">
+      <publishTime>02/27/2024 22:32:54</publishTime>
+    </File>
+    <File Include="runtimes/unix/lib/net6.0/Microsoft.Data.SqlClient.dll">
+      <publishTime>02/27/2024 22:33:26</publishTime>
     </File>
     <File Include="runtimes/unix/lib/net6.0/System.Data.SqlClient.dll">
       <publishTime>11/12/2024 16:47:22</publishTime>
     </File>
+    <File Include="runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll">
+      <publishTime>02/20/2024 17:29:06</publishTime>
+    </File>
+    <File Include="runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll">
+      <publishTime>02/20/2024 17:29:06</publishTime>
+    </File>
     <File Include="runtimes/win-arm64/native/sni.dll">
       <publishTime>07/12/2017 06:24:24</publishTime>
+    </File>
+    <File Include="runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll">
+      <publishTime>02/20/2024 17:30:22</publishTime>
     </File>
     <File Include="runtimes/win-x64/native/sni.dll">
       <publishTime>07/12/2017 06:24:22</publishTime>
     </File>
+    <File Include="runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll">
+      <publishTime>02/20/2024 17:28:56</publishTime>
+    </File>
     <File Include="runtimes/win-x86/native/sni.dll">
       <publishTime>07/12/2017 06:24:22</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/net6.0/Microsoft.Data.SqlClient.dll">
+      <publishTime>02/27/2024 22:32:52</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll">
+      <publishTime>10/18/2022 11:23:26</publishTime>
     </File>
     <File Include="runtimes/win/lib/net6.0/System.Data.SqlClient.dll">
       <publishTime>11/12/2024 16:47:32</publishTime>
     </File>
+    <File Include="runtimes/win/lib/net6.0/System.Diagnostics.PerformanceCounter.dll">
+      <publishTime>10/18/2022 11:28:10</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/net6.0/System.Drawing.Common.dll">
+      <publishTime>10/18/2022 11:26:24</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/net6.0/System.Runtime.Caching.dll">
+      <publishTime>10/22/2021 18:52:44</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll">
+      <publishTime>10/18/2022 11:28:06</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/net6.0/System.Windows.Extensions.dll">
+      <publishTime>10/18/2022 11:26:26</publishTime>
+    </File>
+    <File Include="System.Configuration.ConfigurationManager.dll">
+      <publishTime>10/18/2022 11:24:16</publishTime>
+    </File>
     <File Include="System.Data.SqlClient.dll">
       <publishTime>11/12/2024 16:47:12</publishTime>
     </File>
+    <File Include="System.Diagnostics.DiagnosticSource.dll">
+      <publishTime>02/15/2023 19:32:04</publishTime>
+    </File>
     <File Include="System.Diagnostics.PerformanceCounter.dll">
-      <publishTime>12/10/2024 16:08:24</publishTime>
+      <publishTime>10/18/2022 11:25:32</publishTime>
+    </File>
+    <File Include="System.Drawing.Common.dll">
+      <publishTime>10/18/2022 11:21:16</publishTime>
+    </File>
+    <File Include="System.IdentityModel.Tokens.Jwt.dll">
+      <publishTime>11/30/2023 23:31:48</publishTime>
+    </File>
+    <File Include="System.Memory.Data.dll">
+      <publishTime>04/08/2021 11:45:54</publishTime>
+    </File>
+    <File Include="System.Runtime.Caching.dll">
+      <publishTime>10/22/2021 18:52:02</publishTime>
+    </File>
+    <File Include="System.Security.Cryptography.ProtectedData.dll">
+      <publishTime>10/18/2022 11:20:10</publishTime>
     </File>
     <File Include="System.Security.Permissions.dll">
-      <publishTime>12/10/2024 16:06:20</publishTime>
+      <publishTime>10/18/2022 11:23:04</publishTime>
+    </File>
+    <File Include="System.Windows.Extensions.dll">
+      <publishTime>10/18/2022 11:22:56</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>02/02/2025 17:00:28</publishTime>
+      <publishTime>02/06/2025 00:14:36</publishTime>
     </File>
     <File Include="WebFPRTest.deps.json">
-      <publishTime>02/02/2025 17:00:20</publishTime>
+      <publishTime>02/06/2025 00:14:00</publishTime>
     </File>
     <File Include="WebFPRTest.dll">
-      <publishTime>02/02/2025 17:00:19</publishTime>
+      <publishTime>02/06/2025 00:13:59</publishTime>
     </File>
     <File Include="WebFPRTest.exe">
-      <publishTime>02/02/2025 17:00:19</publishTime>
+      <publishTime>02/06/2025 00:13:59</publishTime>
     </File>
     <File Include="WebFPRTest.pdb">
-      <publishTime>02/02/2025 17:00:19</publishTime>
+      <publishTime>02/06/2025 00:13:59</publishTime>
     </File>
     <File Include="WebFPRTest.runtimeconfig.json">
-      <publishTime>02/02/2025 00:57:25</publishTime>
+      <publishTime>02/06/2025 00:14:00</publishTime>
     </File>
     <File Include="wwwroot/Archivos/10/10_Logo.jpg">
       <publishTime>02/01/2025 22:52:15</publishTime>
@@ -265,6 +394,12 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="wwwroot/WebFPRTest.styles.css">
       <publishTime>02/02/2025 00:57:25</publishTime>
+    </File>
+    <File Include="zh-Hans/Microsoft.Data.SqlClient.resources.dll">
+      <publishTime>02/27/2024 22:32:54</publishTime>
+    </File>
+    <File Include="zh-Hant/Microsoft.Data.SqlClient.resources.dll">
+      <publishTime>02/27/2024 22:33:14</publishTime>
     </File>
   </ItemGroup>
 </Project>

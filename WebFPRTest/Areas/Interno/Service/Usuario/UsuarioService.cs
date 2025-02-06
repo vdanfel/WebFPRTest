@@ -158,6 +158,28 @@ namespace WebFPRTest.Areas.Interno.Service.Usuario
                 _connection.Close();
             }
         }
+        public async Task Usuario_Eliminar(int Id_Usuario)
+        {
+            var procedure = "usp_Usuario_Delete";
+
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Usuario", Id_Usuario, DbType.String);
+                parameters.Add("@Id_UsuarioModificacion", Id_Usuario, DbType.Int32);
+
+                // Ejecutar el procedimiento almacenado
+                await _connection.ExecuteAsync(procedure, parameters, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al actualizar el usuario.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
         public async Task<int> Usuario_Insertar(UsuarioViewModel usuario, int Id_Usuario)
         {
             var claveHash = EncriptarClave(usuario.ClaveConfirmacion);
@@ -209,6 +231,32 @@ namespace WebFPRTest.Areas.Interno.Service.Usuario
                 parameters.Add("@Id_UsuarioModificacion", Id_Usuario, DbType.Int32);
 
                 // Ejecutar el procedimiento almacenado
+                await _connection.ExecuteAsync(procedure, parameters, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al actualizar el usuario.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+        public async Task Persona_Actualizar(UsuarioViewModel usuario, int Id_Usuario)
+        {
+            var procedure = "usp_Persona_Update";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Persona", usuario.Id_Persona, DbType.Int32);
+                parameters.Add("@Paterno", usuario.Paterno, DbType.String);
+                parameters.Add("@Materno", usuario.Materno, DbType.String);
+                parameters.Add("@Nombres", usuario.Nombres, DbType.String);
+                parameters.Add("@Id_001_TipoDocumento", usuario.Id_001_TipoDocumento, DbType.Int32);
+                parameters.Add("@Documento", usuario.Documento, DbType.String);
+                parameters.Add("@Celular", usuario.Celular, DbType.String);
+                parameters.Add("@Correo", usuario.Correo, DbType.String);
+                parameters.Add("@Id_UsuarioModificacion", Id_Usuario, DbType.Int32);
                 await _connection.ExecuteAsync(procedure, parameters, commandType: CommandType.StoredProcedure);
             }
             catch (Exception ex)
