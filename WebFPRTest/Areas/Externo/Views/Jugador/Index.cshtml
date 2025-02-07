@@ -1,4 +1,5 @@
-﻿@{
+﻿@model WebFPRTest.Areas.Externo.Models.Jugador.JugadorFiltroViewModel
+@{
     Layout = "_LayoutExterno";
 }
 <form>
@@ -10,42 +11,53 @@
                         <h1>Nombre del Equipo</h1>
                     </div>
                     <div class="col d-flex justify-content-end align-items-center">
-                        <a class="me-2" href="#">Descargar Excel</a>
-                        <a class="me-2 btn btn-outline-primary">Carga Masiva</a>
+                        <a class="me-2" href="~/Archivos/FormatoCargaMasiva.xlsx" download="FormatoCargaMasiva.xlsx">
+                            Formato <i class="bi bi-file-spreadsheet"></i>
+                        </a>
+                        <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#modalCargaExcel">
+                            Carga Masiva
+                        </button>
                         <a class="me-2 btn btn-outline-success">Nuevo</a>
                     </div>
                 </div>
+                <div id="logContainer"></div>
             </div>
             <div class="card-body">
                 <div class="row mt-2 g-2">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="form-floating">
-                            <input type="text" class="form-control" placeholder="Apellido Paterno" @*asp-for="Paterno"*@ id="Paterno" />
+                            <input type="text" class="form-control" placeholder="Apellido Paterno" asp-for="Paterno" id="Paterno" />
                             <label for="Paterno">Apellido Paterno</label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="form-floating">
-                            <input type="text" class="form-control" placeholder="Apellido Materno" @*asp-for="Materno"*@ id="Materno" />
+                            <input type="text" class="form-control" placeholder="Apellido Materno" asp-for="Materno" id="Materno" />
                             <label>Apellido Materno</label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                         <div class="form-floating">
-                            <input type="text" class="form-control" placeholder="Nombres" @*asp-for="Nombres"*@ id="Nombres" />
+                            <input type="text" class="form-control" placeholder="Nombres" asp-for="Nombres" id="Nombres" />
                             <label>Nombres</label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="form-floating">
-                            <input type="text" class="form-control" placeholder="Numero Documento" @*asp-for="Documento"*@ id="Documento" />
+                            <input type="text" class="form-control" placeholder="Numero Documento" asp-for="Documento" id="Documento" />
                             <label>Numero Documento</label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                         <div class="form-floating">
-                            <input type="text" class="form-control" placeholder="Correo Electronico" @*asp-for="Correo"*@ id="Correo" />
-                            <label>Correo Electronico</label>
+                            <select class="form-select" asp-for="Id_007_Division">
+                                <option></option>
+                                @foreach (var divisiones in Model.ListaDivisiones)
+                                {
+                                    <option value="@divisiones.Id_Parametros">@divisiones.Descripcion</option>
+                                }
+                            </select>
+                            <label>División</label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-3 d-flex justify-content-end align-items-center">
@@ -62,93 +74,95 @@
                         <th>Nombres</th>
                         <th>Tipo Documento</th>
                         <th>Documento</th>
+                        <th>Division</th>
+                        <th>Situacion</th>
                         <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="align-middle">
-                        <td>1</td>
-                        <td>Chavez Noriega, Jorge</td>
-                        <td>DNI</td>
-                        <td>45494645</td>
-                        <td class="text-end">
-                            <a class="btn btn-outline-warning">
-                                <i class="bi-eye"></i>
-                            </a>
-                        </td>
-                        <td class="text-end">
-                            <a class="btn btn-outline-primary">
-                                <i class="bi-files"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Chavez Noriega, Jorge</td>
-                        <td>DNI</td>
-                        <td>45494645</td>
-                        <td>
-                            <a class="btn btn-outline-warning">
-                                <i class="bi-eye"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <a class="btn btn-outline-primary">
-                                <i class="bi-files"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Chavez Noriega, Jorge</td>
-                        <td>DNI</td>
-                        <td>45494645</td>
-                        <td>
-                            <a class="btn btn-outline-warning">
-                                <i class="bi-eye"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <a class="btn btn-outline-primary">
-                                <i class="bi-files"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Chavez Noriega, Jorge</td>
-                        <td>DNI</td>
-                        <td>45494645</td>
-                        <td>
-                            <a class="btn btn-outline-warning">
-                                <i class="bi-eye"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <a class="btn btn-outline-primary">
-                                <i class="bi-files"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Chavez Noriega, Jorge</td>
-                        <td>DNI</td>
-                        <td>45494645</td>
-                        <td>
-                            <a class="btn btn-outline-warning">
-                                <i class="bi-eye"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <a class="btn btn-outline-primary">
-                                <i class="bi-files"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    @foreach (var jugadores in Model.ListaJugadores)
+                    {
+                        <tr class="align-middle">
+                            <td>@jugadores.Indice</td>
+                            <td>@jugadores.ApellidosYNombre</td>
+                            <td>@jugadores.TipoDocumento</td>
+                            <td>@jugadores.Documento</td>
+                            <td>@jugadores.Division</td>
+                            <td>@jugadores.Situacion</td>
+                            <td class="text-end">
+                                <a class="btn btn-outline-warning">
+                                    <i class="bi-eye"></i>
+                                </a>
+                            </td>
+                            <td class="text-end">
+                                <a class="btn btn-outline-primary">
+                                    <i class="bi-files"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
     </div>
 </form>
+<!-- Modal Para Cargar Archivo Masivo-->
+<div class="modal fade" id="modalCargaExcel" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cargar Archivo Excel</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="file" id="archivoExcel" class="form-control" accept=".xlsx">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="subirArchivoExcel()">Subir</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    function subirArchivoExcel() {
+        let fileInput = document.getElementById("archivoExcel");
+        let file = fileInput.files[0];
+
+        if (!file) {
+            alert("Selecciona un archivo antes de subir.");
+            return;
+        }
+
+        let formData = new FormData();
+        formData.append("archivoExcel", file);
+
+        fetch("/Externo/Jugador/CargarExcel", {
+            method: "POST",
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    location.reload();
+                } else {
+                    alert(data.message);
+
+                    if (data.logFile) {
+                        let logContainer = document.getElementById("logContainer");
+                        logContainer.innerHTML = `
+                            <a href="${data.logFile}" download class="btn btn-danger mt-2">Descargar Log de Errores</a>
+                        `;
+                    }
+                }
+            })
+            .catch(error => console.error("Error en la subida:", error));
+    }
+
+</script>
+

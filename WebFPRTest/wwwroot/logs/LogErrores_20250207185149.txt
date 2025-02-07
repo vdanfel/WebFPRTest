@@ -1,0 +1,5 @@
+Fila 6: La columna 'Celular' está vacía.
+Fila 6: La columna 'Correo' está vacía.
+Fila 7: La columna 'Celular' está vacía.
+Fila 8: La columna 'FechaNacimiento' está vacía.
+Fila 8: La columna 'Correo' está vacía.
