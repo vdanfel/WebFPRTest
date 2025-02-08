@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Data.SqlClient;
 using WebFPRTest.Areas.Externo.Interface.Equipo;
+using WebFPRTest.Areas.Externo.Interface.Jugador;
 using WebFPRTest.Areas.Externo.Service.Equipo;
+using WebFPRTest.Areas.Externo.Service.Jugador;
 using WebFPRTest.Areas.Interno.Interface.Usuario;
 using WebFPRTest.Areas.Interno.Service.Usuario;
 using WebFPRTest.Interface;
@@ -17,6 +19,7 @@ builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IEquipoService, EquipoService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<ITiposService, TiposService>();
+builder.Services.AddScoped<IJugadorService, JugadorService>();
 
 // Para conectar a la BD
 builder.Services.AddScoped<SqlConnection>(sp =>

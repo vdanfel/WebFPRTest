@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using WebFPRTest.Areas.Externo.Interface.Jugador;
 using WebFPRTest.Areas.Externo.Models.Jugador;
 using WebFPRTest.Interface;
+using WebFPRTest.Models;
 
 namespace WebFPRTest.Areas.Externo.Controllers
 {
@@ -12,9 +14,11 @@ namespace WebFPRTest.Areas.Externo.Controllers
     public class JugadorController : Controller
     {
         private readonly ITiposService _tiposService;
-        public JugadorController(ITiposService tiposService)
+        private readonly IJugadorService _jugadorService;
+        public JugadorController(ITiposService tiposService, IJugadorService jugadorService)
         { 
             _tiposService = tiposService;
+            _jugadorService = jugadorService;
         }
         [HttpGet]
         public async Task<IActionResult> Index() 
@@ -31,6 +35,16 @@ namespace WebFPRTest.Areas.Externo.Controllers
         [HttpPost]
         public async Task<IActionResult> CargarExcel(IFormFile archivoExcel)
         {
+            // Obtener Id_Usuario del Claim
+            var idUsuarioStr = User.FindFirst("Id_Usuario")?.Value ?? "0";
+            var Id_Usuario = int.Parse(idUsuarioStr);
+            var idEquipoStr = User.FindFirst("Id_Equipo")?.Value ?? "0";
+            var Id_Equipo = int.Parse(idEquipoStr);
+            if (Id_Usuario == 0)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             if (archivoExcel == null || archivoExcel.Length == 0)
             {
                 return Json(new { success = false, message = "No se seleccionó un archivo." });
@@ -83,6 +97,8 @@ namespace WebFPRTest.Areas.Externo.Controllers
                     {
                         var jugador = new Dictionary<string, string>();
                         bool filaValida = true;
+                        int idTipoDocumento = 0;
+                        string nroDocumento = "";
 
                         foreach (var col in nombresColumnas.Keys)
                         {
@@ -99,14 +115,65 @@ namespace WebFPRTest.Areas.Externo.Controllers
                             }
                         }
 
-                        if (filaValida)
+                        // Verificamos si la fila es válida antes de continuar
+                        if (!filaValida) continue;
+
+                        // Obtener el tipo de documento y el número de documento desde el diccionario
+                        if (jugador.ContainsKey("Id_001_TipoDocumento"))
                         {
-                            listaJugadores.Add(jugador);
+                            int.TryParse(jugador["Id_001_TipoDocumento"], out idTipoDocumento);
+                        }
+
+                        if (jugador.ContainsKey("Documento"))
+                        {
+                            nroDocumento = jugador["Documento"];
+                        }
+
+                        // Validar si la persona existe en la BD
+                        int? Id_Persona = await _jugadorService.Persona_Existe(idTipoDocumento, nroDocumento);
+
+                        if (Id_Persona == null)
+                        {
+                            var persona = new PersonaModel
+                            {
+                                Paterno = jugador.ContainsKey("Paterno") ? jugador["Paterno"] : null,
+                                Materno = jugador.ContainsKey("Materno") ? jugador["Materno"] : null,
+                                Nombres = jugador.ContainsKey("Nombres") ? jugador["Nombres"] : null,
+                                Id_001_TipoDocumento = idTipoDocumento,
+                                Documento = nroDocumento,
+                                FechaNacimiento = jugador.ContainsKey("FechaNacimiento") && DateTime.TryParse(jugador["FechaNacimiento"], out DateTime fechaNacimiento) ? fechaNacimiento : default,
+                                Celular = jugador.ContainsKey("Celular") ? jugador["Celular"] : null,
+                                Correo = jugador.ContainsKey("Correo") ? jugador["Correo"] : null
+                            };
+                            // Insertar persona en la BD
+                            Id_Persona = await _jugadorService.Persona_Insertar(persona, Id_Usuario);
+                        }
+
+                        if (Id_Persona != null)
+                        {
+                            var jExiste = await _jugadorService.Jugador_Existe((int)Id_Persona, Id_Equipo);
+                            if (jExiste == 0)
+                            {
+                                var jugadorModel = new JugadorModel
+                                {
+                                    Id_Persona = (int)Id_Persona,
+                                    Id_Equipo = Id_Equipo
+                                };
+                                var Id_Jugador = await _jugadorService.Jugador_Insertar(jugadorModel, Id_Usuario);
+                            }
+                            else if (jExiste == 1)
+                            {
+                                //errores.Add("El jugador " + jugador["Nombres"]+" ya está registrado");
+                            }
+                            else if (jExiste == 2)
+                            {
+                                errores.Add("El jugador " + jugador["Nombres"] + " está registrado en otro equipo");
+                            }
                         }
                     }
                 }
             }
-
+            
             // Si hay errores, generamos un archivo de log para descargar
             if (errores.Count > 0)
             {
@@ -133,11 +200,16 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 return NotFound("El archivo no existe.");
             }
 
+            // Asegurar que fileName no tenga rutas parciales como "/logs/"
+            fileName = fileName.Replace("/logs/", "").Replace("\\logs\\", "");
+
+            // Construir la ruta correcta
             var logPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "logs", fileName);
+            Console.WriteLine($"Buscando archivo en: {logPath}"); // Depurar ruta
 
             if (!System.IO.File.Exists(logPath))
             {
-                return NotFound("El archivo de log no se encontró.");
+                return NotFound($"El archivo de log no se encontró. Ruta: {logPath}");
             }
 
             // Leer el archivo

@@ -23,7 +23,7 @@
                 <div id="logContainer"></div>
             </div>
             <div class="card-body">
-                <div class="row mt-2 g-2">
+                <div class="row g-2">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="form-floating">
                             <input type="text" class="form-control" placeholder="Apellido Paterno" asp-for="Paterno" id="Paterno" />
@@ -124,12 +124,40 @@
         </div>
     </div>
 </div>
+<!-- Spinner de carga -->
+<div id="spinnerCarga" class="spinner-overlay" style="display: none;">
+    <div class="spinner-container">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p>Procesando archivo...</p>
+    </div>
+</div>
+
+<!-- Modal de resultado -->
+<div class="modal fade" id="modalResultado" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Resultado de la Carga</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="resultadoMensaje">
+                <!-- Aquí se mostrará el mensaje del resultado -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
-    function subirArchivoExcel() {
+    /*function subirArchivoExcel() {
         let fileInput = document.getElementById("archivoExcel");
         let file = fileInput.files[0];
 
@@ -166,8 +194,64 @@
                 }
             })
             .catch(error => console.error("Error en la subida:", error));
+    }*/
+    function subirArchivoExcel() {
+        let fileInput = document.getElementById("archivoExcel");
+        let file = fileInput.files[0];
+
+        if (!file) {
+            alert("Selecciona un archivo antes de subir.");
+            return;
+        }
+
+        let formData = new FormData();
+        formData.append("archivoExcel", file);
+
+        // Cerrar el modal de carga de Excel y mostrar el spinner
+        let modalCargaExcel = bootstrap.Modal.getInstance(document.getElementById("modalCargaExcel"));
+        modalCargaExcel.hide();
+
+        document.getElementById("spinnerCarga").style.display = "flex";
+
+        fetch("/Externo/Jugador/CargarExcel", {
+            method: "POST",
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("spinnerCarga").style.display = "none"; // Ocultar spinner
+
+                // Eliminar backdrop de Bootstrap si queda bloqueado
+                document.body.classList.remove("modal-open");
+                document.querySelectorAll(".modal-backdrop").forEach(el => el.remove());
+
+                // Mostrar el modal con el resultado
+                let modalResultado = new bootstrap.Modal(document.getElementById("modalResultado"));
+                document.getElementById("resultadoMensaje").innerHTML = data.message;
+                modalResultado.show();
+
+                // Si hay un log de errores, mostrar el enlace
+                if (data.logFile) {
+                    let logContainer = document.getElementById("logContainer");
+                    logContainer.innerHTML = `
+                        <a href="/Externo/Jugador/DescargarLog?fileName=${encodeURIComponent(data.logFile)}"
+                           class="btn btn-danger mt-2"
+                           onclick="setTimeout(() => document.getElementById('logContainer').innerHTML = '', 3000);">
+                            Descargar Log de Errores
+                        </a>
+                    `;
+                }
+            })
+            .catch(error => {
+                console.error("Error en la subida:", error);
+                document.getElementById("spinnerCarga").style.display = "none"; // Ocultar spinner
+
+                // Eliminar backdrop de Bootstrap si queda bloqueado
+                document.body.classList.remove("modal-open");
+                document.querySelectorAll(".modal-backdrop").forEach(el => el.remove());
+
+                alert("Hubo un error en la carga.");
+            });
     }
-
-
 </script>
 
