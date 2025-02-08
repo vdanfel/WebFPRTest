@@ -125,6 +125,30 @@ namespace WebFPRTest.Areas.Externo.Controllers
 
             return Json(new { success = true, message = "Archivo cargado exitosamente." });
         }
+        [HttpGet]
+        public IActionResult DescargarLog(string fileName)
+        {
+            if (string.IsNullOrEmpty(fileName))
+            {
+                return NotFound("El archivo no existe.");
+            }
+
+            var logPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "logs", fileName);
+
+            if (!System.IO.File.Exists(logPath))
+            {
+                return NotFound("El archivo de log no se encontró.");
+            }
+
+            // Leer el archivo
+            var fileBytes = System.IO.File.ReadAllBytes(logPath);
+
+            // Eliminar el archivo después de leerlo
+            System.IO.File.Delete(logPath);
+
+            // Devolver el archivo para la descarga
+            return File(fileBytes, "text/plain", fileName);
+        }
 
     }
 }

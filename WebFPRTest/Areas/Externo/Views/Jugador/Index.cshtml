@@ -156,13 +156,18 @@
                     if (data.logFile) {
                         let logContainer = document.getElementById("logContainer");
                         logContainer.innerHTML = `
-                            <a href="${data.logFile}" download class="btn btn-danger mt-2">Descargar Log de Errores</a>
-                        `;
+                        <a href="/Externo/Jugador/DescargarLog?fileName=${encodeURIComponent(data.logFile)}"
+                           class="btn btn-danger mt-2"
+                           onclick="setTimeout(() => document.getElementById('logContainer').innerHTML = '', 3000);">
+                            Descargar Log de Errores
+                        </a>
+                    `;
                     }
                 }
             })
             .catch(error => console.error("Error en la subida:", error));
     }
+
 
 </script>
 

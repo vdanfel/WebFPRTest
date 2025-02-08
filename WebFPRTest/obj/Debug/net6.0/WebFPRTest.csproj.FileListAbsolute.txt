@@ -167,3 +167,11 @@ D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Debug\net6.0\ExcelNumberFormat.dll
 D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Debug\net6.0\RBush.dll
 D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Debug\net6.0\SixLabors.Fonts.dll
 D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Debug\net6.0\System.IO.Packaging.dll
+E:\WebFPRTest\WebFPRTest\bin\Debug\net6.0\ClosedXML.dll
+E:\WebFPRTest\WebFPRTest\bin\Debug\net6.0\ClosedXML.Parser.dll
+E:\WebFPRTest\WebFPRTest\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
+E:\WebFPRTest\WebFPRTest\bin\Debug\net6.0\DocumentFormat.OpenXml.Framework.dll
+E:\WebFPRTest\WebFPRTest\bin\Debug\net6.0\ExcelNumberFormat.dll
+E:\WebFPRTest\WebFPRTest\bin\Debug\net6.0\RBush.dll
+E:\WebFPRTest\WebFPRTest\bin\Debug\net6.0\SixLabors.Fonts.dll
+E:\WebFPRTest\WebFPRTest\bin\Debug\net6.0\System.IO.Packaging.dll
