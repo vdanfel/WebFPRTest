@@ -73,6 +73,7 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 await _equipoService.Equipo_Actualizar(equipo, Id_Usuario);
                 TempData["Mensaje"] = "Equipo actualizado con éxito";
             }
+            await _equipoService.AsociarUsuarioEquipo(equipo.Id_Equipo, Id_Usuario);
             equipo.Horarios.Id_Equipo = equipo.Id_Equipo;
             await _equipoService.HorariosEntrenamientos_Insertar(equipo.Horarios,Id_Usuario);
             var rutaExistente = await _equipoService.Archivo_RutaLogo(equipo.Id_Equipo, 0, 417);

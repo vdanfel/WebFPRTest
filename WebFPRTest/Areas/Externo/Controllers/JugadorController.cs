@@ -28,9 +28,27 @@ namespace WebFPRTest.Areas.Externo.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
+            var idEquipoStr = User.FindFirst("Id_Equipo")?.Value ?? "0";
+            var Id_Equipo = int.Parse(idEquipoStr);
             JugadorFiltroViewModel jugadorFiltro = new JugadorFiltroViewModel();
+            jugadorFiltro.Id_Equipo = Id_Equipo;
             jugadorFiltro.ListaDivisiones = await _tiposService.ParametroTipo_Listar(7);
+            jugadorFiltro.ListaJugadores = await _jugadorService.Jugador_Bandeja(jugadorFiltro);
             return View(jugadorFiltro);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Index(JugadorFiltroViewModel jugadorFiltroViewModel)
+        {
+            // Obtener Id_Usuario del Claim
+            var idUsuarioStr = User.FindFirst("Id_Usuario")?.Value ?? "0";
+            var Id_Usuario = int.Parse(idUsuarioStr);
+            if (Id_Usuario == 0)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            jugadorFiltroViewModel.ListaDivisiones = await _tiposService.ParametroTipo_Listar(7);
+            jugadorFiltroViewModel.ListaJugadores = await _jugadorService.Jugador_Bandeja(jugadorFiltroViewModel);
+            return View(jugadorFiltroViewModel);
         }
         [HttpPost]
         public async Task<IActionResult> CargarExcel(IFormFile archivoExcel)
@@ -163,7 +181,7 @@ namespace WebFPRTest.Areas.Externo.Controllers
                             }
                             else if (jExiste == 1)
                             {
-                                //errores.Add("El jugador " + jugador["Nombres"]+" ya está registrado");
+                                errores.Add("El jugador " + jugador["Nombres"]+" ya había sido registrado");
                             }
                             else if (jExiste == 2)
                             {
@@ -221,6 +239,5 @@ namespace WebFPRTest.Areas.Externo.Controllers
             // Devolver el archivo para la descarga
             return File(fileBytes, "text/plain", fileName);
         }
-
     }
 }

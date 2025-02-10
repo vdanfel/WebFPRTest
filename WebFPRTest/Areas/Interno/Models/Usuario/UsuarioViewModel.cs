@@ -22,5 +22,7 @@ namespace WebFPRTest.Areas.Interno.Models.Usuario
         public string ClaveHash { get; set; }
         public string? Clave { get; set; }
         public string? ClaveConfirmacion { get; set; }
+        public int? Id_Equipo { get; set; }
+        public List<EquipoListResult> EquiposList { get; set; }
     }
 }

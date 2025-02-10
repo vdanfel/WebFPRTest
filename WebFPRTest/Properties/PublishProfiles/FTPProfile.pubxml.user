@@ -7,7 +7,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAwGAqFg1BTkC6WpwCgLjefAAAAAACAAAAAAAQZgAAAAEAACAAAADaRwz0++i8WE3t8y12oVa0HrzBYrpxQRBLUG3p+kuj1gAAAAAOgAAAAAIAACAAAACcka3C6TgskwHa3Y2TzIqJ4BHUpftYDAkimA0VSFwItyAAAABGa+ZzFYvfjJQA6s/hUmqpPld9a35TtFWjarCTsUjX4kAAAABsozECE8a8A8pRNj7PSqLcufywnea+FvRH3Fle/IiK4nZkk09QPLif3bR+voCAg6gwRB5UayLMsksQpekJZwY+</EncryptedPassword>
     <_PublishTargetUrl>ftp://FPRTest.somee.com/www.FPRTest.somee.com</_PublishTargetUrl>
-    <History>True|2025-02-06T05:19:12.8102113Z;True|2025-02-02T17:03:22.6884403-05:00;True|2025-02-02T10:20:36.6520091-05:00;True|2025-02-02T10:08:21.7800260-05:00;True|2025-02-02T09:12:00.7344608-05:00;True|2025-02-02T01:03:37.2204567-05:00;False|2025-02-02T00:57:28.5619442-05:00;</History>
+    <History>True|2025-02-10T05:07:18.9845915Z;True|2025-02-09T13:38:07.1790186-05:00;True|2025-02-06T00:19:12.8102113-05:00;True|2025-02-02T17:03:22.6884403-05:00;True|2025-02-02T10:20:36.6520091-05:00;True|2025-02-02T10:08:21.7800260-05:00;True|2025-02-02T09:12:00.7344608-05:00;True|2025-02-02T01:03:37.2204567-05:00;False|2025-02-02T00:57:28.5619442-05:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -23,14 +23,29 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Azure.Identity.dll">
       <publishTime>10/18/2023 14:59:42</publishTime>
     </File>
+    <File Include="ClosedXML.dll">
+      <publishTime>11/14/2024 19:26:30</publishTime>
+    </File>
+    <File Include="ClosedXML.Parser.dll">
+      <publishTime>01/17/2024 14:51:36</publishTime>
+    </File>
     <File Include="Dapper.dll">
       <publishTime>06/03/2024 10:03:30</publishTime>
     </File>
     <File Include="de/Microsoft.Data.SqlClient.resources.dll">
       <publishTime>02/27/2024 22:33:26</publishTime>
     </File>
+    <File Include="DocumentFormat.OpenXml.dll">
+      <publishTime>10/15/2024 14:18:56</publishTime>
+    </File>
+    <File Include="DocumentFormat.OpenXml.Framework.dll">
+      <publishTime>10/15/2024 14:18:56</publishTime>
+    </File>
     <File Include="es/Microsoft.Data.SqlClient.resources.dll">
       <publishTime>02/27/2024 22:33:14</publishTime>
+    </File>
+    <File Include="ExcelNumberFormat.dll">
+      <publishTime>02/10/2020 03:42:28</publishTime>
     </File>
     <File Include="fr/Microsoft.Data.SqlClient.resources.dll">
       <publishTime>02/27/2024 22:32:52</publishTime>
@@ -60,7 +75,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/30/2023 23:56:56</publishTime>
     </File>
     <File Include="Microsoft.IdentityModel.JsonWebTokens.dll">
-      <publishTime>11/30/2023 23:34:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Microsoft.IdentityModel.Logging.dll">
       <publishTime>11/30/2023 23:35:22</publishTime>
@@ -85,6 +100,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="pt-BR/Microsoft.Data.SqlClient.resources.dll">
       <publishTime>02/27/2024 22:32:52</publishTime>
+    </File>
+    <File Include="RBush.dll">
+      <publishTime>11/14/2024 08:43:18</publishTime>
     </File>
     <File Include="ru/Microsoft.Data.SqlClient.resources.dll">
       <publishTime>02/27/2024 22:32:54</publishTime>
@@ -140,6 +158,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="runtimes/win/lib/net6.0/System.Windows.Extensions.dll">
       <publishTime>10/18/2022 11:26:26</publishTime>
     </File>
+    <File Include="SixLabors.Fonts.dll">
+      <publishTime>11/08/2023 07:04:44</publishTime>
+    </File>
     <File Include="System.Configuration.ConfigurationManager.dll">
       <publishTime>10/18/2022 11:24:16</publishTime>
     </File>
@@ -158,6 +179,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="System.IdentityModel.Tokens.Jwt.dll">
       <publishTime>11/30/2023 23:31:48</publishTime>
     </File>
+    <File Include="System.IO.Packaging.dll">
+      <publishTime>09/16/2024 18:11:32</publishTime>
+    </File>
     <File Include="System.Memory.Data.dll">
       <publishTime>04/08/2021 11:45:54</publishTime>
     </File>
@@ -174,22 +198,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/18/2022 11:22:56</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>02/06/2025 00:14:36</publishTime>
+      <publishTime>02/10/2025 00:02:20</publishTime>
     </File>
     <File Include="WebFPRTest.deps.json">
-      <publishTime>02/06/2025 00:14:00</publishTime>
+      <publishTime>02/09/2025 23:58:57</publishTime>
     </File>
     <File Include="WebFPRTest.dll">
-      <publishTime>02/06/2025 00:13:59</publishTime>
+      <publishTime>02/09/2025 23:58:57</publishTime>
     </File>
     <File Include="WebFPRTest.exe">
-      <publishTime>02/06/2025 00:13:59</publishTime>
+      <publishTime>02/09/2025 23:58:57</publishTime>
     </File>
     <File Include="WebFPRTest.pdb">
-      <publishTime>02/06/2025 00:13:59</publishTime>
+      <publishTime>02/09/2025 23:58:57</publishTime>
     </File>
     <File Include="WebFPRTest.runtimeconfig.json">
-      <publishTime>02/06/2025 00:14:00</publishTime>
+      <publishTime>02/09/2025 13:32:38</publishTime>
     </File>
     <File Include="wwwroot/Archivos/10/10_Logo.jpg">
       <publishTime>02/01/2025 22:52:15</publishTime>
@@ -201,7 +225,19 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>02/02/2025 10:15:52</publishTime>
     </File>
     <File Include="wwwroot/Archivos/13/13_Logo.jpg">
-      <publishTime>02/02/2025 16:57:43</publishTime>
+      <publishTime>02/09/2025 10:54:17</publishTime>
+    </File>
+    <File Include="wwwroot/Archivos/14/14_Logo.png">
+      <publishTime>02/09/2025 10:32:07</publishTime>
+    </File>
+    <File Include="wwwroot/Archivos/15/15_Logo.jpg">
+      <publishTime>02/09/2025 13:08:12</publishTime>
+    </File>
+    <File Include="wwwroot/Archivos/16/16_Logo.jpg">
+      <publishTime>02/09/2025 23:10:58</publishTime>
+    </File>
+    <File Include="wwwroot/Archivos/17/17_Logo.jpg">
+      <publishTime>02/09/2025 23:21:27</publishTime>
     </File>
     <File Include="wwwroot/Archivos/3/3_Logo.jpeg">
       <publishTime>02/01/2025 00:00:53</publishTime>
@@ -212,8 +248,11 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="wwwroot/Archivos/5/5_Logo.jpg">
       <publishTime>02/02/2025 01:11:09</publishTime>
     </File>
+    <File Include="wwwroot/Archivos/FormatoCargaMasiva.xlsx">
+      <publishTime>02/07/2025 22:45:05</publishTime>
+    </File>
     <File Include="wwwroot/css/site.css">
-      <publishTime>01/31/2025 21:32:44</publishTime>
+      <publishTime>02/09/2025 09:22:51</publishTime>
     </File>
     <File Include="wwwroot/favicon.ico">
       <publishTime>01/31/2025 21:32:44</publishTime>
@@ -391,6 +430,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="wwwroot/lib/jquery/LICENSE.txt">
       <publishTime>01/31/2025 21:32:44</publishTime>
+    </File>
+    <File Include="wwwroot/logs/LogErrores_20250209103409.txt">
+      <publishTime>02/09/2025 10:34:09</publishTime>
     </File>
     <File Include="wwwroot/WebFPRTest.styles.css">
       <publishTime>02/02/2025 00:57:25</publishTime>

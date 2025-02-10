@@ -101,7 +101,7 @@ namespace WebFPRTest.Areas.Externo.Service.Equipo
         }
         public async Task<EquipoViewModel> Equipo_Listar(int Id_Equipo)
         {
-            var procedure = "usp_Equipo_List";
+            var procedure = "usp_Equipo_Select";
             try
             {
                 var parameters = new DynamicParameters();
@@ -240,6 +240,24 @@ namespace WebFPRTest.Areas.Externo.Service.Equipo
                 _connection.Close();
             }
         }
-
+        public async Task AsociarUsuarioEquipo(int Id_Equipo, int Id_Usuario)
+        {
+            var procedure = "usp_Usuario_AsociarEquipo";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Equipo", Id_Equipo);
+                parameters.Add("@Id_Usuario", Id_Usuario);
+                await _connection.ExecuteAsync(procedure, parameters, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error inesperado. Intenta nuevamente.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
     }
 }

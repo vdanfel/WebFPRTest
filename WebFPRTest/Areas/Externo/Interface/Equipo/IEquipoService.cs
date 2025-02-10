@@ -12,5 +12,6 @@ namespace WebFPRTest.Areas.Externo.Interface.Equipo
         Task Archivo_Insertar(int Id_Equipo, int Id_Jugador, int Id_013_TipoArchivo, string RutaArchivo, int Usuario);
         Task HorariosEntrenamientos_Insertar(HorariosEntrenamientoModel horarios, int usuario);
         Task<HorariosEntrenamientoModel> HorariosEntrenamiento_Listar(int Id_Equipo);
+        Task AsociarUsuarioEquipo(int Id_Equipo, int Id_Usuario);
     }
 }

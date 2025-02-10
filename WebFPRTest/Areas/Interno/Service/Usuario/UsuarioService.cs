@@ -189,6 +189,7 @@ namespace WebFPRTest.Areas.Interno.Service.Usuario
                 // Crear los parámetros dinámicos
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id_Persona", usuario.Id_Persona, DbType.Int32);
+                parameters.Add("@Id_Equipo", usuario.Id_Equipo, DbType.Int32);
                 parameters.Add("@Usuario", usuario.Usuario, DbType.String);
                 parameters.Add("@ClaveHash", claveHash, DbType.String);
                 parameters.Add("@Id_011_TipoUsuario", usuario.Id_011_TipoUsuario, DbType.Int32);
@@ -225,7 +226,8 @@ namespace WebFPRTest.Areas.Interno.Service.Usuario
             try
             {
                 var parameters = new DynamicParameters();
-                parameters.Add("@Id_Usuario", usuario.Id_Usuario, DbType.String);
+                parameters.Add("@Id_Usuario", usuario.Id_Usuario, DbType.Int32);
+                parameters.Add("@Id_Equipo", usuario.Id_Equipo, DbType.Int32);
                 parameters.Add("@ClaveHash", claveHash, DbType.String);
                 parameters.Add("@Id_011_TipoUsuario", usuario.Id_011_TipoUsuario, DbType.Int32);
                 parameters.Add("@Id_UsuarioModificacion", Id_Usuario, DbType.Int32);

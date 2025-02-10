@@ -13,6 +13,26 @@
       "PackagePath": "staticwebassets\\Archivos\\13\\13_Logo.jpg"
     },
     {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\14\\14_Logo.png",
+      "PackagePath": "staticwebassets\\Archivos\\14\\14_Logo.png"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\15\\15_Logo.jpg",
+      "PackagePath": "staticwebassets\\Archivos\\15\\15_Logo.jpg"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\16\\16_Logo.jpg",
+      "PackagePath": "staticwebassets\\Archivos\\16\\16_Logo.jpg"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\17\\17_Logo.jpg",
+      "PackagePath": "staticwebassets\\Archivos\\17\\17_Logo.jpg"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\FormatoCargaMasiva.xlsx",
+      "PackagePath": "staticwebassets\\Archivos\\FormatoCargaMasiva.xlsx"
+    },
+    {
       "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -251,6 +271,10 @@
     {
       "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\logs\\LogErrores_20250209103409.txt",
+      "PackagePath": "staticwebassets\\logs\\LogErrores_20250209103409.txt"
     },
     {
       "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.WebFPRTest.Microsoft.AspNetCore.StaticWebAssets.props",

@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using System.Data;
 using WebFPRTest.Areas.Externo.Interface.Jugador;
+using WebFPRTest.Areas.Externo.Models.Jugador;
 using WebFPRTest.Models;
 
 namespace WebFPRTest.Areas.Externo.Service.Jugador
@@ -125,6 +126,36 @@ namespace WebFPRTest.Areas.Externo.Service.Jugador
                 );
 
                 return idJugador;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al insertar la persona.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+        public async Task<List<JugadorTablaViewModel>> Jugador_Bandeja(JugadorFiltroViewModel jugadorFiltroViewModel)
+        {
+            var procedure = "usp_Jugador_Bandeja";
+            try 
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Equipo", jugadorFiltroViewModel.Id_Equipo, DbType.Int32);
+                parameters.Add("@Paterno", jugadorFiltroViewModel.Paterno, DbType.String);
+                parameters.Add("@Materno", jugadorFiltroViewModel.Materno, DbType.String);
+                parameters.Add("@Nombres", jugadorFiltroViewModel.Nombres, DbType.String);
+                parameters.Add("@Documento", jugadorFiltroViewModel.Documento, DbType.String);
+                parameters.Add("@Id_007_Division", jugadorFiltroViewModel.Id_007_Division, DbType.Int32);
+                
+                var jugadores = await _connection.QueryAsync<JugadorTablaViewModel>(
+                    procedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return jugadores.ToList();
             }
             catch (Exception ex)
             {

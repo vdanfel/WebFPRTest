@@ -37,25 +37,20 @@ namespace WebFPRTest.Service
                 _connection.Close();
             }
         }
-        public async Task<List<TipoDocumento>> ListarTipoDocumento()
+        public async Task<List<EquipoListResult>> Equipo_Listar()
         {
-            var procedure = "usp_ParametrosList";
-            try
+            var procedure = "usp_Equipo_List";
+            try 
             {
-                var parameters = new DynamicParameters();
-                parameters.Add("@Id_ParametrosTipo", 1);
-
-                var tipoDocumentoList = await _connection.QueryAsync<TipoDocumento>(
+                var equipos = await _connection.QueryAsync<EquipoListResult>(
                     procedure,
-                    parameters,
                     commandType: CommandType.StoredProcedure
-                );
-
-                return tipoDocumentoList.ToList();
+                    );
+                return equipos.ToList();
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al listar tipos de documento", ex);
+                throw new Exception("Ocurrió un error al buscar el usuario por ID.", ex);
             }
             finally
             {

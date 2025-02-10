@@ -88,9 +88,14 @@
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="form-floating">
-                    <select class="form-select">
-
+                    <select class="form-select" asp-for="Id_Equipo" id="Id_Equipo">
+                        <option></option>
+                        @foreach (var listaEquipos in Model.EquiposList)
+                        {
+                            <option value="@listaEquipos.Id_Equipo">@listaEquipos.Nombre</option>
+                        }
                     </select>
+                    <label for="Id_Equipo">Equipo</label>
                 </div>
             </div>
         </div>

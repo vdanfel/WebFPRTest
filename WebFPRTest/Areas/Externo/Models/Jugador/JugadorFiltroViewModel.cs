@@ -5,6 +5,7 @@ namespace WebFPRTest.Areas.Externo.Models.Jugador
 {
     public class JugadorFiltroViewModel
     {
+        public int? Id_Equipo {  get; set; }
         public string? Paterno { get; set; }
         public string? Materno { get; set; }
         public string? Nombres{ get; set; }

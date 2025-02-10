@@ -1,122 +1,112 @@
-﻿@{
+﻿@model WebFPRTest.Areas.Interno.Models.ListJugadores.JugadoresFiltroViewModel
+@{
     Layout = "_LayoutInterno";
 }
-<div class="container">
-    <div class="row mt-2 g-2">
-        <div class="col-12 col-sm-12 col-md-9 col-lg-9">
-            <div class="form-floating">
-                <select class="form-select" id="equipo">
-                    <option value="0">Seleccione Equipo</option>
-                    <option value="1">Los Tigres</option>
-                    <option value="2">Guerreros Z</option>
-                    <option value="3">Las Aguilas</option>
-                </select>
-                <label for="equipo">Seleccione Equipo</label>
+<form>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <h1>lISTA DE JUGADORES</h1>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" placeholder="Apellido Paterno" asp-for="Paterno" id="Paterno" />
+                            <label for="Paterno">Apellido Paterno</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" placeholder="Apellido Materno" asp-for="Materno" id="Materno" />
+                            <label>Apellido Materno</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" placeholder="Nombres" asp-for="Nombres" id="Nombres" />
+                            <label>Nombres</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" placeholder="Numero Documento" asp-for="Documento" id="Documento" />
+                            <label>Numero Documento</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                        <div class="form-floating">
+                            <select class="form-select" asp-for="Id_007_Division">
+                                <option></option>
+                                @foreach (var divisiones in Model.ListaDivisiones)
+                                {
+                                    <option value="@divisiones.Id_Parametros">@divisiones.Descripcion</option>
+                                }
+                            </select>
+                            <label>División</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating">
+                            <select class="form-select" asp-for="Id_Equipo" id="Id_Equipo">
+                                <option></option>
+                                @foreach (var listaEquipos in Model.EquiposList)
+                                {
+                                    <option value="@listaEquipos.Id_Equipo">@listaEquipos.Nombre</option>
+                                }
+                            </select>
+                            <label for="Id_Equipo">Equipo</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 d-flex justify-content-end align-items-center">
+                        <button type="submit" class="btn btn-outline-primary me-2">Filtrar</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-            <div class="form-floating">
-                <select class="form-select" id="categoria">
-                    <option value="0">Seleccione Categoria</option>
-                    <option value="1">M16</option>
-                    <option value="2">M18</option>
-                    <option value="3">Femenino</option>
-                </select>
-                <label for="categoria">seleccione Categoria</label>
-            </div>
+        <div class="table-responsive-md mt-2">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>N°</th>
+                        <th>Nombres</th>
+                        <th>Equipo</th>
+                        <th>Tipo Documento</th>
+                        <th>Documento</th>
+                        <th>Division</th>
+                        <th>Situacion</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var jugadores in Model.ListaJugadores)
+                    {
+                        <tr class="align-middle">
+                            <td>@jugadores.Indice</td>
+                            <td>@jugadores.ApellidosYNombre</td>
+                            <td>@jugadores.NombreEquipo</td>
+                            <td>@jugadores.TipoDocumento</td>
+                            <td>@jugadores.Documento</td>
+                            <td>@jugadores.Division</td>
+                            <td>@jugadores.Situacion</td>
+                            <td class="text-end">
+                                <a class="btn btn-outline-warning">
+                                    <i class="bi-eye"></i>
+                                </a>
+                            </td>
+                            <td class="text-end">
+                                <a class="btn btn-outline-primary">
+                                    <i class="bi-files"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
-            <div class="form-floating">
-                <input class="form-control" id="apePaterno" placeholder="Apellido Paterno" />
-                <label for="apePaterno">Ape.Paterno</label>
-            </div>
-        </div>
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
-            <div class="form-floating">
-                <input class="form-control" id="apeMaterno" placeholder="Apellido Materno" />
-                <label for="apeMaterno">Ape.Materno</label>
-            </div>
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6">
-            <div class="form-floating">
-                <input class="form-control" id="nombres" placeholder="Nombres" />
-                <label for="nombres">Nombres</label>
-            </div>
-        </div>
-        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-            <div class="form-floating">
-                <input class="form-control" id="documento" placeholder="N° Documento" />
-                <label for="documento">N° Documento</label>
-            </div>
-        </div>
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6 m-auto" style="text-align:end">
-            <button class="btn btn-outline-primary">
-                Filtrar <i class="bi-search"></i>
-            </button>
-        </div>
+
     </div>
-    <div class="table-responsive-md mt-3 ">
-        <table class="table table-hover">
-            <thead class="table-dark">
-                <tr>
-                    <th>N°</th>
-                    <th>Equipo</th>
-                    <th>Jugador</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Guerreros Z</td>
-                    <td>Oscar Martinez</td>
-                    <td>
-                        <a class="btn btn-outline-secondary">
-                            <i class="bi-eye"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Guerreros Z</td>
-                    <td>Cesar Vasquez</td>
-                    <td>
-                        <a class="btn btn-outline-secondary">
-                            <i class="bi-eye"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Los Leones</td>
-                    <td>Jorge Chavez</td>
-                    <td>
-                        <a class="btn btn-outline-secondary">
-                            <i class="bi-eye"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Los Tigres</td>
-                    <td>Aldo Coz</td>
-                    <td>
-                        <a class="btn btn-outline-secondary">
-                            <i class="bi-eye"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>ThunderCats</td>
-                    <td>Gonzalo Iglesias</td>
-                    <td>
-                        <a class="btn btn-outline-secondary">
-                            <i class="bi-eye"></i>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+</form>

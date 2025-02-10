@@ -96,6 +96,7 @@ namespace WebFPRTest.Areas.Interno.Controllers
             }
             usuario.TipoUsuarioList = await _tiposService.ParametroTipo_Listar(11); 
             usuario.TipoDocumentoList = await _tiposService.ParametroTipo_Listar(1);
+            usuario.EquiposList = await _tiposService.Equipo_Listar();
             return View(usuario);
         }
         [HttpPost]
