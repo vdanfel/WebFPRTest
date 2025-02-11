@@ -8,25 +8,25 @@
         <div class="row g-2">
             <div class="col-12">
                 <div class="form-floating">
-                    <input type="text" id="nombreClub" class="form-control" placeholder="Nombre del Club" asp-for="@Model.Nombre" />
+                    <input type="text" id="nombreClub" class="form-control" placeholder="Nombre del Club" asp-for="@Model.Nombre" required/>
                     <label for="nombreClub">Nombre del Club</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="form-floating">
-                    <input type="text" id="siglas" class="form-control" placeholder="Siglas del Club" asp-for="@Model.Siglas" />
+                    <input type="text" id="siglas" class="form-control" placeholder="Siglas del Club" asp-for="@Model.Siglas" required/>
                     <label for="siglas">Siglas del Club</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="form-floating">
-                    <input type="text" id="ruc" class="form-control" placeholder="RUC" asp-for="@Model.RUC" />
+                    <input type="text" id="ruc" class="form-control" placeholder="RUC" asp-for="@Model.RUC" required/>
                     <label for="rub">RUC</label>
                 </div>
             </div>
             <div class="col-12">
                 <div class="form-floating">
-                    <input type="text" id="razonSocial" class="form-control" placeholder="Razón Social" asp-for="@Model.RazonSocial" />
+                    <input type="text" id="razonSocial" class="form-control" placeholder="Razón Social" asp-for="@Model.RazonSocial" required/>
                     <label for="razonSocial">Razón Social</label>
                 </div>
             </div>
@@ -51,13 +51,13 @@
             </div>
             <div class="col-12">
                 <div class="form-floating">
-                    <input type="text" id="representanteLegal" class="form-control" placeholder="Representante Legal" asp-for="@Model.RepresentanteLegal" />
+                    <input type="text" id="representanteLegal" class="form-control" placeholder="Representante Legal" asp-for="@Model.RepresentanteLegal" required />
                     <label for="representanteLegal">Representante Legal</label>
                 </div>
             </div>
             <div class="col-12">
                 <div class="form-floating">
-                    <input type="text" id="usuarioAdministrativo" class="form-control" placeholder="Usuario Administrativo" asp-for="@Model.UsuarioAdministrativo" />
+                    <input type="text" id="usuarioAdministrativo" class="form-control" placeholder="Usuario Administrativo" asp-for="@Model.UsuarioAdministrativo" required />
                     <label for="usuarioAdministrativo">Usuario Administrativo</label>
                 </div>
             </div>
@@ -413,6 +413,46 @@
 
                 // Llamar la función al cargar la página para establecer el estado inicial
                 toggleHorario(dia);
+            }
+        });
+
+        // Para validar campos
+        const contentDivs = document.querySelectorAll('[contenteditable][required]');
+        contentDivs.forEach((div) => {
+            validateContent(div.id);
+        });
+
+        // Selecciona todos los inputs y selects con atributo `required`
+        const inputs = document.querySelectorAll('input[required], select[required]');
+
+        inputs.forEach((input) => {
+            // Agrega un evento `input` para validar en tiempo real
+            input.addEventListener('input', function () {
+                if (input.checkValidity()) {
+                    input.classList.remove('is-invalid');
+                    input.classList.add('is-valid');
+                } else {
+                    input.classList.remove('is-valid');
+                    input.classList.add('is-invalid');
+                }
+            });
+
+            // Aplica la validación al salir del campo
+            input.addEventListener('blur', function () {
+                if (input.checkValidity()) {
+                    input.classList.remove('is-invalid');
+                    input.classList.add('is-valid');
+                } else {
+                    input.classList.remove('is-valid');
+                    input.classList.add('is-invalid');
+                }
+            });
+        });
+
+        // Aplica un borde rojo inicial para campos requeridos vacíos
+        inputs.forEach((input) => {
+            if (!input.value) {
+                input.classList.add('is-invalid');
             }
         });
 

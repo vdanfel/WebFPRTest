@@ -12,7 +12,7 @@ namespace WebFPRTest.Areas.Externo.Models.Jugador
         public int Id_001_TipoDocumento { get; set; }
         public List<ParametrosTipoResult> TipoDocumentos { get; set; }
         public string Documento { get; set; }
-        public DateTime FechaNacimiento { get; set; }
+        public DateTime? FechaNacimiento { get; set; }
         public int Id_003_Pais { get; set; }
         public List<ParametrosTipoResult> Paises { get; set; }
         public int Id_004_Nacionalidad { get; set; }
@@ -25,8 +25,8 @@ namespace WebFPRTest.Areas.Externo.Models.Jugador
         public int Id_005_TipoSeguro { get; set; }
         public List<ParametrosTipoResult> TipoSeguros { get; set; }
         public string NumeroPoliza { get; set; }
-        public DateTime FechaPoliza { get; set; }
-        public DateTime FechaVencimientoPoliza { get; set; }
+        public DateTime? FechaPoliza { get; set; }
+        public DateTime? FechaVencimientoPoliza { get; set; }
         public int Id_006_TipoVehiculos { get; set; }
         public List<ParametrosTipoResult> TipoVehiculos { get; set; }
         public string NumeroPlaca { get; set; }

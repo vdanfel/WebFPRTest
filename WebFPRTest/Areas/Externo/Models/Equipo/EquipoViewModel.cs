@@ -10,8 +10,8 @@
         public string RazonSocial { get; set; }
         public string RepresentanteLegal { get; set; }
         public string UsuarioAdministrativo { get; set; }
-        public string Contacto { get; set; }
-        public string LugarEntrenamiento { get; set; }
+        public string? Contacto { get; set; }
+        public string? LugarEntrenamiento { get; set; }
         public HorariosEntrenamientoModel Horarios { get; set; }
         public IFormFile? Logo { get; set; }
     }

@@ -3,31 +3,31 @@
     Layout = "_LayoutExterno";
 }
 <form>
-    <input type="text" asp-for="Id_Jugador"/>
-    <input type="text" asp-for="Id_Equipo"/>
+    <input type="text" asp-for="Id_Jugador" hidden/>
+    <input type="text" asp-for="Id_Equipo" hidden/>
     <div class="container">
         <div class="row g-2">
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Paterno"/>
+                    <input type="text" class="form-control" asp-for="Paterno"required/>
                     <label>Paterno</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Materno"/>
+                    <input type="text" class="form-control" asp-for="Materno" required/>
                     <label>Materno</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Nombres"/>
+                    <input type="text" class="form-control" asp-for="Nombres" required />
                     <label>Nombres</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <select class="form-select" asp-for="Id_001_TipoDocumento">
+                    <select class="form-select" asp-for="Id_001_TipoDocumento" required>
                         <option></option>
                         @foreach(var tipoDocumento in Model.TipoDocumentos)
                         {
@@ -39,19 +39,19 @@
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Documento"/>
+                    <input type="text" class="form-control" asp-for="Documento" required />
                     <label>Numero Documento</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control" asp-for="FechaNacimiento"/>
+                    <input type="date" class="form-control" asp-for="FechaNacimiento" required onblur="datosApoderado(this)"/>
                     <label>Fecha Nacimiento</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <select class="form-select" asp-for="Id_003_Pais">
+                    <select class="form-select" asp-for="Id_003_Pais" required>
                         <option></option>
                         @foreach (var paises in Model.Paises)
                         {
@@ -63,7 +63,7 @@
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <select class="form-select" asp-for="Id_004_Nacionalidad">
+                    <select class="form-select" asp-for="Id_004_Nacionalidad" required>
                         <option></option>
                         @foreach (var nacionalidades in Model.Nacionalidades)
                         {
@@ -75,7 +75,7 @@
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <select class="form-select" asp-for="Id_002_Sexo">
+                    <select class="form-select" asp-for="Id_002_Sexo" required>
                         <option></option>
                         @foreach (var sexos in Model.Sexos)
                         {
@@ -87,7 +87,7 @@
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" required />
                     <label>Celular</label>
                 </div>
             </div>
@@ -115,39 +115,43 @@
                     <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" id="verFoto">Ver</a>
                 </div>
             </div>
-            <div class="row">
-                <div class="card bg-secondary bg-opacity-25 m-2 p-2">
+            <div id="DatosApoderado" class="col-12 g-2" style="display: none;">
+                <div class="card bg-secondary bg-opacity-25">
                     <h4>Datos del Apoderado</h4>
                     <div class="row g-2 mb-2">
                         <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                             <div class="form-floating">
-                                <input type="text" class="form-control" />
+                                <input type="text" class="form-control" asp-for="DatosApoderado.Paterno" id="ApoderadoPaterno" />
                                 <label>Paterno</label>
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                             <div class="form-floating">
-                                <input type="text" class="form-control" />
+                                <input type="text" class="form-control" asp-for="DatosApoderado.Materno" id="ApoderadoMaterno" />
                                 <label>Materno</label>
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" />
+                                <input type="text" class="form-control" asp-for="DatosApoderado.Nombres" id="ApoderadoNombres" />
                                 <label>Nombres</label>
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                             <div class="form-floating">
-                                <select class="form-select">
+                                <select class="form-select" asp-for="DatosApoderado.Id_001_TipoDocumento" id="ApoderadoTipoDocumento">
                                     <option></option>
+                                    @foreach (var tipoDocumento in Model.TipoDocumentos)
+                                    {
+                                        <option value="@tipoDocumento.Id_Parametros">@tipoDocumento.Abreviatura</option>
+                                    }
                                 </select>
                                 <label>Tipo Documento</label>
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                             <div class="form-floating">
-                                <input type="text" class="form-control" />
+                                <input type="text" class="form-control" asp-for="DatosApoderado.Documento" id="ApoderadoDocumento" />
                                 <label>Numero Documento</label>
                             </div>
                         </div>
@@ -156,27 +160,31 @@
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <select class="form-select">
+                    <select class="form-select" asp-for="Id_005_TipoSeguro" required>
                         <option></option>
+                        @foreach (var tipoSeguro in Model.TipoSeguros)
+                        {
+                            <option value="@tipoSeguro.Id_Parametros">@tipoSeguro.Descripcion</option>
+                        }
                     </select>
                     <label>Tipo Seguro</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" asp-for="NumeroPoliza" required/>
                     <label>Numero Poliza</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control" />
+                    <input type="date" class="form-control" asp-for="FechaPoliza" required/>
                     <label>Fecha Poliza</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control" />
+                    <input type="date" class="form-control" asp-for="FechaVencimientoPoliza" required/>
                     <label>Fecha Caducidad</label>
                 </div>
             </div>
@@ -188,7 +196,7 @@
                            class="inputfile inputfile-1"
                            accept=".jpg,.jpeg,.png"
                            onchange="previewImage(event)"
-                           data-val="false" />
+                           data-val="false" required/>
                     <label for="file-1">
                         <div class="label-text">Ruta Foto (Opcional)</div>
                         <span class="iborrainputfile">Seleccionar Archivo de Deslinde</span>
@@ -200,30 +208,42 @@
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <select class="form-select">
+                    <select class="form-select" asp-for="Id_006_TipoVehiculos">
                         <option></option>
+                        @foreach (var tipoVehiculos in Model.TipoVehiculos)
+                        {
+                            <option value="@tipoVehiculos.Id_Parametros">@tipoVehiculos.Descripcion</option>
+                        }
                     </select>
                     <label>Tipo Vehiculo</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control" />
+                    <input type="text" class="form-control" asp-for="NumeroPlaca"/>
                     <label>Numero Placa</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="form-floating">
-                    <select class="form-select">
+                    <select class="form-select" asp-for="Id_007_Division" required>
                         <option></option>
+                        @foreach (var divisionList in Model.DivisionList)
+                        {
+                            <option value="@divisionList.Id_Parametros">@divisionList.Descripcion</option>
+                        }
                     </select>
                     <label>Division</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="form-floating">
-                    <select class="form-select">
+                    <select class="form-select" asp-for="Id_008_Situacion" required>
                         <option></option>
+                        @foreach (var situacionList in Model.SituacionList)
+                        {
+                            <option value="@situacionList.Id_Parametros">@situacionList.Descripcion</option>
+                        }
                     </select>
                     <label>Situacion</label>
                 </div>
@@ -239,3 +259,100 @@
         </div>
     </div>
 </form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const contentDivs = document.querySelectorAll('[contenteditable][required]');
+        contentDivs.forEach((div) => {
+            validateContent(div.id);
+        });
+
+        // Selecciona todos los inputs y selects con atributo `required`
+        const inputs = document.querySelectorAll('input[required], select[required]');
+
+        inputs.forEach((input) => {
+            // Agrega un evento `input` para validar en tiempo real
+            input.addEventListener('input', function () {
+                if (input.checkValidity()) {
+                    input.classList.remove('is-invalid');
+                    input.classList.add('is-valid');
+                } else {
+                    input.classList.remove('is-valid');
+                    input.classList.add('is-invalid');
+                }
+            });
+
+            // Aplica la validación al salir del campo
+            input.addEventListener('blur', function () {
+                if (input.checkValidity()) {
+                    input.classList.remove('is-invalid');
+                    input.classList.add('is-valid');
+                } else {
+                    input.classList.remove('is-valid');
+                    input.classList.add('is-invalid');
+                }
+            });
+        });
+
+        // Aplica un borde rojo inicial para campos requeridos vacíos
+        inputs.forEach((input) => {
+            if (!input.value) {
+                input.classList.add('is-invalid');
+            }
+        });
+    });
+    function validateContent(id) {
+        const contentDiv = document.getElementById(id);
+
+        // Verifica si el contenido está vacío
+        if (contentDiv.textContent.trim() === "") {
+            contentDiv.classList.remove('is-valid');
+            contentDiv.classList.add('is-invalid');
+        } else {
+            contentDiv.classList.remove('is-invalid');
+            contentDiv.classList.add('is-valid');
+            // Llamamos a la función saveContent pasando el id del div
+            saveContent(id); // Pasa el id, no el objeto DOM completo
+        }
+    }
+
+    var mensajeError = '@ViewBag.Mensaje';
+    if (mensajeError && mensajeError.trim() !== '') {
+        $(window).on('load', function () {
+            $('#myModal').modal('show');
+        });
+    }
+    function datosApoderado(nacimiento) {
+        var fechaNacimiento = new Date(nacimiento.value); // Convertir a Date
+        if (isNaN(fechaNacimiento)) {
+            console.log("Fecha inválida");
+            return;
+        }
+
+        var hoy = new Date();
+        var edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+        var mesActual = hoy.getMonth();
+        var diaActual = hoy.getDate();
+        var mesNacimiento = fechaNacimiento.getMonth();
+        var diaNacimiento = fechaNacimiento.getDate();
+
+        // Ajustar si aún no ha cumplido años en el año actual
+        if (mesNacimiento > mesActual || (mesNacimiento === mesActual && diaNacimiento > diaActual)) {
+            edad--;
+        }
+        //console.log(edad);
+        var divApoderado = document.getElementById("DatosApoderado");
+        //var campos = ["ApoderadoPaterno", "ApoderadoMaterno", "ApoderadoNombres", "ApoderadoTipoDocumento", "ApoderadoDocumento"];
+
+        if (edad < 18) {
+            divApoderado.style.display = "block"; // Mostrar el div
+            //campos.forEach(id => document.getElementById(id).setAttribute("required", "required"));
+        } else {
+            divApoderado.style.display = "none"; // Ocultar el div
+            //campos.forEach(id => document.getElementById(id).removeAttribute("required"));
+        }
+    }
+</script>

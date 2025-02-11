@@ -9,7 +9,7 @@
         <div class="row mt-2 g-2">
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="form-floating">
-                    <select class="form-select" asp-for="Id_001_TipoDocumento" id="Id_001_TipoDocumento" onchange="ValidarPersona()">
+                    <select class="form-select" asp-for="Id_001_TipoDocumento" id="Id_001_TipoDocumento" onchange="ValidarPersona()" required>
                         <option></option>
                         @foreach (var tipoDocumento in Model.TipoDocumentoList)
                         {
@@ -21,44 +21,44 @@
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" id="Documento" class="form-control" asp-for="Documento" onblur="ValidarPersona()" />
+                    <input type="text" id="Documento" class="form-control" asp-for="Documento" onblur="ValidarPersona()" required />
                     <label for="Documento">N° Documento</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" id="Paterno" class="form-control" asp-for="Paterno" />
+                    <input type="text" id="Paterno" class="form-control" asp-for="Paterno" required />
                     <label for="Paterno">Paterno</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" id="Materno" class="form-control" asp-for="Materno" />
+                    <input type="text" id="Materno" class="form-control" asp-for="Materno" required />
                     <label for="Materno">Materno</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="form-floating">
-                    <input type="text" id="Nombres" class="form-control" asp-for="Nombres" />
+                    <input type="text" id="Nombres" class="form-control" asp-for="Nombres" required />
                     <label for="Nombres">Nombres</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="form-floating">
-                    <input type="text" id="Correo" class="form-control" asp-for="Correo" />
+                    <input type="text" id="Correo" class="form-control" asp-for="Correo" required />
                     <label for="Correo">N° Correo</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" id="Celular" class="form-control" asp-for="Celular" />
+                    <input type="text" id="Celular" class="form-control" asp-for="Celular" required />
                     <label for="Celular">Celular</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
 
                 <div class="form-floating">
-                    <select class="form-select" asp-for="Id_011_TipoUsuario" id="Id_011_TipoUsuario">
+                    <select class="form-select" asp-for="Id_011_TipoUsuario" id="Id_011_TipoUsuario" required>
                         <option></option>
                         @foreach (var tipoUsuario in Model.TipoUsuarioList)
                         {
@@ -70,7 +70,7 @@
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" id="Usuario" class="form-control" asp-for="Usuario" />
+                    <input type="text" id="Usuario" class="form-control" asp-for="Usuario" required />
                     <label for="Usuario">Usuario</label>
                 </div>
             </div>
@@ -235,5 +235,81 @@
             btnRegistrar.disabled = false;
         }
     }
+    document.addEventListener('DOMContentLoaded', function () {
+        const contentDivs = document.querySelectorAll('[contenteditable][required]');
+        contentDivs.forEach((div) => {
+            validateContent(div.id);
+        });
 
+        // Selecciona todos los inputs y selects con atributo `required`
+        const inputs = document.querySelectorAll('input[required], select[required]');
+
+        inputs.forEach((input) => {
+            // Agrega un evento `input` para validar en tiempo real
+            input.addEventListener('input', function () {
+                if (input.checkValidity()) {
+                    input.classList.remove('is-invalid');
+                    input.classList.add('is-valid');
+                } else {
+                    input.classList.remove('is-valid');
+                    input.classList.add('is-invalid');
+                }
+            });
+
+            // Aplica la validación al salir del campo
+            input.addEventListener('blur', function () {
+                if (input.checkValidity()) {
+                    input.classList.remove('is-invalid');
+                    input.classList.add('is-valid');
+                } else {
+                    input.classList.remove('is-valid');
+                    input.classList.add('is-invalid');
+                }
+            });
+        });
+
+        // Aplica un borde rojo inicial para campos requeridos vacíos
+        inputs.forEach((input) => {
+            if (!input.value) {
+                input.classList.add('is-invalid');
+            }
+        });
+    });
+    function validateContent(id) {
+        const contentDiv = document.getElementById(id);
+
+        // Verifica si el contenido está vacío
+        if (contentDiv.textContent.trim() === "") {
+            contentDiv.classList.remove('is-valid');
+            contentDiv.classList.add('is-invalid');
+        } else {
+            contentDiv.classList.remove('is-invalid');
+            contentDiv.classList.add('is-valid');
+            // Llamamos a la función saveContent pasando el id del div
+            saveContent(id); // Pasa el id, no el objeto DOM completo
+        }
+    }
+
+    var mensajeError = '@ViewBag.Mensaje';
+    if (mensajeError && mensajeError.trim() !== '') {
+        $(window).on('load', function () {
+            $('#myModal').modal('show');
+        });
+    }
+
+    function MostrarOcultar() {
+        const claveInput = document.getElementById("Clave");
+        const icono = document.getElementById("icono");
+
+        // Verificar el tipo actual del input
+        if (claveInput.type === "password") {
+            claveInput.type = "text"; // Cambiar a texto para mostrar la clave
+            icono.classList.remove("bi-eye"); // Cambiar el ícono
+            icono.classList.add("bi-eye-slash");
+        } else {
+            claveInput.type = "password"; // Cambiar a password para ocultarla
+            icono.classList.remove("bi-eye-slash"); // Restaurar el ícono
+            icono.classList.add("bi-eye");
+        }
+    }
 </script>

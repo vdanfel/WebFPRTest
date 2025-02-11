@@ -259,7 +259,10 @@ namespace WebFPRTest.Areas.Externo.Controllers
             }
             var idEquipoStr = User.FindFirst("Id_Equipo")?.Value ?? "0";
             var Id_Equipo = int.Parse(idEquipoStr);
+            
             JugadorViewModel jugadorViewModel = new JugadorViewModel();
+            jugadorViewModel.Id_Equipo = Id_Equipo;
+            jugadorViewModel.Id_Jugador = TempData.Peek("Id_Jugador") as int? ?? 0;
             jugadorViewModel.TipoDocumentos = await _tiposService.ParametroTipo_Listar(1);
             jugadorViewModel.Paises = await _tiposService.ParametroTipo_Listar(3);
             jugadorViewModel.Nacionalidades = await _tiposService.ParametroTipo_Listar(4);
