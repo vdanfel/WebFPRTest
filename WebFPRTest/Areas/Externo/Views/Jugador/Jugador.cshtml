@@ -1,0 +1,241 @@
+﻿@model WebFPRTest.Areas.Externo.Models.Jugador.JugadorViewModel
+@{
+    Layout = "_LayoutExterno";
+}
+<form>
+    <input type="text" asp-for="Id_Jugador"/>
+    <input type="text" asp-for="Id_Equipo"/>
+    <div class="container">
+        <div class="row g-2">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control" asp-for="Paterno"/>
+                    <label>Paterno</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control" asp-for="Materno"/>
+                    <label>Materno</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-floating">
+                    <input type="text" class="form-control" asp-for="Nombres"/>
+                    <label>Nombres</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                <div class="form-floating">
+                    <select class="form-select" asp-for="Id_001_TipoDocumento">
+                        <option></option>
+                        @foreach(var tipoDocumento in Model.TipoDocumentos)
+                        {
+                            <option value="@tipoDocumento.Id_Parametros">@tipoDocumento.Abreviatura</option>
+                        }
+                    </select>
+                    <label>Tipo Documento</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control" asp-for="Documento"/>
+                    <label>Numero Documento</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                <div class="form-floating">
+                    <input type="date" class="form-control" asp-for="FechaNacimiento"/>
+                    <label>Fecha Nacimiento</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                <div class="form-floating">
+                    <select class="form-select" asp-for="Id_003_Pais">
+                        <option></option>
+                        @foreach (var paises in Model.Paises)
+                        {
+                            <option value="@paises.Id_Parametros">@paises.Descripcion</option>
+                        }
+                    </select>
+                    <label>Pais</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                <div class="form-floating">
+                    <select class="form-select" asp-for="Id_004_Nacionalidad">
+                        <option></option>
+                        @foreach (var nacionalidades in Model.Nacionalidades)
+                        {
+                            <option value="@nacionalidades.Id_Parametros">@nacionalidades.Descripcion</option>
+                        }
+                    </select>
+                    <label>Nacionalidad</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                <div class="form-floating">
+                    <select class="form-select" asp-for="Id_002_Sexo">
+                        <option></option>
+                        @foreach (var sexos in Model.Sexos)
+                        {
+                            <option value="@sexos.Id_Parametros">@sexos.Descripcion</option>
+                        }
+                    </select>
+                    <label>Sexo</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control" />
+                    <label>Celular</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control" />
+                    <label>Telefono</label>
+                </div>
+            </div>
+            <input type="hidden" id="rutaFotoHidden" />
+            <div class="col-12 d-flex align-items-center">
+                <div class="container-input">
+                    <input type="file"
+                           id="file-1"
+                           class="inputfile inputfile-1"
+                           accept=".jpg,.jpeg,.png"
+                           onchange="previewImage(event)"
+                           data-val="false" /> 
+                    <label for="file-1">
+                        <div class="label-text">Ruta Foto (Opcional)</div>
+                        <span class="iborrainputfile">Seleccionar Foto</span>
+                    </label>
+                </div>
+                <div class="ms-auto px-3">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" id="verFoto">Ver</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card bg-secondary bg-opacity-25 m-2 p-2">
+                    <h4>Datos del Apoderado</h4>
+                    <div class="row g-2 mb-2">
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" />
+                                <label>Paterno</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" />
+                                <label>Materno</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" />
+                                <label>Nombres</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                            <div class="form-floating">
+                                <select class="form-select">
+                                    <option></option>
+                                </select>
+                                <label>Tipo Documento</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" />
+                                <label>Numero Documento</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                <div class="form-floating">
+                    <select class="form-select">
+                        <option></option>
+                    </select>
+                    <label>Tipo Seguro</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control" />
+                    <label>Numero Poliza</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                <div class="form-floating">
+                    <input type="date" class="form-control" />
+                    <label>Fecha Poliza</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                <div class="form-floating">
+                    <input type="date" class="form-control" />
+                    <label>Fecha Caducidad</label>
+                </div>
+            </div>
+            <input type="hidden" id="rutaDeslindeHidden" />
+            <div class="col-12 d-flex align-items-center">
+                <div class="container-input">
+                    <input type="file"
+                           id="file-1"
+                           class="inputfile inputfile-1"
+                           accept=".jpg,.jpeg,.png"
+                           onchange="previewImage(event)"
+                           data-val="false" />
+                    <label for="file-1">
+                        <div class="label-text">Ruta Foto (Opcional)</div>
+                        <span class="iborrainputfile">Seleccionar Archivo de Deslinde</span>
+                    </label>
+                </div>
+                <div class="ms-auto px-3">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" id="verFoto">Ver</a>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                <div class="form-floating">
+                    <select class="form-select">
+                        <option></option>
+                    </select>
+                    <label>Tipo Vehiculo</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                <div class="form-floating">
+                    <input type="date" class="form-control" />
+                    <label>Numero Placa</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-floating">
+                    <select class="form-select">
+                        <option></option>
+                    </select>
+                    <label>Division</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-floating">
+                    <select class="form-select">
+                        <option></option>
+                    </select>
+                    <label>Situacion</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 g-2">
+            <div class="col-12">
+                <div class="form-floating">
+                    <textarea class="form-control" style="height:7rem" disabled></textarea>
+                    <label>Observacion FPR</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

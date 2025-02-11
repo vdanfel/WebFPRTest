@@ -26,11 +26,25 @@ namespace WebFPRTest.Areas.Interno.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
-            JugadoresFiltroViewModel jugadoresFiltro = new JugadoresFiltroViewModel();
-            jugadoresFiltro.ListaDivisiones = await _tiposService.ParametroTipo_Listar(7);
-            jugadoresFiltro.ListaJugadores = await _listJugadoresService.Jugador_Bandeja(jugadoresFiltro);
-            jugadoresFiltro.EquiposList = await _tiposService.Equipo_Listar();
-            return View(jugadoresFiltro);
+            JugadoresFiltroViewModel jugadoresFiltroViewModel = new JugadoresFiltroViewModel();
+            jugadoresFiltroViewModel.ListaDivisiones = await _tiposService.ParametroTipo_Listar(7);
+            jugadoresFiltroViewModel.ListaJugadores = await _listJugadoresService.Jugador_Bandeja(jugadoresFiltroViewModel);
+            jugadoresFiltroViewModel.EquiposList = await _tiposService.Equipo_Listar();
+            return View(jugadoresFiltroViewModel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> ListJugadores(JugadoresFiltroViewModel jugadoresFiltroViewModel)
+        {
+            var idUsuarioStr = User.FindFirst("Id_Usuario")?.Value ?? "0";
+            var Id_Usuario = int.Parse(idUsuarioStr);
+            if (Id_Usuario == 0)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            jugadoresFiltroViewModel.ListaDivisiones = await _tiposService.ParametroTipo_Listar(7);
+            jugadoresFiltroViewModel.ListaJugadores = await _listJugadoresService.Jugador_Bandeja(jugadoresFiltroViewModel);
+            jugadoresFiltroViewModel.EquiposList = await _tiposService.Equipo_Listar();
+            return View(jugadoresFiltroViewModel);
         }
     }
 }

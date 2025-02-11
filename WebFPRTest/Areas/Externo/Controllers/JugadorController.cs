@@ -239,5 +239,36 @@ namespace WebFPRTest.Areas.Externo.Controllers
             // Devolver el archivo para la descarga
             return File(fileBytes, "text/plain", fileName);
         }
+        public IActionResult GuardarJugadorSeleccionado(int Id_Jugador)
+        {
+            var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
+            if (tipoUsuario == null || tipoUsuario != "409")
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            TempData["Id_Jugador"] = Id_Jugador;
+            return RedirectToAction("Jugador", "Jugador", new { area = "Externo" });
+        }
+        [HttpGet]
+        public async Task<IActionResult> Jugador()
+        {
+            var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
+            if (tipoUsuario == null || tipoUsuario != "409")
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            var idEquipoStr = User.FindFirst("Id_Equipo")?.Value ?? "0";
+            var Id_Equipo = int.Parse(idEquipoStr);
+            JugadorViewModel jugadorViewModel = new JugadorViewModel();
+            jugadorViewModel.TipoDocumentos = await _tiposService.ParametroTipo_Listar(1);
+            jugadorViewModel.Paises = await _tiposService.ParametroTipo_Listar(3);
+            jugadorViewModel.Nacionalidades = await _tiposService.ParametroTipo_Listar(4);
+            jugadorViewModel.Sexos = await _tiposService.ParametroTipo_Listar(2);
+            jugadorViewModel.TipoSeguros = await _tiposService.ParametroTipo_Listar(5);
+            jugadorViewModel.TipoVehiculos = await _tiposService.ParametroTipo_Listar(6);
+            jugadorViewModel.DivisionList = await _tiposService.ParametroTipo_Listar(7);
+            jugadorViewModel.SituacionList = await _tiposService.ParametroTipo_Listar(8);
+            return View(jugadorViewModel);
+        }
     }
 }
