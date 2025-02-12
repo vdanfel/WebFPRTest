@@ -2,9 +2,10 @@
 @{
     Layout = "_LayoutExterno";
 }
-<form>
+<form method="post" asp-area="Externo" asp-controller="Jugador" asp-action="Jugador" enctype="multipart/form-data">
     <input type="text" asp-for="Id_Jugador" hidden/>
     <input type="text" asp-for="Id_Equipo" hidden/>
+    <input type="text" asp-for="Id_Persona" hidden/>
     <div class="container">
         <div class="row g-2">
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
@@ -87,59 +88,69 @@
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" class="form-control" required />
+                    <input type="text" class="form-control" required asp-for="Celular"/>
                     <label>Celular</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" asp-for="Telefono"/>
                     <label>Telefono</label>
                 </div>
             </div>
-            <input type="hidden" id="rutaFotoHidden" />
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-floating">
+                    <input type="text" class="form-control" asp-for="Correo" />
+                    <label>Correo</label>
+                </div>
+
+            </div>
+            <input type="hidden" id="rutaFotoHidden" value="@Model.RutaFoto" />
             <div class="col-12 d-flex align-items-center">
                 <div class="container-input">
                     <input type="file"
-                           id="file-1"
-                           class="inputfile inputfile-1"
+                        asp-for="Foto"
+                           id="fotoJugador"
+                           class="inputfile"
                            accept=".jpg,.jpeg,.png"
-                           onchange="previewImage(event)"
-                           data-val="false" /> 
-                    <label for="file-1">
-                        <div class="label-text">Ruta Foto (Opcional)</div>
+                           onchange="previewImage(event, 'fotoJugador')"
+                           data-val="false" />
+                    <label for="fotoJugador">
+                        <div class="label-text">Ruta Foto</div>
                         <span class="iborrainputfile">Seleccionar Foto</span>
                     </label>
                 </div>
                 <div class="ms-auto px-3">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" id="verFoto">Ver</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImagePreview('fotoJugador')">Ver</a>
                 </div>
             </div>
-            <div id="DatosApoderado" class="col-12 g-2" style="display: none;">
-                <div class="card bg-secondary bg-opacity-25">
-                    <h4>Datos del Apoderado</h4>
+            <div id="DatosApoderado" class="col-12" style="display: none;">
+                <div class="card bg-secondary bg-opacity-25 p-2">
+                    <div class="row">
+                        <h4>Datos del Apoderado</h4>
+                    </div>
                     <div class="row g-2 mb-2">
                         <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                             <div class="form-floating">
-                                <input type="text" class="form-control" asp-for="DatosApoderado.Paterno" id="ApoderadoPaterno" />
+                                <input type="text" class="form-control" asp-for="DatosApoderado.ApoderadoPaterno" id="ApoderadoPaterno" />
                                 <label>Paterno</label>
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                             <div class="form-floating">
-                                <input type="text" class="form-control" asp-for="DatosApoderado.Materno" id="ApoderadoMaterno" />
+                                <input type="text" class="form-control" asp-for="DatosApoderado.ApoderadoMaterno" id="ApoderadoMaterno" />
                                 <label>Materno</label>
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" asp-for="DatosApoderado.Nombres" id="ApoderadoNombres" />
+                                <input type="text" class="form-control" asp-for="DatosApoderado.ApoderadoNombres" id="ApoderadoNombres" />
                                 <label>Nombres</label>
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                             <div class="form-floating">
-                                <select class="form-select" asp-for="DatosApoderado.Id_001_TipoDocumento" id="ApoderadoTipoDocumento">
+                                <select class="form-select" asp-for="DatosApoderado.ApoderadoId_001_TipoDocumento" id="ApoderadoId_001_TipoDocumento">
                                     <option></option>
                                     @foreach (var tipoDocumento in Model.TipoDocumentos)
                                     {
@@ -151,7 +162,7 @@
                         </div>
                         <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                             <div class="form-floating">
-                                <input type="text" class="form-control" asp-for="DatosApoderado.Documento" id="ApoderadoDocumento" />
+                                <input type="text" class="form-control" asp-for="DatosApoderado.ApoderadoDocumento" id="ApoderadoDocumento" />
                                 <label>Numero Documento</label>
                             </div>
                         </div>
@@ -188,22 +199,23 @@
                     <label>Fecha Caducidad</label>
                 </div>
             </div>
-            <input type="hidden" id="rutaDeslindeHidden" />
+            <input type="hidden" id="rutaDeslindeHidden" value="@Model.RutaDeslinde" />
             <div class="col-12 d-flex align-items-center">
                 <div class="container-input">
                     <input type="file"
-                           id="file-1"
-                           class="inputfile inputfile-1"
-                           accept=".jpg,.jpeg,.png"
-                           onchange="previewImage(event)"
-                           data-val="false" required/>
-                    <label for="file-1">
-                        <div class="label-text">Ruta Foto (Opcional)</div>
-                        <span class="iborrainputfile">Seleccionar Archivo de Deslinde</span>
+                        asp-for="Deslinde"
+                           id="archivoDeslinde"
+                           class="inputfile"
+                           accept=".pdf,.doc,.docx"
+                           onchange="previewImage(event, 'archivoDeslinde')"
+                           data-val="false" />
+                    <label for="archivoDeslinde">
+                        <div class="label-text">Archivo de Deslinde</div>
+                        <span class="iborrainputfile">Seleccionar Archivo</span>
                     </label>
                 </div>
                 <div class="ms-auto px-3">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" id="verFoto">Ver</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImagePreview('archivoDeslinde')">Ver</a>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
@@ -258,13 +270,64 @@
             </div>
         </div>
     </div>
+    <button type="submit" class="btn btn-outline-primary">Guardar</button>
 </form>
+<!-- Modal para el mensaje de del TempData -->
+@if (TempData["Mensaje"] != null)
+{
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @TempData["Mensaje"]
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<!-- Modal para mostrar la miniatura de la imagen -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Vista previa del logo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="logoPreview" src="" alt="Logo preview" style="max-width: 100%; height: auto;" />
+            </div>
+            <div class="modal-footer">
+                <!-- Botón para descargar la imagen original -->
+                <a id="downloadBtn" href="#" class="btn btn-primary" download>
+                    Descargar Imagen Original
+                </a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        //Mostrar modal al cargar la pagina
+        var mensaje = '@TempData["Mensaje"]';
+        if (mensaje && mensaje.trim() !== '') {
+            $('#myModal').modal('show');
+        }
+
+        //mostrar datos apoderado
+        var fechaInput = document.getElementById("FechaNacimiento");
+        if (fechaInput) {
+            datosApoderado(fechaInput); // Llamar a la función con el input actual
+        }
+        
         const contentDivs = document.querySelectorAll('[contenteditable][required]');
         contentDivs.forEach((div) => {
             validateContent(div.id);
@@ -303,6 +366,40 @@
                 input.classList.add('is-invalid');
             }
         });
+
+        // Valida los nombres en las rutas
+        const rutaFotoJugador = document.getElementById('rutaFotoHidden')?.value;
+        const rutaArchivoDeslinde = document.getElementById('rutaDeslindeHidden')?.value;
+
+        if (rutaFotoJugador) {
+            const container = document.querySelector('#fotoJugador').closest('.container-input');
+            const span = container ? container.querySelector('.iborrainputfile') : null;
+            if (span) {
+                const fileName = rutaFotoJugador.split('\\').pop().split('/').pop();
+                span.textContent = fileName;
+            }
+        }
+
+        if (rutaArchivoDeslinde) {
+            const container = document.querySelector('#archivoDeslinde').closest('.container-input');
+            const span = container ? container.querySelector('.iborrainputfile') : null;
+            if (span) {
+                const fileName = rutaArchivoDeslinde.split('\\').pop().split('/').pop();
+                span.textContent = fileName;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
     });
     function validateContent(id) {
         const contentDiv = document.getElementById(id);
@@ -355,4 +452,76 @@
             //campos.forEach(id => document.getElementById(id).removeAttribute("required"));
         }
     }
+
+    //Para los archivos cargados
+    'use strict';
+    (function (document, window, index) {
+        var inputs = document.querySelectorAll('.inputfile');
+        Array.prototype.forEach.call(inputs, function (input) {
+            var label = input.nextElementSibling,
+                labelVal = label.querySelector('.iborrainputfile').innerHTML;
+
+            input.addEventListener('change', function (e) {
+                var fileName = this.files.length > 1
+                    ? (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length)
+                    : e.target.value.split('\\').pop();
+
+                if (fileName) {
+                    label.querySelector('.iborrainputfile').innerHTML = fileName;
+                    input.closest('.container-input').classList.add('has-file');
+                } else {
+                    label.querySelector('.iborrainputfile').innerHTML = labelVal;
+                    input.closest('.container-input').classList.remove('has-file');
+                }
+            });
+        });
+    }(document, window, 0));
+
+    // Función para previsualizar imágenes/documentos
+    let selectedFiles = {}; // Diccionario para almacenar archivos seleccionados
+
+    function previewImage(event, inputId) {
+        const file = event.target.files[0];
+        if (file) {
+            selectedFiles[inputId] = file; // Guardar archivo según su inputId
+            const span = document.querySelector(`label[for="${inputId}"] .iborrainputfile`);
+            if (span) {
+                span.textContent = file.name;
+            }
+        }
+    }
+
+    // Función para mostrar la previsualización
+    function showImagePreview(inputId) {
+        const previewModal = document.getElementById('imageModal');
+        const image = document.getElementById('logoPreview'); // Elemento de la imagen
+        const rutaHidden = document.getElementById(inputId === 'fotoJugador' ? 'rutaFotoHidden' : 'rutaDeslindeHidden').value;
+
+        if (selectedFiles[inputId]) {
+            // Si hay un archivo nuevo seleccionado, mostrarlo
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                image.src = e.target.result;
+            };
+            reader.readAsDataURL(selectedFiles[inputId]);
+        } else if (rutaHidden) {
+            // Si no hay archivo nuevo, pero hay una ruta almacenada
+            let webPath = rutaHidden.replace(/\\/g, '/').replace('wwwroot/', '');
+            if (!webPath.startsWith('/')) {
+                webPath = '/' + webPath;
+            }
+
+            if (inputId === 'archivoDeslinde') {
+                // Si es un PDF o Word, mostrar un ícono en lugar de una imagen
+                image.src = webPath.endsWith('.pdf') ? '/images/pdf-icon.png' : '/images/doc-icon.png';
+            } else {
+                image.src = webPath;
+            }
+
+            // Establecer el enlace de descarga
+            document.getElementById('downloadBtn').href = webPath;
+        }
+    }
+
+
 </script>

@@ -149,7 +149,7 @@ namespace WebFPRTest.Areas.Externo.Service.Equipo
         }
         public async Task<string> Archivo_RutaLogo(int idEquipo, int idJugador, int idTipoArchivo)
         {
-            var procedure = "usp_Archivos_RutaLogo";
+            var procedure = "usp_Archivos_Ruta";
             try
             {
                 var parameters = new DynamicParameters();

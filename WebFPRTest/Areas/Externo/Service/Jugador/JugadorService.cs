@@ -166,5 +166,139 @@ namespace WebFPRTest.Areas.Externo.Service.Jugador
                 _connection.Close();
             }
         }
+        public async Task<JugadorViewModel> Jugador_Select(int Id_Jugador)
+        {
+            var procedure = "usp_Jugador_Select";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Jugador", Id_Jugador, DbType.Int32);
+
+                var jugador = await _connection.QueryFirstOrDefaultAsync<JugadorViewModel>(
+                    procedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                    );
+                return jugador;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al insertar la persona.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+        public async Task<JugadorApoderado> Apoderado_Select(int Id_Persona)
+        {
+            var procedure = "usp_Apoderado_Select";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Persona", Id_Persona, DbType.Int32);
+
+                var apoderado = await _connection.QueryFirstOrDefaultAsync<JugadorApoderado>(
+                    procedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                    );
+                return apoderado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al insertar la persona.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+        public async Task<string> Archivo_Ruta(int idEquipo, int idJugador, int idTipoArchivo)
+        {
+            var procedure = "usp_Archivos_Ruta";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Equipo", idEquipo);
+                parameters.Add("@Id_Jugador", idJugador);
+                parameters.Add("@Id_013_TipoArchivo", idTipoArchivo);
+
+                var rutaArchivo = await _connection.QuerySingleOrDefaultAsync<string>(
+                    procedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return rutaArchivo ?? string.Empty; // Retorna cadena vacía si no hay resultado
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al obtener la ruta del archivo.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+        public async Task Archivo_Insertar(int Id_Equipo, int Id_Jugador, int Id_013_TipoArchivo, string RutaArchivo, int Usuario)
+        {
+            var procedure = "usp_Archivos_Insert";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Equipo", Id_Equipo);
+                parameters.Add("@Id_Jugador", Id_Jugador);
+                parameters.Add("@Id_013_TipoArchivo", Id_013_TipoArchivo);
+                parameters.Add("@RutaArchivo", RutaArchivo);
+                parameters.Add("@Usuario", Usuario);
+                await _connection.ExecuteAsync(procedure, parameters, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error inesperado. Intenta nuevamente.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+        public async Task Persona_Actualizar(JugadorViewModel jugadorViewModel, int Id_Usuario)
+        {
+            var procedure = "usp_Persona_Update";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Persona", jugadorViewModel.Id_Persona, DbType.Int32);
+                parameters.Add("@Paterno", jugadorViewModel.Paterno, DbType.String);
+                parameters.Add("@Materno", jugadorViewModel.Materno, DbType.String);
+                parameters.Add("@Nombres", jugadorViewModel.Nombres, DbType.String);
+                parameters.Add("@Id_001_TipoDocumento", jugadorViewModel.Id_001_TipoDocumento, DbType.Int32);
+                parameters.Add("@Documento", jugadorViewModel.Documento, DbType.String);
+                parameters.Add("@FechaNacimiento", jugadorViewModel.FechaNacimiento, DbType.DateTime);
+                parameters.Add("@Id_003_Pais", jugadorViewModel.Id_003_Pais, DbType.Int32);
+                parameters.Add("@Id_004_Nacionalidad", jugadorViewModel.Id_004_Nacionalidad, DbType.Int32);
+                parameters.Add("@Id_002_Sexo", jugadorViewModel.Id_002_Sexo, DbType.Int32);
+                parameters.Add("@Celular", jugadorViewModel.Celular, DbType.String);
+                parameters.Add("@Telefono", jugadorViewModel.Telefono, DbType.String);
+                parameters.Add("@Correo", jugadorViewModel.Correo, DbType.String);
+                parameters.Add("@Id_005_TipoSeguro", jugadorViewModel.Id_005_TipoSeguro, DbType.Int32);
+                parameters.Add("@NumeroPoliza", jugadorViewModel.NumeroPoliza, DbType.String);
+                parameters.Add("@FechaPoliza", jugadorViewModel.FechaPoliza, DbType.DateTime);
+                parameters.Add("@FechaVencimientoPoliza", jugadorViewModel.FechaVencimientoPoliza, DbType.DateTime);
+                parameters.Add("@Id_006_TipoVehiculo", jugadorViewModel.Id_006_TipoVehiculos, DbType.Int32);
+                parameters.Add("@NumeroPlaca", jugadorViewModel.NumeroPlaca, DbType.String);
+                parameters.Add("@Id_UsuarioModificacion", Id_Usuario, DbType.Int32);
+                await _connection.ExecuteAsync(procedure, parameters, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al actualizar el usuario.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
     }
 }
