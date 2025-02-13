@@ -1,8 +1,11 @@
 ﻿using ClosedXML.Excel;
+using Dapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Client;
+using System.Data;
 using System.Security.Claims;
 using WebFPRTest.Areas.Externo.Interface.Jugador;
 using WebFPRTest.Areas.Externo.Models.Jugador;
@@ -297,6 +300,33 @@ namespace WebFPRTest.Areas.Externo.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+            int? existeP = await _jugadorService.Persona_Existe(jugadorViewModel.Id_001_TipoDocumento, jugadorViewModel.Documento);
+            if (existeP == null)
+            { 
+                PersonaModel personaModel = new PersonaModel()
+                { 
+                    Id_001_TipoDocumento = jugadorViewModel.Id_001_TipoDocumento,
+                    Paterno = jugadorViewModel.Paterno,
+                    Materno = jugadorViewModel.Materno,
+                    Nombres = jugadorViewModel.Nombres,
+                    FechaNacimiento = (DateTime)jugadorViewModel.FechaNacimiento,
+                    Id_003_Pais = jugadorViewModel.Id_003_Pais,
+                    Id_004_Nacionalidad = jugadorViewModel.Id_004_Nacionalidad,
+                    Id_002_Sexo = jugadorViewModel.Id_002_Sexo,
+                    Celular = jugadorViewModel.Celular,
+                    Id_014_TipoSangre = jugadorViewModel.Id_014_TipoSangre,
+                    Correo = jugadorViewModel.Correo,
+                    Id_005_TipoSeguro = jugadorViewModel.Id_005_TipoSeguro,
+                    NumeroPoliza = jugadorViewModel.NumeroPoliza,
+                    FechaPoliza = (DateTime)jugadorViewModel.FechaPoliza,
+                    FechaVencimientoPoliza = (DateTime)jugadorViewModel.FechaVencimientoPoliza,
+                    Id_006_TipoVehiculo = (int)jugadorViewModel.Id_006_TipoVehiculo,
+                    NumeroPlaca = jugadorViewModel.NumeroPlaca
+                };
+                jugadorViewModel.Id_Persona = await _jugadorService.Persona_Insertar(personaModel, Id_Usuario);
+            }
+
+
             int existe = await _jugadorService.Jugador_Existe(jugadorViewModel.Id_Persona, jugadorViewModel.Id_Equipo);
             if (existe == 0)
             {
@@ -314,13 +344,17 @@ namespace WebFPRTest.Areas.Externo.Controllers
             else if (existe == 1)
             {
                 await _jugadorService.Persona_Actualizar(jugadorViewModel, Id_Usuario);
+                await _jugadorService.Jugador_Actualizar(jugadorViewModel, Id_Usuario);
                 TempData["Mensaje"] = "Jugador actualizado con éxito";
             }
             else if (existe == 2)
             {
-
                 TempData["Mensaje"] = "Jugador está en otro equipo";
                 return RedirectToAction("Jugador");
+            }
+            if (jugadorViewModel.DatosApoderado.ApoderadoNombres.Length > 0)
+            { 
+                await _jugadorService.Apoderado_Insertar(jugadorViewModel, Id_Usuario);
             }
             var rutaExisteFoto = await _jugadorService.Archivo_Ruta(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, 431);
             if (!string.IsNullOrEmpty(rutaExisteFoto))
@@ -429,5 +463,26 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 throw new Exception($"Ocurrió un error al eliminar el archivo: {rutaArchivo}", ex);
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> ValidarPersona(int idTipoDocumento, string documento)
+        {
+            var idEquipoStr = User.FindFirst("Id_Equipo")?.Value ?? "0";
+            var Id_Equipo = int.Parse(idEquipoStr);
+
+            int Id_Jugador = await _jugadorService.Jugador_BuscarPorDocumento(Id_Equipo, idTipoDocumento, documento);
+
+            if (Id_Jugador < 0)
+            {
+                return Json(new { success = false, message = "El jugador ya está registrado en otro equipo." });
+            }
+            if (Id_Jugador > 0)
+            {
+                return Json(new { success = true, redirectUrl = Url.Action("GuardarJugadorSeleccionado", "Jugador", new { Id_Jugador }) });
+            }
+
+            // Para el caso en que Id_Jugador == 0
+            return Json(new { success = true });
+        }
+
     }
 }

@@ -15,6 +15,11 @@ namespace WebFPRTest.Areas.Externo.Interface.Jugador
         Task<JugadorApoderado> Apoderado_Select(int Id_Persona);
         Task<string> Archivo_Ruta(int idEquipo, int idJugador, int idTipoArchivo);
         Task Archivo_Insertar(int Id_Equipo, int Id_Jugador, int Id_013_TipoArchivo, string RutaArchivo, int Usuario);
-        
+        Task<JugadorViewModel> Jugador_ValidarPersona(int Id_001_TipoDocumento, string Documento);
+        Task Jugador_Actualizar(JugadorViewModel jugadorViewModel, int Id_Usuario);
+        Task<int> Jugador_BuscarPorDocumento(int Id_Equipo, int Id_001_TipoDocumento, string Documento);
+        Task Apoderado_Insertar(JugadorViewModel jugadorViewModel, int Id_Usuario);
+
+
     }
 }

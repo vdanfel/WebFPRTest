@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using System.Data;
 using WebFPRTest.Areas.Externo.Interface.Jugador;
 using WebFPRTest.Areas.Externo.Models.Jugador;
+using WebFPRTest.Areas.Interno.Models.Usuario;
 using WebFPRTest.Models;
 
 namespace WebFPRTest.Areas.Externo.Service.Jugador
@@ -18,7 +19,7 @@ namespace WebFPRTest.Areas.Externo.Service.Jugador
         {
             var procedure = "usp_Persona_BuscarPorDocumento";
             try
-            {
+            {   
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id_001_TipoDocumento", idTipoDocumento);
                 parameters.Add("@Documento", documento);
@@ -286,9 +287,116 @@ namespace WebFPRTest.Areas.Externo.Service.Jugador
                 parameters.Add("@NumeroPoliza", jugadorViewModel.NumeroPoliza, DbType.String);
                 parameters.Add("@FechaPoliza", jugadorViewModel.FechaPoliza, DbType.DateTime);
                 parameters.Add("@FechaVencimientoPoliza", jugadorViewModel.FechaVencimientoPoliza, DbType.DateTime);
-                parameters.Add("@Id_006_TipoVehiculo", jugadorViewModel.Id_006_TipoVehiculos, DbType.Int32);
+                parameters.Add("@Id_006_TipoVehiculo", jugadorViewModel.Id_006_TipoVehiculo, DbType.Int32);
                 parameters.Add("@NumeroPlaca", jugadorViewModel.NumeroPlaca, DbType.String);
                 parameters.Add("@Id_UsuarioModificacion", Id_Usuario, DbType.Int32);
+                await _connection.ExecuteAsync(procedure, parameters, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al actualizar el usuario.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+        public async Task Jugador_Actualizar(JugadorViewModel jugadorViewModel, int Id_Usuario)
+        {
+            var procedure = "usp_Jugador_Update";
+            try
+            {
+                var parameters = new DynamicParameters();
+
+                parameters.Add("@Id_Jugador", jugadorViewModel.Id_Jugador, DbType.Int32);
+                parameters.Add("@Id_Persona", jugadorViewModel.Id_Persona, DbType.Int32);
+                parameters.Add("@Id_Equipo", jugadorViewModel.Id_Equipo, DbType.Int32);
+                parameters.Add("@Id_007_Division", jugadorViewModel.Id_007_Division, DbType.Int32);
+                parameters.Add("@Id_008_Situacion", jugadorViewModel.Id_008_Situacion, DbType.Int32);
+                parameters.Add("@Id_009_EstadoJugador", jugadorViewModel.Id_009_EstadoJugador, DbType.Int32);
+                parameters.Add("@Observacion", jugadorViewModel.Observacion, DbType.Int32);
+                parameters.Add("@Id_UsuarioModificacion", Id_Usuario, DbType.Int32);
+                await _connection.ExecuteAsync(procedure, parameters, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al actualizar el usuario.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+
+
+        public async Task<JugadorViewModel> Jugador_ValidarPersona(int Id_001_TipoDocumento, string Documento)
+        {
+            var procedure = "usp_Jugador_ObtenerPorDocumento";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_001_TipoDocumento", Id_001_TipoDocumento);
+                parameters.Add("@Documento", Documento);
+
+                var persona = await _connection.QueryFirstOrDefaultAsync<JugadorViewModel>(
+                    procedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return persona;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al buscar la persona por documento.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+        public async Task<int> Jugador_BuscarPorDocumento(int Id_Equipo, int Id_001_TipoDocumento, string Documento)
+        {
+            var procedure = "usp_Jugador_BuscarPorDocumento";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Equipo", Id_Equipo);
+                parameters.Add("@Id_001_TipoDocumento", Id_001_TipoDocumento);
+                parameters.Add("@Documento", Documento);
+
+                var estado = await _connection.QueryFirstOrDefaultAsync<int>(
+                    procedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return estado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al buscar al jugador por documento.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+        public async Task Apoderado_Insertar(JugadorViewModel jugadorViewModel, int Id_Usuario)
+        {
+            var procedure = "usp_Apoderado_Insert";
+            try
+            {
+                var parameters = new DynamicParameters();
+
+                parameters.Add("@Id_Persona", jugadorViewModel.Id_Persona, DbType.Int32);
+                parameters.Add("@Paterno", jugadorViewModel.DatosApoderado.ApoderadoPaterno, DbType.String);
+                parameters.Add("@Materno", jugadorViewModel.DatosApoderado.ApoderadoMaterno, DbType.String);
+                parameters.Add("@Nombres", jugadorViewModel.DatosApoderado.ApoderadoNombres, DbType.String);
+                parameters.Add("@Id_001_TipoDocumento", jugadorViewModel.DatosApoderado.ApoderadoId_001_TipoDocumento, DbType.Int32);
+                parameters.Add("@Documento", jugadorViewModel.DatosApoderado.ApoderadoDocumento, DbType.String);
+                parameters.Add("@Paterno", jugadorViewModel.DatosApoderado.ApoderadoDocumento, DbType.String);
+                parameters.Add("@Id_Usuario", Id_Usuario, DbType.Int32);
                 await _connection.ExecuteAsync(procedure, parameters, commandType: CommandType.StoredProcedure);
             }
             catch (Exception ex)

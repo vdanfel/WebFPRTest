@@ -10,7 +10,7 @@
         <div class="row g-2">
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <select class="form-select" asp-for="Id_001_TipoDocumento" required>
+                    <select class="form-select" asp-for="Id_001_TipoDocumento" required onchange="ValidarPersona()">
                         <option></option>
                         @foreach (var tipoDocumento in Model.TipoDocumentos)
                         {
@@ -22,7 +22,7 @@
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Documento" required />
+                    <input type="text" class="form-control" asp-for="Documento" required onchange="ValidarPersona()" />
                     <label>Numero Documento</label>
                 </div>
             </div>
@@ -226,7 +226,7 @@
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <select class="form-select" asp-for="Id_006_TipoVehiculos">
+                    <select class="form-select" asp-for="Id_006_TipoVehiculo">
                         <option></option>
                         @foreach (var tipoVehiculos in Model.TipoVehiculos)
                         {
@@ -276,7 +276,7 @@
             </div>
         </div>
     </div>
-    <button type="submit" class="btn btn-outline-primary">Guardar</button>
+    <button type="submit" class="btn btn-outline-primary" id="btnGuardar">Guardar</button>
 </form>
 <!-- Modal para el mensaje de del TempData -->
 @if (TempData["Mensaje"] != null)
@@ -311,6 +311,25 @@
                     Descargar Imagen Original
                 </a>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal para alerta de jugador en otro equipo-->
+<div class="modal fade" id="modalMensaje" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Aviso</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Aquí se mostrará el mensaje -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
@@ -528,6 +547,38 @@
             document.getElementById('downloadBtn').href = webPath;
         }
     }
+    function ValidarPersona() {
+        var idTipoDocumento = $("#Id_001_TipoDocumento").val();
+        var documento = $("#Documento").val();
+        var btnGuardar = $("#btnGuardar");
 
+        if (idTipoDocumento && documento) {
+            $.get("/Externo/Jugador/ValidarPersona", { idTipoDocumento: idTipoDocumento, documento: documento }, function (response) {
+                if (response.success) {
+                    if (response.redirectUrl) {
+                        window.location.href = response.redirectUrl;
+                        return;
+                    }
+
+                    // Habilitar el botón y limpiar campos si es necesario
+                    btnGuardar.prop("disabled", false);
+                    $("#Id_Persona").val("");
+                    $("#Paterno").val("");
+                    $("#Materno").val("");
+                    $("#Nombres").val("");
+                    $("#Celular").val("");
+                    $("#Correo").val("");
+                    $("#FechaNacimiento").val("");
+                    $("#Id_003_Pais").val("");
+                    $("#Id_004_Nacionalidad").val("");
+                } else {
+                    // Deshabilitar el botón y mostrar mensaje en modal
+                    btnGuardar.prop("disabled", true);
+                    $("#modalMensaje .modal-body").text(response.message);
+                    $("#modalMensaje").modal("show");
+                }
+            });
+        }
+    }
 
 </script>

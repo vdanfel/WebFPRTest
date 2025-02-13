@@ -27,7 +27,7 @@ namespace WebFPRTest.Areas.Externo.Models.Jugador
         public string NumeroPoliza { get; set; }
         public DateTime? FechaPoliza { get; set; }
         public DateTime? FechaVencimientoPoliza { get; set; }
-        public int? Id_006_TipoVehiculos { get; set; }
+        public int? Id_006_TipoVehiculo { get; set; }
         public List<ParametrosTipoResult> TipoVehiculos { get; set; }
         public string? NumeroPlaca { get; set; }
         public int Id_007_Division { get; set; }
