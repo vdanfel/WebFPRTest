@@ -81,7 +81,8 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 { "Nro Documento", "Documento" },
                 { "Fecha Nacimiento", "FechaNacimiento" },
                 { "Celular", "Celular" },
-                { "Correo", "Correo" }
+                { "Correo", "Correo" },
+                { "Sexo", "Sexo" }
             };
 
             var listaJugadores = new List<Dictionary<string, string>>();
@@ -165,8 +166,10 @@ namespace WebFPRTest.Areas.Externo.Controllers
                                 Documento = nroDocumento,
                                 FechaNacimiento = jugador.ContainsKey("FechaNacimiento") && DateTime.TryParse(jugador["FechaNacimiento"], out DateTime fechaNacimiento) ? fechaNacimiento : default,
                                 Celular = jugador.ContainsKey("Celular") ? jugador["Celular"] : null,
-                                Correo = jugador.ContainsKey("Correo") ? jugador["Correo"] : null
+                                Correo = jugador.ContainsKey("Correo") ? jugador["Correo"] : null,
+                                Id_002_Sexo = jugador.ContainsKey("Sexo") && int.TryParse(jugador["Sexo"], out int sexo) ? sexo : 0
                             };
+
                             // Insertar persona en la BD
                             Id_Persona = await _jugadorService.Persona_Insertar(persona, Id_Usuario);
                         }
@@ -280,6 +283,7 @@ namespace WebFPRTest.Areas.Externo.Controllers
             jugadorViewModel.TipoVehiculos = await _tiposService.ParametroTipo_Listar(6);
             jugadorViewModel.DivisionList = await _tiposService.ParametroTipo_Listar(7);
             jugadorViewModel.SituacionList = await _tiposService.ParametroTipo_Listar(8);
+            jugadorViewModel.TipoSangre = await _tiposService.ParametroTipo_Listar(14);
             jugadorViewModel.RutaFoto = await _jugadorService.Archivo_Ruta(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, 431);
             jugadorViewModel.RutaDeslinde = await _jugadorService.Archivo_Ruta(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, 432);
             return View(jugadorViewModel);

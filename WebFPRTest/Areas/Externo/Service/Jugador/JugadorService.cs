@@ -57,7 +57,7 @@ namespace WebFPRTest.Areas.Externo.Service.Jugador
                 parameters.Add("@Id_004_Nacionalidad", persona.Id_004_Nacionalidad != 0 ? persona.Id_004_Nacionalidad : (object)DBNull.Value, DbType.Int32);
                 parameters.Add("@Id_002_Sexo", persona.Id_002_Sexo != 0 ? persona.Id_002_Sexo : (object)DBNull.Value, DbType.Int32);
                 parameters.Add("@Celular", string.IsNullOrEmpty(persona.Celular) ? (object)DBNull.Value : persona.Celular, DbType.String);
-                parameters.Add("@Telefono", string.IsNullOrEmpty(persona.Telefono) ? (object)DBNull.Value : persona.Telefono, DbType.String);
+                parameters.Add("@Id_014_TipoSangre", persona.Id_014_TipoSangre != 0 ? persona.Id_014_TipoSangre : (object)DBNull.Value, DbType.Int32);
                 parameters.Add("@Correo", string.IsNullOrEmpty(persona.Correo) ? (object)DBNull.Value : persona.Correo, DbType.String);
                 parameters.Add("@Id_005_TipoSeguro", persona.Id_005_TipoSeguro != 0 ? persona.Id_005_TipoSeguro : (object)DBNull.Value, DbType.Int32);
                 parameters.Add("@NumeroPoliza", string.IsNullOrEmpty(persona.NumeroPoliza) ? (object)DBNull.Value : persona.NumeroPoliza, DbType.String);
@@ -280,7 +280,7 @@ namespace WebFPRTest.Areas.Externo.Service.Jugador
                 parameters.Add("@Id_004_Nacionalidad", jugadorViewModel.Id_004_Nacionalidad, DbType.Int32);
                 parameters.Add("@Id_002_Sexo", jugadorViewModel.Id_002_Sexo, DbType.Int32);
                 parameters.Add("@Celular", jugadorViewModel.Celular, DbType.String);
-                parameters.Add("@Telefono", jugadorViewModel.Telefono, DbType.String);
+                parameters.Add("@Id_014_TipoSangre", jugadorViewModel.Id_014_TipoSangre, DbType.Int32);
                 parameters.Add("@Correo", jugadorViewModel.Correo, DbType.String);
                 parameters.Add("@Id_005_TipoSeguro", jugadorViewModel.Id_005_TipoSeguro, DbType.Int32);
                 parameters.Add("@NumeroPoliza", jugadorViewModel.NumeroPoliza, DbType.String);

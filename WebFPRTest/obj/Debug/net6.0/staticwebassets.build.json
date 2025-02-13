@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vSsHS/UanfC2U8xUCqX94B0DOr37zkWO0z79mz+v5ls=",
+  "Hash": "CyBvYAI9ewALxfQa9cTWTnX7EiGid0yFE25j23GPc/U=",
   "Source": "WebFPRTest",
   "BasePath": "_content/WebFPRTest",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "E:\\WebFPRTest\\WebFPRTest\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\WebFPRTest.bundle.scp.css"
+    },
+    {
+      "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\12\\1\\1_FotoJugador.jpg",
+      "SourceId": "WebFPRTest",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\",
+      "BasePath": "_content/WebFPRTest",
+      "RelativePath": "Archivos/12/1/1_FotoJugador.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Archivos\\12\\1\\1_FotoJugador.jpg"
     },
     {
       "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\12\\12_Logo.jpg",

@@ -21,7 +21,6 @@ namespace WebFPRTest.Areas.Externo.Models.Jugador
         public int Id_002_Sexo { get; set; }
         public List<ParametrosTipoResult> Sexos { get; set; }
         public string Celular { get; set; }
-        public string? Telefono { get; set; }
         public string Correo { get; set; }
         public int Id_005_TipoSeguro { get; set; }
         public List<ParametrosTipoResult> TipoSeguros { get; set; }
@@ -38,6 +37,8 @@ namespace WebFPRTest.Areas.Externo.Models.Jugador
         public int Id_009_EstadoJugador { get; set; }
         public string Observacion { get; set; }
         public string MotivoAnulacion { get; set; }
+        public int Id_014_TipoSangre { get; set; }
+        public List<ParametrosTipoResult> TipoSangre { get; set; }
         public JugadorApoderado DatosApoderado { get; set; }
         public string? RutaFoto { get; set; }
         public IFormFile? Foto { get; set; }

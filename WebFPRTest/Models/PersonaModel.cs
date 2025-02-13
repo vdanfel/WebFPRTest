@@ -13,7 +13,7 @@
         public int Id_004_Nacionalidad { get; set; }
         public int Id_002_Sexo { get; set; }
         public string Celular { get; set; }
-        public string Telefono { get; set; }
+        public int Id_014_TipoSangre { get; set; }
         public string Correo { get; set; }
         public int Id_005_TipoSeguro { get; set; }
         public string NumeroPoliza { get; set; }

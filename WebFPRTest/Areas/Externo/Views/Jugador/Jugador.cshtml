@@ -8,6 +8,24 @@
     <input type="text" asp-for="Id_Persona" hidden/>
     <div class="container">
         <div class="row g-2">
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                <div class="form-floating">
+                    <select class="form-select" asp-for="Id_001_TipoDocumento" required>
+                        <option></option>
+                        @foreach (var tipoDocumento in Model.TipoDocumentos)
+                        {
+                            <option value="@tipoDocumento.Id_Parametros">@tipoDocumento.Abreviatura</option>
+                        }
+                    </select>
+                    <label>Tipo Documento</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control" asp-for="Documento" required />
+                    <label>Numero Documento</label>
+                </div>
+            </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="form-floating">
                     <input type="text" class="form-control" asp-for="Paterno"required/>
@@ -24,24 +42,6 @@
                 <div class="form-floating">
                     <input type="text" class="form-control" asp-for="Nombres" required />
                     <label>Nombres</label>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                <div class="form-floating">
-                    <select class="form-select" asp-for="Id_001_TipoDocumento" required>
-                        <option></option>
-                        @foreach(var tipoDocumento in Model.TipoDocumentos)
-                        {
-                            <option value="@tipoDocumento.Id_Parametros">@tipoDocumento.Abreviatura</option>
-                        }
-                    </select>
-                    <label>Tipo Documento</label>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Documento" required />
-                    <label>Numero Documento</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
@@ -94,20 +94,26 @@
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Telefono"/>
-                    <label>Telefono</label>
+                    <select class="form-select" asp-for="Id_014_TipoSangre" required>
+                        <option></option>
+                        @foreach (var tipoSangre in Model.TipoSangre)
+                        {
+                            <option value="@tipoSangre.Id_Parametros">@tipoSangre.Abreviatura</option>
+                        }
+                    </select>
+                    <label>Tipo Sangre</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Correo" />
+                    <input type="text" class="form-control" asp-for="Correo" required/>
                     <label>Correo</label>
                 </div>
 
             </div>
             <input type="hidden" id="rutaFotoHidden" value="@Model.RutaFoto" />
-            <div class="col-12 d-flex align-items-center">
-                <div class="container-input">
+            <div class="col-12 d-flex align-items-center" >
+                <div class="container-input" >
                     <input type="file"
                         asp-for="Foto"
                            id="fotoJugador"
@@ -211,7 +217,7 @@
                            data-val="false" />
                     <label for="archivoDeslinde">
                         <div class="label-text">Archivo de Deslinde</div>
-                        <span class="iborrainputfile">Seleccionar Archivo</span>
+                        <span class="iborrainputfile">Seleccionar Documento de Deslinde</span>
                     </label>
                 </div>
                 <div class="ms-auto px-3">

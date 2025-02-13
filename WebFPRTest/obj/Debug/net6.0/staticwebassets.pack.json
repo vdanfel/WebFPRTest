@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\Archivos\\12\\12_Logo.jpg"
     },
     {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\12\\1\\1_FotoJugador.jpg",
+      "PackagePath": "staticwebassets\\Archivos\\12\\1\\1_FotoJugador.jpg"
+    },
+    {
       "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\FormatoCargaMasiva.xlsx",
       "PackagePath": "staticwebassets\\Archivos\\FormatoCargaMasiva.xlsx"
     },
