@@ -57,5 +57,30 @@ namespace WebFPRTest.Service
                 _connection.Close();
             }
         }
+        public async Task<string> TipoArchivo_Descripcion(int Id_003_TipoArchivo)
+        {
+            var procedure = "usp_TipoArchivo_Descripcion";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_003_TipoArchivo", Id_003_TipoArchivo);
+
+                var descripcion = await _connection.QueryFirstOrDefaultAsync<string>(
+                    procedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return descripcion;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al buscar al jugador por documento.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
     }
 }

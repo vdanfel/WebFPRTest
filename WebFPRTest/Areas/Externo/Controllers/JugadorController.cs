@@ -356,11 +356,11 @@ namespace WebFPRTest.Areas.Externo.Controllers
             { 
                 await _jugadorService.Apoderado_Insertar(jugadorViewModel, Id_Usuario);
             }
-            var rutaExisteFoto = await _jugadorService.Archivo_Ruta(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, 431);
-            if (!string.IsNullOrEmpty(rutaExisteFoto))
-            {
-                EliminarArchivo(rutaExisteFoto);
-            }
+            //var rutaExisteFoto = await _jugadorService.Archivo_Ruta(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, 431);
+            //if (!string.IsNullOrEmpty(rutaExisteFoto))
+            //{
+            //    EliminarArchivo(rutaExisteFoto);
+            //}
             if (jugadorViewModel.Foto != null)
             {
                 string nuevaRutaFoto = await GuardarArchivo(
@@ -368,7 +368,6 @@ namespace WebFPRTest.Areas.Externo.Controllers
                     jugadorViewModel.Id_Equipo,
                     jugadorViewModel.Id_Jugador,
                     431,
-                    "FotoJugador",
                     ".jpg, .jpeg, .png"
                 );
 
@@ -378,11 +377,11 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 }
             }
 
-            var rutaExisteDeslinde = await _jugadorService.Archivo_Ruta(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, 432);
-            if (!string.IsNullOrEmpty(rutaExisteDeslinde))
-            {
-                EliminarArchivo(rutaExisteDeslinde);
-            }
+            //var rutaExisteDeslinde = await _jugadorService.Archivo_Ruta(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, 432);
+            //if (!string.IsNullOrEmpty(rutaExisteDeslinde))
+            //{
+            //    EliminarArchivo(rutaExisteDeslinde);
+            //}
             if (jugadorViewModel.Deslinde != null)
             {
                 string nuevaRutaDeslinde = await GuardarArchivo(
@@ -390,7 +389,6 @@ namespace WebFPRTest.Areas.Externo.Controllers
                     jugadorViewModel.Id_Equipo,
                     jugadorViewModel.Id_Jugador,
                     432,
-                    "DocumentoDeslinde",
                     ".pdf, .doc, .docx"
                 );
 
@@ -402,67 +400,51 @@ namespace WebFPRTest.Areas.Externo.Controllers
 
             return RedirectToAction("Jugador");
         }
-        private async Task<string> GuardarArchivo(IFormFile archivo, int Id_Equipo, int Id_Jugador, int Id_013_TipoArchivo, string NombreTipoArchivo, string extensionesPermitidas)
+        private async Task<string> GuardarArchivo(IFormFile archivo, int Id_Equipo, int Id_Jugador, int Id_013_TipoArchivo,  string extensionesPermitidas)
         {
             if (archivo == null || archivo.Length == 0)
             {
                 return null;
             }
-            // Convertir la lista de extensiones permitidas en un array
+            var NombreTipoArchivo = await _tiposService.TipoArchivo_Descripcion(Id_013_TipoArchivo);
             string[] allowedExtensions = extensionesPermitidas.Split(',').Select(e => e.Trim().ToLower()).ToArray();
-
-            // Obtener la extensión del archivo
             string fileExtension = Path.GetExtension(archivo.FileName).ToLower();
-
-            // Validar si la extensión está en la lista permitida
             if (!allowedExtensions.Contains(fileExtension))
             {
                 throw new InvalidOperationException($"Extensión {fileExtension} no permitida para el tipo de archivo {NombreTipoArchivo}.");
             }
-
-            // Construir la ruta de almacenamiento: {idEquipo}/{idJugador}/
             string folderPath = Path.Combine(_webHostEnvironment.WebRootPath, "Archivos", Id_Equipo.ToString(), Id_Jugador.ToString());
-
-            // Crear la carpeta si no existe
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
             }
-
-            // Crear el nombre del archivo: {idJugador}_{nombreTipoArchivo}.{extension}
             string fileName = $"{Id_Jugador}_{NombreTipoArchivo}{fileExtension}";
-
-            // Ruta completa donde se guardará el archivo
             string filePath = Path.Combine(folderPath, fileName);
-
-            // Guardar el archivo en la ruta especificada
             using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
                 await archivo.CopyToAsync(fileStream);
             }
-
-            // Retornar la ruta relativa del archivo para guardarla en la BD
             return Path.Combine("Archivos", Id_Equipo.ToString(), Id_Jugador.ToString(), fileName);
         }
-        public void EliminarArchivo(string rutaArchivo)
-        {
-            try
-            {
-                var filePath = Path.Combine(_webHostEnvironment.WebRootPath, rutaArchivo);
-                if (System.IO.File.Exists(filePath))
-                {
-                    System.IO.File.Delete(filePath); // Elimina el archivo existente
-                }
-                else
-                {
-                    throw new FileNotFoundException("El archivo no fue encontrado para eliminar.", filePath);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Ocurrió un error al eliminar el archivo: {rutaArchivo}", ex);
-            }
-        }
+        //public void EliminarArchivo(string rutaArchivo)
+        //{
+        //    try
+        //    {
+        //        var filePath = Path.Combine(_webHostEnvironment.WebRootPath, rutaArchivo);
+        //        if (System.IO.File.Exists(filePath))
+        //        {
+        //            System.IO.File.Delete(filePath); // Elimina el archivo existente
+        //        }
+        //        else
+        //        {
+        //            throw new FileNotFoundException("El archivo no fue encontrado para eliminar.", filePath);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception($"Ocurrió un error al eliminar el archivo: {rutaArchivo}", ex);
+        //    }
+        //}
         [HttpGet]
         public async Task<IActionResult> ValidarPersona(int idTipoDocumento, string documento)
         {

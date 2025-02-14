@@ -1,6 +1,0 @@
-El jugador Ricardo está registrado en otro equipo
-El jugador Anthony está registrado en otro equipo
-El jugador Victor está registrado en otro equipo
-Fila 6: La columna 'Documento' está vacía.
-Fila 6: La columna 'Correo' está vacía.
-Fila 8: La columna 'Id_001_TipoDocumento' está vacía.
