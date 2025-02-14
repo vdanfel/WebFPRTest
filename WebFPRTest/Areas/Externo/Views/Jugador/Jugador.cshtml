@@ -127,7 +127,7 @@
                     </label>
                 </div>
                 <div class="ms-auto px-3">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImagePreview('fotoJugador')">Ver</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="modal" onclick="showDocumentPreview('fotoJugador')">Ver</a>
                 </div>
             </div>
             <div id="DatosApoderado" class="col-12" style="display: none;">
@@ -221,7 +221,7 @@
                     </label>
                 </div>
                 <div class="ms-auto px-3">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImagePreview('archivoDeslinde')">Ver</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="modal" onclick="showDocumentPreview('archivoDeslinde')">Ver</a>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
@@ -275,8 +275,10 @@
                 </div>
             </div>
         </div>
+        <div class="mt-2">
+            <button type="submit" class="btn btn-outline-primary" id="btnGuardar">Guardar</button>
+        </div>
     </div>
-    <button type="submit" class="btn btn-outline-primary" id="btnGuardar">Guardar</button>
 </form>
 <!-- Modal para el mensaje de del TempData -->
 @if (TempData["Mensaje"] != null)
@@ -321,15 +323,52 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Aviso</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                
             </div>
             <div class="modal-body">
                 <!-- Aquí se mostrará el mensaje -->
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-secondary" data-ns-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal para mostrar la vista previa de PDF -->
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <!-- Hacemos el modal más grande para PDF -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfModalLabel">Vista previa del documento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <!-- Aquí cargará el PDF -->
+                <iframe id="pdfViewer" width="100%" height="500px" style="border: none;"></iframe>
+            </div>
+            <div class="modal-footer">
+                <a id="pdfDownloadBtn" href="#" class="btn btn-primary" download>
+                    Descargar Documento
+                </a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal para previsualizar Word -->
+<div class="modal fade" id="wordModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Previsualización de Documento</h5>
+            </div>
+            <div class="modal-body text-center">
+                <img id="wordIcon" src="/images/doc-icon.png" alt="Documento Word" width="100">
+            </div>
+            <div class="modal-footer">
+                <a id="wordDownloadBtn" class="btn btn-primary" href="#" download>Descargar</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
@@ -413,18 +452,6 @@
                 span.textContent = fileName;
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
     });
     function validateContent(id) {
         const contentDiv = document.getElementById(id);
@@ -516,37 +543,68 @@
         }
     }
 
-    // Función para mostrar la previsualización
-    function showImagePreview(inputId) {
-        const previewModal = document.getElementById('imageModal');
-        const image = document.getElementById('logoPreview'); // Elemento de la imagen
+    // Función para previsualizar imágenes
+    function showImagePreview(webPath) {
+        const image = document.getElementById('logoPreview');
+
+        if (!image) {
+            console.error("No se encontró el elemento de previsualización.");
+            return;
+        }
+
+        image.src = webPath;
+
+        // Establecer el enlace de descarga
+        document.getElementById('downloadBtn').href = webPath;
+
+        // Abrir el modal de imagen
+        const previewModal = new bootstrap.Modal(document.getElementById('imageModal'));
+        previewModal.show();
+    }
+    //Función para mostrar la previsualización de PDF
+    function showDocumentPreview(inputId) {
         const rutaHidden = document.getElementById(inputId === 'fotoJugador' ? 'rutaFotoHidden' : 'rutaDeslindeHidden').value;
 
-        if (selectedFiles[inputId]) {
-            // Si hay un archivo nuevo seleccionado, mostrarlo
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                image.src = e.target.result;
-            };
-            reader.readAsDataURL(selectedFiles[inputId]);
-        } else if (rutaHidden) {
-            // Si no hay archivo nuevo, pero hay una ruta almacenada
-            let webPath = rutaHidden.replace(/\\/g, '/').replace('wwwroot/', '');
-            if (!webPath.startsWith('/')) {
-                webPath = '/' + webPath;
-            }
+        if (!rutaHidden) {
+            alert("No hay archivo disponible.");
+            return;
+        }
 
-            if (inputId === 'archivoDeslinde') {
-                // Si es un PDF o Word, mostrar un ícono en lugar de una imagen
-                image.src = webPath.endsWith('.pdf') ? '/images/pdf-icon.png' : '/images/doc-icon.png';
-            } else {
-                image.src = webPath;
-            }
+        // Construimos la ruta correcta
+        let webPath = rutaHidden.replace(/\\/g, '/').replace('wwwroot/', '');
+        if (!webPath.startsWith('/')) {
+            webPath = '/' + webPath;
+        }
 
-            // Establecer el enlace de descarga
-            document.getElementById('downloadBtn').href = webPath;
+        // Identificar el tipo de archivo
+        const isPDF = webPath.toLowerCase().endsWith('.pdf');
+        const isWord = webPath.toLowerCase().endsWith('.doc') || webPath.toLowerCase().endsWith('.docx');
+
+        if (isPDF) {
+            showPdfPreview(webPath);
+        } else if (isWord) {
+            showWordPreview(webPath);
+        } else {
+            showImagePreview(webPath);
         }
     }
+    function showPdfPreview(webPath) {
+        document.getElementById("pdfViewer").src = webPath;
+        document.getElementById("pdfDownloadBtn").href = webPath;
+
+        // Abrir el modal del PDF
+        var pdfModal = new bootstrap.Modal(document.getElementById("pdfModal"));
+        pdfModal.show();
+    }
+
+    // Función para mostrar icono de Word en el modal
+    function showWordPreview(webPath) {
+        const wordPreviewModal = new bootstrap.Modal(document.getElementById('wordModal'));
+        document.getElementById('wordIcon').src = "/Archivos/Word-Icon.png"; // Ruta del icono de Word
+        document.getElementById('wordDownloadBtn').href = webPath; // Enlace de descarga
+        wordPreviewModal.show();
+    }
+
     function ValidarPersona() {
         var idTipoDocumento = $("#Id_001_TipoDocumento").val();
         var documento = $("#Documento").val();

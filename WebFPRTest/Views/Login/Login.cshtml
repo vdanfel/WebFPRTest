@@ -1,18 +1,15 @@
 ﻿@model WebFPRTest.Models.LoginViewModel
 @{
 }
-<section class="vh-100">
-    <div class="container-fluid" style="height:100%">
+<section class="vh-100 d-flex align-items-center justify-content-center fondo-login">
+    <div class="container-fluid">
         <div class="row d-flex justify-content-center align-items-md-center h-100">
-            <div class="col-md-9 col-lg-6 col-xl-5">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-                     class="img-fluid" alt="Sample image">
-            </div>
-            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            <div class="col-10 col-sm-10 col-md-8 col-lg-7 col-xl-5 mt-5 mt-sm-5 mt-md-0">
                 <form asp-action="Login" asp-controller="Login" method="post">
-                    <div class="card">
-                        <div class="card-header" style="text-align:center">
-                            <h1>FPR</h1>
+                    
+                    <div class="card border-danger border-2 shadow">
+                        <div class="card-header text-center" style="">
+                            <img src="~/Archivos/bitmap.svg" style="width:100%" class="my-0 my-sm-0 my-md-2 my-lg-3"/>
                         </div>
                         <div class="card-body">
                             <div class="row mt-3">
@@ -49,11 +46,11 @@
                                         Ingresar
                                     </button>
                                 </div>
-                                <div class="col text-end align-self-end">
+                                @* <div class="col text-end align-self-end">
                                     <a href="#">
                                         <span>Olvidó Contraseña</span>
                                     </a>
-                                </div>
+                                </div> *@
                             </div>
                         </div>
                     </div>
@@ -62,6 +59,12 @@
         </div>
     </div>
 </section>
+<style>
+    .fondo-login {
+        background: url('@Url.Content("~/Archivos/FondoLogin.jpg")') no-repeat center fixed;
+        background-size: cover;
+    }
+</style>
 @if (!string.IsNullOrEmpty(ViewBag.Mensaje as string))
 {
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

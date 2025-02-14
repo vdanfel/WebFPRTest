@@ -87,10 +87,10 @@
                     {
                         <tr class="align-middle">
                             <td>@jugadores.Indice</td>
-                            <td>@jugadores.ApellidosYNombre</td>
+                            <td style="min-width:20rem">@jugadores.ApellidosYNombre</td>
                             <td>@jugadores.TipoDocumento</td>
                             <td>@jugadores.Documento</td>
-                            <td>@jugadores.Division</td>
+                            <td style="min-width:10rem">@jugadores.Division</td>
                             <td>@jugadores.Situacion</td>
                             <td class="text-end">
                                 <a class="btn btn-outline-warning" asp-area="Externo" asp-controller="Jugador" asp-action="GuardarJugadorSeleccionado" asp-route-Id_Jugador="@jugadores.Id_Jugador">

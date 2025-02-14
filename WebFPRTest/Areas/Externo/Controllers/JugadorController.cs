@@ -447,7 +447,7 @@ namespace WebFPRTest.Areas.Externo.Controllers
         //}
         [HttpGet]
         public async Task<IActionResult> ValidarPersona(int idTipoDocumento, string documento)
-        {
+            {
             var idEquipoStr = User.FindFirst("Id_Equipo")?.Value ?? "0";
             var Id_Equipo = int.Parse(idEquipoStr);
 
