@@ -17,20 +17,8 @@
       "PackagePath": "staticwebassets\\Archivos\\2\\2_Logo.png"
     },
     {
-      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\FondoLogin.jpg",
-      "PackagePath": "staticwebassets\\Archivos\\FondoLogin.jpg"
-    },
-    {
       "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\FormatoCargaMasiva.xlsx",
       "PackagePath": "staticwebassets\\Archivos\\FormatoCargaMasiva.xlsx"
-    },
-    {
-      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\LogoLayout.svg",
-      "PackagePath": "staticwebassets\\Archivos\\LogoLayout.svg"
-    },
-    {
-      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\bitmap.svg",
-      "PackagePath": "staticwebassets\\Archivos\\bitmap.svg"
     },
     {
       "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\css\\site.css",

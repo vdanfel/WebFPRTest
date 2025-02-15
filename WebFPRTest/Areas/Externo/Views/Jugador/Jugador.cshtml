@@ -6,11 +6,11 @@
     <input type="text" asp-for="Id_Jugador" hidden/>
     <input type="text" asp-for="Id_Equipo" hidden/>
     <input type="text" asp-for="Id_Persona" hidden/>
-    <div class="container">
+     <div class="container">
         <div class="row g-2">
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <select class="form-select" asp-for="Id_001_TipoDocumento" required onchange="ValidarPersona()">
+                    <select class="form-select" asp-for="Id_001_TipoDocumento" id="Id_001_TipoDocumento" onchange="ValidarPersona()" required>
                         <option></option>
                         @foreach (var tipoDocumento in Model.TipoDocumentos)
                         {
@@ -22,37 +22,37 @@
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Documento" required onchange="ValidarPersona()" />
+                    <input type="text" class="form-control" asp-for="Documento" id="Documento" onblur="ValidarPersona()" required/>
                     <label>Numero Documento</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Paterno"required/>
+                    <input type="text" class="form-control" asp-for="Paterno" id="Paterno" required/>
                     <label>Paterno</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Materno" required/>
+                    <input type="text" class="form-control" asp-for="Materno" id="Materno" required/>
                     <label>Materno</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Nombres" required />
+                    <input type="text" class="form-control" asp-for="Nombres" id="Nombres" required />
                     <label>Nombres</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control" asp-for="FechaNacimiento" required onblur="datosApoderado(this)"/>
+                    <input type="date" class="form-control" asp-for="FechaNacimiento" id="FechaNacimiento" onblur="datosApoderado(this)" required/>
                     <label>Fecha Nacimiento</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <select class="form-select" asp-for="Id_003_Pais" required>
+                    <select class="form-select" asp-for="Id_003_Pais" id="Id_003_Pais" required>
                         <option></option>
                         @foreach (var paises in Model.Paises)
                         {
@@ -64,7 +64,7 @@
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <select class="form-select" asp-for="Id_004_Nacionalidad" required>
+                    <select class="form-select" asp-for="Id_004_Nacionalidad" id="Id_004_Nacionalidad" required>
                         <option></option>
                         @foreach (var nacionalidades in Model.Nacionalidades)
                         {
@@ -76,7 +76,7 @@
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <select class="form-select" asp-for="Id_002_Sexo" required>
+                    <select class="form-select" asp-for="Id_002_Sexo" id="Id_002_Sexo" required>
                         <option></option>
                         @foreach (var sexos in Model.Sexos)
                         {
@@ -88,13 +88,13 @@
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" class="form-control" required asp-for="Celular"/>
+                    <input type="text" class="form-control" asp-for="Celular" id="Celular" required/>
                     <label>Celular</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <select class="form-select" asp-for="Id_014_TipoSangre" required>
+                    <select class="form-select" asp-for="Id_014_TipoSangre" id="Id_014_TipoSangre" required>
                         <option></option>
                         @foreach (var tipoSangre in Model.TipoSangre)
                         {
@@ -106,28 +106,27 @@
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Correo" required/>
+                    <input type="text" class="form-control" asp-for="Correo" id="Correo" required />
                     <label>Correo</label>
                 </div>
-
             </div>
             <input type="hidden" id="rutaFotoHidden" value="@Model.RutaFoto" />
-            <div class="col-12 d-flex align-items-center" >
-                <div class="container-input" >
+            <div class="col-12 d-flex align-items-center">
+                <div class="container-input">
                     <input type="file"
-                        asp-for="Foto"
-                           id="fotoJugador"
-                           class="inputfile"
+                           id="file-foto"
+                           class="inputfile inputfile-1"
+                           asp-for="Foto"
                            accept=".jpg,.jpeg,.png"
-                           onchange="previewImage(event, 'fotoJugador')"
+                           onchange="previewFile(event, 'imagen')"
                            data-val="false" />
-                    <label for="fotoJugador">
-                        <div class="label-text">Ruta Foto</div>
+                    <label for="file-foto">
+                        <div class="label-text">Foto</div>
                         <span class="iborrainputfile">Seleccionar Foto</span>
                     </label>
                 </div>
                 <div class="ms-auto px-3">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="modal" onclick="showDocumentPreview('fotoJugador')">Ver</a>
+                    <a href="#" onclick="showFilePreview('imagen')" data-bs-toggle="modal" data-bs-target="#imageModal">Ver</a>
                 </div>
             </div>
             <div id="DatosApoderado" class="col-12" style="display: none;">
@@ -177,7 +176,7 @@
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <select class="form-select" asp-for="Id_005_TipoSeguro" required>
+                    <select class="form-select" asp-for="Id_005_TipoSeguro" id="Id_005_TipoSeguro" required>
                         <option></option>
                         @foreach (var tipoSeguro in Model.TipoSeguros)
                         {
@@ -189,39 +188,39 @@
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="NumeroPoliza" required/>
+                    <input type="text" class="form-control" asp-for="NumeroPoliza" id="NumeroPoliza" required/>
                     <label>Numero Poliza</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control" asp-for="FechaPoliza" required/>
+                    <input type="date" class="form-control" asp-for="FechaPoliza" id="FechaPoliza" required/>
                     <label>Fecha Poliza</label>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control" asp-for="FechaVencimientoPoliza" required/>
+                    <input type="date" class="form-control" asp-for="FechaVencimientoPoliza" id="FechaVencimientoPoliza" required/>
                     <label>Fecha Caducidad</label>
                 </div>
             </div>
-            <input type="hidden" id="rutaDeslindeHidden" value="@Model.RutaDeslinde" />
+            <input type="hidden" id="rutaPdfHidden" value="@Model.RutaDeslinde" />
             <div class="col-12 d-flex align-items-center">
                 <div class="container-input">
                     <input type="file"
-                        asp-for="Deslinde"
-                           id="archivoDeslinde"
-                           class="inputfile"
-                           accept=".pdf,.doc,.docx"
-                           onchange="previewImage(event, 'archivoDeslinde')"
+                           id="file-pdf"
+                           class="inputfile inputfile-1"
+                           asp-for="Deslinde"
+                           accept=".pdf"
+                           onchange="previewFile(event, 'pdf')"
                            data-val="false" />
-                    <label for="archivoDeslinde">
-                        <div class="label-text">Archivo de Deslinde</div>
-                        <span class="iborrainputfile">Seleccionar Documento de Deslinde</span>
+                    <label for="file-pdf">
+                        <div class="label-text">Documento Deslinde</div>
+                        <span class="iborrainputfile">Seleccionar Documento Deslinde</span>
                     </label>
                 </div>
                 <div class="ms-auto px-3">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="modal" onclick="showDocumentPreview('archivoDeslinde')">Ver</a>
+                    <a href="#" onclick="showFilePreview('pdf')" data-bs-toggle="modal" data-bs-target="#pdfModal">Ver</a>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
@@ -275,12 +274,14 @@
                 </div>
             </div>
         </div>
+
         <div class="mt-2">
             <button type="submit" class="btn btn-outline-primary" id="btnGuardar">Guardar</button>
         </div>
+
     </div>
 </form>
-<!-- Modal para el mensaje de del TempData -->
+<!--Modal para alerta inicial de la pagina-->
 @if (TempData["Mensaje"] != null)
 {
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -296,20 +297,35 @@
         </div>
     </div>
 }
-<!-- Modal para mostrar la miniatura de la imagen -->
+<!-- Modal para alerta de jugador en otro equipo-->
+<div class="modal fade" id="modalMensaje" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Aviso</h5>
+            </div>
+            <div class="modal-body">
+                <!-- Aquí se mostrará el mensaje -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para imágenes -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="imageModalLabel">Vista previa del logo</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="imageModalLabel">Vista previa de la imagen</h5>
             </div>
             <div class="modal-body text-center">
-                <img id="logoPreview" src="" alt="Logo preview" style="max-width: 100%; height: auto;" />
+                <img id="imagePreview" src="" alt="Image preview" style="max-width: 100%; height: auto;" />
             </div>
             <div class="modal-footer">
-                <!-- Botón para descargar la imagen original -->
-                <a id="downloadBtn" href="#" class="btn btn-primary" download>
+                <a id="imageDownloadBtn" href="#" class="btn btn-primary" download>
                     Descargar Imagen Original
                 </a>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -317,63 +333,25 @@
         </div>
     </div>
 </div>
-<!-- Modal para alerta de jugador en otro equipo-->
-<div class="modal fade" id="modalMensaje" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Aviso</h5>
-                
-            </div>
-            <div class="modal-body">
-                <!-- Aquí se mostrará el mensaje -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-ns-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal para mostrar la vista previa de PDF -->
+<!-- Modal para PDFs -->
 <div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <!-- Hacemos el modal más grande para PDF -->
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="pdfModalLabel">Vista previa del documento</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="pdfModalLabel">Vista previa del PDF</h5>
             </div>
-            <div class="modal-body text-center">
-                <!-- Aquí cargará el PDF -->
-                <iframe id="pdfViewer" width="100%" height="500px" style="border: none;"></iframe>
+            <div class="modal-body">
+                <embed id="pdfPreview" src="" type="application/pdf" width="100%" height="600px" />
             </div>
             <div class="modal-footer">
                 <a id="pdfDownloadBtn" href="#" class="btn btn-primary" download>
-                    Descargar Documento
+                    Descargar PDF Original
                 </a>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
 </div>
-<!-- Modal para previsualizar Word -->
-<div class="modal fade" id="wordModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Previsualización de Documento</h5>
-            </div>
-            <div class="modal-body text-center">
-                <img id="wordIcon" src="/images/doc-icon.png" alt="Documento Word" width="100">
-            </div>
-            <div class="modal-footer">
-                <a id="wordDownloadBtn" class="btn btn-primary" href="#" download>Descargar</a>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
@@ -391,7 +369,8 @@
         if (fechaInput) {
             datosApoderado(fechaInput); // Llamar a la función con el input actual
         }
-        
+
+        // Para validar campos
         const contentDivs = document.querySelectorAll('[contenteditable][required]');
         contentDivs.forEach((div) => {
             validateContent(div.id);
@@ -430,181 +409,9 @@
                 input.classList.add('is-invalid');
             }
         });
-
-        // Valida los nombres en las rutas
-        const rutaFotoJugador = document.getElementById('rutaFotoHidden')?.value;
-        const rutaArchivoDeslinde = document.getElementById('rutaDeslindeHidden')?.value;
-
-        if (rutaFotoJugador) {
-            const container = document.querySelector('#fotoJugador').closest('.container-input');
-            const span = container ? container.querySelector('.iborrainputfile') : null;
-            if (span) {
-                const fileName = rutaFotoJugador.split('\\').pop().split('/').pop();
-                span.textContent = fileName;
-            }
-        }
-
-        if (rutaArchivoDeslinde) {
-            const container = document.querySelector('#archivoDeslinde').closest('.container-input');
-            const span = container ? container.querySelector('.iborrainputfile') : null;
-            if (span) {
-                const fileName = rutaArchivoDeslinde.split('\\').pop().split('/').pop();
-                span.textContent = fileName;
-            }
-        }
+        //Inicializar el nombre 
+        initializeFileNames();
     });
-    function validateContent(id) {
-        const contentDiv = document.getElementById(id);
-
-        // Verifica si el contenido está vacío
-        if (contentDiv.textContent.trim() === "") {
-            contentDiv.classList.remove('is-valid');
-            contentDiv.classList.add('is-invalid');
-        } else {
-            contentDiv.classList.remove('is-invalid');
-            contentDiv.classList.add('is-valid');
-            // Llamamos a la función saveContent pasando el id del div
-            saveContent(id); // Pasa el id, no el objeto DOM completo
-        }
-    }
-
-    var mensajeError = '@ViewBag.Mensaje';
-    if (mensajeError && mensajeError.trim() !== '') {
-        $(window).on('load', function () {
-            $('#myModal').modal('show');
-        });
-    }
-    function datosApoderado(nacimiento) {
-        var fechaNacimiento = new Date(nacimiento.value); // Convertir a Date
-        if (isNaN(fechaNacimiento)) {
-            console.log("Fecha inválida");
-            return;
-        }
-
-        var hoy = new Date();
-        var edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
-        var mesActual = hoy.getMonth();
-        var diaActual = hoy.getDate();
-        var mesNacimiento = fechaNacimiento.getMonth();
-        var diaNacimiento = fechaNacimiento.getDate();
-
-        // Ajustar si aún no ha cumplido años en el año actual
-        if (mesNacimiento > mesActual || (mesNacimiento === mesActual && diaNacimiento > diaActual)) {
-            edad--;
-        }
-        //console.log(edad);
-        var divApoderado = document.getElementById("DatosApoderado");
-        //var campos = ["ApoderadoPaterno", "ApoderadoMaterno", "ApoderadoNombres", "ApoderadoTipoDocumento", "ApoderadoDocumento"];
-
-        if (edad < 18) {
-            divApoderado.style.display = "block"; // Mostrar el div
-            //campos.forEach(id => document.getElementById(id).setAttribute("required", "required"));
-        } else {
-            divApoderado.style.display = "none"; // Ocultar el div
-            //campos.forEach(id => document.getElementById(id).removeAttribute("required"));
-        }
-    }
-
-    //Para los archivos cargados
-    'use strict';
-    (function (document, window, index) {
-        var inputs = document.querySelectorAll('.inputfile');
-        Array.prototype.forEach.call(inputs, function (input) {
-            var label = input.nextElementSibling,
-                labelVal = label.querySelector('.iborrainputfile').innerHTML;
-
-            input.addEventListener('change', function (e) {
-                var fileName = this.files.length > 1
-                    ? (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length)
-                    : e.target.value.split('\\').pop();
-
-                if (fileName) {
-                    label.querySelector('.iborrainputfile').innerHTML = fileName;
-                    input.closest('.container-input').classList.add('has-file');
-                } else {
-                    label.querySelector('.iborrainputfile').innerHTML = labelVal;
-                    input.closest('.container-input').classList.remove('has-file');
-                }
-            });
-        });
-    }(document, window, 0));
-
-    // Función para previsualizar imágenes/documentos
-    let selectedFiles = {}; // Diccionario para almacenar archivos seleccionados
-
-    function previewImage(event, inputId) {
-        const file = event.target.files[0];
-        if (file) {
-            selectedFiles[inputId] = file; // Guardar archivo según su inputId
-            const span = document.querySelector(`label[for="${inputId}"] .iborrainputfile`);
-            if (span) {
-                span.textContent = file.name;
-            }
-        }
-    }
-
-    // Función para previsualizar imágenes
-    function showImagePreview(webPath) {
-        const image = document.getElementById('logoPreview');
-
-        if (!image) {
-            console.error("No se encontró el elemento de previsualización.");
-            return;
-        }
-
-        image.src = webPath;
-
-        // Establecer el enlace de descarga
-        document.getElementById('downloadBtn').href = webPath;
-
-        // Abrir el modal de imagen
-        const previewModal = new bootstrap.Modal(document.getElementById('imageModal'));
-        previewModal.show();
-    }
-    //Función para mostrar la previsualización de PDF
-    function showDocumentPreview(inputId) {
-        const rutaHidden = document.getElementById(inputId === 'fotoJugador' ? 'rutaFotoHidden' : 'rutaDeslindeHidden').value;
-
-        if (!rutaHidden) {
-            alert("No hay archivo disponible.");
-            return;
-        }
-
-        // Construimos la ruta correcta
-        let webPath = rutaHidden.replace(/\\/g, '/').replace('wwwroot/', '');
-        if (!webPath.startsWith('/')) {
-            webPath = '/' + webPath;
-        }
-
-        // Identificar el tipo de archivo
-        const isPDF = webPath.toLowerCase().endsWith('.pdf');
-        const isWord = webPath.toLowerCase().endsWith('.doc') || webPath.toLowerCase().endsWith('.docx');
-
-        if (isPDF) {
-            showPdfPreview(webPath);
-        } else if (isWord) {
-            showWordPreview(webPath);
-        } else {
-            showImagePreview(webPath);
-        }
-    }
-    function showPdfPreview(webPath) {
-        document.getElementById("pdfViewer").src = webPath;
-        document.getElementById("pdfDownloadBtn").href = webPath;
-
-        // Abrir el modal del PDF
-        var pdfModal = new bootstrap.Modal(document.getElementById("pdfModal"));
-        pdfModal.show();
-    }
-
-    // Función para mostrar icono de Word en el modal
-    function showWordPreview(webPath) {
-        const wordPreviewModal = new bootstrap.Modal(document.getElementById('wordModal'));
-        document.getElementById('wordIcon').src = "/Archivos/Word-Icon.png"; // Ruta del icono de Word
-        document.getElementById('wordDownloadBtn').href = webPath; // Enlace de descarga
-        wordPreviewModal.show();
-    }
-
     function ValidarPersona() {
         var idTipoDocumento = $("#Id_001_TipoDocumento").val();
         var documento = $("#Documento").val();
@@ -639,4 +446,172 @@
         }
     }
 
+    //Para manejar archivos (imagenes y pdf)
+    let selectedImage = null;
+    let selectedPdf = null;
+    (function (document, window, index) {
+    var inputs = document.querySelectorAll('.inputfile');
+    Array.prototype.forEach.call(inputs, function (input) {
+        var label = input.nextElementSibling,
+            labelVal = label.querySelector('.iborrainputfile').innerHTML;
+        input.addEventListener('change', function (e) {
+            var fileName = '';
+            if (this.files && this.files.length > 1)
+                fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+            else
+                fileName = e.target.value.split('\\').pop();
+            if (fileName) {
+                label.querySelector('.iborrainputfile').innerHTML = fileName;
+                input.closest('.container-input').classList.add('has-file');
+            } else {
+                label.querySelector('.iborrainputfile').innerHTML = labelVal;
+                input.closest('.container-input').classList.remove('has-file');
+            }
+        });
+    });
+}(document, window, 0));
+
+// Función para previsualizar el archivo seleccionado
+function previewFile(event, type) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    if (type === 'imagen') {
+        if (!file.type.startsWith('image/')) {
+            alert('Por favor, seleccione un archivo de imagen válido.');
+            event.target.value = '';
+            return;
+        }
+        selectedImage = file;
+    } else if (type === 'pdf') {
+        if (file.type !== 'application/pdf') {
+            alert('Por favor, seleccione un archivo PDF válido.');
+            event.target.value = '';
+            return;
+        }
+        selectedPdf = file;
+    }
+
+    // Actualizar el texto del input
+    const span = event.target.nextElementSibling.querySelector('.iborrainputfile');
+    if (span) {
+        span.textContent = file.name;
+    }
+}
+
+    // Función para mostrar la previsualización del archivo
+    function showFilePreview(type) {
+        if (type === 'imagen') {
+            const imagePreview = document.getElementById('imagePreview');
+            const rutaFoto = document.getElementById('rutaFotoHidden').value;
+            const downloadBtn = document.getElementById('imageDownloadBtn');
+
+            if (selectedImage) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    downloadBtn.href = e.target.result;
+                }
+                reader.readAsDataURL(selectedImage);
+            } else if (rutaFoto) {
+                let webPath = formatPath(rutaFoto);
+                imagePreview.src = webPath;
+                downloadBtn.href = webPath;
+            }
+        } else if (type === 'pdf') {
+            const pdfPreview = document.getElementById('pdfPreview');
+            const rutaPdf = document.getElementById('rutaPdfHidden').value;
+            const downloadBtn = document.getElementById('pdfDownloadBtn');
+
+            if (selectedPdf) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    pdfPreview.src = e.target.result;
+                    downloadBtn.href = e.target.result;
+                }
+                reader.readAsDataURL(selectedPdf);
+            } else if (rutaPdf) {
+                let webPath = formatPath(rutaPdf);
+                pdfPreview.src = webPath;
+                downloadBtn.href = webPath;
+            }
+        }
+    }
+
+    // Función auxiliar para formatear las rutas
+    function formatPath(path) {
+        let webPath = path
+            .replace('wwwroot\\', '')
+            .replace('wwwroot/', '')
+            .replace(/\\/g, '/');
+    
+        if (!webPath.startsWith('/')) {
+            webPath = '/' + webPath;
+        }
+        return webPath;
+    }
+
+    //Para mostrar los datos del apoderado
+    function datosApoderado(nacimiento) {
+        var fechaNacimiento = new Date(nacimiento.value); // Convertir a Date
+        if (isNaN(fechaNacimiento)) {
+            console.log("Fecha inválida");
+            return;
+        }
+
+        var hoy = new Date();
+        var edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+        var mesActual = hoy.getMonth();
+        var diaActual = hoy.getDate();
+        var mesNacimiento = fechaNacimiento.getMonth();
+        var diaNacimiento = fechaNacimiento.getDate();
+
+        // Ajustar si aún no ha cumplido años en el año actual
+        if (mesNacimiento > mesActual || (mesNacimiento === mesActual && diaNacimiento > diaActual)) {
+            edad--;
+        }
+        //console.log(edad);
+        var divApoderado = document.getElementById("DatosApoderado");
+        //var campos = ["ApoderadoPaterno", "ApoderadoMaterno", "ApoderadoNombres", "ApoderadoTipoDocumento", "ApoderadoDocumento"];
+
+        if (edad < 18) {
+            divApoderado.style.display = "block"; // Mostrar el div
+            //campos.forEach(id => document.getElementById(id).setAttribute("required", "required"));
+        } else {
+            divApoderado.style.display = "none"; // Ocultar el div
+            //campos.forEach(id => document.getElementById(id).removeAttribute("required"));
+        }
+    }
+
+    // Inicializar nombres de archivos al cargar la página
+    function initializeFileNames() {
+        const rutaFoto = document.getElementById('rutaFotoHidden').value;
+        const rutaPdf = document.getElementById('rutaPdfHidden').value;
+
+        if (rutaFoto) {
+            const fileName = rutaFoto.split('\\').pop(); // Obtiene el último segmento después de \
+            const fotoInput = document.getElementById('file-foto');
+            if (fotoInput) {
+                const label = fotoInput.nextElementSibling;
+                const span = label.querySelector('.iborrainputfile');
+                if (span) {
+                    span.textContent = fileName;
+                    fotoInput.closest('.container-input').classList.add('has-file');
+                }
+            }
+        }
+
+        if (rutaPdf) {
+            const fileName = rutaPdf.split('\\').pop();
+            const pdfInput = document.getElementById('file-pdf');
+            if (pdfInput) {
+                const label = pdfInput.nextElementSibling;
+                const span = label.querySelector('.iborrainputfile');
+                if (span) {
+                    span.textContent = fileName;
+                    pdfInput.closest('.container-input').classList.add('has-file');
+                }
+            }
+        }
+    }
 </script>

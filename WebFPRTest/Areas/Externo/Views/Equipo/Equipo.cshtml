@@ -39,9 +39,9 @@
                            asp-for="@Model.Logo"
                            accept=".jpg,.jpeg,.png"
                            onchange="previewImage(event)"
-                           data-val="false" /> <!-- Agregar esto para hacerlo no requerido -->
+                           data-val="false" />
                     <label for="file-1">
-                        <div class="label-text">Ruta Logo (Opcional)</div>
+                        <div class="label-text">Ruta Logo</div>
                         <span class="iborrainputfile">Seleccionar Logo</span>
                     </label>
                 </div>
@@ -260,7 +260,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="imageModalLabel">Vista previa del logo</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
                 <img id="logoPreview" src="" alt="Logo preview" style="max-width: 100%; height: auto;" />

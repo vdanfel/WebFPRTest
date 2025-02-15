@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Client;
+using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.Security.Claims;
 using WebFPRTest.Areas.Externo.Interface.Jugador;
@@ -302,9 +303,9 @@ namespace WebFPRTest.Areas.Externo.Controllers
             }
             int? existeP = await _jugadorService.Persona_Existe(jugadorViewModel.Id_001_TipoDocumento, jugadorViewModel.Documento);
             if (existeP == null)
-            { 
+            {
                 PersonaModel personaModel = new PersonaModel()
-                { 
+                {
                     Id_001_TipoDocumento = jugadorViewModel.Id_001_TipoDocumento,
                     Paterno = jugadorViewModel.Paterno,
                     Materno = jugadorViewModel.Materno,
@@ -352,15 +353,11 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 TempData["Mensaje"] = "Jugador está en otro equipo";
                 return RedirectToAction("Jugador");
             }
-            if (jugadorViewModel.DatosApoderado.ApoderadoNombres.Length > 0)
-            { 
+            if (!jugadorViewModel.DatosApoderado.ApoderadoNombres.IsNullOrEmpty())
+            {
                 await _jugadorService.Apoderado_Insertar(jugadorViewModel, Id_Usuario);
             }
-            //var rutaExisteFoto = await _jugadorService.Archivo_Ruta(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, 431);
-            //if (!string.IsNullOrEmpty(rutaExisteFoto))
-            //{
-            //    EliminarArchivo(rutaExisteFoto);
-            //}
+
             if (jugadorViewModel.Foto != null)
             {
                 string nuevaRutaFoto = await GuardarArchivo(
@@ -377,11 +374,6 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 }
             }
 
-            //var rutaExisteDeslinde = await _jugadorService.Archivo_Ruta(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, 432);
-            //if (!string.IsNullOrEmpty(rutaExisteDeslinde))
-            //{
-            //    EliminarArchivo(rutaExisteDeslinde);
-            //}
             if (jugadorViewModel.Deslinde != null)
             {
                 string nuevaRutaDeslinde = await GuardarArchivo(
@@ -389,7 +381,7 @@ namespace WebFPRTest.Areas.Externo.Controllers
                     jugadorViewModel.Id_Equipo,
                     jugadorViewModel.Id_Jugador,
                     432,
-                    ".pdf, .doc, .docx"
+                    ".pdf"
                 );
 
                 if (!string.IsNullOrEmpty(nuevaRutaDeslinde))
@@ -400,51 +392,6 @@ namespace WebFPRTest.Areas.Externo.Controllers
 
             return RedirectToAction("Jugador");
         }
-        private async Task<string> GuardarArchivo(IFormFile archivo, int Id_Equipo, int Id_Jugador, int Id_013_TipoArchivo,  string extensionesPermitidas)
-        {
-            if (archivo == null || archivo.Length == 0)
-            {
-                return null;
-            }
-            var NombreTipoArchivo = await _tiposService.TipoArchivo_Descripcion(Id_013_TipoArchivo);
-            string[] allowedExtensions = extensionesPermitidas.Split(',').Select(e => e.Trim().ToLower()).ToArray();
-            string fileExtension = Path.GetExtension(archivo.FileName).ToLower();
-            if (!allowedExtensions.Contains(fileExtension))
-            {
-                throw new InvalidOperationException($"Extensión {fileExtension} no permitida para el tipo de archivo {NombreTipoArchivo}.");
-            }
-            string folderPath = Path.Combine(_webHostEnvironment.WebRootPath, "Archivos", Id_Equipo.ToString(), Id_Jugador.ToString());
-            if (!Directory.Exists(folderPath))
-            {
-                Directory.CreateDirectory(folderPath);
-            }
-            string fileName = $"{Id_Jugador}_{NombreTipoArchivo}{fileExtension}";
-            string filePath = Path.Combine(folderPath, fileName);
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                await archivo.CopyToAsync(fileStream);
-            }
-            return Path.Combine("Archivos", Id_Equipo.ToString(), Id_Jugador.ToString(), fileName);
-        }
-        //public void EliminarArchivo(string rutaArchivo)
-        //{
-        //    try
-        //    {
-        //        var filePath = Path.Combine(_webHostEnvironment.WebRootPath, rutaArchivo);
-        //        if (System.IO.File.Exists(filePath))
-        //        {
-        //            System.IO.File.Delete(filePath); // Elimina el archivo existente
-        //        }
-        //        else
-        //        {
-        //            throw new FileNotFoundException("El archivo no fue encontrado para eliminar.", filePath);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception($"Ocurrió un error al eliminar el archivo: {rutaArchivo}", ex);
-        //    }
-        //}
         [HttpGet]
         public async Task<IActionResult> ValidarPersona(int idTipoDocumento, string documento)
             {
@@ -465,6 +412,66 @@ namespace WebFPRTest.Areas.Externo.Controllers
             // Para el caso en que Id_Jugador == 0
             return Json(new { success = true });
         }
+        private async Task LimpiarArchivosExistentes(int Id_Equipo, int Id_Jugador, int Id_013_TipoArchivo, string[] extensionesPermitidas)
+        {
+            var NombreTipoArchivo = await _tiposService.TipoArchivo_Descripcion(Id_013_TipoArchivo);
+            string folderPath = Path.Combine(_webHostEnvironment.WebRootPath, "Archivos", Id_Equipo.ToString(), Id_Jugador.ToString());
 
+            if (Directory.Exists(folderPath))
+            {
+                string baseFileName = $"{Id_Jugador}_{NombreTipoArchivo}";
+                var archivosExistentes = Directory.GetFiles(folderPath)
+                    .Where(f => Path.GetFileNameWithoutExtension(f) == baseFileName &&
+                               extensionesPermitidas.Contains(Path.GetExtension(f).ToLower()));
+
+                foreach (var archivo in archivosExistentes)
+                {
+                    try
+                    {
+                        System.IO.File.Delete(archivo);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log del error si es necesario
+                    }
+                }
+            }
+        }
+        private async Task<string> GuardarArchivo(IFormFile archivo, int Id_Equipo, int Id_Jugador, int Id_013_TipoArchivo, string extensionesPermitidas)
+        {
+            if (archivo == null || archivo.Length == 0)
+            {
+                return null;
+            }
+
+            var NombreTipoArchivo = await _tiposService.TipoArchivo_Descripcion(Id_013_TipoArchivo);
+            string[] allowedExtensions = extensionesPermitidas.Split(',').Select(e => e.Trim().ToLower()).ToArray();
+            string fileExtension = Path.GetExtension(archivo.FileName).ToLower();
+
+            if (!allowedExtensions.Contains(fileExtension))
+            {
+                throw new InvalidOperationException($"Extensión {fileExtension} no permitida para el tipo de archivo {NombreTipoArchivo}.");
+            }
+
+            // Limpiar archivos existentes antes de guardar el nuevo
+            await LimpiarArchivosExistentes(Id_Equipo, Id_Jugador, Id_013_TipoArchivo, allowedExtensions);
+
+            string folderPath = Path.Combine(_webHostEnvironment.WebRootPath, "Archivos", Id_Equipo.ToString(), Id_Jugador.ToString());
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            // Usar siempre la extensión del archivo original para mantener el formato correcto
+            string fileName = $"{Id_Jugador}_{NombreTipoArchivo}{fileExtension}";
+            string filePath = Path.Combine(folderPath, fileName);
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await archivo.CopyToAsync(fileStream);
+            }
+
+            return Path.Combine("Archivos", Id_Equipo.ToString(), Id_Jugador.ToString(), fileName);
+        }
     }
 }
