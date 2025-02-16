@@ -2,8 +2,8 @@
 
 namespace WebFPRTest.Areas.Interno.Models.ListJugadores
 {
-    public class JugadorIndividualViewModel
-    {
+    public class JugadorDatosViewModel
+    { 
         public int Id_Jugador { get; set; }
         public int Id_Equipo { get; set; }
         public int Id_Persona { get; set; }
@@ -44,6 +44,7 @@ namespace WebFPRTest.Areas.Interno.Models.ListJugadores
         public IFormFile? Foto { get; set; }
         public string? RutaDeslinde { get; set; }
         public IFormFile? Deslinde { get; set; }
+        public bool Flag_Aprobacion1 { get; set; }
     }
     public class JugadorApoderado
     {

@@ -1,12 +1,19 @@
-﻿@model WebFPRTest.Areas.Interno.Models.ListJugadores.JugadorIndividualViewModel
+﻿@model WebFPRTest.Areas.Interno.Models.ListJugadores.JugadorDatosViewModel
 @{
-    Layout = "_LayoutInterno";
+    Layout = "_LayoutJugador";
+    string nRutaFoto = System.IO.Path.GetFileName(Model.RutaFoto);
+    string nRutaDeslinde = System.IO.Path.GetFileName(Model.RutaDeslinde);
+    bool esEditable = Model.Id_009_EstadoJugador == 401 || Model.Id_009_EstadoJugador == 441;
 }
-<form>
+<form asp-area="Interno" asp-action="JugadorDatos" asp-controller="ListJugadores" method="post">
     <input type="text" asp-for="Id_Jugador" hidden />
     <input type="text" asp-for="Id_Equipo" hidden />
     <input type="text" asp-for="Id_Persona" hidden />
-    <div class="container">
+    <input type="text" asp-for="Id_009_EstadoJugador" hidden />
+    <div class="container" style="border-left: 1px solid #dee2e6;border-right:1px solid #dee2e6;border-bottom:1px solid #dee2e6;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-top: -1rem;">
         <div class="row g-2">
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="form-floating">
@@ -112,22 +119,13 @@
 
             </div>
             <input type="hidden" id="rutaFotoHidden" value="@Model.RutaFoto" />
-            <div class="col-12 d-flex align-items-center" >
-                <div class="container-input" >
-                    <input type="file"
-                           asp-for="Foto"
-                           id="fotoJugador"
-                           class="inputfile"
-                           accept=".jpg,.jpeg,.png"
-                           onchange="previewImage(event, 'fotoJugador')"
-                           data-val="false" disabled />
-                    <label for="fotoJugador">
-                        <div class="label-text">Ruta Foto</div>
-                        <span class="iborrainputfile">Seleccionar Foto</span>
-                    </label>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
+                <div class="form-floating flex-grow-1">
+                    <input type="text" class="form-control" id="jugadorFoto" value="@nRutaFoto" disabled />
+                    <label>Foto Jugador</label>
                 </div>
-                <div class="ms-auto px-3">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImagePreview('fotoJugador')">Ver</a>
+                <div class="ms-2">
+                    <a href="#" data-bs-toggle="modal" onclick="showFilePreview('imagen')">Ver</a>
                 </div>
             </div>
             <div id="DatosApoderado" class="col-12" style="display: none;">
@@ -206,22 +204,13 @@
                 </div>
             </div>
             <input type="hidden" id="rutaDeslindeHidden" value="@Model.RutaDeslinde" />
-            <div class="col-12 d-flex align-items-center" disabled>
-                <div class="container-input" disabled>
-                    <input type="file"
-                           asp-for="Deslinde"
-                           id="archivoDeslinde"
-                           class="inputfile"
-                           accept=".pdf,.doc,.docx"
-                           onchange="previewImage(event, 'archivoDeslinde')"
-                           data-val="false" disabled />
-                    <label for="archivoDeslinde">
-                        <div class="label-text">Archivo de Deslinde</div>
-                        <span class="iborrainputfile">Seleccionar Documento de Deslinde</span>
-                    </label>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
+                <div class="form-floating flex-grow-1">
+                    <input type="text" class="form-control" id="DocumentoDeslinde" value="@nRutaDeslinde" disabled />
+                    <label>Documento Deslinde</label>
                 </div>
-                <div class="ms-auto px-3">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImagePreview('archivoDeslinde')">Ver</a>
+                <div class="ms-2">
+                    <a href="#" data-bs-toggle="modal" onclick="showFilePreview('pdf')">Ver</a>
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
@@ -275,22 +264,32 @@
                 </div>
             </div>
         </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" asp-for="Flag_Aprobacion1">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Habilitado</label>
+                </div>
+                <input type="hidden" id="estadoJugador" value="@Model.Id_009_EstadoJugador">
+            </div>
+        </div>
+        <div class="mt-2">
+            <button class="btn btn-outline-success" type="submit">Grabar</button>
+        </div>
     </div>
 </form>
-<!-- Modal para mostrar la miniatura de la imagen -->
+<!-- Modal para imágenes -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="imageModalLabel">Vista previa del logo</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="imageModalLabel">Vista previa de la imagen</h5>
             </div>
             <div class="modal-body text-center">
-                <img id="logoPreview" src="" alt="Logo preview" style="max-width: 100%; height: auto;" />
+                <img id="imagePreview" src="" alt="Image preview" style="max-width: 100%; height: auto;" />
             </div>
             <div class="modal-footer">
-                <!-- Botón para descargar la imagen original -->
-                <a id="downloadBtn" href="#" class="btn btn-primary" download>
+                <a id="imageDownloadBtn" href="#" class="btn btn-primary" download>
                     Descargar Imagen Original
                 </a>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -298,3 +297,62 @@
         </div>
     </div>
 </div>
+<!-- Modal para PDFs -->
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfModalLabel">Vista previa del PDF</h5>
+            </div>
+            <div class="modal-body">
+                <embed id="pdfPreview" src="" type="application/pdf" width="100%" height="600px" />
+            </div>
+            <div class="modal-footer">
+                <a id="pdfDownloadBtn" href="#" class="btn btn-primary" download>
+                    Descargar PDF Original
+                </a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let estadoJugador = document.getElementById("estadoJugador").value;
+        let checkbox = document.getElementById("flexSwitchCheckDefault");
+
+        if (estadoJugador !== "401" && estadoJugador !== "441") {
+            checkbox.disabled = true; // Deshabilita el checkbox
+        }
+    });
+
+    function showFilePreview(type) {
+        let rutaArchivo = document.getElementById(type === 'imagen' ? 'rutaFotoHidden' : 'rutaDeslindeHidden').value;
+        if (!rutaArchivo) {
+            alert('No hay archivo disponible.');
+            return;
+        }
+        let webPath = formatPath(rutaArchivo);
+        if (type === 'imagen') {
+            // Configura el modal de imagen
+            document.getElementById('imagePreview').src = webPath;
+            document.getElementById('imageDownloadBtn').href = webPath;
+            new bootstrap.Modal(document.getElementById('imageModal')).show();
+        } else if (type === 'pdf') {
+            // Configura el modal de PDF
+            document.getElementById('pdfPreview').src = webPath;
+            document.getElementById('pdfDownloadBtn').href = webPath;
+            new bootstrap.Modal(document.getElementById('pdfModal')).show();
+        }
+    }
+    // Función auxiliar para formatear rutas
+    function formatPath(path) {
+        let webPath = path.replace('wwwroot\\', '').replace('wwwroot/', '').replace(/\\/g, '/');
+        if (!webPath.startsWith('/')) {
+            webPath = '/' + webPath;
+        }
+        return webPath;
+    }
+</script>

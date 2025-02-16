@@ -47,26 +47,6 @@ namespace WebFPRTest.Areas.Interno.Controllers
             jugadoresFiltroViewModel.EquiposList = await _tiposService.Equipo_Listar();
             return View(jugadoresFiltroViewModel);
         }
-        [HttpGet]
-        public async Task<IActionResult> JugadorIndividual()
-        {
-            var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
-            if (tipoUsuario == null || (tipoUsuario != "406" && tipoUsuario != "407" && tipoUsuario != "408"))
-            {
-                return RedirectToAction("Login", "Login");
-            }
-            JugadorIndividualViewModel jugadorIndividualViewModel = new JugadorIndividualViewModel();
-            jugadorIndividualViewModel.Paises = await _tiposService.ParametroTipo_Listar(3);
-            jugadorIndividualViewModel.Nacionalidades = await _tiposService.ParametroTipo_Listar(4);
-            jugadorIndividualViewModel.Sexos = await _tiposService.ParametroTipo_Listar(2);
-            jugadorIndividualViewModel.TipoSeguros = await _tiposService.ParametroTipo_Listar(5);
-            jugadorIndividualViewModel.TipoVehiculos = await _tiposService.ParametroTipo_Listar(6);
-            jugadorIndividualViewModel.DivisionList = await _tiposService.ParametroTipo_Listar(7);
-            jugadorIndividualViewModel.SituacionList = await _tiposService.ParametroTipo_Listar(8);
-            jugadorIndividualViewModel.TipoSangre = await _tiposService.ParametroTipo_Listar(14);
-            jugadorIndividualViewModel.TipoDocumentos = await _tiposService.ParametroTipo_Listar(1);
-            return View(jugadorIndividualViewModel);
-        }
         public IActionResult GuardarJugadorSeleccionado(int Id_Jugador)
         {
             var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
@@ -75,7 +55,58 @@ namespace WebFPRTest.Areas.Interno.Controllers
                 return RedirectToAction("Login", "Login");
             }
             TempData["Id_Jugador"] = Id_Jugador;
-            return RedirectToAction("JugadorIndividual", "ListJugadores", new { area = "Interno" });
+            return RedirectToAction("JugadorDatos", "ListJugadores", new { area = "Interno" });
+        }
+        [HttpGet]
+        public async Task<IActionResult> JugadorDatos()
+        {
+            var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
+            if (tipoUsuario == null || (tipoUsuario != "406" && tipoUsuario != "407" && tipoUsuario != "408"))
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            int Id_Jugador = TempData.Peek("Id_Jugador") as int? ?? 0;
+            JugadorDatosViewModel jugadorDatosViewModel = new JugadorDatosViewModel();
+            jugadorDatosViewModel = await _listJugadoresService.Jugador_Select(Id_Jugador);
+            jugadorDatosViewModel.DatosApoderado = await _listJugadoresService.Apoderado_Select(jugadorDatosViewModel.Id_Persona);
+            jugadorDatosViewModel.TipoDocumentos = await _tiposService.ParametroTipo_Listar(1);
+            jugadorDatosViewModel.Paises = await _tiposService.ParametroTipo_Listar(3);
+            jugadorDatosViewModel.Nacionalidades = await _tiposService.ParametroTipo_Listar(4);
+            jugadorDatosViewModel.Sexos = await _tiposService.ParametroTipo_Listar(2);
+            jugadorDatosViewModel.TipoSeguros = await _tiposService.ParametroTipo_Listar(5);
+            jugadorDatosViewModel.TipoVehiculos = await _tiposService.ParametroTipo_Listar(6);
+            jugadorDatosViewModel.DivisionList = await _tiposService.ParametroTipo_Listar(7);
+            jugadorDatosViewModel.SituacionList = await _tiposService.ParametroTipo_Listar(8);
+            jugadorDatosViewModel.TipoSangre = await _tiposService.ParametroTipo_Listar(14);
+            jugadorDatosViewModel.RutaFoto = await _listJugadoresService.Archivo_Ruta(jugadorDatosViewModel.Id_Equipo, jugadorDatosViewModel.Id_Jugador, 431);
+            jugadorDatosViewModel.RutaDeslinde = await _listJugadoresService.Archivo_Ruta(jugadorDatosViewModel.Id_Equipo, jugadorDatosViewModel.Id_Jugador, 432);
+            ViewData["ActiveTab"] = "DatosGenerales";
+            jugadorDatosViewModel.Flag_Aprobacion1 = !(jugadorDatosViewModel.Id_009_EstadoJugador == 401 ||
+                                           jugadorDatosViewModel.Id_009_EstadoJugador == 550);
+            return View(jugadorDatosViewModel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> JugadorDatos(JugadorDatosViewModel jugadorDatosViewModel)
+        {
+            var idUsuarioStr = User.FindFirst("Id_Usuario")?.Value ?? "0";
+            var Id_Usuario = int.Parse(idUsuarioStr);
+            if (Id_Usuario == 0)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            if (jugadorDatosViewModel.Id_009_EstadoJugador == 401 && jugadorDatosViewModel.Flag_Aprobacion1 == true)
+            {
+                jugadorDatosViewModel.Id_009_EstadoJugador = 441;
+                await _listJugadoresService.Jugador_Actualizar(jugadorDatosViewModel, Id_Usuario);
+            }
+            
+            return RedirectToAction("GuardarJugadorSeleccionado", "ListJugadores", new {Id_Jugador = jugadorDatosViewModel.Id_Jugador });
+        }
+        [HttpGet]
+        public IActionResult JugadorDocumentos() 
+        {
+            ViewData["ActiveTab"] = "DocumentosInscripcion";
+            return View();
         }
     }
 }
