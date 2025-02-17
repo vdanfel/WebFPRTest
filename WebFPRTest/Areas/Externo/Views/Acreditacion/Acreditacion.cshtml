@@ -5,7 +5,70 @@
 <form>
     <div class="container">
         <div class="card">
-            aca va a ir el filtro
+            <div class="row g-2">
+                <input type="hidden" id="rutaComprobanteHidden" value="@Model.RutaComprobante" />
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
+                    <div class="container-input">
+                        <input type="file"
+                               id="file-logo"
+                               class="inputfile inputfile-1"
+                               asp-for="@Model.Comprobante"
+                               accept=".jpg,.jpeg,.png"
+                               onchange="previewFile(event, 'logo')"
+                               data-val="false" />
+                        <label for="file-logo">
+                            <div class="label-text">Logo</div>
+                            <span class="iborrainputfile">Seleccionar Logo</span>
+                        </label>
+                    </div>
+                    <div class="ms-auto px-3">
+                        <a href="#" onclick="showFilePreview('logo')" data-bs-toggle="modal" data-bs-target="#imageModal">Ver</a>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-floating">
+                        <select class="form-select" id="Id_015_TipoPago">
+                            <option></option>
+                            <option>YAPE</option>
+                            <option>PLIN</option>
+                            <option>TRANSFERENCIA</option>
+                            <option>DEPOSITO</option>
+                        </select>
+                        <label for="Id_015_TipoPago">Tipo Pago</label>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-floating">
+                        <input type="number" id="NumeroMovimiento" class="form-control" />
+                        <label for="NumeroMovimiento">Numero Operacion</label>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-floating">
+                        <input type="number" id="ImporteMovimiento" class="form-control" />
+                        <label for="ImporteMovimiento">Importe Movimiento</label>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-floating">
+                        <input type="number" id="ImporteMovimiento" class="form-control" disabled />
+                        <label for="ImporteMovimiento">Saldo a Favor</label>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-floating">
+                        <input type="number" id="ImporteTotal" class="form-control" disabled />
+                        <label for="ImporteTotal">Importe Total</label>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="form-floating">
+                        <input type="number" id="TotalPagoAcreditacion" class="form-control" disabled />
+                        <label for="TotalPagoAcreditacion">Total a Pagar</label>
+                    </div>
+                </div>
+            </div>
+            
         </div>
         <div class="table-responsive-lg mt-2">
             <table class="table table-hover">
@@ -18,14 +81,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach(var jugadores in Model.ListaJugadores)
+                    @foreach (var jugadores in Model.ListaJugadores)
                     {
                         <tr>
                             <td>@jugadores.NombreCompleto</td>
                             <td>@jugadores.Division</td>
                             <td>@jugadores.Situacion</td>
                             <td>
-                                <input type="checkbox" class="form-check-input" name="jugadoresSeleccionados" value="@jugadores.Id_Jugador" />
+                                <input type="checkbox" class="form-check-input check-acreditacion"
+                                       name="jugadoresSeleccionados"
+                                       value="@jugadores.Id_Jugador"
+                                       data-valor="@jugadores.ValorAcreditacion" />
                             </td>
                         </tr>
                     }
@@ -34,4 +100,22 @@
         </div>
     </div>
 </form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        let total = 0; // Inicializar total en 0
+
+        $(".check-acreditacion").change(function () {
+            let valor = parseFloat($(this).data("valor")); // Obtener el valor del jugador
+
+            if ($(this).is(":checked")) {
+                total += valor; // Sumar si está marcado
+            } else {
+                total -= valor; // Restar si se desmarca
+            }
+
+            $("#TotalPagoAcreditacion").val(total); // Actualizar el input
+        });
+    });
+</script>
 

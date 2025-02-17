@@ -3,51 +3,24 @@
   "WorkspaceRootPath": "D:\\Desarrollos\\WebFPRTest\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\externo\\controllers\\jugadorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\externo\\controllers\\jugadorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\externo\\controllers\\acreditacioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\externo\\controllers\\acreditacioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\externo\\views\\jugador\\jugador.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\externo\\views\\jugador\\jugador.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\externo\\service\\jugador\\jugadorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\externo\\service\\jugador\\jugadorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vfelipat\\AppData\\Local\\SourceServer\\174f5ff56c0b48510b69bc3fb5cb38c117a9462bc77bb6d61c033bf58cccd1e7\\WebFPRTest\\Areas\\Externo\\Controllers\\JugadorController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\externo\\controllers\\equipocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\externo\\controllers\\equipocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\externo\\views\\acreditacion\\acreditacion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\externo\\views\\acreditacion\\acreditacion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\externo\\views\\equipo\\equipo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\externo\\views\\equipo\\equipo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\externo\\models\\jugador\\jugadorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\externo\\models\\jugador\\jugadorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\externo\\service\\acreditacion\\acreditacionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\externo\\service\\acreditacion\\acreditacionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\interno\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\interno\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\interno\\service\\usuario\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\interno\\service\\usuario\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\interno\\views\\usuario\\usuario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\interno\\views\\usuario\\usuario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\externo\\models\\acreditacion\\acreditacionfiltroviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\externo\\models\\acreditacion\\acreditacionfiltroviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -57,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -65,177 +38,68 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Views\\Login\\Login.cshtml",
-              "RelativeDocumentMoniker": "WebFPRTest\\Views\\Login\\Login.cshtml",
-              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Views\\Login\\Login.cshtml",
-              "RelativeToolTip": "WebFPRTest\\Views\\Login\\Login.cshtml",
-              "ViewState": "AQIAACoAAAAAAAAAAAAAAEIAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-15T17:13:43.969Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "WebFPRTest\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "WebFPRTest\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-15T17:13:33.689Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "EquipoController.cs",
-              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Controllers\\EquipoController.cs",
-              "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Externo\\Controllers\\EquipoController.cs",
-              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Controllers\\EquipoController.cs",
-              "RelativeToolTip": "WebFPRTest\\Areas\\Externo\\Controllers\\EquipoController.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAQwCkAAABHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T16:15:22.627Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "JugadorController.cs",
-              "DocumentMoniker": "C:\\Users\\vfelipat\\AppData\\Local\\SourceServer\\174f5ff56c0b48510b69bc3fb5cb38c117a9462bc77bb6d61c033bf58cccd1e7\\WebFPRTest\\Areas\\Externo\\Controllers\\JugadorController.cs",
-              "ToolTip": "C:\\Users\\vfelipat\\AppData\\Local\\SourceServer\\174f5ff56c0b48510b69bc3fb5cb38c117a9462bc77bb6d61c033bf58cccd1e7\\WebFPRTest\\Areas\\Externo\\Controllers\\JugadorController.cs [Solo lectura]",
-              "ViewState": "AQIAAPQAAAAAAAAAAAAEwAgBAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T15:22:00.662Z",
-              "EditorCaption": " [Solo lectura]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "JugadorViewModel.cs",
-              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Models\\Jugador\\JugadorViewModel.cs",
-              "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Externo\\Models\\Jugador\\JugadorViewModel.cs",
-              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Models\\Jugador\\JugadorViewModel.cs",
-              "RelativeToolTip": "WebFPRTest\\Areas\\Externo\\Models\\Jugador\\JugadorViewModel.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAA9wCoAAAAtAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T15:03:40.47Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Equipo.cshtml",
-              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Views\\Equipo\\Equipo.cshtml",
-              "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Externo\\Views\\Equipo\\Equipo.cshtml",
-              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Views\\Equipo\\Equipo.cshtml",
-              "RelativeToolTip": "WebFPRTest\\Areas\\Externo\\Views\\Equipo\\Equipo.cshtml",
-              "ViewState": "AQIAAJsBAAAAAAAAAAAAAMcBAAALAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-15T15:04:25.349Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "JugadorController.cs",
-              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Controllers\\JugadorController.cs",
-              "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Externo\\Controllers\\JugadorController.cs",
-              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Controllers\\JugadorController.cs",
-              "RelativeToolTip": "WebFPRTest\\Areas\\Externo\\Controllers\\JugadorController.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAApwAgBAAAIAAAA",
+              "Title": "AcreditacionController.cs",
+              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Controllers\\AcreditacionController.cs",
+              "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Externo\\Controllers\\AcreditacionController.cs",
+              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Controllers\\AcreditacionController.cs",
+              "RelativeToolTip": "WebFPRTest\\Areas\\Externo\\Controllers\\AcreditacionController.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAEwBMAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T14:15:51.384Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "JugadorService.cs",
-              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Service\\Jugador\\JugadorService.cs",
-              "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Externo\\Service\\Jugador\\JugadorService.cs",
-              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Service\\Jugador\\JugadorService.cs",
-              "RelativeToolTip": "WebFPRTest\\Areas\\Externo\\Service\\Jugador\\JugadorService.cs",
-              "ViewState": "AQIAAB0BAAAAAAAAAAAvwDEBAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T14:15:51.392Z",
+              "WhenOpened": "2025-02-17T19:55:06.97Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Jugador.cshtml",
-              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Views\\Jugador\\Jugador.cshtml",
-              "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Externo\\Views\\Jugador\\Jugador.cshtml",
-              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Views\\Jugador\\Jugador.cshtml",
-              "RelativeToolTip": "WebFPRTest\\Areas\\Externo\\Views\\Jugador\\Jugador.cshtml",
-              "ViewState": "AQIAAMMAAAAAAAAAAAAAAN0AAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-15T14:20:23.588Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "6bca6add-e029-4b11-82f7-f3f818810ea1",
-        "Display": 1,
-        "X": 266,
-        "Y": 156,
-        "Width": 1553,
-        "Height": 831,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "UsuarioController.cs",
-              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Interno\\Controllers\\UsuarioController.cs",
-              "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Interno\\Controllers\\UsuarioController.cs",
-              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Interno\\Controllers\\UsuarioController.cs",
-              "RelativeToolTip": "WebFPRTest\\Areas\\Interno\\Controllers\\UsuarioController.cs",
-              "ViewState": "AQIAAHYAAAAAAAAAAAAawIsAAAARAAAA",
+              "Title": "AcreditacionService.cs",
+              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Service\\Acreditacion\\AcreditacionService.cs",
+              "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Externo\\Service\\Acreditacion\\AcreditacionService.cs",
+              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Service\\Acreditacion\\AcreditacionService.cs",
+              "RelativeToolTip": "WebFPRTest\\Areas\\Externo\\Service\\Acreditacion\\AcreditacionService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwBYAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T16:28:36.712Z",
+              "WhenOpened": "2025-02-17T19:54:45.744Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "UsuarioService.cs",
-              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Interno\\Service\\Usuario\\UsuarioService.cs",
-              "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Interno\\Service\\Usuario\\UsuarioService.cs",
-              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Interno\\Service\\Usuario\\UsuarioService.cs",
-              "RelativeToolTip": "WebFPRTest\\Areas\\Interno\\Service\\Usuario\\UsuarioService.cs",
-              "ViewState": "AQIAAFAAAAAAAAAAAAAEwGQAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T16:28:36.757Z",
+              "DocumentIndex": 1,
+              "Title": "Acreditacion.cshtml",
+              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Views\\Acreditacion\\Acreditacion.cshtml",
+              "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Externo\\Views\\Acreditacion\\Acreditacion.cshtml",
+              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Views\\Acreditacion\\Acreditacion.cshtml",
+              "RelativeToolTip": "WebFPRTest\\Areas\\Externo\\Views\\Acreditacion\\Acreditacion.cshtml",
+              "ViewState": "AQIAACgAAAAAAAAAAAAIwDgAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-17T19:37:30.449Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Usuario.cshtml",
-              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Interno\\Views\\Usuario\\Usuario.cshtml",
-              "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Interno\\Views\\Usuario\\Usuario.cshtml",
-              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Interno\\Views\\Usuario\\Usuario.cshtml",
-              "RelativeToolTip": "WebFPRTest\\Areas\\Interno\\Views\\Usuario\\Usuario.cshtml",
-              "ViewState": "AQIAALQAAAAAAAAAAAAAAAAAAAA/AAAA",
+              "DocumentIndex": 4,
+              "Title": "AcreditacionFiltroViewModel.cs",
+              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Models\\Acreditacion\\AcreditacionFiltroViewModel.cs",
+              "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Externo\\Models\\Acreditacion\\AcreditacionFiltroViewModel.cs",
+              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Models\\Acreditacion\\AcreditacionFiltroViewModel.cs",
+              "RelativeToolTip": "WebFPRTest\\Areas\\Externo\\Models\\Acreditacion\\AcreditacionFiltroViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-17T19:36:06.626Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Equipo.cshtml",
+              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Views\\Equipo\\Equipo.cshtml",
+              "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Externo\\Views\\Equipo\\Equipo.cshtml",
+              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Views\\Equipo\\Equipo.cshtml",
+              "RelativeToolTip": "WebFPRTest\\Areas\\Externo\\Views\\Equipo\\Equipo.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-11T18:27:12.652Z"
+              "WhenOpened": "2025-02-15T15:04:25.349Z",
+              "EditorCaption": ""
             }
           ]
         }

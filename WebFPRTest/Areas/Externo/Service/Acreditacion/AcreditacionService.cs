@@ -20,10 +20,6 @@ namespace WebFPRTest.Areas.Externo.Service.Acreditacion
             {
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id_Equipo", acreditacionFiltroViewModel.Id_Equipo, DbType.String);
-                parameters.Add("@Paterno", acreditacionFiltroViewModel.Paterno, DbType.String);
-                parameters.Add("@Materno", acreditacionFiltroViewModel.Materno, DbType.String);
-                parameters.Add("@Nombres", acreditacionFiltroViewModel.Nombres, DbType.String);
-
                 var jugadores = await _connection.QueryAsync<AcreditacionTabla>(
                    procedure,
                    parameters,
