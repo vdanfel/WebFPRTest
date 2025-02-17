@@ -34,19 +34,19 @@
             <div class="col-12 d-flex align-items-center">
                 <div class="container-input">
                     <input type="file"
-                           id="file-1"
+                           id="file-logo"
                            class="inputfile inputfile-1"
                            asp-for="@Model.Logo"
                            accept=".jpg,.jpeg,.png"
-                           onchange="previewImage(event)"
+                           onchange="previewFile(event, 'logo')"
                            data-val="false" />
-                    <label for="file-1">
-                        <div class="label-text">Ruta Logo</div>
+                    <label for="file-logo">
+                        <div class="label-text">Logo</div>
                         <span class="iborrainputfile">Seleccionar Logo</span>
                     </label>
                 </div>
                 <div class="ms-auto px-3">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" id="verLogo">Ver</a>
+                    <a href="#" onclick="showFilePreview('logo')" data-bs-toggle="modal" data-bs-target="#imageModal">Ver</a>
                 </div>
             </div>
             <div class="col-12">
@@ -254,133 +254,39 @@
     </div>
 }
 
-<!-- Modal para mostrar la miniatura de la imagen -->
+<!-- Modal para imágenes -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="imageModalLabel">Vista previa del logo</h5>
+                <h5 class="modal-title" id="imageModalLabel">Vista previa de la imagen</h5>
             </div>
             <div class="modal-body text-center">
-                <img id="logoPreview" src="" alt="Logo preview" style="max-width: 100%; height: auto;" />
+                <img id="imagePreview" src="" alt="Image preview" style="max-width: 100%; height: auto;" />
             </div>
             <div class="modal-footer">
-                <!-- Botón para descargar la imagen original -->
-                <a id="downloadBtn" href="#" class="btn btn-primary" download>
-                    Descargar Imagen Original
-                </a>
+                <a id="imageDownloadBtn" href="#" class="btn btn-primary" download>Descargar Imagen Original</a>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
 </div>
 
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
-    $(document).ready(function () {
-        var mensaje = '@TempData["Mensaje"]';  
-        if (mensaje && mensaje.trim() !== '') {
-            $('#myModal').modal('show');  
-        }
-    });
-
-    'use strict';
-    (function (document, window, index) {
-        var inputs = document.querySelectorAll('.inputfile');
-        Array.prototype.forEach.call(inputs, function (input) {
-            var label = input.nextElementSibling,
-                labelVal = label.querySelector('.iborrainputfile').innerHTML;
-
-            input.addEventListener('change', function (e) {
-                var fileName = '';
-                if (this.files && this.files.length > 1)
-                    fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
-                else
-                    fileName = e.target.value.split('\\').pop();
-
-                if (fileName) {
-                    label.querySelector('.iborrainputfile').innerHTML = fileName;
-                    input.closest('.container-input').classList.add('has-file');
-                } else {
-                    label.querySelector('.iborrainputfile').innerHTML = labelVal;
-                    input.closest('.container-input').classList.remove('has-file');
-                }
-            });
-        });
-    }(document, window, 0));
-
-    let selectedFile = null; // Variable global para mantener el archivo seleccionado
-
-    // Función para previsualizar la imagen seleccionada
-    function previewImage(event) {
-        const file = event.target.files[0];
-        if (file) {
-            selectedFile = file; // Guardamos el archivo seleccionado
-
-            // Actualizar el texto del input para mostrar el nombre del archivo
-            const span = document.querySelector('.iborrainputfile');
-            if (span) {
-                span.textContent = file.name;
-            }
-        }
-    }
-
-    // Función para mostrar la imagen en el modal
-    function showImagePreview() {
-        const image = document.getElementById('logoPreview');
-        const rutaLogo = document.getElementById('rutaLogoHidden').value;
-
-        // Si hay un archivo nuevo seleccionado
-        if (selectedFile) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                image.src = e.target.result;
-            }
-            reader.readAsDataURL(selectedFile);
-        }
-        // Si no hay archivo nuevo pero hay una ruta existente
-        else if (rutaLogo) {
-            // Limpiar la ruta para acceder desde el navegador
-            let webPath = rutaLogo
-                .replace('wwwroot\\', '')  // Quitar wwwroot si existe
-                .replace('wwwroot/', '')   // Por si acaso usa forward slash
-                .replace(/\\/g, '/');      // Reemplazar todos los backslash por forward slash
-
-            // Asegurarnos que la ruta empiece con /
-            if (!webPath.startsWith('/')) {
-                webPath = '/' + webPath;
-            }
-
-            console.log('Ruta web final:', webPath); // Para debugging
-            image.src = webPath;
-
-            // Establecer el enlace de descarga para la imagen original
-            const downloadButton = document.getElementById('downloadBtn');
-            downloadButton.href = webPath;  // Asigna la ruta de la imagen original
-        }
-    }
-
-
     // Inicialización cuando el documento está listo
     document.addEventListener('DOMContentLoaded', function () {
-        // Obtener la ruta del logo del modelo
-        const rutaLogo = document.getElementById('rutaLogoHidden')?.value;
-
-        // Si hay una ruta existente, mostrar el nombre del archivo en el input
-        if (rutaLogo) {
-            const span = document.querySelector('.iborrainputfile');
-            if (span) {
-                // Obtener solo el nombre del archivo de la ruta completa
-                const fileName = rutaLogo.split('\\').pop().split('/').pop();
-                span.textContent = fileName;
-            }
+        //Mensaje Al cargar la pagina
+        var mensaje = '@TempData["Mensaje"]';
+        if (mensaje && mensaje.trim() !== '') {
+            $('#myModal').modal('show');
         }
-
-        // Agregar el evento click al botón "Ver"
-        document.getElementById('verLogo').addEventListener('click', showImagePreview);
+        
+        
 
         // Función que habilita o deshabilita los campos de horario según el estado del checkbox
         function toggleHorario(dia) {
@@ -455,5 +361,114 @@
             }
         });
 
+        ///Inicializar el nombre
+        initializeFileNames();
     });
+    
+    // Para manejar archivos de imagen
+    let selectedImage = null;
+
+    (function (document, window, index) {
+        var inputs = document.querySelectorAll('.inputfile');
+        Array.prototype.forEach.call(inputs, function (input) {
+            var label = input.nextElementSibling,
+                labelVal = label.querySelector('.iborrainputfile').innerHTML;
+
+            input.addEventListener('change', function (e) {
+                var fileName = this.files.length > 1
+                    ? (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length)
+                    : e.target.value.split('\\').pop();
+
+                if (fileName) {
+                    label.querySelector('.iborrainputfile').innerHTML = fileName;
+                    input.closest('.container-input').classList.add('has-file');
+                } else {
+                    label.querySelector('.iborrainputfile').innerHTML = labelVal;
+                    input.closest('.container-input').classList.remove('has-file');
+                }
+            });
+        });
+    }(document, window, 0));
+
+    // Función para previsualizar el archivo seleccionado
+    function previewFile(event, type) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        if (!file.type.startsWith('image/')) {
+            alert('Por favor, seleccione un archivo de imagen válido.');
+            event.target.value = '';
+            return;
+        }
+
+        selectedImage = file;
+
+        // Actualizar el texto del input
+        const span = event.target.nextElementSibling.querySelector('.iborrainputfile');
+        if (span) {
+            span.textContent = file.name;
+        }
+    }
+
+    // Función para mostrar la previsualización del archivo
+    function showFilePreview(type) {
+        const imagePreview = document.getElementById('imagePreview');
+        const downloadBtn = document.getElementById('imageDownloadBtn');
+        let rutaImagen = "";
+
+        if (type === 'imagen') {
+            rutaImagen = document.getElementById('rutaFotoHidden').value;
+        } else if (type === 'logo') {
+            rutaImagen = document.getElementById('rutaLogoHidden').value;
+        }
+
+        if (selectedImage) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+                downloadBtn.href = e.target.result;
+            }
+            reader.readAsDataURL(selectedImage);
+        } else if (rutaImagen) {
+            let webPath = formatPath(rutaImagen);
+            imagePreview.src = webPath;
+            downloadBtn.href = webPath;
+        }
+    }
+
+    // Función auxiliar para formatear las rutas
+    function formatPath(path) {
+        let webPath = path.replace('wwwroot\\', '').replace('wwwroot/', '').replace(/\\/g, '/');
+        if (!webPath.startsWith('/')) {
+            webPath = '/' + webPath;
+        }
+        return webPath;
+    }
+
+    // Inicializar nombres de archivos al cargar la página
+    function initializeFileNames() {
+        const rutaFoto = document.getElementById('rutaFotoHidden')?.value;
+        const rutaLogo = document.getElementById('rutaLogoHidden')?.value;
+
+        if (rutaFoto) {
+            setFileName('file-foto', rutaFoto);
+        }
+        if (rutaLogo) {
+            setFileName('file-logo', rutaLogo);
+        }
+    }
+
+    // Función auxiliar para actualizar el nombre del archivo
+    function setFileName(inputId, filePath) {
+        const fileName = filePath.split('\\').pop(); // Obtiene solo el nombre del archivo
+        const inputElement = document.getElementById(inputId);
+        if (inputElement) {
+            const label = inputElement.nextElementSibling;
+            const span = label.querySelector('.iborrainputfile');
+            if (span) {
+                span.textContent = fileName;
+                inputElement.closest('.container-input').classList.add('has-file');
+            }
+        }
+    }
 </script>

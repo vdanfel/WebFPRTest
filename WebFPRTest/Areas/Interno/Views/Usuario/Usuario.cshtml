@@ -166,12 +166,51 @@
 }
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
-    $(document).ready(function () {
+    document.addEventListener('DOMContentLoaded', function () {
         validarClaves();
         var mensaje = '@TempData["Mensaje"]';
         if (mensaje && mensaje.trim() !== '') {
             $('#myModal').modal('show');
         }
+
+        const contentDivs = document.querySelectorAll('[contenteditable][required]');
+        contentDivs.forEach((div) => {
+            validateContent(div.id);
+        });
+
+        // Selecciona todos los inputs y selects con atributo `required`
+        const inputs = document.querySelectorAll('input[required], select[required]');
+
+        inputs.forEach((input) => {
+            // Agrega un evento `input` para validar en tiempo real
+            input.addEventListener('input', function () {
+                if (input.checkValidity()) {
+                    input.classList.remove('is-invalid');
+                    input.classList.add('is-valid');
+                } else {
+                    input.classList.remove('is-valid');
+                    input.classList.add('is-invalid');
+                }
+            });
+
+            // Aplica la validación al salir del campo
+            input.addEventListener('blur', function () {
+                if (input.checkValidity()) {
+                    input.classList.remove('is-invalid');
+                    input.classList.add('is-valid');
+                } else {
+                    input.classList.remove('is-valid');
+                    input.classList.add('is-invalid');
+                }
+            });
+        });
+
+        // Aplica un borde rojo inicial para campos requeridos vacíos
+        inputs.forEach((input) => {
+            if (!input.value) {
+                input.classList.add('is-invalid');
+            }
+        });
     });
 
     function mostrarModalEliminar(url, nombreUsuario) {
@@ -235,46 +274,7 @@
             btnRegistrar.disabled = false;
         }
     }
-    document.addEventListener('DOMContentLoaded', function () {
-        const contentDivs = document.querySelectorAll('[contenteditable][required]');
-        contentDivs.forEach((div) => {
-            validateContent(div.id);
-        });
-
-        // Selecciona todos los inputs y selects con atributo `required`
-        const inputs = document.querySelectorAll('input[required], select[required]');
-
-        inputs.forEach((input) => {
-            // Agrega un evento `input` para validar en tiempo real
-            input.addEventListener('input', function () {
-                if (input.checkValidity()) {
-                    input.classList.remove('is-invalid');
-                    input.classList.add('is-valid');
-                } else {
-                    input.classList.remove('is-valid');
-                    input.classList.add('is-invalid');
-                }
-            });
-
-            // Aplica la validación al salir del campo
-            input.addEventListener('blur', function () {
-                if (input.checkValidity()) {
-                    input.classList.remove('is-invalid');
-                    input.classList.add('is-valid');
-                } else {
-                    input.classList.remove('is-valid');
-                    input.classList.add('is-invalid');
-                }
-            });
-        });
-
-        // Aplica un borde rojo inicial para campos requeridos vacíos
-        inputs.forEach((input) => {
-            if (!input.value) {
-                input.classList.add('is-invalid');
-            }
-        });
-    });
+    
     function validateContent(id) {
         const contentDiv = document.getElementById(id);
 

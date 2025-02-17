@@ -3,7 +3,6 @@
     Layout = "_LayoutJugador";
     string nRutaFoto = System.IO.Path.GetFileName(Model.RutaFoto);
     string nRutaDeslinde = System.IO.Path.GetFileName(Model.RutaDeslinde);
-    bool esEditable = Model.Id_009_EstadoJugador == 401 || Model.Id_009_EstadoJugador == 441;
 }
 <form asp-area="Interno" asp-action="JugadorDatos" asp-controller="ListJugadores" method="post">
     <input type="text" asp-for="Id_Jugador" hidden />
@@ -278,6 +277,22 @@
         </div>
     </div>
 </form>
+<!--Modal para alerta inicial de la pagina-->
+@if (TempData["Mensaje"] != null)
+{
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @TempData["Mensaje"]
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 <!-- Modal para imágenes -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -323,8 +338,14 @@
         let estadoJugador = document.getElementById("estadoJugador").value;
         let checkbox = document.getElementById("flexSwitchCheckDefault");
 
-        if (estadoJugador !== "401" && estadoJugador !== "441") {
+        if (estadoJugador !== "441" && estadoJugador !== "442") {
             checkbox.disabled = true; // Deshabilita el checkbox
+        }
+
+        //Mostrar modal al cargar la pagina
+        var mensaje = '@TempData["Mensaje"]';
+        if (mensaje && mensaje.trim() !== '') {
+            $('#myModal').modal('show');
         }
     });
 

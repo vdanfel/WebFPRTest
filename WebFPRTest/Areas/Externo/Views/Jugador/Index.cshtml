@@ -85,10 +85,15 @@
                 <tbody>
                     @foreach (var jugadores in Model.ListaJugadores)
                     {
-                        string colorFondo = jugadores.Id_009_EstadoJugador == 441 ? "#ffccaa" :
-                        jugadores.Id_009_EstadoJugador == 442 ? "#aa22af" : "#ffffff"; 
+                        string colorFondo = jugadores.Id_009_EstadoJugador == 441 ? "#FFF9C4  " :
+                        jugadores.Id_009_EstadoJugador == 442 ? "#FFB74D " :
+                        jugadores.Id_009_EstadoJugador == 443 ? "#E3F2FD  " :
+                        jugadores.Id_009_EstadoJugador == 444 ? "#90CAF9 " :
+                        jugadores.Id_009_EstadoJugador == 445 ? "#C8E6C9  " :
+                        jugadores.Id_009_EstadoJugador == 446 ? "#81C784 " :
+                        "#FFFFFF";
                         <tr class="align-middle">
-                            <td style="background-color:@colorFondo;">@jugadores.Indice</td>
+                            <td style="background-color:@colorFondo;text-align:center">@jugadores.Indice</td>
                             <td style="min-width:20rem">@jugadores.ApellidosYNombre</td>
                             <td>@jugadores.TipoDocumento</td>
                             <td>@jugadores.Documento</td>

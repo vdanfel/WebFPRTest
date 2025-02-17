@@ -307,10 +307,11 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 PersonaModel personaModel = new PersonaModel()
                 {
                     Id_001_TipoDocumento = jugadorViewModel.Id_001_TipoDocumento,
+                    Documento = jugadorViewModel.Documento,
                     Paterno = jugadorViewModel.Paterno,
                     Materno = jugadorViewModel.Materno,
                     Nombres = jugadorViewModel.Nombres,
-                    FechaNacimiento = (DateTime)jugadorViewModel.FechaNacimiento,
+                    FechaNacimiento = jugadorViewModel.FechaNacimiento ?? DateTime.MinValue, // Si es null, usa una fecha por defecto
                     Id_003_Pais = jugadorViewModel.Id_003_Pais,
                     Id_004_Nacionalidad = jugadorViewModel.Id_004_Nacionalidad,
                     Id_002_Sexo = jugadorViewModel.Id_002_Sexo,
@@ -319,11 +320,12 @@ namespace WebFPRTest.Areas.Externo.Controllers
                     Correo = jugadorViewModel.Correo,
                     Id_005_TipoSeguro = jugadorViewModel.Id_005_TipoSeguro,
                     NumeroPoliza = jugadorViewModel.NumeroPoliza,
-                    FechaPoliza = (DateTime)jugadorViewModel.FechaPoliza,
-                    FechaVencimientoPoliza = (DateTime)jugadorViewModel.FechaVencimientoPoliza,
-                    Id_006_TipoVehiculo = (int)jugadorViewModel.Id_006_TipoVehiculo,
-                    NumeroPlaca = jugadorViewModel.NumeroPlaca
+                    FechaPoliza = jugadorViewModel.FechaPoliza ?? DateTime.MinValue, // Evita null en fechas
+                    FechaVencimientoPoliza = jugadorViewModel.FechaVencimientoPoliza ?? DateTime.MinValue, // Evita null en fechas
+                    Id_006_TipoVehiculo = jugadorViewModel.Id_006_TipoVehiculo ?? 0, // Si es null, usa 0
+                    NumeroPlaca = jugadorViewModel.NumeroPlaca ?? "" // Si es null, usa string vacío
                 };
+
                 jugadorViewModel.Id_Persona = await _jugadorService.Persona_Insertar(personaModel, Id_Usuario);
             }
 
@@ -337,7 +339,7 @@ namespace WebFPRTest.Areas.Externo.Controllers
                     Id_Equipo = jugadorViewModel.Id_Equipo,
                     Id_007_Division = jugadorViewModel.Id_007_Division,
                     Id_008_Situacion = jugadorViewModel.Id_008_Situacion,
-                    Id_009_EstadoJugador = jugadorViewModel.Id_009_EstadoJugador
+                    Id_009_EstadoJugador = 401
                 };
                 jugadorViewModel.Id_Jugador = await _jugadorService.Jugador_Insertar(jugadorModel, Id_Usuario);
                 TempData["Mensaje"] = "Jugador registrado con éxito";
@@ -389,12 +391,12 @@ namespace WebFPRTest.Areas.Externo.Controllers
                     await _jugadorService.Archivo_Insertar(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, 432, nuevaRutaDeslinde, Id_Usuario);
                 }
             }
-
-            return RedirectToAction("Jugador");
+            await _jugadorService.Jugador_CambioEstado441(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, Id_Usuario);
+            return RedirectToAction("GuardarJugadorSeleccionado", "Jugador", new {Id_Jugador = jugadorViewModel.Id_Jugador });
         }
         [HttpGet]
         public async Task<IActionResult> ValidarPersona(int idTipoDocumento, string documento)
-            {
+                {
             var idEquipoStr = User.FindFirst("Id_Equipo")?.Value ?? "0";
             var Id_Equipo = int.Parse(idEquipoStr);
 

@@ -19,6 +19,7 @@ namespace WebFPRTest.Areas.Externo.Interface.Jugador
         Task Jugador_Actualizar(JugadorViewModel jugadorViewModel, int Id_Usuario);
         Task<int> Jugador_BuscarPorDocumento(int Id_Equipo, int Id_001_TipoDocumento, string Documento);
         Task Apoderado_Insertar(JugadorViewModel jugadorViewModel, int Id_Usuario);
+        Task Jugador_CambioEstado441(int Id_Equipo, int Id_Jugador, int Usuario);
 
 
     }

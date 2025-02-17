@@ -118,8 +118,10 @@ namespace WebFPRTest.Areas.Externo.Service.Jugador
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id_Persona", jugador.Id_Persona, DbType.String);
                 parameters.Add("@Id_Equipo", jugador.Id_Equipo, DbType.String);
+                parameters.Add("@Id_007_Division", jugador.Id_007_Division, DbType.Int32);
+                parameters.Add("@Id_008_Situacion", jugador.Id_008_Situacion, DbType.Int32);
+                parameters.Add("@Id_009_EstadoJugador", jugador.Id_009_EstadoJugador, DbType.Int32);
                 parameters.Add("@Id_UsuarioCreacion", Id_Usuario, DbType.Int32);
-
                 var idJugador = await _connection.ExecuteScalarAsync<int>(
                     procedure,
                     parameters,
@@ -402,6 +404,26 @@ namespace WebFPRTest.Areas.Externo.Service.Jugador
             catch (Exception ex)
             {
                 throw new Exception("Ocurrió un error al actualizar el usuario.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+        public async Task Jugador_CambioEstado441(int Id_Equipo, int Id_Jugador, int Usuario)
+        {
+            var procedure = "usp_Jugador_CambioEstado441";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Equipo", Id_Equipo);
+                parameters.Add("@Id_Jugador", Id_Jugador);
+                parameters.Add("@Usuario", Usuario);
+                await _connection.ExecuteAsync(procedure, parameters, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error inesperado. Intenta nuevamente.", ex);
             }
             finally
             {

@@ -7,7 +7,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAwGAqFg1BTkC6WpwCgLjefAAAAAACAAAAAAAQZgAAAAEAACAAAADaRwz0++i8WE3t8y12oVa0HrzBYrpxQRBLUG3p+kuj1gAAAAAOgAAAAAIAACAAAACcka3C6TgskwHa3Y2TzIqJ4BHUpftYDAkimA0VSFwItyAAAABGa+ZzFYvfjJQA6s/hUmqpPld9a35TtFWjarCTsUjX4kAAAABsozECE8a8A8pRNj7PSqLcufywnea+FvRH3Fle/IiK4nZkk09QPLif3bR+voCAg6gwRB5UayLMsksQpekJZwY+</EncryptedPassword>
     <_PublishTargetUrl>ftp://FPRTest.somee.com/www.FPRTest.somee.com</_PublishTargetUrl>
-    <History>True|2025-02-16T04:44:08.2304269Z;True|2025-02-15T09:10:30.7629834-05:00;True|2025-02-14T13:19:30.0165919-05:00;True|2025-02-14T01:05:07.9835864-05:00;False|2025-02-13T18:00:21.4453540-05:00;True|2025-02-13T00:26:23.1124164-05:00;True|2025-02-12T00:47:38.6910546-05:00;True|2025-02-11T00:48:24.6818888-05:00;True|2025-02-10T00:07:18.9845915-05:00;True|2025-02-09T13:38:07.1790186-05:00;True|2025-02-06T00:19:12.8102113-05:00;True|2025-02-02T17:03:22.6884403-05:00;True|2025-02-02T10:20:36.6520091-05:00;True|2025-02-02T10:08:21.7800260-05:00;True|2025-02-02T09:12:00.7344608-05:00;True|2025-02-02T01:03:37.2204567-05:00;False|2025-02-02T00:57:28.5619442-05:00;</History>
+    <History>True|2025-02-16T18:38:25.2281604Z;True|2025-02-16T11:12:43.4742814-05:00;True|2025-02-15T23:44:08.2304269-05:00;True|2025-02-15T09:10:30.7629834-05:00;True|2025-02-14T13:19:30.0165919-05:00;True|2025-02-14T01:05:07.9835864-05:00;False|2025-02-13T18:00:21.4453540-05:00;True|2025-02-13T00:26:23.1124164-05:00;True|2025-02-12T00:47:38.6910546-05:00;True|2025-02-11T00:48:24.6818888-05:00;True|2025-02-10T00:07:18.9845915-05:00;True|2025-02-09T13:38:07.1790186-05:00;True|2025-02-06T00:19:12.8102113-05:00;True|2025-02-02T17:03:22.6884403-05:00;True|2025-02-02T10:20:36.6520091-05:00;True|2025-02-02T10:08:21.7800260-05:00;True|2025-02-02T09:12:00.7344608-05:00;True|2025-02-02T01:03:37.2204567-05:00;False|2025-02-02T00:57:28.5619442-05:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -198,19 +198,19 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/18/2022 11:22:56</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>02/15/2025 23:39:19</publishTime>
+      <publishTime>02/16/2025 13:33:22</publishTime>
     </File>
     <File Include="WebFPRTest.deps.json">
-      <publishTime>02/15/2025 23:39:10</publishTime>
+      <publishTime>02/16/2025 13:33:22</publishTime>
     </File>
     <File Include="WebFPRTest.dll">
-      <publishTime>02/15/2025 23:39:09</publishTime>
+      <publishTime>02/16/2025 13:33:12</publishTime>
     </File>
     <File Include="WebFPRTest.exe">
-      <publishTime>02/15/2025 23:39:09</publishTime>
+      <publishTime>02/16/2025 13:33:12</publishTime>
     </File>
     <File Include="WebFPRTest.pdb">
-      <publishTime>02/15/2025 23:39:09</publishTime>
+      <publishTime>02/16/2025 13:33:12</publishTime>
     </File>
     <File Include="WebFPRTest.runtimeconfig.json">
       <publishTime>02/15/2025 23:39:10</publishTime>
@@ -242,14 +242,26 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="wwwroot/Archivos/17/17_Logo.jpg">
       <publishTime>09/02/2025 23:21:27</publishTime>
     </File>
+    <File Include="wwwroot/Archivos/2/18/18_DOCUMENTO DESLINDE.pdf">
+      <publishTime>02/16/2025 11:21:36</publishTime>
+    </File>
+    <File Include="wwwroot/Archivos/2/18/18_FOTO JUGADOR.png">
+      <publishTime>02/16/2025 11:21:36</publishTime>
+    </File>
     <File Include="wwwroot/Archivos/2/24/24_DOCUMENTO DESLINDE.pdf">
       <publishTime>02/15/2025 17:57:12</publishTime>
     </File>
     <File Include="wwwroot/Archivos/2/24/24_FOTO JUGADOR.jpg">
       <publishTime>02/15/2025 17:57:12</publishTime>
     </File>
+    <File Include="wwwroot/Archivos/2/28/28_DOCUMENTO DESLINDE.pdf">
+      <publishTime>02/16/2025 10:02:23</publishTime>
+    </File>
+    <File Include="wwwroot/Archivos/2/28/28_FOTO JUGADOR.png">
+      <publishTime>02/16/2025 10:02:06</publishTime>
+    </File>
     <File Include="wwwroot/Archivos/2/2_Logo.jpg">
-      <publishTime>02/15/2025 23:36:34</publishTime>
+      <publishTime>02/16/2025 10:59:52</publishTime>
     </File>
     <File Include="wwwroot/Archivos/2/2_Logo.png">
       <publishTime>02/13/2025 12:21:55</publishTime>

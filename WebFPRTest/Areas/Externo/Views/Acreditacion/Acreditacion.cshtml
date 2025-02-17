@@ -1,9 +1,37 @@
-﻿@{
+﻿@model WebFPRTest.Areas.Externo.Models.Acreditacion.AcreditacionFiltroViewModel
+@{
     Layout = "_LayoutExterno";
 }
 <form>
     <div class="container">
-        aqui se va a ver la lista de usuarios para la acreditacion
+        <div class="card">
+            aca va a ir el filtro
+        </div>
+        <div class="table-responsive-lg mt-2">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Apellidos y Nombres</th>
+                        <th>Division</th>
+                        <th>Situacion</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var jugadores in Model.ListaJugadores)
+                    {
+                        <tr>
+                            <td>@jugadores.NombreCompleto</td>
+                            <td>@jugadores.Division</td>
+                            <td>@jugadores.Situacion</td>
+                            <td>
+                                <input type="checkbox" class="form-check-input" name="jugadoresSeleccionados" value="@jugadores.Id_Jugador" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </form>
 

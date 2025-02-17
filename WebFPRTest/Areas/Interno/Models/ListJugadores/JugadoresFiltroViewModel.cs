@@ -14,6 +14,8 @@ namespace WebFPRTest.Areas.Interno.Models.ListJugadores
         public List<EquipoListResult> EquiposList { get; set; }
         public List<JugadoresTablaViewModel> ListaJugadores { get; set; }
         public List<ParametrosTipoResult> ListaDivisiones { get; set; }
+        public int? Id_009_EstadoJugador { get; set; }
+        public List<ParametrosTipoResult> ListaEstadoJugador { get; set; }
         public JugadoresFiltroViewModel()
         {
             ListaJugadores = new List<JugadoresTablaViewModel>();

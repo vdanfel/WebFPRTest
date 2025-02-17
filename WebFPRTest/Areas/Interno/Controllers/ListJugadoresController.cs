@@ -31,6 +31,8 @@ namespace WebFPRTest.Areas.Interno.Controllers
             jugadoresFiltroViewModel.ListaDivisiones = await _tiposService.ParametroTipo_Listar(7);
             jugadoresFiltroViewModel.ListaJugadores = await _listJugadoresService.Jugador_Bandeja(jugadoresFiltroViewModel);
             jugadoresFiltroViewModel.EquiposList = await _tiposService.Equipo_Listar();
+            var estadoJugadores = await _tiposService.ParametroTipo_Listar(9);
+            jugadoresFiltroViewModel.ListaEstadoJugador = estadoJugadores.OrderBy(d => d.Id_Parametros).ToList();
             return View(jugadoresFiltroViewModel);
         }
         [HttpPost]
@@ -45,6 +47,8 @@ namespace WebFPRTest.Areas.Interno.Controllers
             jugadoresFiltroViewModel.ListaDivisiones = await _tiposService.ParametroTipo_Listar(7);
             jugadoresFiltroViewModel.ListaJugadores = await _listJugadoresService.Jugador_Bandeja(jugadoresFiltroViewModel);
             jugadoresFiltroViewModel.EquiposList = await _tiposService.Equipo_Listar();
+            var estadoJugadores = await _tiposService.ParametroTipo_Listar(9);
+            jugadoresFiltroViewModel.ListaEstadoJugador = estadoJugadores.OrderBy(d => d.Id_Parametros).ToList();
             return View(jugadoresFiltroViewModel);
         }
         public IActionResult GuardarJugadorSeleccionado(int Id_Jugador)
@@ -81,7 +85,7 @@ namespace WebFPRTest.Areas.Interno.Controllers
             jugadorDatosViewModel.RutaFoto = await _listJugadoresService.Archivo_Ruta(jugadorDatosViewModel.Id_Equipo, jugadorDatosViewModel.Id_Jugador, 431);
             jugadorDatosViewModel.RutaDeslinde = await _listJugadoresService.Archivo_Ruta(jugadorDatosViewModel.Id_Equipo, jugadorDatosViewModel.Id_Jugador, 432);
             ViewData["ActiveTab"] = "DatosGenerales";
-            jugadorDatosViewModel.Flag_Aprobacion1 = !(jugadorDatosViewModel.Id_009_EstadoJugador == 401 ||
+            jugadorDatosViewModel.Flag_Aprobacion1 = !(jugadorDatosViewModel.Id_009_EstadoJugador == 441 ||
                                            jugadorDatosViewModel.Id_009_EstadoJugador == 550);
             return View(jugadorDatosViewModel);
         }
@@ -94,10 +98,17 @@ namespace WebFPRTest.Areas.Interno.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            if (jugadorDatosViewModel.Id_009_EstadoJugador == 401 && jugadorDatosViewModel.Flag_Aprobacion1 == true)
+            if (jugadorDatosViewModel.Id_009_EstadoJugador == 441 && jugadorDatosViewModel.Flag_Aprobacion1 == true)
+            {
+                jugadorDatosViewModel.Id_009_EstadoJugador = 442;
+                await _listJugadoresService.Jugador_Actualizar(jugadorDatosViewModel, Id_Usuario);
+                TempData["Mensaje"] = "Jugador habilitado con éxito";
+            }
+            if (jugadorDatosViewModel.Id_009_EstadoJugador == 442 && jugadorDatosViewModel.Flag_Aprobacion1 == false)
             {
                 jugadorDatosViewModel.Id_009_EstadoJugador = 441;
                 await _listJugadoresService.Jugador_Actualizar(jugadorDatosViewModel, Id_Usuario);
+                TempData["Mensaje"] = "Jugador deshabilitado";
             }
             
             return RedirectToAction("GuardarJugadorSeleccionado", "ListJugadores", new {Id_Jugador = jugadorDatosViewModel.Id_Jugador });

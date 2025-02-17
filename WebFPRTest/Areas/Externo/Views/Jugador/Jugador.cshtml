@@ -6,6 +6,7 @@
     <input type="text" asp-for="Id_Jugador" hidden/>
     <input type="text" asp-for="Id_Equipo" hidden/>
     <input type="text" asp-for="Id_Persona" hidden/>
+    <input type="text" asp-for="Id_009_EstadoJugador" hidden/>
      <div class="container">
         <div class="row g-2">
             <div class="col-12 col-sm-12 col-md-4 col-lg-3">
@@ -116,7 +117,7 @@
                     <input type="file"
                            id="file-foto"
                            class="inputfile inputfile-1"
-                           asp-for="Foto"
+                           asp-for="@Model.Foto"
                            accept=".jpg,.jpeg,.png"
                            onchange="previewFile(event, 'imagen')"
                            data-val="false" />

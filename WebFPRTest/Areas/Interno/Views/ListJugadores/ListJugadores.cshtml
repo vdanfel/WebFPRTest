@@ -60,6 +60,18 @@
                             <label for="Id_Equipo">Equipo</label>
                         </div>
                     </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating">
+                            <select class="form-select" asp-for="Id_009_EstadoJugador" id="Id_009_EstadoJugador">
+                                <option></option>
+                                @foreach (var estadosJugador in Model.ListaEstadoJugador)
+                                {
+                                    <option value="@estadosJugador.Id_Parametros">@estadosJugador.Descripcion</option>
+                                }
+                            </select>
+                            <label for="Id_009_EstadoJugador">Estado Jugador</label>
+                        </div>
+                    </div>
                     <div class="col-12 col-sm-12 d-flex justify-content-end align-items-center">
                         <button type="submit" class="btn btn-outline-primary me-2">Filtrar</button>
                     </div>
@@ -84,8 +96,15 @@
                 <tbody>
                     @foreach (var jugadores in Model.ListaJugadores)
                     {
+                        string colorFondo = jugadores.Id_009_EstadoJugador == 441 ? "#FFF9C4  " :
+                        jugadores.Id_009_EstadoJugador == 442 ? "#FFB74D " :
+                        jugadores.Id_009_EstadoJugador == 443 ? "#E3F2FD  " :
+                        jugadores.Id_009_EstadoJugador == 444 ? "#90CAF9 " :
+                        jugadores.Id_009_EstadoJugador == 445 ? "#C8E6C9  " :
+                        jugadores.Id_009_EstadoJugador == 446 ? "#81C784 " :
+                        "#FFFFFF";
                         <tr class="align-middle">
-                            <td>@jugadores.Indice</td>
+                            <td style="background-color:@colorFondo;text-align:center">@jugadores.Indice</td>
                             <td>@jugadores.ApellidosYNombre</td>
                             <td>@jugadores.NombreEquipo</td>
                             <td>@jugadores.TipoDocumento</td>

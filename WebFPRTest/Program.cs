@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Data.SqlClient;
+using WebFPRTest.Areas.Externo.Interface.Acreditacion;
 using WebFPRTest.Areas.Externo.Interface.Equipo;
 using WebFPRTest.Areas.Externo.Interface.Jugador;
+using WebFPRTest.Areas.Externo.Service.Acreditacion;
 using WebFPRTest.Areas.Externo.Service.Equipo;
 using WebFPRTest.Areas.Externo.Service.Jugador;
 using WebFPRTest.Areas.Interno.Interface.ListJugadores;
@@ -18,11 +20,13 @@ builder.Services.AddControllersWithViews();
 
 // Para llamar a los servicios y a las interfaces
 builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<ITiposService, TiposService>();
 builder.Services.AddScoped<IEquipoService, EquipoService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
-builder.Services.AddScoped<ITiposService, TiposService>();
 builder.Services.AddScoped<IJugadorService, JugadorService>();
+builder.Services.AddScoped<IAcreditacionService, AcreditacionService>();
 builder.Services.AddScoped<IListJugadoresService, ListJugadoresService>();
+
 
 // Para conectar a la BD
 builder.Services.AddScoped<SqlConnection>(sp =>
