@@ -2,7 +2,7 @@
 @{
     Layout = "_LayoutExterno";
 }
-<form>
+<form asp-area="Externo" asp-controller="Acreditacion" asp-action="Acreditacion" method="post" enctype="multipart/form-data">
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -43,13 +43,13 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-3 col-lg-3">
                         <div class="form-floating">
-                            <input type="text" id="NumeroMovimiento" class="form-control" asp-for="NumeroMovimiento" />
+                            <input type="text" id="NumeroMovimiento" class="form-control" asp-for="NumeroComprobante" />
                             <label for="NumeroMovimiento">Numero Operacion</label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-3 col-lg-3">
                         <div class="form-floating">
-                            <input type="number" id="ImporteMovimiento" class="form-control" asp-for="ImporteMovimiento" onblur="calcularImporteTotal()"/>
+                            <input type="number" id="ImporteMovimiento" class="form-control" asp-for="ImporteComprobante" onblur="calcularImporteTotal()" />
                             <label for="ImporteMovimiento">Importe Movimiento</label>
                         </div>
                     </div>
@@ -85,17 +85,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var jugadores in Model.ListaJugadores)
+                    @for (int i = 0; i < Model.ListaJugadores.Count; i++)
                     {
+                        var jugador = Model.ListaJugadores[i];
+
                         <tr>
-                            <td>@jugadores.NombreCompleto</td>
-                            <td>@jugadores.Division</td>
-                            <td>@jugadores.Situacion</td>
+                            <td>@jugador.NombreCompleto</td>
+                            <td>@jugador.Division</td>
+                            <td>@jugador.Situacion</td>
                             <td>
                                 <input type="checkbox" class="form-check-input check-acreditacion"
-                                       name="jugadoresSeleccionados"
-                                       value="@jugadores.Id_Jugador"
-                                       data-valor="@jugadores.ValorAcreditacion" />
+                                       data-id="@jugador.Id_Jugador"
+                                       data-valor="@jugador.ValorAcreditacion" />
                             </td>
                         </tr>
                     }
@@ -158,18 +159,45 @@
         
         let total = 0; // Inicializar total en 0
 
-        $(".check-acreditacion").change(function () {
-            let valor = parseFloat($(this).data("valor")); // Obtener el valor del jugador
+        let totalPago = 0;
+        let jugadoresSeleccionados = [];
 
-            if ($(this).is(":checked")) {
-                total += valor; // Sumar si está marcado
-            } else {
-                total -= valor; // Restar si se desmarca
-            }
+        document.querySelectorAll(".check-acreditacion").forEach((checkbox) => {
+            checkbox.addEventListener("change", function () {
+                let jugadorId = this.getAttribute("data-id");
+                let valor = parseFloat(this.getAttribute("data-valor"));
 
-            $("#TotalPagoAcreditacion").val(total); // Actualizar el input
-            calcularImporteTotal();
+                if (this.checked) {
+                    totalPago += valor;
+                    jugadoresSeleccionados.push({ id: jugadorId, valor: valor });
+                } else {
+                    totalPago -= valor;
+                    jugadoresSeleccionados = jugadoresSeleccionados.filter(j => j.id !== jugadorId);
+                }
+
+                document.getElementById("TotalPagoAcreditacion").value = totalPago.toFixed(2);
+                calcularImporteTotal();
+            });
         });
+
+        document.getElementById("btnEnviar").addEventListener("click", function () {
+            fetch('/Acreditacion/GuardarAcreditaciones', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                },
+                body: JSON.stringify(jugadoresSeleccionados)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert("Datos guardados correctamente.");
+                })
+                .catch(error => {
+                    console.error("Error al enviar los datos:", error);
+                });
+        });
+
 
         ///Inicializar el nombre
         initializeFileNames();

@@ -11,11 +11,18 @@ namespace WebFPRTest.Areas.Externo.Models.Acreditacion
         public List<ParametrosTipoResult>TipoPagos { get; set; }
         public List<AcreditacionTabla> ListaJugadores { get; set; }
         public decimal SaldoAFavor { get; set; }
-        public decimal ImporteMovimiento { get; set; }
-        public string NumeroMovimiento { get; set; }
+        public decimal ImporteComprobante { get; set; }
+        public string NumeroComprobante { get; set; }
         public decimal ImporteTotal { get; set; }
         public decimal TotalPagoAcreditacion { get; set; }
-        public List<int> jugadoresSeleccionados { get; set; }
+        public List<int> jugadoresSeleccionados { get; set; }  // IDs de jugadores marcados
+        public List<decimal> valoresAcreditacion { get; set; } // Valores de acreditación correspondientes
+
+    }
+    public class JugadorSeleccionado
+    {
+        public int Id_Jugador { get; set; }
+        public decimal ValorAcreditacion { get; set; }
     }
     public class AcreditacionTabla
     { 
