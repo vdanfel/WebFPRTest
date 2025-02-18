@@ -5,70 +5,74 @@
 <form>
     <div class="container">
         <div class="card">
-            <div class="row g-2">
-                <input type="hidden" id="rutaComprobanteHidden" value="@Model.RutaComprobante" />
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
-                    <div class="container-input">
-                        <input type="file"
-                               id="file-logo"
-                               class="inputfile inputfile-1"
-                               asp-for="@Model.Comprobante"
-                               accept=".jpg,.jpeg,.png"
-                               onchange="previewFile(event, 'logo')"
-                               data-val="false" />
-                        <label for="file-logo">
-                            <div class="label-text">Logo</div>
-                            <span class="iborrainputfile">Seleccionar Logo</span>
-                        </label>
+            <div class="card-header">
+                <h4>Nombre Equipo</h4>
+            </div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <input type="hidden" id="rutaComprobanteHidden" value="@Model.RutaComprobante" />
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
+                        <div class="container-input">
+                            <input type="file"
+                                   id="file-logo"
+                                   class="inputfile inputfile-1"
+                                   asp-for="@Model.Comprobante"
+                                   accept=".jpg,.jpeg,.png"
+                                   onchange="previewFile(event, 'logo')"
+                                   data-val="false" />
+                            <label for="file-logo">
+                                <div class="label-text">Logo</div>
+                                <span class="iborrainputfile">Seleccionar Logo</span>
+                            </label>
+                        </div>
+                        <div class="ms-auto px-3">
+                            <a href="#" onclick="showFilePreview('logo')" data-bs-toggle="modal" data-bs-target="#imageModal">Ver</a>
+                        </div>
                     </div>
-                    <div class="ms-auto px-3">
-                        <a href="#" onclick="showFilePreview('logo')" data-bs-toggle="modal" data-bs-target="#imageModal">Ver</a>
+                    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                        <div class="form-floating">
+                            <select class="form-select" id="Id_015_TipoPago">
+                                <option></option>
+                                @foreach(var tipoPago in Model.TipoPagos)
+                                {
+                                    <option value="@tipoPago.Id_Parametros">@tipoPago.Descripcion</option>
+                                }
+                            </select>
+                            <label for="Id_015_TipoPago">Tipo Pago</label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                    <div class="form-floating">
-                        <select class="form-select" id="Id_015_TipoPago">
-                            <option></option>
-                            <option>YAPE</option>
-                            <option>PLIN</option>
-                            <option>TRANSFERENCIA</option>
-                            <option>DEPOSITO</option>
-                        </select>
-                        <label for="Id_015_TipoPago">Tipo Pago</label>
+                    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                        <div class="form-floating">
+                            <input type="text" id="NumeroMovimiento" class="form-control" asp-for="NumeroMovimiento" />
+                            <label for="NumeroMovimiento">Numero Operacion</label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                    <div class="form-floating">
-                        <input type="number" id="NumeroMovimiento" class="form-control" />
-                        <label for="NumeroMovimiento">Numero Operacion</label>
+                    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                        <div class="form-floating">
+                            <input type="number" id="ImporteMovimiento" class="form-control" asp-for="ImporteMovimiento" onblur="calcularImporteTotal()"/>
+                            <label for="ImporteMovimiento">Importe Movimiento</label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                    <div class="form-floating">
-                        <input type="number" id="ImporteMovimiento" class="form-control" />
-                        <label for="ImporteMovimiento">Importe Movimiento</label>
+                    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                        <div class="form-floating">
+                            <input type="number" id="SaldoAFavor" class="form-control" asp-for="SaldoAFavor" disabled />
+                            <label for="SaldoAFavor">Saldo a Favor</label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                    <div class="form-floating">
-                        <input type="number" id="ImporteMovimiento" class="form-control" disabled />
-                        <label for="ImporteMovimiento">Saldo a Favor</label>
+                    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                        <div class="form-floating">
+                            <input type="number" id="ImporteTotal" class="form-control" asp-for="ImporteTotal" disabled />
+                            <label for="ImporteTotal">Importe Total</label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                    <div class="form-floating">
-                        <input type="number" id="ImporteTotal" class="form-control" disabled />
-                        <label for="ImporteTotal">Importe Total</label>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                    <div class="form-floating">
-                        <input type="number" id="TotalPagoAcreditacion" class="form-control" disabled />
-                        <label for="TotalPagoAcreditacion">Total a Pagar</label>
+                    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                        <div class="form-floating">
+                            <input type="number" id="TotalPagoAcreditacion" class="form-control" asp-for="TotalPagoAcreditacion" disabled />
+                            <label for="TotalPagoAcreditacion">Total a Pagar</label>
+                        </div>
                     </div>
                 </div>
             </div>
-            
         </div>
         <div class="table-responsive-lg mt-2">
             <table class="table table-hover">
@@ -98,11 +102,60 @@
                 </tbody>
             </table>
         </div>
+        <div class="mt-2">
+            <button type="submit" id="btnRegistrar" class="btn btn-outline-success" disabled>Registrar</button>
+        </div>
     </div>
 </form>
+<!-- Modal para el mensaje de del TempData -->
+@if (TempData["Mensaje"] != null)
+{
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @TempData["Mensaje"]
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Modal para imágenes -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Vista previa de la imagen</h5>
+            </div>
+            <div class="modal-body text-center">
+                <img id="imagePreview" src="" alt="Image preview" style="max-width: 100%; height: auto;" />
+            </div>
+            <div class="modal-footer">
+                <a id="imageDownloadBtn" href="#" class="btn btn-primary" download>Descargar Imagen Original</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
+    document.addEventListener('DOMContentLoaded', function () {
+        //Mensaje Al cargar la pagina
+        var mensaje = '@TempData["Mensaje"]';
+        if (mensaje && mensaje.trim() !== '') {
+            $('#myModal').modal('show');
+        }
+        
         let total = 0; // Inicializar total en 0
 
         $(".check-acreditacion").change(function () {
@@ -115,7 +168,140 @@
             }
 
             $("#TotalPagoAcreditacion").val(total); // Actualizar el input
+            calcularImporteTotal();
         });
+
+        ///Inicializar el nombre
+        initializeFileNames();
+
+        calcularImporteTotal(); // Ejecutar al cargar la página
+
+        // Evento para actualizar valores al salir de ImporteMovimiento
+        document.getElementById("ImporteMovimiento").addEventListener("blur", calcularImporteTotal);
+
     });
+
+    function calcularImporteTotal() {
+        // Obtener los valores numéricos de los inputs
+        let importeMovimiento = parseFloat(document.getElementById("ImporteMovimiento").value) || 0;
+        let saldoAFavor = parseFloat(document.getElementById("SaldoAFavor").value) || 0;
+        let totalPagoAcreditacion = parseFloat(document.getElementById("TotalPagoAcreditacion").value) || 0;
+
+        // Calcular el importe total
+        let importeTotal = importeMovimiento + saldoAFavor;
+
+        // Asignar el resultado a ImporteTotal
+        document.getElementById("ImporteTotal").value = importeTotal.toFixed(2); // Mostrar con 2 decimales
+
+        // Activar o desactivar el botón según la condición
+        let btnRegistrar = document.getElementById("btnRegistrar");
+        if (importeTotal >= totalPagoAcreditacion) {
+            btnRegistrar.removeAttribute("disabled");
+        } else {
+            btnRegistrar.setAttribute("disabled", "disabled");
+        }
+    }
+
+    // Para manejar archivos de imagen
+    let selectedImage = null;
+
+    (function (document, window, index) {
+        var inputs = document.querySelectorAll('.inputfile');
+        Array.prototype.forEach.call(inputs, function (input) {
+            var label = input.nextElementSibling,
+                labelVal = label.querySelector('.iborrainputfile').innerHTML;
+
+            input.addEventListener('change', function (e) {
+                var fileName = this.files.length > 1
+                    ? (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length)
+                    : e.target.value.split('\\').pop();
+
+                if (fileName) {
+                    label.querySelector('.iborrainputfile').innerHTML = fileName;
+                    input.closest('.container-input').classList.add('has-file');
+                } else {
+                    label.querySelector('.iborrainputfile').innerHTML = labelVal;
+                    input.closest('.container-input').classList.remove('has-file');
+                }
+            });
+        });
+    }(document, window, 0));
+
+    // Función para previsualizar el archivo seleccionado
+    function previewFile(event, type) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        if (!file.type.startsWith('image/')) {
+            alert('Por favor, seleccione un archivo de imagen válido.');
+            event.target.value = '';
+            return;
+        }
+
+        selectedImage = file;
+
+        // Actualizar el texto del input
+        const span = event.target.nextElementSibling.querySelector('.iborrainputfile');
+        if (span) {
+            span.textContent = file.name;
+        }
+    }
+
+    // Función para mostrar la previsualización del archivo
+    function showFilePreview(type) {
+        const imagePreview = document.getElementById('imagePreview');
+        const downloadBtn = document.getElementById('imageDownloadBtn');
+        let rutaImagen = "";
+
+        if (type === 'imagen') {
+            rutaImagen = document.getElementById('rutaComprobanteHidden').value;
+        } 
+
+        if (selectedImage) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+                downloadBtn.href = e.target.result;
+            }
+            reader.readAsDataURL(selectedImage);
+        } else if (rutaImagen) {
+            let webPath = formatPath(rutaImagen);
+            imagePreview.src = webPath;
+            downloadBtn.href = webPath;
+        }
+    }
+
+    // Función auxiliar para formatear las rutas
+    function formatPath(path) {
+        let webPath = path.replace('wwwroot\\', '').replace('wwwroot/', '').replace(/\\/g, '/');
+        if (!webPath.startsWith('/')) {
+            webPath = '/' + webPath;
+        }
+        return webPath;
+    }
+
+    // Inicializar nombres de archivos al cargar la página
+    function initializeFileNames() {
+        const rutaLogo = document.getElementById('rutaComprobanteHidden')?.value;
+
+        if (rutaFoto) {
+            setFileName('file-foto', rutaFoto);
+        }
+        
+    }
+
+    // Función auxiliar para actualizar el nombre del archivo
+    function setFileName(inputId, filePath) {
+        const fileName = filePath.split('\\').pop(); // Obtiene solo el nombre del archivo
+        const inputElement = document.getElementById(inputId);
+        if (inputElement) {
+            const label = inputElement.nextElementSibling;
+            const span = label.querySelector('.iborrainputfile');
+            if (span) {
+                span.textContent = fileName;
+                inputElement.closest('.container-input').classList.add('has-file');
+            }
+        }
+    }
 </script>
 
