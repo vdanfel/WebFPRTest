@@ -6,8 +6,10 @@ using WebFPRTest.Areas.Externo.Interface.Jugador;
 using WebFPRTest.Areas.Externo.Service.Acreditacion;
 using WebFPRTest.Areas.Externo.Service.Equipo;
 using WebFPRTest.Areas.Externo.Service.Jugador;
+using WebFPRTest.Areas.Interno.Interface.ListAcreditacion;
 using WebFPRTest.Areas.Interno.Interface.ListJugadores;
 using WebFPRTest.Areas.Interno.Interface.Usuario;
+using WebFPRTest.Areas.Interno.Service.ListAcreditacion;
 using WebFPRTest.Areas.Interno.Service.ListJugadores;
 using WebFPRTest.Areas.Interno.Service.Usuario;
 using WebFPRTest.Interface;
@@ -26,6 +28,7 @@ builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IJugadorService, JugadorService>();
 builder.Services.AddScoped<IAcreditacionService, AcreditacionService>();
 builder.Services.AddScoped<IListJugadoresService, ListJugadoresService>();
+builder.Services.AddScoped<IListAcreditacionService, ListAcreditacionService>();
 
 
 // Para conectar a la BD

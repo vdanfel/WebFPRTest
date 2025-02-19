@@ -418,7 +418,7 @@ namespace WebFPRTest.Areas.Externo.Service.Jugador
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id_Equipo", Id_Equipo);
                 parameters.Add("@Id_Jugador", Id_Jugador);
-                parameters.Add("@Usuario", Usuario);
+                parameters.Add("@Id_UsuarioModificacion", Usuario);
                 await _connection.ExecuteAsync(procedure, parameters, commandType: CommandType.StoredProcedure);
             }
             catch (Exception ex)

@@ -55,7 +55,7 @@ namespace WebFPRTest.Areas.Externo.Controllers
             }
             var idEquipoStr = User.FindFirst("Id_Equipo")?.Value ?? "0";
             var Id_Equipo = int.Parse(idEquipoStr);
-
+            acreditacionFiltroViewModel.Id_Equipo = Id_Equipo;
             var comprobanteResult = await _acreditacionService.Comprobante_Insert(acreditacionFiltroViewModel, Id_Usuario);
             if (acreditacionFiltroViewModel.Comprobante != null)
             {
