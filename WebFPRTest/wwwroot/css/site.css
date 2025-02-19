@@ -114,3 +114,10 @@ body {
     .navbar-nav .nav-link:hover::after {
         width: 100%;
     }
+.input-disabled {
+    background-color: #e9ecef !important; /* Color gris como disabled */
+    border: 1px solid #ced4da; /* Borde igual al de los inputs normales */
+    color: #6c757d; /* Color del texto en disabled */
+    cursor: not-allowed; /* Cursor de "no permitido" */
+    pointer-events: none; /* Evita la interacción */
+}

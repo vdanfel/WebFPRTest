@@ -87,14 +87,15 @@ namespace WebFPRTest.Areas.Externo.Service.Acreditacion
             }
         }
         
-        public async Task Equipo_ActualizarSaldo(int Id_Equipo, decimal Saldo)
+        public async Task Equipo_ActualizarSaldo(int Id_Equipo, decimal Saldo, int Id_Usuario)
         {
             var procedure = "usp_Equipo_Update";
             try
             {
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id_Equipo", Id_Equipo, DbType.Int32);
-                parameters.Add("@Saldo", Id_Equipo, DbType.Decimal);
+                parameters.Add("@Saldo", Saldo, DbType.Decimal);
+                parameters.Add("@Usuario", Id_Usuario, DbType.Int32);
                 await _connection.QueryAsync(
                    procedure,
                    parameters,

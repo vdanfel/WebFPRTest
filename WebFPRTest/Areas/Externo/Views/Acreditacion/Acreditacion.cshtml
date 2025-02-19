@@ -14,24 +14,24 @@
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
                         <div class="container-input">
                             <input type="file"
-                                   id="file-logo"
+                                   id="file-Comprobante"
                                    class="inputfile inputfile-1"
                                    asp-for="@Model.Comprobante"
                                    accept=".jpg,.jpeg,.png"
-                                   onchange="previewFile(event, 'logo')"
-                                   data-val="false" />
-                            <label for="file-logo">
-                                <div class="label-text">Logo</div>
-                                <span class="iborrainputfile">Seleccionar Logo</span>
+                                   onchange="previewFile(event, 'Comprobante')"
+                                   data-val="true" />
+                            <label for="file-Comprobante">
+                                <div class="label-text">Comprobante</div>
+                                <span class="iborrainputfile">Seleccionar Comprobante</span>
                             </label>
                         </div>
                         <div class="ms-auto px-3">
-                            <a href="#" onclick="showFilePreview('logo')" data-bs-toggle="modal" data-bs-target="#imageModal">Ver</a>
+                            <a href="#" onclick="showFilePreview('Comprobante')" data-bs-toggle="modal" data-bs-target="#imageModal">Ver</a>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-3 col-lg-3">
                         <div class="form-floating">
-                            <select class="form-select" id="Id_015_TipoPago">
+                            <select class="form-select" id="Id_015_TipoPago" asp-for="Id_015_TipoPago">
                                 <option></option>
                                 @foreach(var tipoPago in Model.TipoPagos)
                                 {
@@ -43,31 +43,31 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-3 col-lg-3">
                         <div class="form-floating">
-                            <input type="text" id="NumeroMovimiento" class="form-control" asp-for="NumeroComprobante" />
-                            <label for="NumeroMovimiento">Numero Operacion</label>
+                            <input type="text" id="NumeroComprobante" class="form-control" asp-for="NumeroComprobante" />
+                            <label for="NumeroComprobante">Numero Operacion</label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-3 col-lg-3">
                         <div class="form-floating">
-                            <input type="number" id="ImporteMovimiento" class="form-control" asp-for="ImporteComprobante" onblur="calcularImporteTotal()" />
-                            <label for="ImporteMovimiento">Importe Movimiento</label>
+                            <input type="number" id="ImporteComprobante" class="form-control" asp-for="ImporteComprobante" onblur="calcularImporteTotal()" />
+                            <label for="ImporteComprobante">Importe Movimiento</label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-3 col-lg-3">
                         <div class="form-floating">
-                            <input type="number" id="SaldoAFavor" class="form-control" asp-for="SaldoAFavor" disabled />
+                            <input type="number" id="SaldoAFavor" class="form-control input-disabled" asp-for="SaldoAFavor" readonly />
                             <label for="SaldoAFavor">Saldo a Favor</label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-3 col-lg-3">
                         <div class="form-floating">
-                            <input type="number" id="ImporteTotal" class="form-control" asp-for="ImporteTotal" disabled />
+                            <input type="number" id="ImporteTotal" class="form-control input-disabled" asp-for="ImporteTotal" readonly>
                             <label for="ImporteTotal">Importe Total</label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-3 col-lg-3">
                         <div class="form-floating">
-                            <input type="number" id="TotalPagoAcreditacion" class="form-control" asp-for="TotalPagoAcreditacion" disabled />
+                            <input type="number" id="TotalPagoAcreditacion" class="form-control input-disabled" asp-for="TotalPagoAcreditacion" readonly>
                             <label for="TotalPagoAcreditacion">Total a Pagar</label>
                         </div>
                     </div>
@@ -85,23 +85,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for (int i = 0; i < Model.ListaJugadores.Count; i++)
+                    @foreach(var jugador in Model.ListaJugadores)
                     {
-                        var jugador = Model.ListaJugadores[i];
-
                         <tr>
                             <td>@jugador.NombreCompleto</td>
                             <td>@jugador.Division</td>
                             <td>@jugador.Situacion</td>
                             <td>
                                 <input type="checkbox" class="form-check-input check-acreditacion"
-                                       data-id="@jugador.Id_Jugador"
-                                       data-valor="@jugador.ValorAcreditacion" />
+                                       data-idjugador="@jugador.Id_Jugador"
+                                       data-costo="@jugador.CostoAcreditacion" />
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
+            <!-- Campo oculto para jugadores seleccionados -->
+            <input type="hidden" id="jugadoresSeleccionados" name="jugadoresSeleccionados" />
+
         </div>
         <div class="mt-2">
             <button type="submit" id="btnRegistrar" class="btn btn-outline-success" disabled>Registrar</button>
@@ -157,78 +158,90 @@
             $('#myModal').modal('show');
         }
         
-        let total = 0; // Inicializar total en 0
-
-        let totalPago = 0;
-        let jugadoresSeleccionados = [];
-
-        document.querySelectorAll(".check-acreditacion").forEach((checkbox) => {
-            checkbox.addEventListener("change", function () {
-                let jugadorId = this.getAttribute("data-id");
-                let valor = parseFloat(this.getAttribute("data-valor"));
-
-                if (this.checked) {
-                    totalPago += valor;
-                    jugadoresSeleccionados.push({ id: jugadorId, valor: valor });
-                } else {
-                    totalPago -= valor;
-                    jugadoresSeleccionados = jugadoresSeleccionados.filter(j => j.id !== jugadorId);
-                }
-
-                document.getElementById("TotalPagoAcreditacion").value = totalPago.toFixed(2);
-                calcularImporteTotal();
-            });
-        });
-
-        document.getElementById("btnEnviar").addEventListener("click", function () {
-            fetch('/Acreditacion/GuardarAcreditaciones', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
-                },
-                body: JSON.stringify(jugadoresSeleccionados)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    alert("Datos guardados correctamente.");
-                })
-                .catch(error => {
-                    console.error("Error al enviar los datos:", error);
-                });
-        });
-
-
         ///Inicializar el nombre
         initializeFileNames();
 
         calcularImporteTotal(); // Ejecutar al cargar la página
+        
+        let totalPago = 0;
+        const totalInput = document.getElementById("TotalPagoAcreditacion");
+        const jugadoresSeleccionadosInput = document.getElementById("jugadoresSeleccionados");
+        const btnRegistrar = document.getElementById("btnRegistrar");
 
-        // Evento para actualizar valores al salir de ImporteMovimiento
-        document.getElementById("ImporteMovimiento").addEventListener("blur", calcularImporteTotal);
+        function actualizarTotal() {
+            totalInput.value = totalPago.toFixed(2);
+            calcularImporteTotal();
+        }
 
+        function actualizarJugadoresSeleccionados() {
+            let jugadores = [];
+
+            document.querySelectorAll(".check-acreditacion:checked").forEach(checkbox => {
+                jugadores.push({
+                    Id_Jugador: checkbox.dataset.idjugador,
+                    CostoAcreditacion: checkbox.dataset.costo
+                });
+            });
+
+            // Convertimos la lista a JSON y la guardamos en el input oculto
+            jugadoresSeleccionadosInput.value = JSON.stringify(jugadores);
+
+            // Habilitar o deshabilitar el botón según haya jugadores seleccionados
+            btnRegistrar.disabled = jugadores.length === 0;
+        }
+
+        document.querySelectorAll(".check-acreditacion").forEach(checkbox => {
+            checkbox.addEventListener("change", function () {
+                let costo = parseFloat(this.dataset.costo) || 0; // Obtener data-costo del checkbox
+
+                if (this.checked) {
+                    totalPago += costo;
+                } else {
+                    totalPago -= costo;
+                }
+                actualizarTotal();
+                actualizarJugadoresSeleccionados();
+                calcularImporteTotal();
+            });
+        });
     });
 
     function calcularImporteTotal() {
         // Obtener los valores numéricos de los inputs
-        let importeMovimiento = parseFloat(document.getElementById("ImporteMovimiento").value) || 0;
+        let importeComprobante = parseFloat(document.getElementById("ImporteComprobante").value) || 0;
         let saldoAFavor = parseFloat(document.getElementById("SaldoAFavor").value) || 0;
         let totalPagoAcreditacion = parseFloat(document.getElementById("TotalPagoAcreditacion").value) || 0;
 
         // Calcular el importe total
-        let importeTotal = importeMovimiento + saldoAFavor;
+        let importeTotal = importeComprobante + saldoAFavor;
 
         // Asignar el resultado a ImporteTotal
         document.getElementById("ImporteTotal").value = importeTotal.toFixed(2); // Mostrar con 2 decimales
 
-        // Activar o desactivar el botón según la condición
+        // Referencia al botón
         let btnRegistrar = document.getElementById("btnRegistrar");
-        if (importeTotal >= totalPagoAcreditacion) {
-            btnRegistrar.removeAttribute("disabled");
+
+        // **Validaciones**
+        if (importeComprobante === 0 && saldoAFavor === 0) {
+            // Si ambos son 0, desactivar el botón
+            btnRegistrar.setAttribute("disabled", "disabled");
+            return;
+        }
+
+        // Si importeTotal > 0, validar totalPagoAcreditacion
+        if (importeTotal > 0 && totalPagoAcreditacion > 0) {
+            // Solo habilitar si importeTotal es suficiente para pagar el totalPagoAcreditacion
+            if (importeTotal >= totalPagoAcreditacion) {
+                btnRegistrar.removeAttribute("disabled");
+            } else {
+                btnRegistrar.setAttribute("disabled", "disabled");
+            }
         } else {
+            // Si totalPagoAcreditacion es 0, desactivar el botón
             btnRegistrar.setAttribute("disabled", "disabled");
         }
     }
+
 
     // Para manejar archivos de imagen
     let selectedImage = null;
@@ -310,10 +323,10 @@
 
     // Inicializar nombres de archivos al cargar la página
     function initializeFileNames() {
-        const rutaLogo = document.getElementById('rutaComprobanteHidden')?.value;
+        const rutaComprobante = document.getElementById('rutaComprobanteHidden')?.value;
 
-        if (rutaFoto) {
-            setFileName('file-foto', rutaFoto);
+        if (rutaComprobante) {
+            setFileName('file-Comprobante', rutaComprobante);
         }
         
     }

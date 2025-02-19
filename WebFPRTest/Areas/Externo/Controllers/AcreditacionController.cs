@@ -73,30 +73,48 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 }
             }
 
-            if (comprobanteResult.Id_Comprobante > 0)
+            if (!string.IsNullOrEmpty(acreditacionFiltroViewModel.jugadoresSeleccionados))
             {
-                if (acreditacionFiltroViewModel.jugadoresSeleccionados == null || !acreditacionFiltroViewModel.jugadoresSeleccionados.Any())
-                {
-                    TempData["Mensaje"] = "Debe seleccionar al menos un jugador.";
-                    return RedirectToAction("Acreditacion");
-                }
-                try
-                {
-                    foreach (var jugador in acreditacionFiltroViewModel.jugadoresSeleccionados)
-                    {
-                        //await _acreditacionService.Jugador_SolicitudAcreditacion(jugador.Id_Jugador, Id_Usuario);
-                        //await _acreditacionService.JugadorComprobante_Insert(comprobanteResult.Id_Comprobante, jugador.Id_Jugador, jugador.ValorAcreditacion);
-                    }
+                var jugadores = Newtonsoft.Json.JsonConvert.DeserializeObject<List<AcreditacionTabla>>(acreditacionFiltroViewModel.jugadoresSeleccionados);
 
-                    TempData["Mensaje"] = "Los jugadores fueron acreditados correctamente.";
-                    var saldo = acreditacionFiltroViewModel.ImporteTotal - acreditacionFiltroViewModel.TotalPagoAcreditacion;
-                    await _acreditacionService.Equipo_ActualizarSaldo(Id_Equipo, saldo);
-                }
-                catch (Exception ex)
+                foreach (var jugador in jugadores)
                 {
-                    TempData["Mensaje"] = "Ocurrió un error al procesar la acreditación.";
+                    // Registrar la solicitud de acreditación
+                    await _acreditacionService.Jugador_SolicitudAcreditacion(jugador.Id_Jugador, Id_Usuario);
+
+                    // Asociar el jugador con el comprobante
+                    await _acreditacionService.JugadorComprobante_Insert(comprobanteResult.Id_Comprobante, jugador.Id_Jugador, jugador.CostoAcreditacion);
                 }
+                TempData["Mensaje"] = "Los jugadores fueron acreditados correctamente.";
+                var saldo = acreditacionFiltroViewModel.ImporteTotal - acreditacionFiltroViewModel.TotalPagoAcreditacion;
+                await _acreditacionService.Equipo_ActualizarSaldo(Id_Equipo, saldo, Id_Usuario);
             }
+            
+
+            //if (comprobanteResult.Id_Comprobante > 0)
+            //{
+            //    if (acreditacionFiltroViewModel.jugadoresSeleccionados == null || !acreditacionFiltroViewModel.jugadoresSeleccionados.Any())
+            //    {
+            //        TempData["Mensaje"] = "Debe seleccionar al menos un jugador.";
+            //        return RedirectToAction("Acreditacion");
+            //    }
+            //    try
+            //    {
+            //        foreach (var jugador in acreditacionFiltroViewModel.jugadoresSeleccionados)
+            //        {
+            //            //await _acreditacionService.Jugador_SolicitudAcreditacion(jugador.Id_Jugador, Id_Usuario);
+            //            //await _acreditacionService.JugadorComprobante_Insert(comprobanteResult.Id_Comprobante, jugador.Id_Jugador, jugador.ValorAcreditacion);
+            //        }
+
+            //        TempData["Mensaje"] = "Los jugadores fueron acreditados correctamente.";
+            //        var saldo = acreditacionFiltroViewModel.ImporteTotal - acreditacionFiltroViewModel.TotalPagoAcreditacion;
+            //        await _acreditacionService.Equipo_ActualizarSaldo(Id_Equipo, saldo);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        TempData["Mensaje"] = "Ocurrió un error al procesar la acreditación.";
+            //    }
+            //}
 
             return RedirectToAction("Acreditacion");
         }
