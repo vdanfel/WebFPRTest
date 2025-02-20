@@ -1,10 +1,8 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model WebFPRTest.Areas.Interno.Models.ListAcreditacion.ComprobanteFiltroViewModel
 @{
     Layout = "_LayoutInterno";
 }
-<form>
+<form asp-action="ListAcreditacion" asp-controller="ListAcreditacion" method="post">
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -14,57 +12,72 @@
                 <div class="row g-2">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                         <div class="form-floating">
-                            <select class="form-select">
+                            <select class="form-select" asp-for="Id_Equipo" id="Id_Equipo">
                                 <option></option>
+                                @foreach(var equipos in Model.ListarEquipos)
+                                {
+                                    <option value="@equipos.Id_Equipo">@equipos.Nombre</option>
+                                }
                             </select>
-                            <label>Equipo</label>
+                            <label for="Id_Equipo">Equipo</label>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="form-floating">
-                            <select class="form-select">
+                            <select class="form-select" asp-for="Id_001_TipoDocumento" id="Id_001_TipoDocumento">
                                 <option></option>
+                                @foreach (var tipoDocumento in Model.TipoDocumentos)
+                                {
+                                    <option value="@tipoDocumento.Id_Parametros">@tipoDocumento.Abreviatura</option>
+                                }
                             </select>
-                            <label>Tipo Documento</label>
+                            <label for="Id_001_TipoDocumento">Tipo Documento</label>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="form-floating">
-                            <input type="text" class="form-control"/>
-                            <label>Tipo Documento</label>
+                            <input type="text" class="form-control" asp-for="Documento" id="Documento" />
+                            <label for="Documento">N° Documento</label>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="form-floating">
-                            <input type="text" class="form-control" />
-                            <label>Paterno</label>
+                            <input type="text" class="form-control" asp-for="Paterno" id="Paterno" />
+                            <label for="Paterno">Paterno</label>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="form-floating">
-                            <input type="text" class="form-control" />
-                            <label>Materno</label>
+                            <input type="text" class="form-control" asp-for="Materno" id="Materno" />
+                            <label for="Materno">Materno</label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                         <div class="form-floating">
-                            <input type="text" class="form-control" />
-                            <label>Nombres</label>
+                            <input type="text" class="form-control" asp-for="Nombres" id="Nombres" />
+                            <label for="Nombres">Nombres</label>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="form-floating">
-                            <select class="form-select">
+                            <select class="form-select" asp-for="Id_015_TipoPago" id="Id_015_TipoPago">
                                 <option></option>
+                                @foreach (var tipoPagos in Model.TipoPagos)
+                                {
+                                    <option value="@tipoPagos.Id_Parametros">@tipoPagos.Descripcion</option>
+                                }
                             </select>
-                            <label>Tipo pago</label>
+                            <label for="Id_015_TipoPago">Tipo pago</label>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                         <div class="form-floating">
-                            <input type="text" class="form-control" />
-                            <label>Nombres</label>
+                            <input type="text" class="form-control" asp-for="NumeroOperacion" id="NumeroOperacion" />
+                            <label for="NumeroOperacion">Numero Operacion</label>
                         </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-3 d-flex justify-content-end align-items-center">
+                        <button type="submit" class="btn btn-outline-primary me-2">Filtrar</button>
                     </div>
                 </div>
             </div>
@@ -78,10 +91,26 @@
                         <td>Numero Operacion</td>
                         <td>Nombre club</td>
                         <td>Nombre Jugador</td>
+                        <td></td>
                     </tr>
                 </thead>
                 <tbody>
-
+                    @foreach(var jugadoresComprobantes in Model.ListaComprobantes)
+                    {
+                        <tr>
+                            <td></td>
+                            <td>@jugadoresComprobantes.TipoPago</td>
+                            <td>@jugadoresComprobantes.NumeroComprobante</td>
+                            <td>@jugadoresComprobantes.NombreEquipo</td>
+                            <td>@jugadoresComprobantes.NombreJugador</td>
+                            <td>
+                                <a class="btn btn-outline-warning" asp-action="GuardarComprobante" asp-controller="ListAcreditacion" asp-route-Id_Comprobante="@jugadoresComprobantes.Id_Comprobante">
+                                    <i class="bi-eye"></i>
+                                </a>
+                                
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zJesD5LdzqN74pHq666P+5RPuYmUutUj7Tyc9M7j+OI=",
+  "Hash": "Z90VgofNgQmLXi/KAfWTdPOjNCwLlKds43v/00nwC9Y=",
   "Source": "WebFPRTest",
   "BasePath": "_content/WebFPRTest",
   "Mode": "Default",
@@ -51,12 +51,12 @@
       "OriginalItemSpec": "E:\\WebFPRTest\\WebFPRTest\\obj\\Release\\net6.0\\scopedcss\\projectbundle\\WebFPRTest.bundle.scp.css"
     },
     {
-      "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\18\\18_DOCUMENTO DESLINDE.pdf",
+      "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\16\\16_DOCUMENTO DESLINDE.pdf",
       "SourceId": "WebFPRTest",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\",
       "BasePath": "_content/WebFPRTest",
-      "RelativePath": "Archivos/2/18/18_DOCUMENTO DESLINDE.pdf",
+      "RelativePath": "Archivos/2/16/16_DOCUMENTO DESLINDE.pdf",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -65,15 +65,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Archivos\\2\\18\\18_DOCUMENTO DESLINDE.pdf"
+      "OriginalItemSpec": "wwwroot\\Archivos\\2\\16\\16_DOCUMENTO DESLINDE.pdf"
     },
     {
-      "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\18\\18_FOTO JUGADOR.png",
+      "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\16\\16_FOTO JUGADOR.jpeg",
       "SourceId": "WebFPRTest",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\",
       "BasePath": "_content/WebFPRTest",
-      "RelativePath": "Archivos/2/18/18_FOTO JUGADOR.png",
+      "RelativePath": "Archivos/2/16/16_FOTO JUGADOR.jpeg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -82,15 +82,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Archivos\\2\\18\\18_FOTO JUGADOR.png"
+      "OriginalItemSpec": "wwwroot\\Archivos\\2\\16\\16_FOTO JUGADOR.jpeg"
     },
     {
-      "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\2_LOGO.jpg",
+      "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\23\\23_DOCUMENTO DESLINDE.pdf",
       "SourceId": "WebFPRTest",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\",
       "BasePath": "_content/WebFPRTest",
-      "RelativePath": "Archivos/2/2_LOGO.jpg",
+      "RelativePath": "Archivos/2/23/23_DOCUMENTO DESLINDE.pdf",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -99,7 +99,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Archivos\\2\\2_LOGO.jpg"
+      "OriginalItemSpec": "wwwroot\\Archivos\\2\\23\\23_DOCUMENTO DESLINDE.pdf"
+    },
+    {
+      "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\23\\23_FOTO JUGADOR.jpg",
+      "SourceId": "WebFPRTest",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\",
+      "BasePath": "_content/WebFPRTest",
+      "RelativePath": "Archivos/2/23/23_FOTO JUGADOR.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Archivos\\2\\23\\23_FOTO JUGADOR.jpg"
     },
     {
       "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\24\\24_DOCUMENTO DESLINDE.pdf",
@@ -136,12 +153,12 @@
       "OriginalItemSpec": "wwwroot\\Archivos\\2\\24\\24_FOTO JUGADOR.jpg"
     },
     {
-      "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\28\\28_DOCUMENTO DESLINDE.pdf",
+      "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\Comprobantes\\2_Comprobante1.jpg",
       "SourceId": "WebFPRTest",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\",
       "BasePath": "_content/WebFPRTest",
-      "RelativePath": "Archivos/2/28/28_DOCUMENTO DESLINDE.pdf",
+      "RelativePath": "Archivos/2/Comprobantes/2_Comprobante1.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -150,15 +167,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Archivos\\2\\28\\28_DOCUMENTO DESLINDE.pdf"
+      "OriginalItemSpec": "wwwroot\\Archivos\\2\\Comprobantes\\2_Comprobante1.jpg"
     },
     {
-      "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\28\\28_FOTO JUGADOR.png",
+      "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\Comprobantes\\2_Comprobante2.jpg",
       "SourceId": "WebFPRTest",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\",
       "BasePath": "_content/WebFPRTest",
-      "RelativePath": "Archivos/2/28/28_FOTO JUGADOR.png",
+      "RelativePath": "Archivos/2/Comprobantes/2_Comprobante2.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -167,7 +184,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Archivos\\2\\28\\28_FOTO JUGADOR.png"
+      "OriginalItemSpec": "wwwroot\\Archivos\\2\\Comprobantes\\2_Comprobante2.jpg"
     },
     {
       "Identity": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\FormatoCargaMasiva.xlsx",

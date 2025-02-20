@@ -5,12 +5,20 @@
       "PackagePath": "staticwebassets\\WebFPRTest.bundle.scp.css"
     },
     {
-      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\18\\18_DOCUMENTO DESLINDE.pdf",
-      "PackagePath": "staticwebassets\\Archivos\\2\\18\\18_DOCUMENTO DESLINDE.pdf"
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\16\\16_DOCUMENTO DESLINDE.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\2\\16\\16_DOCUMENTO DESLINDE.pdf"
     },
     {
-      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\18\\18_FOTO JUGADOR.png",
-      "PackagePath": "staticwebassets\\Archivos\\2\\18\\18_FOTO JUGADOR.png"
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\16\\16_FOTO JUGADOR.jpeg",
+      "PackagePath": "staticwebassets\\Archivos\\2\\16\\16_FOTO JUGADOR.jpeg"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\23\\23_DOCUMENTO DESLINDE.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\2\\23\\23_DOCUMENTO DESLINDE.pdf"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\23\\23_FOTO JUGADOR.jpg",
+      "PackagePath": "staticwebassets\\Archivos\\2\\23\\23_FOTO JUGADOR.jpg"
     },
     {
       "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\24\\24_DOCUMENTO DESLINDE.pdf",
@@ -21,16 +29,12 @@
       "PackagePath": "staticwebassets\\Archivos\\2\\24\\24_FOTO JUGADOR.jpg"
     },
     {
-      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\28\\28_DOCUMENTO DESLINDE.pdf",
-      "PackagePath": "staticwebassets\\Archivos\\2\\28\\28_DOCUMENTO DESLINDE.pdf"
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\Comprobantes\\2_Comprobante1.jpg",
+      "PackagePath": "staticwebassets\\Archivos\\2\\Comprobantes\\2_Comprobante1.jpg"
     },
     {
-      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\28\\28_FOTO JUGADOR.png",
-      "PackagePath": "staticwebassets\\Archivos\\2\\28\\28_FOTO JUGADOR.png"
-    },
-    {
-      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\2_LOGO.jpg",
-      "PackagePath": "staticwebassets\\Archivos\\2\\2_LOGO.jpg"
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\Comprobantes\\2_Comprobante2.jpg",
+      "PackagePath": "staticwebassets\\Archivos\\2\\Comprobantes\\2_Comprobante2.jpg"
     },
     {
       "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\FormatoCargaMasiva.xlsx",
