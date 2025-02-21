@@ -35,7 +35,11 @@ namespace WebFPRTest.Areas.Externo.Controllers
             }
             var idEquipoStr = User.FindFirst("Id_Equipo")?.Value ?? "0";
             var Id_Equipo = int.Parse(idEquipoStr);
-
+            if (Id_Equipo == 0)
+            {
+                TempData["Mensaje"] = "Debe registrar a su equipo primero";
+                return RedirectToAction("Equipo", "Equipo");
+            }
             AcreditacionFiltroViewModel acreditacionFiltroViewModel = new AcreditacionFiltroViewModel();
             acreditacionFiltroViewModel.Id_Equipo = Id_Equipo;
             acreditacionFiltroViewModel.TipoPagos = await _tiposService.ParametroTipo_Listar(15);
@@ -89,33 +93,6 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 var saldo = acreditacionFiltroViewModel.ImporteTotal - acreditacionFiltroViewModel.TotalPagoAcreditacion;
                 await _acreditacionService.Equipo_ActualizarSaldo(Id_Equipo, saldo, Id_Usuario);
             }
-            
-
-            //if (comprobanteResult.Id_Comprobante > 0)
-            //{
-            //    if (acreditacionFiltroViewModel.jugadoresSeleccionados == null || !acreditacionFiltroViewModel.jugadoresSeleccionados.Any())
-            //    {
-            //        TempData["Mensaje"] = "Debe seleccionar al menos un jugador.";
-            //        return RedirectToAction("Acreditacion");
-            //    }
-            //    try
-            //    {
-            //        foreach (var jugador in acreditacionFiltroViewModel.jugadoresSeleccionados)
-            //        {
-            //            //await _acreditacionService.Jugador_SolicitudAcreditacion(jugador.Id_Jugador, Id_Usuario);
-            //            //await _acreditacionService.JugadorComprobante_Insert(comprobanteResult.Id_Comprobante, jugador.Id_Jugador, jugador.ValorAcreditacion);
-            //        }
-
-            //        TempData["Mensaje"] = "Los jugadores fueron acreditados correctamente.";
-            //        var saldo = acreditacionFiltroViewModel.ImporteTotal - acreditacionFiltroViewModel.TotalPagoAcreditacion;
-            //        await _acreditacionService.Equipo_ActualizarSaldo(Id_Equipo, saldo);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        TempData["Mensaje"] = "Ocurrió un error al procesar la acreditación.";
-            //    }
-            //}
-
             return RedirectToAction("Acreditacion");
         }
         private async Task<string> GuardarArchivo(IFormFile archivo, int Id_Equipo, int Correlativo, int Id_013_TipoArchivo, string extensionesPermitidas)

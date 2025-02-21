@@ -38,6 +38,11 @@ namespace WebFPRTest.Areas.Externo.Controllers
             }
             var idEquipoStr = User.FindFirst("Id_Equipo")?.Value ?? "0";
             var Id_Equipo = int.Parse(idEquipoStr);
+            if (Id_Equipo == 0)
+            {
+                TempData["Mensaje"] = "Debe registrar a su equipo primero";
+                return RedirectToAction("Equipo", "Equipo");
+            }
             JugadorFiltroViewModel jugadorFiltro = new JugadorFiltroViewModel();
             jugadorFiltro.Id_Equipo = Id_Equipo;
             jugadorFiltro.ListaDivisiones = await _tiposService.ParametroTipo_Listar(7);
@@ -270,7 +275,11 @@ namespace WebFPRTest.Areas.Externo.Controllers
             }
             var idEquipoStr = User.FindFirst("Id_Equipo")?.Value ?? "0";
             var Id_Equipo = int.Parse(idEquipoStr);
-            
+            if (Id_Equipo == 0)
+            {
+                TempData["Mensaje"] = "Debe registrar a su equipo primero";
+                return RedirectToAction("Equipo", "Equipo");
+            }
             JugadorViewModel jugadorViewModel = new JugadorViewModel();
             jugadorViewModel.Id_Equipo = Id_Equipo;
             jugadorViewModel.Id_Jugador = TempData.Peek("Id_Jugador") as int? ?? 0;
