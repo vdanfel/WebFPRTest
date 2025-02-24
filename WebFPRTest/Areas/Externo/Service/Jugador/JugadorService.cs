@@ -15,7 +15,7 @@ namespace WebFPRTest.Areas.Externo.Service.Jugador
         {
             _connection = connection;
         }
-        public async Task<int?> Persona_Existe(int idTipoDocumento, string documento)
+        public async Task<PersonaModel> Persona_Existe(int idTipoDocumento, string documento)
         {
             var procedure = "usp_Persona_BuscarPorDocumento";
             try
@@ -25,7 +25,7 @@ namespace WebFPRTest.Areas.Externo.Service.Jugador
                 parameters.Add("@Documento", documento);
 
                 // Solo obtener el Id_Persona
-                var idPersona = await _connection.QueryFirstOrDefaultAsync<int?>(
+                var idPersona = await _connection.QueryFirstOrDefaultAsync<PersonaModel>(
                     procedure,
                     parameters,
                     commandType: CommandType.StoredProcedure

@@ -5,7 +5,7 @@ namespace WebFPRTest.Areas.Externo.Interface.Jugador
 {
     public interface IJugadorService
     {
-        Task<int?> Persona_Existe(int idTipoDocumento, string documento);
+        Task<PersonaModel> Persona_Existe(int idTipoDocumento, string documento);
         Task<int> Persona_Insertar(PersonaModel persona, int Id_Usuario);
         Task Persona_Actualizar(JugadorViewModel jugadorViewModel, int Id_Usuario);
         Task<int> Jugador_Existe(int Id_Persona, int Id_Equipo);

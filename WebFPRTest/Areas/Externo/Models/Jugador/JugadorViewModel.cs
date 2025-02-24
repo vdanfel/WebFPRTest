@@ -47,10 +47,10 @@ namespace WebFPRTest.Areas.Externo.Models.Jugador
     }
     public class JugadorApoderado
     {
-        public string ApoderadoPaterno { get; set; }
-        public string ApoderadoMaterno { get; set; }
-        public string ApoderadoNombres { get; set; }
-        public int ApoderadoId_001_TipoDocumento { get; set; }
-        public string ApoderadoDocumento { get; set; }
+        public string? ApoderadoPaterno { get; set; }
+        public string? ApoderadoMaterno { get; set; }
+        public string? ApoderadoNombres { get; set; }
+        public int? ApoderadoId_001_TipoDocumento { get; set; }
+        public string? ApoderadoDocumento { get; set; }
     }
 }

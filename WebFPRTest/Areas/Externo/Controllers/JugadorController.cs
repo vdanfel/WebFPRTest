@@ -47,6 +47,8 @@ namespace WebFPRTest.Areas.Externo.Controllers
             jugadorFiltro.Id_Equipo = Id_Equipo;
             jugadorFiltro.ListaDivisiones = await _tiposService.ParametroTipo_Listar(7);
             jugadorFiltro.ListaJugadores = await _jugadorService.Jugador_Bandeja(jugadorFiltro);
+            TempData.Remove("Id_001_TipoDocumento");
+            TempData.Remove("Documento");
             return View(jugadorFiltro);
         }
         [HttpPost]
@@ -162,35 +164,36 @@ namespace WebFPRTest.Areas.Externo.Controllers
                         }
 
                         // Validar si la persona existe en la BD
-                        int? Id_Persona = await _jugadorService.Persona_Existe(idTipoDocumento, nroDocumento);
-
-                        if (Id_Persona == null)
+                        var persona = await _jugadorService.Persona_Existe(idTipoDocumento, nroDocumento);
+                        if (persona == null)
                         {
-                            var persona = new PersonaModel
-                            {
-                                Paterno = jugador.ContainsKey("Paterno") ? jugador["Paterno"] : null,
-                                Materno = jugador.ContainsKey("Materno") ? jugador["Materno"] : null,
-                                Nombres = jugador.ContainsKey("Nombres") ? jugador["Nombres"] : null,
-                                Id_001_TipoDocumento = idTipoDocumento,
-                                Documento = nroDocumento,
-                                FechaNacimiento = jugador.ContainsKey("FechaNacimiento") && DateTime.TryParse(jugador["FechaNacimiento"], out DateTime fechaNacimiento) ? fechaNacimiento : default,
-                                Celular = jugador.ContainsKey("Celular") ? jugador["Celular"] : null,
-                                Correo = jugador.ContainsKey("Correo") ? jugador["Correo"] : null,
-                                Id_002_Sexo = jugador.ContainsKey("Sexo") && int.TryParse(jugador["Sexo"], out int sexo) ? sexo : 0
-                            };
+                            persona = new PersonaModel();
+                        }
+                        if (persona.Id_Persona == 0)
+                        {
+
+                            persona.Paterno = jugador.ContainsKey("Paterno") ? jugador["Paterno"] : null;
+                            persona.Materno = jugador.ContainsKey("Materno") ? jugador["Materno"] : null;
+                            persona.Nombres = jugador.ContainsKey("Nombres") ? jugador["Nombres"] : null;
+                            persona.Id_001_TipoDocumento = idTipoDocumento;
+                            persona.Documento = nroDocumento;
+                            persona.FechaNacimiento = jugador.ContainsKey("FechaNacimiento") && DateTime.TryParse(jugador["FechaNacimiento"], out DateTime fechaNacimiento) ? fechaNacimiento : default;
+                            persona.Celular = jugador.ContainsKey("Celular") ? jugador["Celular"] : null;
+                            persona.Correo = jugador.ContainsKey("Correo") ? jugador["Correo"] : null;
+                            persona.Id_002_Sexo = jugador.ContainsKey("Sexo") && int.TryParse(jugador["Sexo"], out int sexo) ? sexo : 0;
 
                             // Insertar persona en la BD
-                            Id_Persona = await _jugadorService.Persona_Insertar(persona, Id_Usuario);
+                            persona.Id_Persona = await _jugadorService.Persona_Insertar(persona, Id_Usuario);
                         }
 
-                        if (Id_Persona != null)
+                        if (persona.Id_Persona != null)
                         {
-                            var jExiste = await _jugadorService.Jugador_Existe((int)Id_Persona, Id_Equipo);
+                            var jExiste = await _jugadorService.Jugador_Existe(persona.Id_Persona, Id_Equipo);
                             if (jExiste == 0)
                             {
                                 var jugadorModel = new JugadorModel
                                 {
-                                    Id_Persona = (int)Id_Persona,
+                                    Id_Persona = persona.Id_Persona,
                                     Id_Equipo = Id_Equipo
                                 };
                                 var Id_Jugador = await _jugadorService.Jugador_Insertar(jugadorModel, Id_Usuario);
@@ -267,7 +270,7 @@ namespace WebFPRTest.Areas.Externo.Controllers
         }
         [HttpGet]
         public async Task<IActionResult> Jugador()
-        {
+            {
             var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
             if (tipoUsuario == null || tipoUsuario != "409")
             {
@@ -281,13 +284,6 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 return RedirectToAction("Equipo", "Equipo");
             }
             JugadorViewModel jugadorViewModel = new JugadorViewModel();
-            jugadorViewModel.Id_Equipo = Id_Equipo;
-            jugadorViewModel.Id_Jugador = TempData.Peek("Id_Jugador") as int? ?? 0;
-            if (jugadorViewModel.Id_Jugador > 0)
-            {
-                jugadorViewModel = await _jugadorService.Jugador_Select(jugadorViewModel.Id_Jugador);
-                jugadorViewModel.DatosApoderado = await _jugadorService.Apoderado_Select(jugadorViewModel.Id_Persona);
-            }
             jugadorViewModel.TipoDocumentos = await _tiposService.ParametroTipo_Listar(1);
             jugadorViewModel.Paises = await _tiposService.ParametroTipo_Listar(3);
             jugadorViewModel.Nacionalidades = await _tiposService.ParametroTipo_Listar(4);
@@ -299,6 +295,56 @@ namespace WebFPRTest.Areas.Externo.Controllers
             jugadorViewModel.TipoSangre = await _tiposService.ParametroTipo_Listar(14);
             jugadorViewModel.RutaFoto = await _jugadorService.Archivo_Ruta(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, 431);
             jugadorViewModel.RutaDeslinde = await _jugadorService.Archivo_Ruta(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, 432);
+            jugadorViewModel.Id_Equipo = Id_Equipo;
+            jugadorViewModel.Id_Jugador = TempData.Peek("Id_Jugador") as int? ?? 0;
+            if (jugadorViewModel.Id_Jugador > 0)
+            {
+                jugadorViewModel = await _jugadorService.Jugador_Select(jugadorViewModel.Id_Jugador);
+                jugadorViewModel.DatosApoderado = await _jugadorService.Apoderado_Select(jugadorViewModel.Id_Persona);
+                jugadorViewModel.TipoDocumentos = await _tiposService.ParametroTipo_Listar(1);
+                jugadorViewModel.Paises = await _tiposService.ParametroTipo_Listar(3);
+                jugadorViewModel.Nacionalidades = await _tiposService.ParametroTipo_Listar(4);
+                jugadorViewModel.Sexos = await _tiposService.ParametroTipo_Listar(2);
+                jugadorViewModel.TipoSeguros = await _tiposService.ParametroTipo_Listar(5);
+                jugadorViewModel.TipoVehiculos = await _tiposService.ParametroTipo_Listar(6);
+                jugadorViewModel.DivisionList = await _tiposService.ParametroTipo_Listar(7);
+                jugadorViewModel.SituacionList = await _tiposService.ParametroTipo_Listar(8);
+                jugadorViewModel.TipoSangre = await _tiposService.ParametroTipo_Listar(14);
+                jugadorViewModel.RutaFoto = await _jugadorService.Archivo_Ruta(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, 431);
+                jugadorViewModel.RutaDeslinde = await _jugadorService.Archivo_Ruta(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, 432);
+            }
+            else
+            {
+                var Id_001_TipoDocumento = TempData.Peek("Id_001_TipoDocumento") as int? ?? 0;
+                var Documento = TempData.Peek("Documento") as string;
+                if (Id_001_TipoDocumento > 0)
+                {
+                    var persona = await _jugadorService.Persona_Existe(Id_001_TipoDocumento, Documento);
+                    jugadorViewModel.Id_Persona = persona.Id_Persona;
+                    jugadorViewModel.Paterno = persona.Paterno ?? string.Empty;
+                    jugadorViewModel.Materno = persona.Materno ?? string.Empty;
+                    jugadorViewModel.Nombres = persona.Nombres ?? string.Empty;
+                    jugadorViewModel.FechaNacimiento = persona.FechaNacimiento;
+                    jugadorViewModel.Id_003_Pais = persona.Id_003_Pais;
+                    jugadorViewModel.Id_004_Nacionalidad = persona.Id_004_Nacionalidad;
+                    jugadorViewModel.Id_002_Sexo = persona.Id_002_Sexo;
+                    jugadorViewModel.Celular = persona.Celular ?? string.Empty;
+                    jugadorViewModel.Id_014_TipoSangre = persona.Id_014_TipoSangre;
+                    jugadorViewModel.Correo = persona.Correo ?? string.Empty;
+                    jugadorViewModel.Id_005_TipoSeguro = persona.Id_005_TipoSeguro;
+                    jugadorViewModel.NumeroPoliza = persona.NumeroPoliza ?? string.Empty;
+                    jugadorViewModel.FechaPoliza = persona.FechaPoliza;
+                    jugadorViewModel.FechaVencimientoPoliza = persona.FechaVencimientoPoliza;
+                    jugadorViewModel.Id_006_TipoVehiculo = persona.Id_006_TipoVehiculo;
+                    jugadorViewModel.NumeroPlaca = persona.NumeroPlaca ?? string.Empty;
+                    jugadorViewModel.Id_001_TipoDocumento = Id_001_TipoDocumento;
+                    jugadorViewModel.Documento = Documento ?? string.Empty;
+                    var apoderado = await _jugadorService.Apoderado_Select(jugadorViewModel.Id_Persona);
+                    jugadorViewModel.DatosApoderado = apoderado ?? new JugadorApoderado();
+
+                }
+            }
+            
             return View(jugadorViewModel);
         }
         [HttpPost]
@@ -310,8 +356,9 @@ namespace WebFPRTest.Areas.Externo.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            int? existeP = await _jugadorService.Persona_Existe(jugadorViewModel.Id_001_TipoDocumento, jugadorViewModel.Documento);
-            if (existeP == null)
+
+            var persona = await _jugadorService.Persona_Existe(jugadorViewModel.Id_001_TipoDocumento, jugadorViewModel.Documento);
+            if (persona == null)
             {
                 PersonaModel personaModel = new PersonaModel()
                 {
@@ -334,11 +381,17 @@ namespace WebFPRTest.Areas.Externo.Controllers
                     Id_006_TipoVehiculo = jugadorViewModel.Id_006_TipoVehiculo ?? 0, // Si es null, usa 0
                     NumeroPlaca = jugadorViewModel.NumeroPlaca ?? "" // Si es null, usa string vacío
                 };
-
                 jugadorViewModel.Id_Persona = await _jugadorService.Persona_Insertar(personaModel, Id_Usuario);
+                
             }
-
-
+            else
+            {
+                await _jugadorService.Persona_Actualizar(jugadorViewModel, Id_Usuario);
+            }
+            if (jugadorViewModel.DatosApoderado.ApoderadoDocumento != null)
+            {
+                await _jugadorService.Apoderado_Insertar(jugadorViewModel, Id_Usuario);
+            }
             int existe = await _jugadorService.Jugador_Existe(jugadorViewModel.Id_Persona, jugadorViewModel.Id_Equipo);
             if (existe == 0)
             {
@@ -405,9 +458,12 @@ namespace WebFPRTest.Areas.Externo.Controllers
         }
         [HttpGet]
         public async Task<IActionResult> ValidarPersona(int idTipoDocumento, string documento)
-                {
+        {
             var idEquipoStr = User.FindFirst("Id_Equipo")?.Value ?? "0";
             var Id_Equipo = int.Parse(idEquipoStr);
+
+            TempData["Id_001_TipoDocumento"] = idTipoDocumento;
+            TempData["Documento"] = documento;
 
             int Id_Jugador = await _jugadorService.Jugador_BuscarPorDocumento(Id_Equipo, idTipoDocumento, documento);
 
@@ -415,14 +471,16 @@ namespace WebFPRTest.Areas.Externo.Controllers
             {
                 return Json(new { success = false, message = "El jugador ya está registrado en otro equipo." });
             }
-            if (Id_Jugador > 0)
+            else if (Id_Jugador > 0)
             {
                 return Json(new { success = true, redirectUrl = Url.Action("GuardarJugadorSeleccionado", "Jugador", new { Id_Jugador }) });
             }
-
-            // Para el caso en que Id_Jugador == 0
-            return Json(new { success = true });
+            else
+            {
+                return Json(new { success = true, redirectUrl = Url.Action("Jugador", "Jugador") });
+            }
         }
+
         private async Task LimpiarArchivosExistentes(int Id_Equipo, int Id_Jugador, int Id_013_TipoArchivo, string[] extensionesPermitidas)
         {
             var NombreTipoArchivo = await _tiposService.TipoArchivo_Descripcion(Id_013_TipoArchivo);
