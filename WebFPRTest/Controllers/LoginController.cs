@@ -35,7 +35,8 @@ namespace WebFPRTest.Controllers
                     new Claim(ClaimTypes.Name, usuario.Usuario), // Nombre del usuario
                     new Claim("Id_Usuario", usuario.Id_Usuario.ToString()), // ID del usuario
                     new Claim("Id_011_TipoUsuario", usuario.Id_011_TipoUsuario.ToString()), // Tipo de usuario
-                    new Claim("Id_Equipo",usuario.Id_Equipo.ToString())
+                    new Claim("Id_Equipo",usuario.Id_Equipo.ToString()),
+                    new Claim("NombreEquipo", usuario.NombreEquipo.ToString())
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

@@ -175,3 +175,17 @@ D:\Desarrollos\WebFPRTest\WebFPRTest\obj\Release\net6.0\refint\WebFPRTest.dll
 D:\Desarrollos\WebFPRTest\WebFPRTest\obj\Release\net6.0\WebFPRTest.pdb
 D:\Desarrollos\WebFPRTest\WebFPRTest\obj\Release\net6.0\WebFPRTest.genruntimeconfig.cache
 D:\Desarrollos\WebFPRTest\WebFPRTest\obj\Release\net6.0\ref\WebFPRTest.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Release\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Release\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Release\net6.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Release\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Release\net6.0\Microsoft.Extensions.Hosting.Abstractions.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Release\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Release\net6.0\Microsoft.Extensions.ObjectPool.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Release\net6.0\Microsoft.Extensions.Options.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Release\net6.0\Microsoft.Extensions.Primitives.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Release\net6.0\System.IO.Pipelines.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Release\net6.0\System.Net.WebSockets.WebSocketProtocol.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Release\net6.0\System.Text.Encodings.Web.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Release\net6.0\System.Threading.Channels.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Release\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll

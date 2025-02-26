@@ -44,6 +44,7 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 equipo = await _equipoService.Equipo_Listar(Id_Equipo);
                 equipo.RutaLogo = await _equipoService.Archivo_RutaLogo(Id_Equipo, 0, 417);
                 equipo.Horarios = await _equipoService.HorariosEntrenamiento_Listar(Id_Equipo);
+                HttpContext.Session.SetString("NombreEquipo", equipo.Nombre);
             }
             return View(equipo);
         }
@@ -76,6 +77,7 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 await _equipoService.Equipo_Actualizar(equipo, Id_Usuario);
                 TempData["Mensaje"] = "Equipo actualizado con éxito";
             }
+            HttpContext.Session.SetString("NombreEquipo", equipo.Nombre);
             await _equipoService.AsociarUsuarioEquipo(equipo.Id_Equipo, Id_Usuario);
             equipo.Horarios.Id_Equipo = equipo.Id_Equipo;
             await _equipoService.HorariosEntrenamientos_Insertar(equipo.Horarios,Id_Usuario);

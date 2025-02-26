@@ -320,6 +320,10 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 if (Id_001_TipoDocumento > 0)
                 {
                     var persona = await _jugadorService.Persona_Existe(Id_001_TipoDocumento, Documento);
+                    if (persona == null)
+                    {
+                        persona = new PersonaModel();
+                    }
                     jugadorViewModel.Id_Persona = persona.Id_Persona;
                     jugadorViewModel.Paterno = persona.Paterno ?? string.Empty;
                     jugadorViewModel.Materno = persona.Materno ?? string.Empty;

@@ -96,12 +96,12 @@
                 <tbody>
                     @foreach (var jugadores in Model.ListaJugadores)
                     {
-                        string colorFondo = jugadores.Id_009_EstadoJugador == 441 ? "#FFF9C4  " :
-                        jugadores.Id_009_EstadoJugador == 442 ? "#FFB74D " :
-                        jugadores.Id_009_EstadoJugador == 443 ? "#E3F2FD  " :
-                        jugadores.Id_009_EstadoJugador == 444 ? "#90CAF9 " :
-                        jugadores.Id_009_EstadoJugador == 445 ? "#C8E6C9  " :
-                        jugadores.Id_009_EstadoJugador == 446 ? "#81C784 " :
+                        string colorFondo = jugadores.Id_009_EstadoJugador == 441 ? "#FFFEC4  " :
+                        jugadores.Id_009_EstadoJugador == 442 ? "#FDFDAB" :
+                        jugadores.Id_009_EstadoJugador == 443 ? "#FFDB99" :
+                        jugadores.Id_009_EstadoJugador == 444 ? "#FFC966" :
+                        jugadores.Id_009_EstadoJugador == 445 ? "#E2FBDF" :
+                        jugadores.Id_009_EstadoJugador == 446 ? "#C3F6BF" :
                         "#FFFFFF";
                         <tr class="align-middle">
                             <td style="background-color:@colorFondo;text-align:center">@jugadores.Indice</td>

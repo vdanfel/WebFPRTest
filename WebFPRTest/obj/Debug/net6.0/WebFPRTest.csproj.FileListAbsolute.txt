@@ -175,3 +175,17 @@ E:\WebFPRTest\WebFPRTest\bin\Debug\net6.0\ExcelNumberFormat.dll
 E:\WebFPRTest\WebFPRTest\bin\Debug\net6.0\RBush.dll
 E:\WebFPRTest\WebFPRTest\bin\Debug\net6.0\SixLabors.Fonts.dll
 E:\WebFPRTest\WebFPRTest\bin\Debug\net6.0\System.IO.Packaging.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Debug\net6.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Debug\net6.0\Microsoft.Extensions.Hosting.Abstractions.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Debug\net6.0\Microsoft.Extensions.ObjectPool.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Debug\net6.0\System.IO.Pipelines.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Debug\net6.0\System.Net.WebSockets.WebSocketProtocol.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Debug\net6.0\System.Threading.Channels.dll
+D:\Desarrollos\WebFPRTest\WebFPRTest\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll

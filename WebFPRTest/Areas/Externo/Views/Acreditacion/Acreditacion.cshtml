@@ -1,12 +1,13 @@
 ﻿@model WebFPRTest.Areas.Externo.Models.Acreditacion.AcreditacionFiltroViewModel
 @{
     Layout = "_LayoutExterno";
+    var nombreEquipo = Context.Session.GetString("NombreEquipo");
 }
 <form asp-area="Externo" asp-controller="Acreditacion" asp-action="Acreditacion" method="post" enctype="multipart/form-data">
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h4>Nombre Equipo</h4>
+                <h2>@nombreEquipo</h2>
             </div>
             <div class="card-body">
                 <div class="row g-2">

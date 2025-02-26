@@ -1,6 +1,7 @@
 ﻿@model WebFPRTest.Areas.Externo.Models.Jugador.JugadorViewModel
 @{
     Layout = "_LayoutExterno";
+    var nombreEquipo = Context.Session.GetString("NombreEquipo");
 }
 <form method="post" asp-area="Externo" asp-controller="Jugador" asp-action="Jugador" enctype="multipart/form-data">
     <input type="text" asp-for="Id_Jugador" hidden/>
@@ -8,276 +9,283 @@
     <input type="text" asp-for="Id_Persona" hidden/>
     <input type="text" asp-for="Id_009_EstadoJugador" hidden/>
      <div class="container">
-        <div class="row g-2">
-            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                <div class="form-floating">
-                    <select class="form-select" asp-for="Id_001_TipoDocumento" id="Id_001_TipoDocumento" onchange="ValidarPersona()" required>
-                        <option></option>
-                        @foreach (var tipoDocumento in Model.TipoDocumentos)
-                        {
-                            <option value="@tipoDocumento.Id_Parametros">@tipoDocumento.Abreviatura</option>
-                        }
-                    </select>
-                    <label>Tipo Documento</label>
-                </div>
+        <div class="card">
+            <div class="card-header">
+                <h2>@nombreEquipo</h2>
             </div>
-            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Documento" id="Documento" onblur="ValidarPersona()" required/>
-                    <label>Numero Documento</label>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-3">
-                <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Paterno" id="Paterno" required/>
-                    <label>Paterno</label>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-3">
-                <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Materno" id="Materno" required/>
-                    <label>Materno</label>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Nombres" id="Nombres" required />
-                    <label>Nombres</label>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                <div class="form-floating">
-                    <input type="date" class="form-control" asp-for="FechaNacimiento" id="FechaNacimiento" onblur="datosApoderado(this)" required/>
-                    <label>Fecha Nacimiento</label>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                <div class="form-floating">
-                    <select class="form-select" asp-for="Id_003_Pais" id="Id_003_Pais" required>
-                        <option></option>
-                        @foreach (var paises in Model.Paises)
-                        {
-                            <option value="@paises.Id_Parametros">@paises.Descripcion</option>
-                        }
-                    </select>
-                    <label>Pais</label>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                <div class="form-floating">
-                    <select class="form-select" asp-for="Id_004_Nacionalidad" id="Id_004_Nacionalidad" required>
-                        <option></option>
-                        @foreach (var nacionalidades in Model.Nacionalidades)
-                        {
-                            <option value="@nacionalidades.Id_Parametros">@nacionalidades.Descripcion</option>
-                        }
-                    </select>
-                    <label>Nacionalidad</label>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                <div class="form-floating">
-                    <select class="form-select" asp-for="Id_002_Sexo" id="Id_002_Sexo" required>
-                        <option></option>
-                        @foreach (var sexos in Model.Sexos)
-                        {
-                            <option value="@sexos.Id_Parametros">@sexos.Descripcion</option>
-                        }
-                    </select>
-                    <label>Sexo</label>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Celular" id="Celular" required/>
-                    <label>Celular</label>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                <div class="form-floating">
-                    <select class="form-select" asp-for="Id_014_TipoSangre" id="Id_014_TipoSangre" required>
-                        <option></option>
-                        @foreach (var tipoSangre in Model.TipoSangre)
-                        {
-                            <option value="@tipoSangre.Id_Parametros">@tipoSangre.Abreviatura</option>
-                        }
-                    </select>
-                    <label>Tipo Sangre</label>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="Correo" id="Correo" required />
-                    <label>Correo</label>
-                </div>
-            </div>
-            <input type="hidden" id="rutaFotoHidden" value="@Model.RutaFoto" />
-            <div class="col-12 d-flex align-items-center">
-                <div class="container-input">
-                    <input type="file"
-                           id="file-foto"
-                           class="inputfile inputfile-1"
-                           asp-for="@Model.Foto"
-                           accept=".jpg,.jpeg,.png"
-                           onchange="previewFile(event, 'imagen')"
-                           data-val="false" />
-                    <label for="file-foto">
-                        <div class="label-text">Foto</div>
-                        <span class="iborrainputfile">Seleccionar Foto</span>
-                    </label>
-                </div>
-                <div class="ms-auto px-3">
-                    <a href="#" onclick="showFilePreview('imagen')" data-bs-toggle="modal" data-bs-target="#imageModal">Ver</a>
-                </div>
-            </div>
-            <div id="DatosApoderado" class="col-12" style="display: none;">
-                <div class="card bg-secondary bg-opacity-25 p-2">
-                    <div class="row">
-                        <h4>Datos del Apoderado</h4>
-                    </div>
-                    <div class="row g-2 mb-2">
-                        <div class="col-12 col-sm-12 col-md-6 col-lg-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" asp-for="DatosApoderado.ApoderadoPaterno" id="ApoderadoPaterno" />
-                                <label>Paterno</label>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-6 col-lg-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" asp-for="DatosApoderado.ApoderadoMaterno" id="ApoderadoMaterno" />
-                                <label>Materno</label>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" asp-for="DatosApoderado.ApoderadoNombres" id="ApoderadoNombres" />
-                                <label>Nombres</label>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                            <div class="form-floating">
-                                <select class="form-select" asp-for="DatosApoderado.ApoderadoId_001_TipoDocumento" id="ApoderadoId_001_TipoDocumento">
-                                    <option></option>
-                                    @foreach (var tipoDocumento in Model.TipoDocumentos)
-                                    {
-                                        <option value="@tipoDocumento.Id_Parametros">@tipoDocumento.Abreviatura</option>
-                                    }
-                                </select>
-                                <label>Tipo Documento</label>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" asp-for="DatosApoderado.ApoderadoDocumento" id="ApoderadoDocumento" />
-                                <label>Numero Documento</label>
-                            </div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                        <div class="form-floating">
+                            <select class="form-select" asp-for="Id_001_TipoDocumento" id="Id_001_TipoDocumento" onchange="ValidarPersona()" required>
+                                <option></option>
+                                @foreach (var tipoDocumento in Model.TipoDocumentos)
+                                {
+                                    <option value="@tipoDocumento.Id_Parametros">@tipoDocumento.Abreviatura</option>
+                                }
+                            </select>
+                            <label>Tipo Documento</label>
                         </div>
                     </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" asp-for="Documento" id="Documento" onblur="ValidarPersona()" required />
+                            <label>Numero Documento</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" asp-for="Paterno" id="Paterno" required />
+                            <label>Paterno</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" asp-for="Materno" id="Materno" required />
+                            <label>Materno</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" asp-for="Nombres" id="Nombres" required />
+                            <label>Nombres</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                        <div class="form-floating">
+                            <input type="date" class="form-control" asp-for="FechaNacimiento" id="FechaNacimiento" onblur="datosApoderado(this)" required />
+                            <label>Fecha Nacimiento</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                        <div class="form-floating">
+                            <select class="form-select" asp-for="Id_003_Pais" id="Id_003_Pais" required>
+                                <option></option>
+                                @foreach (var paises in Model.Paises)
+                                {
+                                    <option value="@paises.Id_Parametros">@paises.Descripcion</option>
+                                }
+                            </select>
+                            <label>Pais</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                        <div class="form-floating">
+                            <select class="form-select" asp-for="Id_004_Nacionalidad" id="Id_004_Nacionalidad" required>
+                                <option></option>
+                                @foreach (var nacionalidades in Model.Nacionalidades)
+                                {
+                                    <option value="@nacionalidades.Id_Parametros">@nacionalidades.Descripcion</option>
+                                }
+                            </select>
+                            <label>Nacionalidad</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                        <div class="form-floating">
+                            <select class="form-select" asp-for="Id_002_Sexo" id="Id_002_Sexo" required>
+                                <option></option>
+                                @foreach (var sexos in Model.Sexos)
+                                {
+                                    <option value="@sexos.Id_Parametros">@sexos.Descripcion</option>
+                                }
+                            </select>
+                            <label>Sexo</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" asp-for="Celular" id="Celular" required />
+                            <label>Celular</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                        <div class="form-floating">
+                            <select class="form-select" asp-for="Id_014_TipoSangre" id="Id_014_TipoSangre" required>
+                                <option></option>
+                                @foreach (var tipoSangre in Model.TipoSangre)
+                                {
+                                    <option value="@tipoSangre.Id_Parametros">@tipoSangre.Abreviatura</option>
+                                }
+                            </select>
+                            <label>Tipo Sangre</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" asp-for="Correo" id="Correo" required />
+                            <label>Correo</label>
+                        </div>
+                    </div>
+                    <input type="hidden" id="rutaFotoHidden" value="@Model.RutaFoto" />
+                    <div class="col-12 d-flex align-items-center">
+                        <div class="container-input">
+                            <input type="file"
+                                   id="file-foto"
+                                   class="inputfile inputfile-1"
+                                   asp-for="@Model.Foto"
+                                   accept=".jpg,.jpeg,.png"
+                                   onchange="previewFile(event, 'imagen')"
+                                   data-val="false" />
+                            <label for="file-foto">
+                                <div class="label-text">Foto</div>
+                                <span class="iborrainputfile">Seleccionar Foto</span>
+                            </label>
+                        </div>
+                        <div class="ms-auto px-3">
+                            <a href="#" onclick="showFilePreview('imagen')" data-bs-toggle="modal" data-bs-target="#imageModal">Ver</a>
+                        </div>
+                    </div>
+                    <div id="DatosApoderado" class="col-12" style="display: none;">
+                        <div class="card bg-secondary bg-opacity-25 p-2">
+                            <div class="row">
+                                <h4>Datos del Apoderado</h4>
+                            </div>
+                            <div class="row g-2 mb-2">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" asp-for="DatosApoderado.ApoderadoPaterno" id="ApoderadoPaterno" />
+                                        <label>Paterno</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" asp-for="DatosApoderado.ApoderadoMaterno" id="ApoderadoMaterno" />
+                                        <label>Materno</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" asp-for="DatosApoderado.ApoderadoNombres" id="ApoderadoNombres" />
+                                        <label>Nombres</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                                    <div class="form-floating">
+                                        <select class="form-select" asp-for="DatosApoderado.ApoderadoId_001_TipoDocumento" id="ApoderadoId_001_TipoDocumento">
+                                            <option></option>
+                                            @foreach (var tipoDocumento in Model.TipoDocumentos)
+                                            {
+                                                <option value="@tipoDocumento.Id_Parametros">@tipoDocumento.Abreviatura</option>
+                                            }
+                                        </select>
+                                        <label>Tipo Documento</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" asp-for="DatosApoderado.ApoderadoDocumento" id="ApoderadoDocumento" />
+                                        <label>Numero Documento</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                        <div class="form-floating">
+                            <select class="form-select" asp-for="Id_005_TipoSeguro" id="Id_005_TipoSeguro" required>
+                                <option></option>
+                                @foreach (var tipoSeguro in Model.TipoSeguros)
+                                {
+                                    <option value="@tipoSeguro.Id_Parametros">@tipoSeguro.Descripcion</option>
+                                }
+                            </select>
+                            <label>Tipo Seguro</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" asp-for="NumeroPoliza" id="NumeroPoliza" required />
+                            <label>Numero Poliza</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                        <div class="form-floating">
+                            <input type="date" class="form-control" asp-for="FechaPoliza" id="FechaPoliza" required />
+                            <label>Fecha Poliza</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                        <div class="form-floating">
+                            <input type="date" class="form-control" asp-for="FechaVencimientoPoliza" id="FechaVencimientoPoliza" required />
+                            <label>Fecha Caducidad</label>
+                        </div>
+                    </div>
+                    <input type="hidden" id="rutaPdfHidden" value="@Model.RutaDeslinde" />
+                    <div class="col-12 d-flex align-items-center">
+                        <div class="container-input">
+                            <input type="file"
+                                   id="file-pdf"
+                                   class="inputfile inputfile-1"
+                                   asp-for="Deslinde"
+                                   accept=".pdf"
+                                   onchange="previewFile(event, 'pdf')"
+                                   data-val="false" />
+                            <label for="file-pdf">
+                                <div class="label-text">Documento Deslinde</div>
+                                <span class="iborrainputfile">Seleccionar Documento Deslinde</span>
+                            </label>
+                        </div>
+                        <div class="ms-auto px-3">
+                            <a href="#" onclick="showFilePreview('pdf')" data-bs-toggle="modal" data-bs-target="#pdfModal">Ver</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                        <div class="form-floating">
+                            <select class="form-select" asp-for="Id_006_TipoVehiculo">
+                                <option></option>
+                                @foreach (var tipoVehiculos in Model.TipoVehiculos)
+                                {
+                                    <option value="@tipoVehiculos.Id_Parametros">@tipoVehiculos.Descripcion</option>
+                                }
+                            </select>
+                            <label>Tipo Vehiculo</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" asp-for="NumeroPlaca" />
+                            <label>Numero Placa</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating">
+                            <select class="form-select" asp-for="Id_007_Division" required>
+                                <option></option>
+                                @foreach (var divisionList in Model.DivisionList)
+                                {
+                                    <option value="@divisionList.Id_Parametros">@divisionList.Descripcion</option>
+                                }
+                            </select>
+                            <label>Division</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating">
+                            <select class="form-select" asp-for="Id_008_Situacion" required>
+                                <option></option>
+                                @foreach (var situacionList in Model.SituacionList)
+                                {
+                                    <option value="@situacionList.Id_Parametros">@situacionList.Descripcion</option>
+                                }
+                            </select>
+                            <label>Situacion</label>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                <div class="form-floating">
-                    <select class="form-select" asp-for="Id_005_TipoSeguro" id="Id_005_TipoSeguro" required>
-                        <option></option>
-                        @foreach (var tipoSeguro in Model.TipoSeguros)
-                        {
-                            <option value="@tipoSeguro.Id_Parametros">@tipoSeguro.Descripcion</option>
-                        }
-                    </select>
-                    <label>Tipo Seguro</label>
+                <div class="row mt-2 g-2">
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <textarea class="form-control" style="height:7rem" disabled></textarea>
+                            <label>Observacion FPR</label>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="NumeroPoliza" id="NumeroPoliza" required/>
-                    <label>Numero Poliza</label>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                <div class="form-floating">
-                    <input type="date" class="form-control" asp-for="FechaPoliza" id="FechaPoliza" required/>
-                    <label>Fecha Poliza</label>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                <div class="form-floating">
-                    <input type="date" class="form-control" asp-for="FechaVencimientoPoliza" id="FechaVencimientoPoliza" required/>
-                    <label>Fecha Caducidad</label>
-                </div>
-            </div>
-            <input type="hidden" id="rutaPdfHidden" value="@Model.RutaDeslinde" />
-            <div class="col-12 d-flex align-items-center">
-                <div class="container-input">
-                    <input type="file"
-                           id="file-pdf"
-                           class="inputfile inputfile-1"
-                           asp-for="Deslinde"
-                           accept=".pdf"
-                           onchange="previewFile(event, 'pdf')"
-                           data-val="false" />
-                    <label for="file-pdf">
-                        <div class="label-text">Documento Deslinde</div>
-                        <span class="iborrainputfile">Seleccionar Documento Deslinde</span>
-                    </label>
-                </div>
-                <div class="ms-auto px-3">
-                    <a href="#" onclick="showFilePreview('pdf')" data-bs-toggle="modal" data-bs-target="#pdfModal">Ver</a>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                <div class="form-floating">
-                    <select class="form-select" asp-for="Id_006_TipoVehiculo">
-                        <option></option>
-                        @foreach (var tipoVehiculos in Model.TipoVehiculos)
-                        {
-                            <option value="@tipoVehiculos.Id_Parametros">@tipoVehiculos.Descripcion</option>
-                        }
-                    </select>
-                    <label>Tipo Vehiculo</label>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 col-lg-3">
-                <div class="form-floating">
-                    <input type="text" class="form-control" asp-for="NumeroPlaca"/>
-                    <label>Numero Placa</label>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="form-floating">
-                    <select class="form-select" asp-for="Id_007_Division" required>
-                        <option></option>
-                        @foreach (var divisionList in Model.DivisionList)
-                        {
-                            <option value="@divisionList.Id_Parametros">@divisionList.Descripcion</option>
-                        }
-                    </select>
-                    <label>Division</label>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="form-floating">
-                    <select class="form-select" asp-for="Id_008_Situacion" required>
-                        <option></option>
-                        @foreach (var situacionList in Model.SituacionList)
-                        {
-                            <option value="@situacionList.Id_Parametros">@situacionList.Descripcion</option>
-                        }
-                    </select>
-                    <label>Situacion</label>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-2 g-2">
-            <div class="col-12">
-                <div class="form-floating">
-                    <textarea class="form-control" style="height:7rem" disabled></textarea>
-                    <label>Observacion FPR</label>
-                </div>
-            </div>
-        </div>
 
-        <div class="mt-2">
-            <button type="submit" class="btn btn-outline-primary" id="btnGuardar">Guardar</button>
+                <div class="mt-2">
+                    <button type="submit" class="btn btn-outline-primary" id="btnGuardar">Guardar</button>
+                </div>
+            </div>
         </div>
 
     </div>
