@@ -134,14 +134,24 @@
     </div>
 </div>
 <!-- Spinner de carga -->
-<div id="spinnerCarga" class="spinner-overlay" style="display: none;">
+@*<div id="spinnerCarga" class="spinner-overlay" style="display: none;">
     <div class="spinner-container">
         <div class="spinner-border text-primary" role="status">
             <span class="visually-hidden">Cargando...</span>
         </div>
         <p>Procesando archivo...</p>
     </div>
+</div>*@
+<!-- Spinner de carga con progreso -->
+<div id="spinnerCarga" class="spinner-overlay" style="display: none;">
+    <div class="spinner-container">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p id="progresoCarga" style="display: none;">0%</p>
+    </div>
 </div>
+
 <!-- Modal de resultado -->
 <div class="modal fade" id="modalResultado" tabindex="-1">
     <div class="modal-dialog">
@@ -176,11 +186,12 @@
         let formData = new FormData();
         formData.append("archivoExcel", file);
 
-        // Cerrar el modal de carga de Excel y mostrar el spinner
         let modalCargaExcel = bootstrap.Modal.getInstance(document.getElementById("modalCargaExcel"));
         modalCargaExcel.hide();
 
         document.getElementById("spinnerCarga").style.display = "flex";
+        document.getElementById("progresoCarga").style.display = "block"; // Mostrar el porcentaje
+        document.getElementById("progresoCarga").innerText = "0%";
 
         fetch("/Externo/Jugador/CargarExcel", {
             method: "POST",
@@ -190,16 +201,13 @@
             .then(data => {
                 document.getElementById("spinnerCarga").style.display = "none"; // Ocultar spinner
 
-                // Crear instancia del modal de resultado
                 let modalResultado = new bootstrap.Modal(document.getElementById("modalResultado"), {
-                    backdrop: 'static', // Evita que se cierre al hacer clic fuera
-                    keyboard: false     // Evita que se cierre con la tecla ESC
+                    backdrop: 'static',
+                    keyboard: false
                 });
 
-                // Insertar el mensaje de resultado
                 document.getElementById("resultadoMensaje").innerHTML = data.message;
 
-                // Si hay un log, agregar botón dentro del modal
                 if (data.logFile) {
                     document.getElementById("resultadoMensaje").innerHTML += `
                     <br>
@@ -210,10 +218,74 @@
                 `;
                 }
 
-                // Mostrar el modal
                 modalResultado.show();
             });
+
+        // Iniciar la verificación periódica del progreso
+        let interval = setInterval(() => {
+            fetch("/Externo/Jugador/ObtenerProgreso")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.progreso !== undefined) {
+                        document.getElementById("progresoCarga").innerText = `${data.progreso}%`;
+                    }
+                    if (data.progreso >= 100) {
+                        clearInterval(interval);
+                    }
+                });
+        }, 1000); // Consultar el progreso cada segundo
     }
+
+    //function subirArchivoExcel() {
+    //    let fileInput = document.getElementById("archivoExcel");
+    //    let file = fileInput.files[0];
+
+    //    if (!file) {
+    //        alert("Selecciona un archivo antes de subir.");
+    //        return;
+    //    }
+
+    //    let formData = new FormData();
+    //    formData.append("archivoExcel", file);
+
+    //    // Cerrar el modal de carga de Excel y mostrar el spinner
+    //    let modalCargaExcel = bootstrap.Modal.getInstance(document.getElementById("modalCargaExcel"));
+    //    modalCargaExcel.hide();
+
+    //    document.getElementById("spinnerCarga").style.display = "flex";
+
+    //    fetch("/Externo/Jugador/CargarExcel", {
+    //        method: "POST",
+    //        body: formData
+    //    })
+    //        .then(response => response.json())
+    //        .then(data => {
+    //            document.getElementById("spinnerCarga").style.display = "none"; // Ocultar spinner
+
+    //            // Crear instancia del modal de resultado
+    //            let modalResultado = new bootstrap.Modal(document.getElementById("modalResultado"), {
+    //                backdrop: 'static', // Evita que se cierre al hacer clic fuera
+    //                keyboard: false     // Evita que se cierre con la tecla ESC
+    //            });
+
+    //            // Insertar el mensaje de resultado
+    //            document.getElementById("resultadoMensaje").innerHTML = data.message;
+
+    //            // Si hay un log, agregar botón dentro del modal
+    //            if (data.logFile) {
+    //                document.getElementById("resultadoMensaje").innerHTML += `
+    //                <br>
+    //                <a href="/Externo/Jugador/DescargarLog?fileName=${encodeURIComponent(data.logFile)}"
+    //                   class="btn btn-danger mt-2" id="btnDescargarLog">
+    //                   Descargar Log
+    //                </a>
+    //            `;
+    //            }
+
+    //            // Mostrar el modal
+    //            modalResultado.show();
+    //        });
+    //}
 
     // Evento para recargar la página al cerrar el modal de resultado
     document.getElementById("modalResultado").addEventListener("hidden.bs.modal", function () {
