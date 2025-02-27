@@ -44,5 +44,30 @@ namespace WebFPRTest.Areas.Interno.Service.ListAcreditacion
                 _connection.Close();
             }
         }
+        public async Task<List<ListaJugadoresComprobante>> JugadorComprobante_Jugadores(int Id_Comprobante)
+        {
+            var procedure = "usp_JugadorComprobante_Datos ";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Comprobante", Id_Comprobante);
+
+                var usuarios = await _connection.QueryAsync<ListaJugadoresComprobante>(
+                    procedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return usuarios.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error inesperado al buscar los usuarios.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
     }
 }

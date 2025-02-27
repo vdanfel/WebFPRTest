@@ -57,12 +57,22 @@ namespace WebFPRTest.Areas.Interno.Controllers
         [HttpGet]
         public IActionResult GuardarComprobante(int Id_Comprobante)
         {
-            return RedirectToAction("AcreditacionJugadores");
+            var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
+            if (tipoUsuario == null || (tipoUsuario != "406" && tipoUsuario != "407" && tipoUsuario != "408"))
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            TempData["Id_Comprobante"] = Id_Comprobante;
+            return RedirectToAction("AcreditacionJugadores", "ListAcreditacion", new { area="Interno"});
         }
         [HttpGet]
-        public IActionResult AcreditacionJugadores()
+        public async Task<IActionResult> AcreditacionJugadores()
         {
-            return View();
+            int Id_Comprobante = (int)TempData.Peek("Id_Comprobante");
+            AcreditacionJugadoresViewModel acreditacionJugadoresViewModel = new AcreditacionJugadoresViewModel();
+            acreditacionJugadoresViewModel.TipoPagos = await _tiposService.ParametroTipo_Listar(15);
+            acreditacionJugadoresViewModel.ListaJugadores = await _listAcreditacionService.JugadorComprobante_Jugadores(Id_Comprobante);
+            return View(acreditacionJugadoresViewModel);
         }
     }
 }

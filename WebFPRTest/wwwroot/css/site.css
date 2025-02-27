@@ -121,3 +121,55 @@ body {
     cursor: not-allowed; /* Cursor de "no permitido" */
     pointer-events: none; /* Evita la interacción */
 }
+
+.leyenda-Creado {
+    border: 1px solid #f1948a;
+    background-color: #f5b7b1;
+    color: #78281f;
+    padding: 0.2em;
+    border-radius: 0.25em;
+}
+
+
+.leyenda-SolicitudHabilitacion{
+    border: 1px solid #f1948a;
+    background-color: #f5b7b1;
+    color: #78281f;
+    padding: 0.2em;
+    border-radius: 0.25em;
+}
+.leyenda-Habilitado{
+    border: 1px solid #f1948a;
+    background-color: #f5b7b1;
+    color: #78281f;
+    padding: 0.2em;
+    border-radius: 0.25em;
+}
+.leyenda-SolicitudAcreditacion {
+    border: 1px solid #f1948a;
+    background-color: #f5b7b1;
+    color: #78281f;
+    padding: 0.2em;
+    border-radius: 0.25em;
+}
+.leyenda-Acreditado {
+    border: 1px solid #f1948a;
+    background-color: #f5b7b1;
+    color: #78281f;
+    padding: 0.2em;
+    border-radius: 0.25em;
+}
+.leyenda-SolicitudInscripcion {
+    border: 1px solid #f1948a;
+    background-color: #f5b7b1;
+    color: #78281f;
+    padding: 0.2em;
+    border-radius: 0.25em;
+}
+.leyenda-Inscrito {
+    border: 1px solid #f1948a;
+    background-color: #f5b7b1;
+    color: #78281f;
+    padding: 0.2em;
+    border-radius: 0.25em;
+}

@@ -69,6 +69,29 @@
                 </div>
             </div>
         </div>
+        <div class="row my-2">
+            <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
+                <p class="leyenda-Creado">Creado</p>
+            </div>
+            <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
+                <p class="leyenda-Creado">Solicitud Habilitacion</p>
+            </div>
+            <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
+                <p class="leyenda-Creado">Habilitado</p>
+            </div>
+            <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
+                <p class="leyenda-Creado">Solicitud Acreditacion</p>
+            </div>
+            <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
+                <p class="leyenda-Creado">Acreditado</p>
+            </div>
+            <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
+                <p class="leyenda-Creado">Revisión Documentaria</p>
+            </div>
+            <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
+                <p class="leyenda-Creado">Inscrito</p>
+            </div>
+        </div>
         <div class="table-responsive-md mt-2">
             <table class="table table-hover">
                 <thead class="table-dark">
@@ -143,15 +166,6 @@
         <p>Procesando archivo...</p>
     </div>
 </div>
-<!-- Spinner de carga con progreso -->
-@* <div id="spinnerCarga" class="spinner-overlay" style="display: none;">
-    <div class="spinner-container">
-        <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Cargando...</span>
-        </div>
-        <p id="progresoCarga" style="display: none;">0%</p>
-    </div>
-</div> *@
 
 <!-- Modal de resultado -->
 <div class="modal fade" id="modalResultado" tabindex="-1">
@@ -174,69 +188,8 @@
     <partial name="_ValidationScriptsPartial" />
 }
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
 <script>
-    // function subirArchivoExcel() {
-    //     let fileInput = document.getElementById("archivoExcel");
-    //     let file = fileInput.files[0];
-
-    //     if (!file) {
-    //         alert("Selecciona un archivo antes de subir.");
-    //         return;
-    //     }
-
-    //     let formData = new FormData();
-    //     formData.append("archivoExcel", file);
-
-    //     let modalCargaExcel = bootstrap.Modal.getInstance(document.getElementById("modalCargaExcel"));
-    //     modalCargaExcel.hide();
-
-    //     document.getElementById("spinnerCarga").style.display = "flex";
-    //     document.getElementById("progresoCarga").style.display = "block"; // Mostrar el porcentaje
-    //     document.getElementById("progresoCarga").innerText = "0%";
-
-    //     fetch("/Externo/Jugador/CargarExcel", {
-    //         method: "POST",
-    //         body: formData
-    //     })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             document.getElementById("spinnerCarga").style.display = "none"; // Ocultar spinner
-
-    //             let modalResultado = new bootstrap.Modal(document.getElementById("modalResultado"), {
-    //                 backdrop: 'static',
-    //                 keyboard: false
-    //             });
-
-    //             document.getElementById("resultadoMensaje").innerHTML = data.message;
-
-    //             if (data.logFile) {
-    //                 document.getElementById("resultadoMensaje").innerHTML += `
-    //                 <br>
-    //                 <a href="/Externo/Jugador/DescargarLog?fileName=${encodeURIComponent(data.logFile)}"
-    //                    class="btn btn-danger mt-2" id="btnDescargarLog">
-    //                    Descargar Log
-    //                 </a>
-    //             `;
-    //             }
-
-    //             modalResultado.show();
-    //         });
-
-    //     // Iniciar la verificación periódica del progreso
-    //     let interval = setInterval(() => {
-    //         fetch("/Externo/Jugador/ObtenerProgreso")
-    //             .then(response => response.json())
-    //             .then(data => {
-    //                 if (data.progreso !== undefined) {
-    //                     document.getElementById("progresoCarga").innerText = `${data.progreso}%`;
-    //                 }
-    //                 if (data.progreso >= 100) {
-    //                     clearInterval(interval);
-    //                 }
-    //             });
-    //     }, 1000); // Consultar el progreso cada segundo
-    // }
-
     function subirArchivoExcel() {
        let fileInput = document.getElementById("archivoExcel");
        let file = fileInput.files[0];

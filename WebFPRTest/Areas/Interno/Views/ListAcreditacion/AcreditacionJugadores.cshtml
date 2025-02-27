@@ -1,9 +1,92 @@
-﻿
+﻿@model WebFPRTest.Areas.Interno.Models.ListAcreditacion.AcreditacionJugadoresViewModel
 @{
     Layout = "_LayoutInterno";
+    string nRutaComprobante = System.IO.Path.GetFileName(Model.RutaComprobante);
 }
 <form>
     <div class="container">
-        aqui se mostrarán los datos del comprobante y podrán seleccionar los jugadores que se acreditarán con el pago correspondiente
+        <div class="card">
+            <div class="card-body">
+                <div class="row g-2">
+                    <input type="hidden" id="rutaComprobanteHidden" value="@Model.RutaComprobante" />
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
+                        <div class="form-floating flex-grow-1">
+                            <input type="text" class="form-control" id="jugadorFoto" value="@nRutaComprobante" disabled />
+                            <label>Comprobante</label>
+                        </div>
+                        <div class="ms-2">
+                            <a href="#" data-bs-toggle="modal" onclick="showFilePreview('imagen')">Ver</a>
+                        </div>
+                    </div>
+                    <div class="col col-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-floating">
+                            <select class="form-select" id="Id_015_TipoPago" asp-for="Id_015_TipoPago" disabled>
+                                <option></option>
+                                @foreach (var tipoPago in Model.TipoPagos)
+                                {
+                                    <option value="@tipoPago.Id_Parametros">@tipoPago.Descripcion</option>
+                                }
+                            </select>
+                            <label for="Id_015_TipoPago">Tipo Pago</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-floating">
+                            <input type="text" id="NumeroComprobante" class="form-control" asp-for="NumeroComprobante" disabled/>
+                            <label for="NumeroComprobante">Numero Operacion</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-floating">
+                            <input type="number" id="ImporteComprobante" class="form-control" asp-for="ImporteComprobante" disabled>
+                            <label for="ImporteComprobante">Importe</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive-lg mt-2">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>N°</th>
+                        <th>Equipo</th>
+                        <th>Jugador</th>
+                        <th>
+                            <input type="checkbox" id="selectAll" />
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var listaJugadores in Model.ListaJugadores)
+                    {
+                        <tr>
+                            <td>@listaJugadores.Indice</td>
+                            <td>@listaJugadores.NombreEquipo</td>
+                            <td>@listaJugadores.NombreJugador</td>
+                            <td><input type="checkbox" class="rowCheckbox" /></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </form>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Seleccionar/Deseleccionar todos
+        $("#selectAll").on("change", function () {
+            $(".rowCheckbox").prop("checked", this.checked);
+        });
+
+        // Si se desmarca algún checkbox individual, desmarca el checkbox maestro
+        $(".rowCheckbox").on("change", function () {
+            if ($(".rowCheckbox:checked").length === $(".rowCheckbox").length) {
+                $("#selectAll").prop("checked", true);
+            } else {
+                $("#selectAll").prop("checked", false);
+            }
+        });
+    });
+</script>

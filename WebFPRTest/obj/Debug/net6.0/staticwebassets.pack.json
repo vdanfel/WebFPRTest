@@ -57,14 +57,6 @@
       "PackagePath": "staticwebassets\\Archivos\\2\\Comprobantes\\2_Comprobante3.jpg"
     },
     {
-      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\6\\116\\116_DOCUMENTO DESLINDE.pdf",
-      "PackagePath": "staticwebassets\\Archivos\\6\\116\\116_DOCUMENTO DESLINDE.pdf"
-    },
-    {
-      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\6\\116\\116_FOTO JUGADOR.jpeg",
-      "PackagePath": "staticwebassets\\Archivos\\6\\116\\116_FOTO JUGADOR.jpeg"
-    },
-    {
       "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\FormatoCargaMasiva.xlsx",
       "PackagePath": "staticwebassets\\Archivos\\FormatoCargaMasiva.xlsx"
     },
@@ -307,6 +299,14 @@
     {
       "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\logs\\LogErrores_20250227094556.txt",
+      "PackagePath": "staticwebassets\\logs\\LogErrores_20250227094556.txt"
+    },
+    {
+      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\logs\\LogErrores_20250227094921.txt",
+      "PackagePath": "staticwebassets\\logs\\LogErrores_20250227094921.txt"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.WebFPRTest.Microsoft.AspNetCore.StaticWebAssets.props",
