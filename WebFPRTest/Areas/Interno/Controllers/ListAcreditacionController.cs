@@ -69,9 +69,10 @@ namespace WebFPRTest.Areas.Interno.Controllers
         public async Task<IActionResult> AcreditacionJugadores()
         {
             int Id_Comprobante = (int)TempData.Peek("Id_Comprobante");
-            AcreditacionJugadoresViewModel acreditacionJugadoresViewModel = new AcreditacionJugadoresViewModel();
+            var acreditacionJugadoresViewModel = await _listAcreditacionService.Comprobante_Select(Id_Comprobante);
             acreditacionJugadoresViewModel.TipoPagos = await _tiposService.ParametroTipo_Listar(15);
             acreditacionJugadoresViewModel.ListaJugadores = await _listAcreditacionService.JugadorComprobante_Jugadores(Id_Comprobante);
+            
             return View(acreditacionJugadoresViewModel);
         }
     }

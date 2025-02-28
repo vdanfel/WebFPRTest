@@ -83,22 +83,22 @@
                 <p class="leyenda-Creado">Creado</p>
             </div>
             <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
-                <p class="leyenda-Creado">Solicitud Habilitacion</p>
+                <p class="leyenda-SolicitudHabilitacion">Solicitud Habilitacion</p>
             </div>
             <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
-                <p class="leyenda-Creado">Habilitado</p>
+                <p class="leyenda-Habilitado">Habilitado</p>
             </div>
             <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
-                <p class="leyenda-Creado">Solicitud Acreditacion</p>
+                <p class="leyenda-SolicitudAcreditacion">Solicitud Acreditacion</p>
             </div>
             <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
-                <p class="leyenda-Creado">Acreditado</p>
+                <p class="leyenda-Acreditado">Acreditado</p>
             </div>
             <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
-                <p class="leyenda-Creado">Revisión Documentaria</p>
+                <p class="leyenda-SolicitudInscripcion">Revisión Documentaria</p>
             </div>
             <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
-                <p class="leyenda-Creado">Inscrito</p>
+                <p class="leyenda-Inscrito">Inscrito</p>
             </div>
         </div>
         <div class="table-responsive-md mt-2">
@@ -120,7 +120,7 @@
                     @foreach (var jugadores in Model.ListaJugadores)
                     {
                         string colorFondo = jugadores.Id_009_EstadoJugador == 441 ? "#FFFEC4  " :
-                        jugadores.Id_009_EstadoJugador == 442 ? "#FDFDAB" :
+                        jugadores.Id_009_EstadoJugador == 442 ? "#F0E5A3" :
                         jugadores.Id_009_EstadoJugador == 443 ? "#FFDB99" :
                         jugadores.Id_009_EstadoJugador == 444 ? "#FFC966" :
                         jugadores.Id_009_EstadoJugador == 445 ? "#E2FBDF" :

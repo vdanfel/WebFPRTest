@@ -15,6 +15,15 @@ E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\DocumentFormat.OpenXml.Fr
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\ExcelNumberFormat.dll
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\Microsoft.Data.SqlClient.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.Configuration.Abstractions.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.Diagnostics.Abstractions.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.FileProviders.Abstractions.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.Hosting.Abstractions.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.Logging.Abstractions.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.ObjectPool.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.Options.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.Primitives.dll
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\Microsoft.Identity.Client.dll
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\Microsoft.Identity.Client.Extensions.Msal.dll
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\Microsoft.IdentityModel.Abstractions.dll
@@ -34,10 +43,14 @@ E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\System.Diagnostics.Perfor
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\System.Drawing.Common.dll
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\System.IO.Packaging.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\System.IO.Pipelines.dll
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\System.Memory.Data.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\System.Net.WebSockets.WebSocketProtocol.dll
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\System.Runtime.Caching.dll
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\System.Security.Cryptography.ProtectedData.dll
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\System.Security.Permissions.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\System.Text.Encodings.Web.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\System.Threading.Channels.dll
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\System.Windows.Extensions.dll
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\de\Microsoft.Data.SqlClient.resources.dll
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\es\Microsoft.Data.SqlClient.resources.dll
@@ -60,4 +73,5 @@ E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\runtimes\win\lib\net6.0\S
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 E:\WebFPRTest\WebFPRTest\obj\Release\net6.0\PubTmp\Out\runtimes\win\lib\net6.0\System.Windows.Extensions.dll

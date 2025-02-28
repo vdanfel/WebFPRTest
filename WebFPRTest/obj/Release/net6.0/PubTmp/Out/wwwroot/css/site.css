@@ -121,3 +121,54 @@ body {
     cursor: not-allowed; /* Cursor de "no permitido" */
     pointer-events: none; /* Evita la interacción */
 }
+
+.leyenda-Creado {
+    border: 1px solid #999999;
+    background-color: #FFFFFF;
+    color: #999999;
+    padding: 0.4em 0em 0.4em 0.5em;
+    border-radius: 0.25em;
+}
+
+.leyenda-SolicitudHabilitacion {
+    border: 1px solid #C4B559;
+    background-color: #FFF8B5;
+    color: #C4B559;
+    padding: 0.4em 0em 0.4em 0.5em;
+    border-radius: 0.25em;
+}
+.leyenda-Habilitado {
+    border: 1px solid #B59D40;
+    background-color: #F0E5A3;
+    color: #B59D40;
+    padding: 0.4em 0em 0.4em 0.5em;
+    border-radius: 0.25em;
+}
+.leyenda-SolicitudAcreditacion {
+    border: 1px solid #B3813D;
+    background-color: #FFDB99;
+    color: #B3813D;
+    padding: 0.4em 0em 0.4em 0.5em;
+    border-radius: 0.25em;
+}
+.leyenda-Acreditado {
+    border: 1px solid #B37B1D;
+    background-color: #FFC966;
+    color: #B37B1D;
+    padding: 0.4em 0em 0.4em 0.5em;
+    border-radius: 0.25em;
+}
+.leyenda-SolicitudInscripcion {
+    border: 1px solid #71A969;
+    background-color: #E2FBDF;
+    color: #71A969;
+    padding:0.4em 0em 0.4em 0.5em;
+    border-radius: 0.25em;
+}
+.leyenda-Inscrito {
+    border: 1px solid #5A9F55;
+    background-color: #C3F6BF;
+    color: #5A9F55;
+    padding: 0.4em 0em 0.4em 0.5em;
+    border-radius: 0.25em;
+}

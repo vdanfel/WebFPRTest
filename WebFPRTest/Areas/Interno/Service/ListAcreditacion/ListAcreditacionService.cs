@@ -69,5 +69,29 @@ namespace WebFPRTest.Areas.Interno.Service.ListAcreditacion
                 _connection.Close();
             }
         }
+        public async Task<AcreditacionJugadoresViewModel> Comprobante_Select(int Id_Comprobante)
+        {
+            var procedure = "usp_Comprobante_Select ";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Comprobante", Id_Comprobante);
+
+                var usuarios = await _connection.QueryFirstOrDefaultAsync<AcreditacionJugadoresViewModel>(
+                    procedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+                return usuarios;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error inesperado al buscar los usuarios.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
     }
 }
