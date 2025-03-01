@@ -481,32 +481,67 @@
 }(document, window, 0));
 
 // Función para previsualizar el archivo seleccionado
-function previewFile(event, type) {
-    const file = event.target.files[0];
-    if (!file) return;
+// function previewFile(event, type) {
+//     const file = event.target.files[0];
+//     if (!file) return;
 
-    if (type === 'imagen') {
-        if (!file.type.startsWith('image/')) {
-            alert('Por favor, seleccione un archivo de imagen válido.');
-            event.target.value = '';
+//     if (type === 'imagen') {
+//         if (!file.type.startsWith('image/')) {
+//             alert('Por favor, seleccione un archivo de imagen válido.');
+//             event.target.value = '';
+//             return;
+//         }
+//         selectedImage = file;
+//     } else if (type === 'pdf') {
+//         if (file.type !== 'application/pdf') {
+//             alert('Por favor, seleccione un archivo PDF válido.');
+//             event.target.value = '';
+//             return;
+//         }
+//         selectedPdf = file;
+//     }
+
+//     // Actualizar el texto del input
+//     const span = event.target.nextElementSibling.querySelector('.iborrainputfile');
+//     if (span) {
+//         span.textContent = file.name;
+//     }
+// }
+    // Función para previsualizar el archivo seleccionado con validación de tamaño
+    function previewFile(event, type) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const maxSize = type === 'imagen' ? 1 * 1024 * 1024 : 3 * 1024 * 1024; // 1MB para imagen, 3MB para PDF
+
+        if (file.size > maxSize) {
+            alert(`El archivo seleccionado excede el tamaño máximo permitido (${type === 'imagen' ? '1MB' : '3MB'}).`);
+            event.target.value = ''; // Limpiar el input
             return;
         }
-        selectedImage = file;
-    } else if (type === 'pdf') {
-        if (file.type !== 'application/pdf') {
-            alert('Por favor, seleccione un archivo PDF válido.');
-            event.target.value = '';
-            return;
-        }
-        selectedPdf = file;
-    }
 
-    // Actualizar el texto del input
-    const span = event.target.nextElementSibling.querySelector('.iborrainputfile');
-    if (span) {
-        span.textContent = file.name;
+        if (type === 'imagen') {
+            if (!file.type.startsWith('image/')) {
+                alert('Por favor, seleccione un archivo de imagen válido.');
+                event.target.value = '';
+                return;
+            }
+            selectedImage = file;
+        } else if (type === 'pdf') {
+            if (file.type !== 'application/pdf') {
+                alert('Por favor, seleccione un archivo PDF válido.');
+                event.target.value = '';
+                return;
+            }
+            selectedPdf = file;
+        }
+
+        // Actualizar el texto del input
+        const span = event.target.nextElementSibling.querySelector('.iborrainputfile');
+        if (span) {
+            span.textContent = file.name;
+        }
     }
-}
 
     // Función para mostrar la previsualización del archivo
     function showFilePreview(type) {
