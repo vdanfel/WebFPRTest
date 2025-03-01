@@ -72,6 +72,7 @@ namespace WebFPRTest.Areas.Interno.Controllers
             var acreditacionJugadoresViewModel = await _listAcreditacionService.Comprobante_Select(Id_Comprobante);
             acreditacionJugadoresViewModel.TipoPagos = await _tiposService.ParametroTipo_Listar(15);
             acreditacionJugadoresViewModel.ListaJugadores = await _listAcreditacionService.JugadorComprobante_Jugadores(Id_Comprobante);
+            //acreditacionJugadoresViewModel.RutaComprobante = await _listAcreditacionService.Archivo_RutaLogo()
             
             return View(acreditacionJugadoresViewModel);
         }

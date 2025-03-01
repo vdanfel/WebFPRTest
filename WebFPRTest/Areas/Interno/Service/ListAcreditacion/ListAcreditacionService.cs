@@ -93,5 +93,32 @@ namespace WebFPRTest.Areas.Interno.Service.ListAcreditacion
                 _connection.Close();
             }
         }
+        public async Task<string> Archivo_RutaLogo(int Id_Equipo, int Id_Comprobante, int Id_013_TipoArchivo)
+        {
+            var procedure = "usp_Archivos_Ruta";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Equipo", Id_Equipo);
+                parameters.Add("@Id_Comprobante", Id_Comprobante);
+                parameters.Add("@Id_013_TipoArchivo", Id_013_TipoArchivo);
+
+                var rutaArchivo = await _connection.QuerySingleOrDefaultAsync<string>(
+                    procedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return rutaArchivo ?? string.Empty; // Retorna cadena vacía si no hay resultado
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al obtener la ruta del archivo.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
     }
 }

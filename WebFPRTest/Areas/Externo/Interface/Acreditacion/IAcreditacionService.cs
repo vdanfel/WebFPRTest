@@ -11,6 +11,7 @@ namespace WebFPRTest.Areas.Externo.Interface.Acreditacion
         Task Equipo_ActualizarSaldo(int Id_Equipo, decimal Saldo, int Id_Usuario);
         Task<ComprobanteResult> Comprobante_Insert(AcreditacionFiltroViewModel acreditacionFiltroViewModel, int Id_Usuario);
         Task JugadorComprobante_Insert(int Id_Comprobante, int Id_Jugador, decimal ImporteJugador);
-        Task Archivo_Insertar(int Id_Equipo, int Id_Jugador, int Id_013_TipoArchivo, string RutaArchivo, int Usuario);
+        Task Archivo_Insertar(int Id_Equipo, int Id_Comprobante, int Id_013_TipoArchivo, string RutaArchivo, int Usuario);
+        
     }
 }

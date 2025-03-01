@@ -164,14 +164,14 @@ namespace WebFPRTest.Areas.Externo.Service.Acreditacion
                 _connection.Close();
             }
         }
-        public async Task Archivo_Insertar(int Id_Equipo, int Id_Jugador, int Id_013_TipoArchivo, string RutaArchivo, int Usuario)
+        public async Task Archivo_Insertar(int Id_Equipo, int Id_Comprobante, int Id_013_TipoArchivo, string RutaArchivo, int Usuario)
         {
             var procedure = "usp_Archivos_Insert";
             try
             {
                 var parameters = new DynamicParameters();
                 parameters.Add("@Id_Equipo", Id_Equipo);
-                parameters.Add("@Id_Jugador", Id_Jugador);
+                parameters.Add("@Id_Comprobante", Id_Comprobante);
                 parameters.Add("@Id_013_TipoArchivo", Id_013_TipoArchivo);
                 parameters.Add("@RutaArchivo", RutaArchivo);
                 parameters.Add("@Usuario", Usuario);
@@ -186,5 +186,6 @@ namespace WebFPRTest.Areas.Externo.Service.Acreditacion
                 _connection.Close();
             }
         }
+        
     }
 }

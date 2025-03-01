@@ -73,7 +73,7 @@ namespace WebFPRTest.Areas.Externo.Controllers
 
                 if (!string.IsNullOrEmpty(nuevaRutaComprobante))
                 {
-                    await _acreditacionService.Archivo_Insertar(Id_Equipo, 0, 449, nuevaRutaComprobante, Id_Usuario);
+                    await _acreditacionService.Archivo_Insertar(Id_Equipo, comprobanteResult.Id_Comprobante, 449, nuevaRutaComprobante, Id_Usuario);
                 }
             }
 
