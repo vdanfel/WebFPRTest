@@ -3,7 +3,7 @@
     Layout = "_LayoutInterno";
     string nRutaComprobante = System.IO.Path.GetFileName(Model.RutaComprobante);
 }
-<form>
+<form asp-action="AcreditacionJugadores" asp-controller="ListAcreditacion" method="post">
     <div class="container">
         <div class="card">
             <div class="card-body">
@@ -42,6 +42,26 @@
                             <label for="ImporteComprobante">Importe</label>
                         </div>
                     </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-floating">
+                            <input type="number" id="ImporteSaldo" class="form-control" asp-for="ImporteSaldo" disabled>
+                            <label for="ImporteSaldo">Saldo Utilizado</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-floating">
+                            <input type="number" id="ImporteRealCancelado" class="form-control" asp-for="ImporteRealCancelado" disabled>
+                            <input type="hidden" id="ImporteRealCanceladoHidden" asp-for="ImporteRealCancelado" />
+                            <label for="ImporteRealCancelado">Total Cancelado</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-floating">
+                            <input type="number" id="ImporteJugadores" class="form-control" asp-for="ImporteJugadores" disabled>
+                            <input type="hidden" id="ImporteJugadoresHidden" asp-for="ImporteJugadores" disabled>
+                            <label for="ImporteJugadores">Importe Jugadores</label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -52,6 +72,7 @@
                         <th>N°</th>
                         <th>Equipo</th>
                         <th>Jugador</th>
+                        <th>Costo Acreditación</th>
                         <th>
                             <input type="checkbox" id="selectAll" />
                         </th>
@@ -64,29 +85,154 @@
                             <td>@listaJugadores.Indice</td>
                             <td>@listaJugadores.NombreEquipo</td>
                             <td>@listaJugadores.NombreJugador</td>
-                            <td><input type="checkbox" class="rowCheckbox" /></td>
+                            <td data-costo="@listaJugadores.CostoAcreditacion">@listaJugadores.CostoAcreditacion</td>
+                            <td><input type="checkbox" class="rowCheckbox"
+                                       data-idjugador="@listaJugadores.Id_Jugador" />
+                            </td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
+        <input type="hidden" id="jugadoresSeleccionados" name="jugadoresSeleccionados" />
+
+        <div class="mt-2">
+            <button type="submit" id="btnRegistrar" class="btn btn-outline-success" disabled>Registrar</button>
+        </div>
     </div>
 </form>
+<!--Modal para alerta inicial de la pagina-->
+@if (TempData["Mensaje"] != null)
+{
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @TempData["Mensaje"]
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Modal para imágenes -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Vista previa de la imagen</h5>
+            </div>
+            <div class="modal-body text-center">
+                <img id="imagePreview" src="" alt="Image preview" style="max-width: 100%; height: auto;" />
+            </div>
+            <div class="modal-footer">
+                <a id="imageDownloadBtn" href="#" class="btn btn-primary" download>
+                    Descargar Imagen Original
+                </a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
     $(document).ready(function () {
+        // Mostrar modal al cargar la página
+        var mensaje = '@TempData["Mensaje"]';
+        if (mensaje && mensaje.trim() !== '') {
+            $('#myModal').modal('show');
+        }
+
+        // Función para calcular la suma de los jugadores seleccionados
+        function calcularTotal() {
+            let total = 0;
+
+            $(".rowCheckbox:checked").each(function () {
+                let costo = parseFloat($(this).closest("tr").find("td[data-costo]").data("costo")) || 0;
+                total += costo;
+            });
+
+            // Actualizar los inputs con el total calculado
+            $("#ImporteJugadores").val(total.toFixed(2));
+            $("#ImporteJugadoresHidden").val(total.toFixed(2));
+
+            // Llamar a validarInputs después de actualizar el hidden
+            validarInputs();
+        }
+
+        function validarInputs() {
+            var importeRealCancelado = parseFloat($("#ImporteRealCanceladoHidden").val()) || 0;
+            var importeJugadores = parseFloat($("#ImporteJugadoresHidden").val()) || 0;
+
+            if (importeRealCancelado === importeJugadores && importeRealCancelado > 0) {
+                $("#btnRegistrar").prop("disabled", false);
+            } else {
+                $("#btnRegistrar").prop("disabled", true);
+            }
+        }
+
         // Seleccionar/Deseleccionar todos
         $("#selectAll").on("change", function () {
             $(".rowCheckbox").prop("checked", this.checked);
+            calcularTotal();
+            actualizarJugadoresSeleccionados();
         });
 
-        // Si se desmarca algún checkbox individual, desmarca el checkbox maestro
+        // Si se desmarca algún checkbox individual, recalcular total
         $(".rowCheckbox").on("change", function () {
             if ($(".rowCheckbox:checked").length === $(".rowCheckbox").length) {
                 $("#selectAll").prop("checked", true);
             } else {
                 $("#selectAll").prop("checked", false);
             }
+            calcularTotal();
+            actualizarJugadoresSeleccionados();
         });
+
+        // Deshabilitar el botón por defecto al cargar la página
+        $("#btnRegistrar").prop("disabled", true);
+
+        // Ejecutar la validación inicial al cargar la página
+        validarInputs();
+
+        //Para ir registrando los jugadores seleccionados
+        function actualizarJugadoresSeleccionados() {
+
+            let jugadores = [];
+
+            $(".rowCheckbox:checked").each(function () {
+                jugadores.push($(this).data("idjugador"));
+            });
+
+            $("#jugadoresSeleccionados").val(jugadores.join(","));
+
+            $("#btnRegistrar").prop("disabled", jugadores.length === 0);
+        }
+
+        $(".rowCheckbox").on("change", actualizarJugadoresSeleccionados);
     });
+
+
+    function showFilePreview(type) {
+        let rutaArchivo = document.getElementById('rutaComprobanteHidden').value;
+        if (!rutaArchivo) {
+            alert('No hay archivo disponible.');
+            return;
+        }
+        let webPath = formatPath(rutaArchivo);
+        document.getElementById('imagePreview').src = webPath;
+        document.getElementById('imageDownloadBtn').href = webPath;
+        new bootstrap.Modal(document.getElementById('imageModal')).show();
+    }
+    // Función auxiliar para formatear rutas
+    function formatPath(path) {
+        let webPath = path.replace('wwwroot\\', '').replace('wwwroot/', '').replace(/\\/g, '/');
+        if (!webPath.startsWith('/')) {
+            webPath = '/' + webPath;
+        }
+        return webPath;
+    }
 </script>

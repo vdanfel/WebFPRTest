@@ -1,0 +1,345 @@
+﻿@model WebFPRTest.Areas.Externo.Models.Inscripcion.InscripcionViewModel
+@{
+    Layout = "_LayoutExterno";
+    var nombreEquipo = Context.Session.GetString("NombreEquipo");
+}
+<form asp-action="Inscripcion" asp-controller="Inscripcion" method="post" asp-area="Externo" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id_Jugador"/>
+    <input type="hidden" asp-for="Id_Equipo"/>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <h2>@nombreEquipo</h2>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" asp-for="Paterno" disabled/>
+                            <label>Ap.Paterno</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" asp-for="Materno" disabled/>
+                            <label>Ap.Materno</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" asp-for="Nombres" disabled/>
+                            <label>Nombres</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-floating">
+                            <select class="form-select" asp-for="Id_001_TipoDocumento" disabled>
+                                @foreach(var tipoDocumento in Model.TipoDocumentos)
+                                {
+                                    <option value="@tipoDocumento.Id_Parametros">@tipoDocumento.Abreviatura</option>
+                                }
+                            </select>
+                            <label>Tipo Documento</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" asp-for="Documento" disabled/>
+                            <label>N° Documento</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" asp-for="Correo"/>
+                            <label>Correo World Rugby Passport</label>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <div class="table-responsive-lg mt-2">
+            <table class="table table-borderless tabla-compacta">
+                <tbody>
+                    <tr>
+                        <td class="ps-3 pb-0">Acta Médica</td>
+                        <td class="text-end pb-0">
+                            <a class="me-2" href="~/Archivos/FichaMedica.pdf" download="FichaMedica.pdf">
+                                Formato <i class="bi-filetype-pdf"></i>
+                            </a>
+
+                        </td>
+                        <td rowspan="2" class="align-bottom">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" />
+                                <label>Registro</label>
+                            </div>
+                        </td>
+                        <td rowspan="2" class="align-bottom">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" />
+                                <label>Vencimiento</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="pt-0" style="min-width:30rem">
+                            <input type="hidden" id="rutaActaMedicaHidden" value="@Model.RutaActaMedica" />
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="fileActaMedica" accept="application/pdf" asp-for="ActaMedica" />
+                                <span class="file-name"></span>
+                                <button type="button" class="btn btn-outline-dark opacity-50" id="btnVerActaMedica">
+                                    Ver
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ps-3 pb-0" colspan="2">Rugby Ready</td>
+                        <td rowspan="2" class="align-bottom">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" />
+                                <label>Registro</label>
+                            </div>
+                        </td>
+                        <td rowspan="2" class="align-bottom">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" />
+                                <label>Vencimiento</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="pt-0" style="min-width:30rem">
+                            <input type="hidden" id="rutaRugbyReadyHidden" value="@Model.RutaRugbyReady" />
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="fileRugbyReady" accept="application/pdf" asp-for="RugbyReady"/>
+                                <button type="button" class="btn btn-outline-dark opacity-50" id="btnVerRugbyReady">
+                                    Ver
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ps-3 pb-0" colspan="2">Rugby Laws</td>
+                        <td rowspan="2" class="align-bottom">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" />
+                                <label>Registro</label>
+                            </div>
+                        </td>
+                        <td rowspan="2" class="align-bottom">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" />
+                                <label>Vencimiento</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="pt-0" style="min-width:30rem">
+                            <input type="hidden" id="rutaRugbyLawsHidden" value="@Model.RutaRugbyLaws" />
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="fileRugbyLaws" accept="application/pdf" asp-for="RugbyLaws"/>
+                                <button type="button" class="btn btn-outline-dark opacity-50" id="btnVerRugbyLaws">
+                                    Ver
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ps-3 pb-0" colspan="2">Keep Rugby Clean</td>
+                        <td rowspan="2" class="align-bottom">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" />
+                                <label>Registro</label>
+                            </div>
+                        </td>
+                        <td rowspan="2" class="align-bottom">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" />
+                                <label>Vencimiento</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="pt-0" style="min-width:30rem">
+                            <input type="hidden" id="rutaKeepRugbyCleanHidden" value="@Model.RutaKeepRugbyClean" />
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="fileRugbyClean" accept="application/pdf" asp-for="KeepRugbyClean"/>
+                                <button type="button" class="btn btn-outline-dark opacity-50" id="btnVerRugbyClean">
+                                    Ver
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ps-3 pb-0" colspan="2">Primeros Auxilios</td>
+                        <td rowspan="2" class="align-bottom">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" />
+                                <label>Registro</label>
+                            </div>
+                        </td>
+                        <td rowspan="2" class="align-bottom">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" />
+                                <label>Vencimiento</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="pt-0" style="min-width:30rem">
+                            <input type="hidden" id="rutaPrimerosAuxiliosHidden" value="@Model.RutaPrimerosAuxilios" />
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="filePrimerosAuxilios" accept="application/pdf" asp-for="PrimerosAuxilios"/>
+                                <button type="button" class="btn btn-outline-dark opacity-50" id="btnVerPrimerosAuxilios">
+                                    Ver
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ps-3 pb-0" colspan="2">Conmoción Cerebral</td>
+                        <td rowspan="2" class="align-bottom">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" />
+                                <label>Registro</label>
+                            </div>
+                        </td>
+                        <td rowspan="2" class="align-bottom">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" />
+                                <label>Vencimiento</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="pt-0" style="min-width:30rem">
+                            <input type="hidden" id="rutaConmocionCerebralHidden" value="@Model.RutaConmocionCerebral" />
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="fileConmocionCerebral" accept="application/pdf" asp-for="ConmocionCerebral"/>
+                                <button type="button" class="btn btn-outline-dark opacity-50" id="btnVerConmocionCerebral">
+                                    Ver
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-2">
+            <button type="submit" class="btn btn-outline-success">
+                Registrar
+            </button>
+        </div>
+    </div>
+</form>
+<!-- Modal para PDFs -->
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfModalLabel">Vista previa del PDF</h5>
+            </div>
+            <div class="modal-body">
+                <embed id="pdfPreview" src="" type="application/pdf" width="100%" height="600px" />
+            </div>
+            <div class="modal-footer">
+                <a id="pdfDownloadBtn" href="#" class="btn btn-primary" download>
+                    Descargar PDF Original
+                </a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function () {
+                if (this.files.length > 0) {
+                    const file = this.files[0];
+
+                    // Validar tipo de archivo
+                    if (file.type !== "application/pdf") {
+                        alert("Solo se permiten archivos PDF.");
+                        this.value = ""; // Limpia el input
+                        return;
+                    }
+
+                    // Validar tamaño de archivo (3MB = 3 * 1024 * 1024 bytes)
+                    if (file.size > 3 * 1024 * 1024) {
+                        alert("El archivo seleccionado supera los 3MB. Por favor, elija un archivo más pequeño.");
+                        this.value = ""; // Limpia el input
+                        return;
+                    }
+
+                    // Si pasa ambas validaciones, previsualizar el PDF
+                    previewPDF(event);
+                }
+            });
+        });
+
+        // Agregar evento a los botones "Ver"
+        document.querySelectorAll('button[id^="btnVer"]').forEach(button => {
+            button.addEventListener("click", function () {
+                let inputId = this.id.replace("btnVer", "file");
+                let fileInput = document.getElementById(inputId);
+                showFilePreview(fileInput);
+            });
+        });
+
+        initializeFileInputs();
+    });
+
+    // Función para previsualizar PDF cuando se selecciona
+    function previewPDF(event) {
+        let file = event.target.files[0];
+
+        if (!file) return;
+
+        // Guardar el archivo seleccionado en el atributo data-file para usarlo después
+        event.target.setAttribute("data-file", URL.createObjectURL(file));
+    }
+
+    // Función para mostrar la vista previa del PDF
+    function showFilePreview(fileInput) {
+        let pdfPreview = document.getElementById("pdfPreview");
+        let downloadBtn = document.getElementById("pdfDownloadBtn");
+
+        // Verificar si el input tiene un archivo seleccionado
+        let fileUrl = fileInput.getAttribute("data-file");
+
+        if (fileUrl) {
+            pdfPreview.src = fileUrl;
+            downloadBtn.href = fileUrl;
+            downloadBtn.setAttribute("download", fileInput.files[0].name);
+            new bootstrap.Modal(document.getElementById("pdfModal")).show();
+        } else {
+            alert("No hay archivo seleccionado para previsualizar.");
+        }
+    }
+
+    // Función para inicializar los nombres de archivos en los inputs
+    function initializeFileInputs() {
+        document.querySelectorAll("input[type='file']").forEach(input => {
+            const hiddenInput = document.getElementById(input.id.replace("file", "ruta"));
+            if (hiddenInput && hiddenInput.value) {
+                const fileName = hiddenInput.value.split(/[/\\]/).pop(); // Tomar solo el nombre del archivo
+
+                // Si el input tiene un siguiente elemento que es un span, lo usa para mostrar el nombre
+                let span = input.closest(".input-group").querySelector(".file-name");
+                if (span) {
+                    span.textContent = fileName;
+                }
+            }
+        });
+    }
+
+
+</script>

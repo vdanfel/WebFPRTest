@@ -128,7 +128,7 @@ namespace WebFPRTest.Areas.Interno.Service.ListJugadores
 
                 parameters.Add("@Id_Jugador", jugadorDatosViewModel.Id_Jugador, DbType.Int32);
                 parameters.Add("@Id_009_EstadoJugador", jugadorDatosViewModel.Id_009_EstadoJugador, DbType.Int32);
-                parameters.Add("@Observacion", jugadorDatosViewModel.Observacion, DbType.Int32);
+                parameters.Add("@Observacion", jugadorDatosViewModel.Observacion, DbType.String);
                 parameters.Add("@Id_UsuarioModificacion", Id_Usuario, DbType.Int32);
                 await _connection.ExecuteAsync(procedure, parameters, commandType: CommandType.StoredProcedure);
             }

@@ -24,6 +24,7 @@ namespace WebFPRTest.Areas.Interno.Models.ListAcreditacion
     }
     public class ComprobanteTabla
     {
+        public int Indice { get; set; }
         public int Id_Comprobante { get; set; }
         public string TipoPago { get; set; }
         public string NumeroComprobante { get; set; }

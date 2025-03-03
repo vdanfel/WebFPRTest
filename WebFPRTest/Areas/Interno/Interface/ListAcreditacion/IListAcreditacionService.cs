@@ -8,5 +8,6 @@ namespace WebFPRTest.Areas.Interno.Interface.ListAcreditacion
         Task<List<ListaJugadoresComprobante>> JugadorComprobante_Jugadores(int Id_Comprobante);
         Task<AcreditacionJugadoresViewModel> Comprobante_Select(int Id_Comprobante);
         Task<string> Archivo_RutaLogo(int Id_Equipo, int Id_Comprobante, int Id_013_TipoArchivo);
+        Task Jugador_ActualizarEstado444(int Id_Jugador, int Id_Usuario);
     }
 }

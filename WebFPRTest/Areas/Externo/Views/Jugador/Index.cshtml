@@ -116,6 +116,8 @@
                         jugadores.Id_009_EstadoJugador == 445 ? "#E2FBDF" :
                         jugadores.Id_009_EstadoJugador == 446 ? "#C3F6BF" :
                         "#FFFFFF";
+                        bool esHabilitado = jugadores.Id_009_EstadoJugador >= 444;
+                        string estiloInscripcion = "pointer-events: none; opacity: 0.5; cursor: not-allowed;";
                         <tr class="align-middle">
                             <td style="background-color:@colorFondo;text-align:center">@jugadores.Indice</td>
                             <td style="min-width:20rem">@jugadores.ApellidosYNombre</td>
@@ -124,12 +126,13 @@
                             <td style="min-width:10rem">@jugadores.Division</td>
                             <td>@jugadores.Situacion</td>
                             <td class="text-end">
-                                <a class="btn btn-outline-warning" asp-area="Externo" asp-controller="Jugador" asp-action="GuardarJugadorSeleccionado" asp-route-Id_Jugador="@jugadores.Id_Jugador">
+                                <a class="btn btn-outline-warning" asp-area="Externo" asp-controller="Jugador" asp-action="GuardarJugadorSeleccionado" asp-route-Id_Jugador="@jugadores.Id_Jugador" asp-route-Pagina="1">
                                     <i class="bi-eye"></i>
                                 </a>
                             </td>
                             <td class="text-end">
-                                <a class="btn btn-outline-primary">
+                                <a class="btn btn-outline-primary" style="@(esHabilitado ? "" : estiloInscripcion)"
+                                   asp-area="Externo" asp-controller="Jugador" asp-action="GuardarJugadorSeleccionado" asp-route-Id_Jugador="@jugadores.Id_Jugador" asp-route-Pagina="2">
                                     <i class="bi-files"></i>
                                 </a>
                             </td>

@@ -121,6 +121,7 @@ namespace WebFPRTest.Areas.Externo.Service.Acreditacion
                 parameters.Add("@Id_015_TipoPago", acreditacionFiltroViewModel.Id_015_TipoPago, DbType.Int32);
                 parameters.Add("@NumeroComprobante", acreditacionFiltroViewModel.NumeroComprobante, DbType.String);
                 parameters.Add("@ImporteComprobante", acreditacionFiltroViewModel.ImporteComprobante, DbType.Decimal);
+                parameters.Add("@ImporteRealCancelado", acreditacionFiltroViewModel.TotalPagoAcreditacion, DbType.Decimal);
                 parameters.Add("@Id_UsuarioCreacion", Id_Usuario, DbType.Int32);
 
                 var comprobante = await _connection.QueryFirstOrDefaultAsync<ComprobanteResult>(

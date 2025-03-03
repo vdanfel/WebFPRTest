@@ -86,19 +86,19 @@
             <table class="table table-hover">
                 <thead class="table-dark">
                     <tr>
-                        <td>N°</td>
-                        <td>Tipo Pago</td>
-                        <td>Numero Operacion</td>
-                        <td>Nombre club</td>
-                        <td>Nombre Jugador</td>
-                        <td></td>
+                        <th>N°</th>
+                        <th>Tipo Pago</th>
+                        <th>Numero Operacion</th>
+                        <th>Nombre club</th>
+                        <th>Nombre Jugador</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach(var jugadoresComprobantes in Model.ListaComprobantes)
                     {
                         <tr>
-                            <td></td>
+                            <td>@jugadoresComprobantes.Indice</td>
                             <td>@jugadoresComprobantes.TipoPago</td>
                             <td>@jugadoresComprobantes.NumeroComprobante</td>
                             <td>@jugadoresComprobantes.NombreEquipo</td>
@@ -107,7 +107,6 @@
                                 <a class="btn btn-outline-warning" asp-action="GuardarComprobante" asp-controller="ListAcreditacion" asp-route-Id_Comprobante="@jugadoresComprobantes.Id_Comprobante">
                                     <i class="bi-eye"></i>
                                 </a>
-                                
                             </td>
                         </tr>
                     }

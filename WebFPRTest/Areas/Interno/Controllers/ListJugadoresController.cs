@@ -85,8 +85,7 @@ namespace WebFPRTest.Areas.Interno.Controllers
             jugadorDatosViewModel.RutaFoto = await _listJugadoresService.Archivo_Ruta(jugadorDatosViewModel.Id_Equipo, jugadorDatosViewModel.Id_Jugador, 431);
             jugadorDatosViewModel.RutaDeslinde = await _listJugadoresService.Archivo_Ruta(jugadorDatosViewModel.Id_Equipo, jugadorDatosViewModel.Id_Jugador, 432);
             ViewData["ActiveTab"] = "DatosGenerales";
-            jugadorDatosViewModel.Flag_Aprobacion1 = !(jugadorDatosViewModel.Id_009_EstadoJugador == 441 ||
-                                           jugadorDatosViewModel.Id_009_EstadoJugador == 550);
+            jugadorDatosViewModel.Flag_Aprobacion1 = jugadorDatosViewModel.Id_009_EstadoJugador >= 442;
             return View(jugadorDatosViewModel);
         }
         [HttpPost]

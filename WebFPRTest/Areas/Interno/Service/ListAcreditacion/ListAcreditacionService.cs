@@ -120,5 +120,31 @@ namespace WebFPRTest.Areas.Interno.Service.ListAcreditacion
                 _connection.Close();
             }
         }
+        public async Task Jugador_ActualizarEstado444(int Id_Jugador, int Id_Usuario)
+        {
+            var procedure = "usp_Jugador_Update";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Jugador", Id_Jugador);
+                parameters.Add("@Id_009_EstadoJugador", 444);
+                parameters.Add("@@Id_UsuarioModificacion", Id_Usuario);
+
+                var rutaArchivo = await _connection.ExecuteAsync(
+                    procedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al obtener la ruta del archivo.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
     }
 }

@@ -258,7 +258,7 @@
         <div class="row mt-2 g-2">
             <div class="col-12">
                 <div class="form-floating">
-                    <textarea class="form-control" style="height:7rem"></textarea>
+                    <textarea class="form-control" style="height:7rem" asp-for="Observacion"></textarea>
                     <label>Observacion FPR</label>
                 </div>
             </div>
@@ -273,7 +273,7 @@
             </div>
         </div>
         <div class="mt-2">
-            <button class="btn btn-outline-success" type="submit">Grabar</button>
+            <button id="btnGrabar" class="btn btn-outline-success" type="submit">Grabar</button>
         </div>
     </div>
 </form>
@@ -341,6 +341,9 @@
         if (estadoJugador !== "441" && estadoJugador !== "442") {
             checkbox.disabled = true; // Deshabilita el checkbox
         }
+
+        // Deshabilitar el botón si no es 441 o 442
+        btnGrabar.disabled = !(estadoJugador === "441" || estadoJugador === "442");
 
         //Mostrar modal al cargar la pagina
         var mensaje = '@TempData["Mensaje"]';

@@ -2,9 +2,11 @@
 using Microsoft.Data.SqlClient;
 using WebFPRTest.Areas.Externo.Interface.Acreditacion;
 using WebFPRTest.Areas.Externo.Interface.Equipo;
+using WebFPRTest.Areas.Externo.Interface.Inscripcion;
 using WebFPRTest.Areas.Externo.Interface.Jugador;
 using WebFPRTest.Areas.Externo.Service.Acreditacion;
 using WebFPRTest.Areas.Externo.Service.Equipo;
+using WebFPRTest.Areas.Externo.Service.Inscripcion;
 using WebFPRTest.Areas.Externo.Service.Jugador;
 using WebFPRTest.Areas.Interno.Interface.ListAcreditacion;
 using WebFPRTest.Areas.Interno.Interface.ListJugadores;
@@ -26,10 +28,10 @@ builder.Services.AddScoped<ITiposService, TiposService>();
 builder.Services.AddScoped<IEquipoService, EquipoService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IJugadorService, JugadorService>();
+builder.Services.AddScoped<IInscripcionService, InscripcionService>();
 builder.Services.AddScoped<IAcreditacionService, AcreditacionService>();
 builder.Services.AddScoped<IListJugadoresService, ListJugadoresService>();
 builder.Services.AddScoped<IListAcreditacionService, ListAcreditacionService>();
-
 
 // Para conectar a la BD
 builder.Services.AddScoped<SqlConnection>(sp =>

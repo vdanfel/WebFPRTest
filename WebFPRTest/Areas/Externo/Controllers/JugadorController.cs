@@ -258,7 +258,7 @@ namespace WebFPRTest.Areas.Externo.Controllers
             // Devolver el archivo para la descarga
             return File(fileBytes, "text/plain", fileName);
         }
-        public IActionResult GuardarJugadorSeleccionado(int Id_Jugador)
+        public IActionResult GuardarJugadorSeleccionado(int Id_Jugador, int Pagina)
         {
             var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
             if (tipoUsuario == null || tipoUsuario != "409")
@@ -266,7 +266,15 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 return RedirectToAction("Login", "Login");
             }
             TempData["Id_Jugador"] = Id_Jugador;
-            return RedirectToAction("Jugador", "Jugador", new { area = "Externo" });
+            if (Pagina == 1)
+            {
+                return RedirectToAction("Jugador", "Jugador", new { area = "Externo" });
+            }
+            else
+            {
+                return RedirectToAction("Inscripcion", "Inscripcion", new { area = "Externo" });
+            }
+            
         }
         [HttpGet]
         public async Task<IActionResult> Jugador()
@@ -458,7 +466,7 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 }
             }
             await _jugadorService.Jugador_CambioEstado441(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, Id_Usuario);
-            return RedirectToAction("GuardarJugadorSeleccionado", "Jugador", new {Id_Jugador = jugadorViewModel.Id_Jugador });
+            return RedirectToAction("GuardarJugadorSeleccionado", "Jugador", new {Id_Jugador = jugadorViewModel.Id_Jugador, Pagina = 1 });
         }
         [HttpGet]
         public async Task<IActionResult> ValidarPersona(int idTipoDocumento, string documento)
