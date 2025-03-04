@@ -3,6 +3,26 @@
   "WorkspaceRootPath": "D:\\Desarrollos\\WebFPRTest\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\interno\\controllers\\listjugadorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\interno\\controllers\\listjugadorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\interno\\views\\listjugadores\\jugadordocumentos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\interno\\views\\listjugadores\\jugadordocumentos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\externo\\controllers\\jugadorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\externo\\controllers\\jugadorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\externo\\views\\jugador\\jugador.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\externo\\views\\jugador\\jugador.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\externo\\service\\acreditacion\\acreditacionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\externo\\service\\acreditacion\\acreditacionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\interno\\controllers\\listacreditacioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\interno\\controllers\\listacreditacioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,10 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\externo\\controllers\\acreditacioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\externo\\controllers\\acreditacioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\externo\\service\\acreditacion\\acreditacionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|solutionrelative:webfprtest\\areas\\externo\\service\\acreditacion\\acreditacionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2D8BA9BA-AF2A-42F6-9CB1-AE0D2C7341DA}|WebFPRTest\\WebFPRTest.csproj|d:\\desarrollos\\webfprtest\\webfprtest\\areas\\externo\\service\\equipo\\equiposervice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -47,6 +63,58 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "JugadorDocumentos.cshtml",
+              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Interno\\Views\\ListJugadores\\JugadorDocumentos.cshtml",
+              "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Interno\\Views\\ListJugadores\\JugadorDocumentos.cshtml",
+              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Interno\\Views\\ListJugadores\\JugadorDocumentos.cshtml",
+              "RelativeToolTip": "WebFPRTest\\Areas\\Interno\\Views\\ListJugadores\\JugadorDocumentos.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-04T22:58:21.924Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "JugadorController.cs",
+              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Controllers\\JugadorController.cs",
+              "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Externo\\Controllers\\JugadorController.cs",
+              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Controllers\\JugadorController.cs",
+              "RelativeToolTip": "WebFPRTest\\Areas\\Externo\\Controllers\\JugadorController.cs",
+              "ViewState": "AQIAANMBAAAAAAAAAAAAwOABAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-04T14:34:44.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ListJugadoresController.cs",
+              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Interno\\Controllers\\ListJugadoresController.cs",
+              "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Interno\\Controllers\\ListJugadoresController.cs",
+              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Interno\\Controllers\\ListJugadoresController.cs",
+              "RelativeToolTip": "WebFPRTest\\Areas\\Interno\\Controllers\\ListJugadoresController.cs",
+              "ViewState": "AQIAADIAAAAAAAAAAAAiwEEAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-04T14:34:44.578Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Jugador.cshtml",
+              "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Views\\Jugador\\Jugador.cshtml",
+              "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Externo\\Views\\Jugador\\Jugador.cshtml",
+              "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Views\\Jugador\\Jugador.cshtml",
+              "RelativeToolTip": "WebFPRTest\\Areas\\Externo\\Views\\Jugador\\Jugador.cshtml",
+              "ViewState": "AQIAADwBAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-04T18:26:28.938Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "IListAcreditacionService.cs",
               "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Interno\\Interface\\ListAcreditacion\\IListAcreditacionService.cs",
               "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Interno\\Interface\\ListAcreditacion\\IListAcreditacionService.cs",
@@ -59,7 +127,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "ListAcreditacionService.cs",
               "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Interno\\Service\\ListAcreditacion\\ListAcreditacionService.cs",
               "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Interno\\Service\\ListAcreditacion\\ListAcreditacionService.cs",
@@ -72,20 +140,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "ListAcreditacionController.cs",
               "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Interno\\Controllers\\ListAcreditacionController.cs",
               "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Interno\\Controllers\\ListAcreditacionController.cs",
               "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Interno\\Controllers\\ListAcreditacionController.cs",
               "RelativeToolTip": "WebFPRTest\\Areas\\Interno\\Controllers\\ListAcreditacionController.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAA1wEsAAAAMAAAA",
+              "ViewState": "AQIAABEAAAAAAAAAAAAxwCQAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-01T18:22:01.256Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "AcreditacionController.cs",
               "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Controllers\\AcreditacionController.cs",
               "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Externo\\Controllers\\AcreditacionController.cs",
@@ -98,7 +166,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "IAcreditacionService.cs",
               "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Interface\\Acreditacion\\IAcreditacionService.cs",
               "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Externo\\Interface\\Acreditacion\\IAcreditacionService.cs",
@@ -111,7 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "EquipoService.cs",
               "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Service\\Equipo\\EquipoService.cs",
               "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Externo\\Service\\Equipo\\EquipoService.cs",
@@ -124,13 +192,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "AcreditacionService.cs",
               "DocumentMoniker": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Service\\Acreditacion\\AcreditacionService.cs",
               "RelativeDocumentMoniker": "WebFPRTest\\Areas\\Externo\\Service\\Acreditacion\\AcreditacionService.cs",
               "ToolTip": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\Areas\\Externo\\Service\\Acreditacion\\AcreditacionService.cs",
               "RelativeToolTip": "WebFPRTest\\Areas\\Externo\\Service\\Acreditacion\\AcreditacionService.cs",
-              "ViewState": "AQIAALsAAAAAAAAAAAAhwLwAAAAIAAAA",
+              "ViewState": "AQIAAKQAAAAAAAAAAAASwLwAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-01T17:34:55.34Z",
               "EditorCaption": ""
