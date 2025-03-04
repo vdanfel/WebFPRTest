@@ -59,174 +59,210 @@
                 </div> 
             </div>
         </div>
-        <div class="table-responsive-lg mt-2">
-            <table class="table table-borderless tabla-compacta">
-                <tbody>
-                    <tr>
-                        <td class="ps-3 pb-0">Acta Médica</td>
-                        <td class="text-end pb-0">
-                            <a class="me-2" href="~/Archivos/FichaMedica.pdf" download="FichaMedica.pdf">
-                                Formato <i class="bi-filetype-pdf"></i>
-                            </a>
-
-                        </td>
-                        <td rowspan="2" class="align-bottom">
-                            <div class="form-floating">
-                                <input type="date" class="form-control" />
-                                <label>Registro</label>
-                            </div>
-                        </td>
-                        <td rowspan="2" class="align-bottom">
-                            <div class="form-floating">
-                                <input type="date" class="form-control" />
-                                <label>Vencimiento</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="pt-0" style="min-width:30rem">
-                            <input type="hidden" id="rutaActaMedicaHidden" value="@Model.RutaActaMedica" />
-                            <div class="input-group">
-                                <input type="file" class="form-control" id="fileActaMedica" accept="application/pdf" asp-for="ActaMedica" />
-                                <span class="file-name"></span>
-                                <button type="button" class="btn btn-outline-dark opacity-50" id="btnVerActaMedica">
-                                    Ver
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ps-3 pb-0" colspan="2">Rugby Ready</td>
-                        <td rowspan="2" class="align-bottom">
-                            <div class="form-floating">
-                                <input type="date" class="form-control" />
-                                <label>Registro</label>
-                            </div>
-                        </td>
-                        <td rowspan="2" class="align-bottom">
-                            <div class="form-floating">
-                                <input type="date" class="form-control" />
-                                <label>Vencimiento</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="pt-0" style="min-width:30rem">
-                            <input type="hidden" id="rutaRugbyReadyHidden" value="@Model.RutaRugbyReady" />
-                            <div class="input-group">
-                                <input type="file" class="form-control" id="fileRugbyReady" accept="application/pdf" asp-for="RugbyReady"/>
-                                <button type="button" class="btn btn-outline-dark opacity-50" id="btnVerRugbyReady">
-                                    Ver
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ps-3 pb-0" colspan="2">Rugby Laws</td>
-                        <td rowspan="2" class="align-bottom">
-                            <div class="form-floating">
-                                <input type="date" class="form-control" />
-                                <label>Registro</label>
-                            </div>
-                        </td>
-                        <td rowspan="2" class="align-bottom">
-                            <div class="form-floating">
-                                <input type="date" class="form-control" />
-                                <label>Vencimiento</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="pt-0" style="min-width:30rem">
-                            <input type="hidden" id="rutaRugbyLawsHidden" value="@Model.RutaRugbyLaws" />
-                            <div class="input-group">
-                                <input type="file" class="form-control" id="fileRugbyLaws" accept="application/pdf" asp-for="RugbyLaws"/>
-                                <button type="button" class="btn btn-outline-dark opacity-50" id="btnVerRugbyLaws">
-                                    Ver
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ps-3 pb-0" colspan="2">Keep Rugby Clean</td>
-                        <td rowspan="2" class="align-bottom">
-                            <div class="form-floating">
-                                <input type="date" class="form-control" />
-                                <label>Registro</label>
-                            </div>
-                        </td>
-                        <td rowspan="2" class="align-bottom">
-                            <div class="form-floating">
-                                <input type="date" class="form-control" />
-                                <label>Vencimiento</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="pt-0" style="min-width:30rem">
-                            <input type="hidden" id="rutaKeepRugbyCleanHidden" value="@Model.RutaKeepRugbyClean" />
-                            <div class="input-group">
-                                <input type="file" class="form-control" id="fileRugbyClean" accept="application/pdf" asp-for="KeepRugbyClean"/>
-                                <button type="button" class="btn btn-outline-dark opacity-50" id="btnVerRugbyClean">
-                                    Ver
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ps-3 pb-0" colspan="2">Primeros Auxilios</td>
-                        <td rowspan="2" class="align-bottom">
-                            <div class="form-floating">
-                                <input type="date" class="form-control" />
-                                <label>Registro</label>
-                            </div>
-                        </td>
-                        <td rowspan="2" class="align-bottom">
-                            <div class="form-floating">
-                                <input type="date" class="form-control" />
-                                <label>Vencimiento</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="pt-0" style="min-width:30rem">
-                            <input type="hidden" id="rutaPrimerosAuxiliosHidden" value="@Model.RutaPrimerosAuxilios" />
-                            <div class="input-group">
-                                <input type="file" class="form-control" id="filePrimerosAuxilios" accept="application/pdf" asp-for="PrimerosAuxilios"/>
-                                <button type="button" class="btn btn-outline-dark opacity-50" id="btnVerPrimerosAuxilios">
-                                    Ver
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ps-3 pb-0" colspan="2">Conmoción Cerebral</td>
-                        <td rowspan="2" class="align-bottom">
-                            <div class="form-floating">
-                                <input type="date" class="form-control" />
-                                <label>Registro</label>
-                            </div>
-                        </td>
-                        <td rowspan="2" class="align-bottom">
-                            <div class="form-floating">
-                                <input type="date" class="form-control" />
-                                <label>Vencimiento</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="pt-0" style="min-width:30rem">
-                            <input type="hidden" id="rutaConmocionCerebralHidden" value="@Model.RutaConmocionCerebral" />
-                            <div class="input-group">
-                                <input type="file" class="form-control" id="fileConmocionCerebral" accept="application/pdf" asp-for="ConmocionCerebral"/>
-                                <button type="button" class="btn btn-outline-dark opacity-50" id="btnVerConmocionCerebral">
-                                    Ver
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="row mt-2 mb-0 p-0">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-end">
+                <a class="me-2" href="~/Archivos/FichaMedica.pdf" download="FichaMedica.pdf">
+                    Formato Acta Médica <i class="bi-filetype-pdf"></i>
+                </a>
+            </div>
+        </div>
+        <div class="row mt-2 g-2">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
+                <input type="hidden" id="rutaHidden-ActaMedica" value="@Model.RutaActaMedica" />
+                <div class="container-input">
+                    <input type="file"
+                           id="file-ActaMedica"
+                           class="inputfile inputfile-1"
+                           asp-for="ActaMedica"
+                           accept=".pdf"
+                           onchange="previewFile(event, 'file-ActaMedica','RegistroActaMedica','VencimientoActaMedica')"
+                           data-val="false" />
+                    <label for="file-ActaMedica">
+                        <div class="label-text">Documento Acta Médica</div>
+                        <span class="iborrainputfile">Seleccionar Documento Acta Médica</span>
+                    </label>
+                </div>
+                <div class="ms-auto px-3">
+                    <a href="#" onclick="showFilePreview('file-ActaMedica')" data-bs-toggle="modal" data-bs-target="#pdfModal">Ver</a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input type="date" class="form-control" id="RegistroActaMedica" onblur="FechaVencimiento('VencimientoActaMedica', 1)" disabled required />
+                    <label for="RegistroActaMedica">Registro</label>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input type="date" class="form-control input-disabled" id="VencimientoActaMedica" readonly />
+                    <label for="VencimientoActaMedica">Vencimiento</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 g-2">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
+                <input type="hidden" id="rutaHidden-RugbyReady" value="@Model.RutaRugbyReady" />
+                <div class="container-input">
+                    <input type="file"
+                           id="file-RugbyReady"
+                           class="inputfile inputfile-1"
+                           asp-for="RugbyReady"
+                           accept=".pdf"
+                           onchange="previewFile(event, 'file-RugbyReady','RegistroRugbyReady','VencimientoRugbyReady')"
+                           data-val="false" />
+                    <label for="file-RugbyReady">
+                        <div class="label-text">Documento Rugby Ready</div>
+                        <span class="iborrainputfile">Seleccionar Documento Rugby Ready</span>
+                    </label>
+                </div>
+                <div class="ms-auto px-3">
+                    <a href="#" onclick="showFilePreview('file-RugbyReady')" data-bs-toggle="modal" data-bs-target="#pdfModal">Ver</a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input type="date" class="form-control" id="RegistroRugbyReady" onblur="FechaVencimiento('VencimientoRugbyReady', 2)" disabled required />
+                    <label for="RegistroRugbyReady">Registro</label>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input type="date" class="form-control input-disabled" id="VencimientoRugbyReady" />
+                    <label for="VencimientoRugbyReady">Vencimiento</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 g-2">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
+                <input type="hidden" id="rutaHidden-RugbyLaws" value="@Model.RutaRugbyLaws" />
+                <div class="container-input">
+                    <input type="file"
+                           id="file-RugbyLaws"
+                           class="inputfile inputfile-1"
+                           asp-for="RugbyLaws"
+                           accept=".pdf"
+                           onchange="previewFile(event, 'file-RugbyLaws','RegistroRugbyLaws','VencimientoRugbyLaws')"
+                           data-val="false" />
+                    <label for="file-RugbyLaws">
+                        <div class="label-text">Documento Rugby Laws</div>
+                        <span class="iborrainputfile">Seleccionar Documento Rugby Laws</span>
+                    </label>
+                </div>
+                <div class="ms-auto px-3">
+                    <a href="#" onclick="showFilePreview('file-RugbyLaws')" data-bs-toggle="modal" data-bs-target="#pdfModal">Ver</a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input type="date" class="form-control" id="RegistroRugbyLaws" onblur="FechaVencimiento('VencimientoRugbyLaws', 2)" disabled required />
+                    <label for="RegistroRugbyLaws">Registro</label>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input type="date" class="form-control input-disabled" id="VencimientoRugbyLaws" readonly />
+                    <label for="VencimientoRugbyLaws">Vencimiento</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 g-2">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
+                <input type="hidden" id="rutaHidden-KeepRugbyClean" value="@Model.RutaKeepRugbyClean" />
+                <div class="container-input">
+                    <input type="file"
+                           id="file-KeepRugbyClean"
+                           class="inputfile inputfile-1"
+                           asp-for="KeepRugbyClean"
+                           accept=".pdf"
+                           onchange="previewFile(event, 'file-KeepRugbyClean','RegistroKeepRugbyClean','VencimientoKeepRugbyClean')"
+                           data-val="false" />
+                    <label for="file-KeepRugbyClean">
+                        <div class="label-text">Documento Keep Rugby Clean</div>
+                        <span class="iborrainputfile">Seleccionar Documento Keep Rugby Clean</span>
+                    </label>
+                </div>
+                <div class="ms-auto px-3">
+                    <a href="#" onclick="showFilePreview('file-KeepRugbyClean')" data-bs-toggle="modal" data-bs-target="#pdfModal">Ver</a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input type="date" class="form-control" id="RegistroKeepRugbyClean" onblur="FechaVencimiento('VencimientoKeepRugbyClean', 2)" disabled required />
+                    <label for="RegistroKeepRugbyClean">Registro</label>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input type="date" class="form-control input-disabled" id="VencimientoKeepRugbyClean" readonly />
+                    <label for="VencimientoKeepRugbyClean">Vencimiento</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 g-2">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
+                <input type="hidden" id="rutaHidden-PrimerosAuxilios" value="@Model.RutaPrimerosAuxilios" />
+                <div class="container-input">
+                    <input type="file"
+                           id="file-PrimerosAuxilios"
+                           class="inputfile inputfile-1"
+                           asp-for="PrimerosAuxilios"
+                           accept=".pdf"
+                           onchange="previewFile(event, 'file-PrimerosAuxilios','RegistroPrimerosAuxilios','VencimientoPrimerosAuxilios')"
+                           data-val="false" />
+                    <label for="file-PrimerosAuxilios">
+                        <div class="label-text">Documento Primeros Auxilios</div>
+                        <span class="iborrainputfile">Seleccionar Documento Primeros Auxilios</span>
+                    </label>
+                </div>
+                <div class="ms-auto px-3">
+                    <a href="#" onclick="showFilePreview('file-PrimerosAuxilios')" data-bs-toggle="modal" data-bs-target="#pdfModal">Ver</a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input type="date" class="form-control" id="RegistroPrimerosAuxilios" onblur="FechaVencimiento('VencimientoPrimerosAuxilios', 2)" disabled required />
+                    <label for="RegistroPrimerosAuxilios">Registro</label>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input type="date" class="form-control input-disabled" id="VencimientoPrimerosAuxilios" readonly />
+                    <label for="VencimientoPrimerosAuxilios">Vencimiento</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 g-2">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
+                <input type="hidden" id="rutaHidden-ConmocionCerebral" value="@Model.RutaConmocionCerebral" />
+                <div class="container-input">
+                    <input type="file"
+                           id="file-ConmocionCerebral"
+                           class="inputfile inputfile-1"
+                           asp-for="ConmocionCerebral"
+                           accept=".pdf"
+                           onchange="previewFile(event, 'file-ConmocionCerebral','RegistroConmocionCerebral','VencimientoConmocionCerebral')"
+                           data-val="false" />
+                    <label for="file-ConmocionCerebral">
+                        <div class="label-text">Documento Conmocion Cerebral</div>
+                        <span class="iborrainputfile">Seleccionar Documento Conmocion Cerebral</span>
+                    </label>
+                </div>
+                <div class="ms-auto px-3">
+                    <a href="#" onclick="showFilePreview('file-ConmocionCerebral')" data-bs-toggle="modal" data-bs-target="#pdfModal">Ver</a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input type="date" class="form-control" id="RegistroConmocionCerebral" onblur="FechaVencimiento('VencimientoConmocionCerebral', 2)" disabled required />
+                    <label for="RegistroConmocionCerebral">Registro</label>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input type="date" class="form-control input-disabled" id="VencimientoConmocionCerebral" readonly />
+                    <label for="VencimientoConmocionCerebral">Vencimiento</label>
+                </div>
+            </div>
         </div>
         <div class="mt-2">
             <button type="submit" class="btn btn-outline-success">
@@ -258,7 +294,203 @@
     <partial name="_ValidationScriptsPartial" />
 }
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let inputs = document.querySelectorAll('.inputfile');
+        inputs.forEach(input => {
+            let label = input.nextElementSibling;
+            let labelVal = label.querySelector('.iborrainputfile').innerHTML;
+
+            input.addEventListener('change', function (e) {
+                let fileName = '';
+                let file = this.files[0];
+
+                // Validar si es un archivo PDF
+                if (file && file.type !== "application/pdf") {
+                    alert("Solo se permiten archivos PDF.");
+                    this.value = ""; // Limpiar el input
+                    label.querySelector('.iborrainputfile').innerHTML = labelVal;
+                    input.closest('.container-input').classList.remove('has-file');
+                    return;
+                }
+
+                if (file) {
+                    fileName = file.name;
+                    label.querySelector('.iborrainputfile').innerHTML = fileName;
+                    input.closest('.container-input').classList.add('has-file');
+                } else {
+                    label.querySelector('.iborrainputfile').innerHTML = labelVal;
+                    input.closest('.container-input').classList.remove('has-file');
+                }
+            });
+        });
+        initializeFileNames();
+    });
+    
+    // Función para previsualizar archivos PDF con validación de tamaño y limpiar campos si es incorrecto
+    function previewFile(event, inputId, registroId, vencimientoId) {
+        const fileInput = document.getElementById(inputId);
+        if (!fileInput) return;
+
+        const file = fileInput.files[0];
+        if (!file) return;
+
+        const maxSize = 3 * 1024 * 1024; // 3MB
+        const registroInput = document.getElementById(registroId);
+        const vencimientoInput = document.getElementById(vencimientoId);
+
+        // Función auxiliar para limpiar campos y deshabilitar
+        function limpiarCampos() {
+            fileInput.value = ""; // Limpiar el input file
+            if (registroInput) {
+                registroInput.value = "";
+                registroInput.setAttribute("disabled", "true");
+                registroInput.removeAttribute("required");
+            }
+            if (vencimientoInput) {
+                vencimientoInput.value = "";
+            }
+        }
+
+        // Validar si el archivo es PDF
+        if (file.type !== "application/pdf") {
+            alert("Por favor, seleccione un archivo PDF válido.");
+            limpiarCampos();
+            return;
+        }
+
+        // Validar tamaño del archivo
+        if (file.size > maxSize) {
+            alert(`El archivo seleccionado excede el tamaño máximo permitido (3MB).`);
+            limpiarCampos();
+            return;
+        }
+
+        // Actualizar el texto del input con el nombre del archivo
+        const span = fileInput.nextElementSibling.querySelector('.iborrainputfile');
+        if (span) {
+            span.textContent = file.name;
+        }
+
+        // Habilitar el campo de fecha de registro
+        if (registroInput) {
+            registroInput.removeAttribute("disabled"); // Habilitar el input
+            registroInput.setAttribute("required", "true"); // Hacerlo obligatorio
+        }
+    }
+
+
+    //Funcion para mostrar la previsualizacion del archivo
+    function showFilePreview(inputId) {
+        const fileInput = document.getElementById(inputId);
+        const pdfPreview = document.getElementById('pdfPreview');
+        const rutaPdfHidden = document.getElementById(inputId.replace('file-', 'rutaHidden-'));
+        const downloadBtn = document.getElementById('pdfDownloadBtn');
+
+        if (!fileInput || !pdfPreview || !rutaPdfHidden || !downloadBtn) {
+            console.warn(`Elementos no encontrados para: ${inputId}`);
+            return;
+        }
+
+        const file = fileInput.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                pdfPreview.src = e.target.result;
+                downloadBtn.href = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        } else {
+            const rutaPdf = rutaPdfHidden.value;
+            if (rutaPdf) {
+                let webPath = formatPath(rutaPdf);
+                pdfPreview.src = webPath;
+                downloadBtn.href = webPath;
+            }
+        }
+    }
+
+    // Función auxiliar para formatear las rutas
+    function formatPath(path) {
+        let webPath = path
+            .replace('wwwroot\\', '')
+            .replace('wwwroot/', '')
+            .replace(/\\/g, '/');
+
+        if (!webPath.startsWith('/')) {
+            webPath = '/' + webPath;
+        }
+        return webPath;
+    }
+
+    //// Inicializar nombres de archivos al cargar la página
+    //function initializeFileNames() {
+    //    document.querySelectorAll('input[type="hidden"][id^="rutaHidden-"]').forEach(hiddenInput => {
+    //        const filePath = hiddenInput.value;
+    //        if (!filePath) return;
+
+    //        const fileName = filePath.split('\\').pop(); // Extrae solo el nombre del archivo
+    //        const fileInputId = hiddenInput.id.replace('rutaHidden-', 'file-'); // Genera el ID del input file
+
+    //        const fileInput = document.getElementById(fileInputId);
+    //        if (fileInput) {
+    //            const label = fileInput.nextElementSibling;
+    //            const span = label.querySelector('.iborrainputfile');
+    //            if (span) {
+    //                span.textContent = fileName;
+    //                fileInput.closest('.container-input').classList.add('has-file');
+    //            }
+    //        }
+    //    });
+    //}
+
+    // Inicializar nombres de archivos y habilitar fechas de registro al cargar la página
+    function initializeFileNames() {
+        document.querySelectorAll('input[type="hidden"][id^="rutaHidden-"]').forEach(hiddenInput => {
+            const filePath = hiddenInput.value;
+            if (!filePath) return;
+
+            const fileName = filePath.split('\\').pop(); // Extrae solo el nombre del archivo
+            const fileInputId = hiddenInput.id.replace('rutaHidden-', 'file-'); // Genera el ID del input file
+
+            const fileInput = document.getElementById(fileInputId);
+            if (fileInput) {
+                const label = fileInput.nextElementSibling;
+                const span = label.querySelector('.iborrainputfile');
+                if (span) {
+                    span.textContent = fileName;
+                    fileInput.closest('.container-input').classList.add('has-file');
+                }
+
+                // Habilitar la fecha de registro asociada
+                const registroInputId = fileInputId.replace('file-', 'Registro'); // Generar el ID del input de fecha de registro
+                const registroInput = document.getElementById(registroInputId);
+                if (registroInput) {
+                    registroInput.removeAttribute("disabled"); // Habilitar el input
+                    registroInput.setAttribute("required", "true"); // Hacerlo obligatorio
+                }
+            }
+        });
+    }
+
+    // Función para calcular la fecha de vencimiento
+    function FechaVencimiento(idVencimiento, anios) {
+        const registroInput = event.target;
+        const vencimientoInput = document.getElementById(idVencimiento);
+
+        if (registroInput && vencimientoInput) {
+            const fechaRegistro = new Date(registroInput.value);
+
+            if (!isNaN(fechaRegistro)) {
+                fechaRegistro.setFullYear(fechaRegistro.getFullYear() + anios); // Sumar años
+                vencimientoInput.value = fechaRegistro.toISOString().split("T")[0]; // Formato YYYY-MM-DD
+            }
+        }
+    }
+</script>
+@*<script>
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll('input[type="file"]').forEach(input => {
             input.addEventListener('change', function () {
@@ -294,7 +526,6 @@
             });
         });
 
-        initializeFileInputs();
     });
 
     // Función para previsualizar PDF cuando se selecciona
@@ -325,21 +556,82 @@
         }
     }
 
-    // Función para inicializar los nombres de archivos en los inputs
-    function initializeFileInputs() {
-        document.querySelectorAll("input[type='file']").forEach(input => {
-            const hiddenInput = document.getElementById(input.id.replace("file", "ruta"));
-            if (hiddenInput && hiddenInput.value) {
-                const fileName = hiddenInput.value.split(/[/\\]/).pop(); // Tomar solo el nombre del archivo
-
-                // Si el input tiene un siguiente elemento que es un span, lo usa para mostrar el nombre
-                let span = input.closest(".input-group").querySelector(".file-name");
-                if (span) {
-                    span.textContent = fileName;
-                }
+</script>*@
+@*<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            // Cargar el archivo si ya existe
+            let fileUrl = input.getAttribute("data-url");
+            if (fileUrl) {
+                let fileName = fileUrl.split('/').pop(); // Obtener solo el nombre del archivo
+                let label = document.createElement("span"); // Crear un elemento span para mostrar el nombre
+                label.textContent = fileName;
+                label.style.marginLeft = "10px";
+                label.style.fontWeight = "bold";
+                input.parentNode.appendChild(label); // Insertar el nombre del archivo junto al input
+                input.setAttribute("data-file", fileUrl); // Guardar la URL en data-file para la vista previa
             }
+
+            // Evento cuando se selecciona un archivo
+            input.addEventListener('change', function () {
+                if (this.files.length > 0) {
+                    const file = this.files[0];
+
+                    // Validar tipo de archivo
+                    if (file.type !== "application/pdf") {
+                        alert("Solo se permiten archivos PDF.");
+                        this.value = "";
+                        return;
+                    }
+
+                    // Validar tamaño de archivo (máx 3MB)
+                    if (file.size > 3 * 1024 * 1024) {
+                        alert("El archivo seleccionado supera los 3MB.");
+                        this.value = "";
+                        return;
+                    }
+
+                    // Previsualizar PDF cuando se selecciona
+                    previewPDF(event);
+                }
+            });
         });
+
+        // Agregar evento a los botones "Ver"
+        document.querySelectorAll('button[id^="btnVer"]').forEach(button => {
+            button.addEventListener("click", function () {
+                let inputId = this.id.replace("btnVer", "file");
+                let fileInput = document.getElementById(inputId);
+                showFilePreview(fileInput);
+            });
+        });
+    });
+
+    // Función para previsualizar PDF cuando se selecciona
+    function previewPDF(event) {
+        let file = event.target.files[0];
+
+        if (!file) return;
+
+        // Guardar la URL en data-file
+        event.target.setAttribute("data-file", URL.createObjectURL(file));
     }
 
+    // Función para mostrar la vista previa del PDF
+    function showFilePreview(fileInput) {
+        let pdfPreview = document.getElementById("pdfPreview");
+        let downloadBtn = document.getElementById("pdfDownloadBtn");
 
-</script>
+        // Verificar si el input tiene un archivo seleccionado o una URL guardada
+        let fileUrl = fileInput.getAttribute("data-file");
+
+        if (fileUrl) {
+            pdfPreview.src = fileUrl;
+            downloadBtn.href = fileUrl;
+            downloadBtn.setAttribute("download", fileUrl.split('/').pop());
+            new bootstrap.Modal(document.getElementById("pdfModal")).show();
+        } else {
+            alert("No hay archivo seleccionado para previsualizar.");
+        }
+    }
+</script>*@

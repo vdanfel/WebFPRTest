@@ -459,26 +459,26 @@
     let selectedImage = null;
     let selectedPdf = null;
     (function (document, window, index) {
-    var inputs = document.querySelectorAll('.inputfile');
-    Array.prototype.forEach.call(inputs, function (input) {
-        var label = input.nextElementSibling,
-            labelVal = label.querySelector('.iborrainputfile').innerHTML;
-        input.addEventListener('change', function (e) {
-            var fileName = '';
-            if (this.files && this.files.length > 1)
-                fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
-            else
-                fileName = e.target.value.split('\\').pop();
-            if (fileName) {
-                label.querySelector('.iborrainputfile').innerHTML = fileName;
-                input.closest('.container-input').classList.add('has-file');
-            } else {
-                label.querySelector('.iborrainputfile').innerHTML = labelVal;
-                input.closest('.container-input').classList.remove('has-file');
-            }
+        var inputs = document.querySelectorAll('.inputfile');
+        Array.prototype.forEach.call(inputs, function (input) {
+            var label = input.nextElementSibling,
+                labelVal = label.querySelector('.iborrainputfile').innerHTML;
+            input.addEventListener('change', function (e) {
+                var fileName = '';
+                if (this.files && this.files.length > 1)
+                    fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+                else
+                    fileName = e.target.value.split('\\').pop();
+                if (fileName) {
+                    label.querySelector('.iborrainputfile').innerHTML = fileName;
+                    input.closest('.container-input').classList.add('has-file');
+                } else {
+                    label.querySelector('.iborrainputfile').innerHTML = labelVal;
+                    input.closest('.container-input').classList.remove('has-file');
+                }
+            });
         });
-    });
-}(document, window, 0));
+    }(document, window, 0));
 
     // Función para previsualizar el archivo seleccionado con validación de tamaño
     function previewFile(event, type) {
