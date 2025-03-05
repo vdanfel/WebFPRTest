@@ -88,13 +88,13 @@
             </div>
             <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control" id="RegistroActaMedica" onblur="FechaVencimiento('VencimientoActaMedica', 1)" disabled required />
+                    <input type="date" class="form-control" id="RegistroActaMedica" onblur="FechaVencimiento('VencimientoActaMedica', 1)" disabled required asp-for="FechaRegistroActaMedica"/>
                     <label for="RegistroActaMedica">Registro</label>
                 </div>
             </div>
             <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control input-disabled" id="VencimientoActaMedica" readonly />
+                    <input type="date" class="form-control input-disabled" id="VencimientoActaMedica" readonly asp-for="FechaVencimientoActaMedica" />
                     <label for="VencimientoActaMedica">Vencimiento</label>
                 </div>
             </div>
@@ -121,13 +121,13 @@
             </div>
             <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control" id="RegistroRugbyReady" onblur="FechaVencimiento('VencimientoRugbyReady', 2)" disabled required />
+                    <input type="date" class="form-control" id="RegistroRugbyReady" onblur="FechaVencimiento('VencimientoRugbyReady', 2)" disabled required asp-for="FechaRegistroRugbyReady" />
                     <label for="RegistroRugbyReady">Registro</label>
                 </div>
             </div>
             <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control input-disabled" id="VencimientoRugbyReady" />
+                    <input type="date" class="form-control input-disabled" id="VencimientoRugbyReady" asp-for="FechaVencimientoRugbyReady"/>
                     <label for="VencimientoRugbyReady">Vencimiento</label>
                 </div>
             </div>
@@ -154,13 +154,13 @@
             </div>
             <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control" id="RegistroRugbyLaws" onblur="FechaVencimiento('VencimientoRugbyLaws', 2)" disabled required />
+                    <input type="date" class="form-control" id="RegistroRugbyLaws" onblur="FechaVencimiento('VencimientoRugbyLaws', 2)" disabled required asp-for="FechaRegistroRugbyLaws"/>
                     <label for="RegistroRugbyLaws">Registro</label>
                 </div>
             </div>
             <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control input-disabled" id="VencimientoRugbyLaws" readonly />
+                    <input type="date" class="form-control input-disabled" id="VencimientoRugbyLaws" readonly asp-for="FechaVencimientoRugbyLaws"/>
                     <label for="VencimientoRugbyLaws">Vencimiento</label>
                 </div>
             </div>
@@ -187,13 +187,13 @@
             </div>
             <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control" id="RegistroKeepRugbyClean" onblur="FechaVencimiento('VencimientoKeepRugbyClean', 2)" disabled required />
+                    <input type="date" class="form-control" id="RegistroKeepRugbyClean" onblur="FechaVencimiento('VencimientoKeepRugbyClean', 2)" disabled required asp-for="FechaRegistroKeepRugbyClean" />
                     <label for="RegistroKeepRugbyClean">Registro</label>
                 </div>
             </div>
             <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control input-disabled" id="VencimientoKeepRugbyClean" readonly />
+                    <input type="date" class="form-control input-disabled" id="VencimientoKeepRugbyClean" readonly asp-for="FechaVencimientoKeepRugbyClean"/>
                     <label for="VencimientoKeepRugbyClean">Vencimiento</label>
                 </div>
             </div>
@@ -220,13 +220,13 @@
             </div>
             <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control" id="RegistroPrimerosAuxilios" onblur="FechaVencimiento('VencimientoPrimerosAuxilios', 2)" disabled required />
+                    <input type="date" class="form-control" id="RegistroPrimerosAuxilios" onblur="FechaVencimiento('VencimientoPrimerosAuxilios', 2)" disabled required asp-for="FechaRegistroPrimerosAuxilios"/>
                     <label for="RegistroPrimerosAuxilios">Registro</label>
                 </div>
             </div>
             <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control input-disabled" id="VencimientoPrimerosAuxilios" readonly />
+                    <input type="date" class="form-control input-disabled" id="VencimientoPrimerosAuxilios" readonly asp-for="FechaVencimientoPrimerosAuxilios"/>
                     <label for="VencimientoPrimerosAuxilios">Vencimiento</label>
                 </div>
             </div>
@@ -253,13 +253,13 @@
             </div>
             <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control" id="RegistroConmocionCerebral" onblur="FechaVencimiento('VencimientoConmocionCerebral', 2)" disabled required />
+                    <input type="date" class="form-control" id="RegistroConmocionCerebral" onblur="FechaVencimiento('VencimientoConmocionCerebral', 2)" disabled required asp-for="FechaRegistroConmocionCerebral"/>
                     <label for="RegistroConmocionCerebral">Registro</label>
                 </div>
             </div>
             <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control input-disabled" id="VencimientoConmocionCerebral" readonly />
+                    <input type="date" class="form-control input-disabled" id="VencimientoConmocionCerebral" readonly asp-for="FechaVencimientoConmocionCerebral"/>
                     <label for="VencimientoConmocionCerebral">Vencimiento</label>
                 </div>
             </div>

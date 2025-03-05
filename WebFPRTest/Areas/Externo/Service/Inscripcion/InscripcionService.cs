@@ -37,7 +37,7 @@ namespace WebFPRTest.Areas.Externo.Service.Inscripcion
                 _connection.Close();
             }
         }
-        public async Task Archivo_Insertar(int Id_Equipo, int Id_Jugador, int Id_013_TipoArchivo, string RutaArchivo, int Usuario)
+        public async Task Archivo_Insertar(int Id_Equipo, int Id_Jugador, int Id_013_TipoArchivo, string RutaArchivo, DateTime FechaRegistro, DateTime FechaVencimiento, int Usuario)
         {
             var procedure = "usp_Archivos_Insert";
             try
@@ -46,6 +46,8 @@ namespace WebFPRTest.Areas.Externo.Service.Inscripcion
                 parameters.Add("@Id_Equipo", Id_Equipo);
                 parameters.Add("@Id_Jugador", Id_Jugador);
                 parameters.Add("@Id_013_TipoArchivo", Id_013_TipoArchivo);
+                parameters.Add("@FechaRegistro", FechaRegistro);
+                parameters.Add("@FechaVencimiento", FechaVencimiento);
                 parameters.Add("@RutaArchivo", RutaArchivo);
                 parameters.Add("@Usuario", Usuario);
                 await _connection.ExecuteAsync(procedure, parameters, commandType: CommandType.StoredProcedure);
@@ -84,5 +86,26 @@ namespace WebFPRTest.Areas.Externo.Service.Inscripcion
                 _connection.Close();
             }
         }
+        public async Task Jugador_CambioEstado445(int Id_Equipo, int Id_Jugador, int Usuario)
+        {
+            var procedure = "usp_Jugador_CambioEstado445";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Equipo", Id_Equipo);
+                parameters.Add("@Id_Jugador", Id_Jugador);
+                parameters.Add("@Id_UsuarioModificacion", Usuario);
+                await _connection.ExecuteAsync(procedure, parameters, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error inesperado. Intenta nuevamente.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+
     }
 }

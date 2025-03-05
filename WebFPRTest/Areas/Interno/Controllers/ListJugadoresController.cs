@@ -109,7 +109,11 @@ namespace WebFPRTest.Areas.Interno.Controllers
                 await _listJugadoresService.Jugador_Actualizar(jugadorDatosViewModel, Id_Usuario);
                 TempData["Mensaje"] = "Jugador deshabilitado";
             }
-            
+            if (jugadorDatosViewModel.Id_009_EstadoJugador == 441 && jugadorDatosViewModel.Flag_Aprobacion1 == false)
+            {
+                await _listJugadoresService.Jugador_Actualizar(jugadorDatosViewModel, Id_Usuario);
+                TempData["Mensaje"] = "Observacion registrada con éxito";
+            }
             return RedirectToAction("GuardarJugadorSeleccionado", "ListJugadores", new {Id_Jugador = jugadorDatosViewModel.Id_Jugador });
         }
         [HttpGet]
