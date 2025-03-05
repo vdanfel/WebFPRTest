@@ -141,7 +141,31 @@ namespace WebFPRTest.Areas.Interno.Service.ListJugadores
                 _connection.Close();
             }
         }
+        public async Task<JugadorDocumentosViewModel> ArchivosInscripcion(int Id_Equipo, int Id_Jugador)
+        {
+            var procedure = "usp_ArchivosInscripcion";
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Equipo", Id_Equipo, DbType.Int32);
+                parameters.Add("@Id_Jugador", Id_Jugador, DbType.Int32);
 
+                var archivos = await _connection.QueryFirstOrDefaultAsync<JugadorDocumentosViewModel>(
+                   procedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                    );
+                return archivos;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al insertar la persona.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
 
     }
 }

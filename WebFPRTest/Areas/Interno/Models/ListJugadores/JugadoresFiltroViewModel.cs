@@ -25,6 +25,7 @@ namespace WebFPRTest.Areas.Interno.Models.ListJugadores
     {
         public int Indice { get; set; }
         public int Id_Jugador { get; set; }
+        public int Id_Equipo { get; set; }
         public int Id_Persona { get; set; }
         public string ApellidosYNombre { get; set; }
         public string TipoDocumento { get; set; }

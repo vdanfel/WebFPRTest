@@ -1,10 +1,15 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model WebFPRTest.Areas.Interno.Models.ListJugadores.JugadorDocumentosViewModel
 @{
     Layout = "_LayoutJugador";
+    // string nRutaActaMedica = System.IO.Path.GetFileName(Model.RutaActaMedica);
+    // string nRutaRugbyReady = System.IO.Path.GetFileName(Model.RutaRugbyReady);
+    // string nRutaRugbyLaws = System.IO.Path.GetFileName(Model.RutaRugbyLaws);
+    // string nRutaKeepRugbyClean = System.IO.Path.GetFileName(Model.RutaKeepRugbyClean);
+    // string nRutaPrimerosAuxilios = System.IO.Path.GetFileName(Model.RutaPrimerosAuxilios);
+    // string nRutaConmocionCerebral = System.IO.Path.GetFileName(Model.RutaConmocionCerebral);
 }
-<div class="container" style="border-left: 1px solid #dee2e6;border-right:1px solid #dee2e6;border-bottom:1px solid #dee2e6;
+<form asp-asp-area="Interno" asp-action="JugadorDocumentos" asp-asp-controller="ListJugadores">
+    <div class="container" style="border-left: 1px solid #dee2e6;border-right:1px solid #dee2e6;border-bottom:1px solid #dee2e6;
     border-radius: 1rem;
     padding: 1rem;
     margin-top: -1rem;">
@@ -19,7 +24,7 @@
         </div>
         <div class="col-6 col-sm-6 col-md-3 col-lg-3">
             <div class="form-floating">
-                <input class="form-control" />
+                <input class="form-control" asp-for="FechaRegistroActaMedica"/>
                 <label>Registro</label>
             </div>
         </div>
@@ -131,3 +136,4 @@
         </div>
     </div>
 </div>
+</form>

@@ -51,7 +51,7 @@ namespace WebFPRTest.Areas.Interno.Controllers
             jugadoresFiltroViewModel.ListaEstadoJugador = estadoJugadores.OrderBy(d => d.Id_Parametros).ToList();
             return View(jugadoresFiltroViewModel);
         }
-        public IActionResult GuardarJugadorSeleccionado(int Id_Jugador)
+        public IActionResult GuardarJugadorSeleccionado(int Id_Jugador, int Id_Equipo)
         {
             var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
             if (tipoUsuario == null || (tipoUsuario != "406" && tipoUsuario != "407" && tipoUsuario != "408"))
@@ -59,6 +59,7 @@ namespace WebFPRTest.Areas.Interno.Controllers
                 return RedirectToAction("Login", "Login");
             }
             TempData["Id_Jugador"] = Id_Jugador;
+            TempData["Id_Equipo"] = Id_Equipo;
             return RedirectToAction("JugadorDatos", "ListJugadores", new { area = "Interno" });
         }
         [HttpGet]
@@ -70,6 +71,9 @@ namespace WebFPRTest.Areas.Interno.Controllers
                 return RedirectToAction("Login", "Login");
             }
             int Id_Jugador = TempData.Peek("Id_Jugador") as int? ?? 0;
+            TempData.Keep("Id_Jugador");
+            int Id_Equipo = TempData.Peek("Id_Equipo") as int? ?? 0;
+            TempData.Keep("Id_Equipo");
             JugadorDatosViewModel jugadorDatosViewModel = new JugadorDatosViewModel();
             jugadorDatosViewModel = await _listJugadoresService.Jugador_Select(Id_Jugador);
             jugadorDatosViewModel.DatosApoderado = await _listJugadoresService.Apoderado_Select(jugadorDatosViewModel.Id_Persona);
@@ -117,10 +121,18 @@ namespace WebFPRTest.Areas.Interno.Controllers
             return RedirectToAction("GuardarJugadorSeleccionado", "ListJugadores", new {Id_Jugador = jugadorDatosViewModel.Id_Jugador });
         }
         [HttpGet]
-        public IActionResult JugadorDocumentos() 
+        public async Task<IActionResult> JugadorDocumentos() 
         {
+            int Id_Jugador = TempData.Peek("Id_Jugador") as int? ?? 0;
+            TempData.Keep("Id_Jugador");
+            int Id_Equipo = TempData.Peek("Id_Equipo") as int? ?? 0;
+            TempData.Keep("Id_Equipo");
+            JugadorDocumentosViewModel jugadorDocumentosViewModel = new JugadorDocumentosViewModel();
+            var archivos = await _listJugadoresService.ArchivosInscripcion(Id_Equipo, Id_Jugador);
+            jugadorDocumentosViewModel.RutaActaMedica = archivos.RutaActaMedica;
+            jugadorDocumentosViewModel.FechaRegistroActaMedica = archivos.FechaRegistroActaMedica;
             ViewData["ActiveTab"] = "DocumentosInscripcion";
-            return View();
+            return View(jugadorDocumentosViewModel);
         }
     }
 }
