@@ -1,139 +1,293 @@
 ﻿@model WebFPRTest.Areas.Interno.Models.ListJugadores.JugadorDocumentosViewModel
 @{
     Layout = "_LayoutJugador";
-    // string nRutaActaMedica = System.IO.Path.GetFileName(Model.RutaActaMedica);
-    // string nRutaRugbyReady = System.IO.Path.GetFileName(Model.RutaRugbyReady);
-    // string nRutaRugbyLaws = System.IO.Path.GetFileName(Model.RutaRugbyLaws);
-    // string nRutaKeepRugbyClean = System.IO.Path.GetFileName(Model.RutaKeepRugbyClean);
-    // string nRutaPrimerosAuxilios = System.IO.Path.GetFileName(Model.RutaPrimerosAuxilios);
-    // string nRutaConmocionCerebral = System.IO.Path.GetFileName(Model.RutaConmocionCerebral);
+     string nRutaActaMedica = System.IO.Path.GetFileName(Model.RutaActaMedica);
+     string nRutaRugbyReady = System.IO.Path.GetFileName(Model.RutaRugbyReady);
+     string nRutaRugbyLaws = System.IO.Path.GetFileName(Model.RutaRugbyLaws);
+     string nRutaKeepRugbyClean = System.IO.Path.GetFileName(Model.RutaKeepRugbyClean);
+     string nRutaPrimerosAuxilios = System.IO.Path.GetFileName(Model.RutaPrimerosAuxilios);
+     string nRutaConmocionCerebral = System.IO.Path.GetFileName(Model.RutaConmocionCerebral);
 }
 <form asp-asp-area="Interno" asp-action="JugadorDocumentos" asp-asp-controller="ListJugadores">
     <div class="container" style="border-left: 1px solid #dee2e6;border-right:1px solid #dee2e6;border-bottom:1px solid #dee2e6;
     border-radius: 1rem;
     padding: 1rem;
     margin-top: -1rem;">
-    <h4 class="mb-3">Documentos de Inscripción</h4>
-    <hr />
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="form-floating">
-                <input class="form-control"/>
-                <label>Acta Médica</label>
+        <div class="row mt-2 g-2">
+            <input type="hidden" id="rutaHidden-ActaMedica" value="@Model.RutaActaMedica" />
+            <div class="col col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
+                <div class="form-floating flex-grow-1">
+                    <input class="form-control" type="text" id="rutaActaMedica" value="@nRutaActaMedica" disabled />
+                    <label>Acta Médica</label>
+                </div>
+                <div class="ms-2">
+                    <a href="#" onclick="showFilePreview('rutaActaMedica')">Ver</a>
+                </div>
+            </div>
+            <div class="col col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input class="form-control" asp-for="FechaRegistroActaMedica" disabled />
+                    <label>Registro</label>
+                </div>
+            </div>
+            <div class="col col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input class="form-control" asp-for="FechaVencimientoActaMedica" disabled />
+                    <label>Vencimiento</label>
+                </div>
             </div>
         </div>
-        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-            <div class="form-floating">
-                <input class="form-control" asp-for="FechaRegistroActaMedica"/>
-                <label>Registro</label>
+        <div class="row mt-2 g-2">
+            <input type="hidden" id="rutaHidden-RugbyReady" value="@Model.RutaRugbyReady" />
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
+                <div class="form-floating flex-grow-1">
+                    <input class="form-control" type="text" id="rutaRugbyReady" value="@nRutaRugbyReady" disabled />
+                    <label>Rugby Ready</label>
+                </div>
+                <div class="ms-2">
+                    <a href="#" data-bs-toggle="modal" onclick="showFilePreview('rutaRugbyReady')">Ver</a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input class="form-control" asp-for="FechaRegistroRugbyReady" disabled />
+                    <label>Registro</label>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input class="form-control" asp-for="FechaVencimientoRugbyReady" disabled />
+                    <label>Vencimiento</label>
+                </div>
             </div>
         </div>
-        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-            <div class="form-floating">
-                <input class="form-control" />
-                <label>Vencimiento</label>
+        <div class="row mt-2 g-2">
+            <input type="hidden" id="rutaHidden-RugbyLaws" value="@Model.RutaRugbyLaws" />
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
+                <div class="form-floating flex-grow-1">
+                    <input class="form-control" type="text" id="rutaRugbyLaws" value="@nRutaRugbyLaws" disabled />
+                    <label>Rugby Laws</label>
+                </div>
+                <div class="ms-2">
+                    <a href="#" data-bs-toggle="modal" onclick="showFilePreview('rutaRugbyLaws')">Ver</a>
+                </div>
             </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input class="form-control" asp-for="FechaRegistroRugbyLaws" disabled />
+                    <label>Registro</label>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input class="form-control" asp-for="FechaVencimientoRugbyLaws" disabled />
+                    <label>Vencimiento</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 g-2">
+            <input type="hidden" id="rutaHidden-KeepRugbyClean" value="@Model.RutaKeepRugbyClean" />
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
+                <div class="form-floating flex-grow-1">
+                    <input class="form-control" type="text" id="rutaKeepRugbyClean" value="@nRutaKeepRugbyClean" disabled />
+                    <label>Keep Rugby Clean</label>
+                </div>
+                <div class="ms-2">
+                    <a href="#" data-bs-toggle="modal" onclick="showFilePreview('rutaKeepRugbyClean')">Ver</a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input class="form-control" asp-for="FechaRegistroKeepRugbyClean" disabled />
+                    <label>Registro</label>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input class="form-control" asp-for="FechaVencimientoKeepRugbyClean" disabled />
+                    <label>Vencimiento</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 g-2">
+            <input type="hidden" id="rutaHidden-PrimerosAuxilios" value="@Model.RutaPrimerosAuxilios" />
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
+                <div class="form-floating flex-grow-1">
+                    <input class="form-control" type="text" id="rutaPrimerosAuxilios" value="@nRutaPrimerosAuxilios" disabled />
+                    <label>Primeros Auxilios</label>
+                </div>
+                <div class="ms-2">
+                    <a href="#" data-bs-toggle="modal" onclick="showFilePreview('rutaPrimerosAuxilios')">Ver</a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input class="form-control" asp-for="FechaRegistroPrimerosAuxilios" disabled />
+                    <label>Registro</label>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input class="form-control" asp-for="FechaVencimientoPrimerosAuxilios" disabled />
+                    <label>Vencimiento</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 g-2">
+            <input type="hidden" id="rutaHidden-ConmocionCerebral" value="@Model.RutaConmocionCerebral" />
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex align-items-center">
+                <div class="form-floating flex-grow-1">
+                    <input class="form-control" type="text" id="rutaConmocionCerebral" value="@nRutaConmocionCerebral" disabled />
+                    <label>Conmocion Cerebral</label>
+                </div>
+                <div class="ms-2">
+                    <a href="#" data-bs-toggle="modal" onclick="showFilePreview('rutaConmocionCerebral')">Ver</a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input class="form-control" asp-for="FechaRegistroConmocionCerebral" disabled />
+                    <label>Registro</label>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <div class="form-floating">
+                    <input class="form-control" asp-for="FechaVencimientoConmocionCerebral" disabled />
+                    <label>Vencimiento</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 g-2">
+            <div class="col-12">
+                <div class="form-floating">
+                    <textarea class="form-control" style="height:7rem" asp-for="Observacion"></textarea>
+                    <label>Observacion FPR</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" asp-for="Flag_Aprobacion1">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Habilitado</label>
+                </div>
+                <input type="hidden" id="estadoJugador" value="@Model.Id_009_EstadoJugador">
+            </div>
+        </div>
+        <div class="mt-2">
+            <button id="btnGrabar" class="btn btn-outline-success" type="submit">Grabar</button>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="form-floating">
-                <input class="form-control" />
-                <label>Rugby Ready</label>
+</form>
+<!-- Modal para PDFs -->
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfModalLabel">Vista previa del PDF</h5>
             </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-            <div class="form-floating">
-                <input class="form-control" />
-                <label>Registro</label>
+            <div class="modal-body">
+                <embed id="pdfPreview" src="" type="application/pdf" width="100%" height="600px" />
             </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-            <div class="form-floating">
-                <input class="form-control" />
-                <label>Vencimiento</label>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="form-floating">
-                <input class="form-control" />
-                <label>Rugby Laws</label>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-            <div class="form-floating">
-                <input class="form-control" />
-                <label>Registro</label>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-            <div class="form-floating">
-                <input class="form-control" />
-                <label>Vencimiento</label>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="form-floating">
-                <input class="form-control" />
-                <label>Keep Rugby Clean</label>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-            <div class="form-floating">
-                <input class="form-control" />
-                <label>Registro</label>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-            <div class="form-floating">
-                <input class="form-control" />
-                <label>Vencimiento</label>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="form-floating">
-                <input class="form-control" />
-                <label>Primeros Auxilios</label>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-            <div class="form-floating">
-                <input class="form-control" />
-                <label>Registro</label>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-            <div class="form-floating">
-                <input class="form-control" />
-                <label>Vencimiento</label>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="form-floating">
-                <input class="form-control" />
-                <label>Conmocion Cerebral</label>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-            <div class="form-floating">
-                <input class="form-control" />
-                <label>Registro</label>
-            </div>
-        </div>
-        <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-            <div class="form-floating">
-                <input class="form-control" />
-                <label>Vencimiento</label>
+            <div class="modal-footer">
+                <a id="pdfDownloadBtn" href="#" class="btn btn-primary" download>
+                    Descargar PDF Original
+                </a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
 </div>
-</form>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        //Mostrar modal al cargar la pagina
+        var mensaje = '@TempData["Mensaje"]';
+        if (mensaje && mensaje.trim() !== '') {
+            $('#myModal').modal('show');
+        }
+
+        //initializeFileNames();
+    });
+
+    //Funcion para mostrar la previsualizacion del archivo
+    function showFilePreview(inputId) {
+        console.log("Intentando abrir modal con ID:", inputId);
+
+        // Buscar el input hidden asociado
+        const rutaPdfHidden = document.getElementById(`rutaHidden-${inputId.replace('ruta', '')}`);
+        const pdfPreview = document.getElementById('pdfPreview');
+        const downloadBtn = document.getElementById('pdfDownloadBtn');
+
+        // Validar si los elementos existen
+        if (!rutaPdfHidden || !pdfPreview || !downloadBtn) {
+            console.warn(`No se encontró la ruta del archivo para: ${inputId}`);
+            return;
+        }
+
+        // Obtener la ruta del archivo desde el input hidden
+        const rutaPdf = rutaPdfHidden.value;
+        if (!rutaPdf) {
+            console.warn("No hay ruta de PDF disponible.");
+            return;
+        }
+
+        // Convertir la ruta a formato web
+        let webPath = formatPath(rutaPdf);
+
+        // Asignar la ruta al `embed` y al botón de descarga
+        pdfPreview.src = webPath;
+        downloadBtn.href = webPath;
+
+        // Mostrar el modal
+        let modal = new bootstrap.Modal(document.getElementById('pdfModal'));
+        modal.show();
+
+        console.log("Modal abierto con PDF:", webPath);
+    }
+
+    // Función auxiliar para formatear rutas
+    function formatPath(path) {
+        let webPath = path
+            .replace('wwwroot\\', '')  // Eliminar "wwwroot\" en rutas de servidor
+            .replace('wwwroot/', '')
+            .replace(/\\/g, '/'); // Convertir backslashes a slashes
+
+        if (!webPath.startsWith('/')) {
+            webPath = '/' + webPath;
+        }
+
+        return webPath;
+    }
+
+
+
+    //function initializeFileNames() {
+    //    document.querySelectorAll('input[type="hidden"][id^="rutaHidden-"]').forEach(hiddenInput => {
+    //        const filePath = hiddenInput.value;
+    //        if (!filePath) return;
+
+    //        const fileName = filePath.split('\\').pop(); // Extrae solo el nombre del archivo
+    //        const fileInputId = hiddenInput.id.replace('rutaHidden-', 'file-'); // Genera el ID del input file
+
+    //        const fileInput = document.getElementById(fileInputId);
+    //        if (fileInput) {
+    //            const label = fileInput.nextElementSibling;
+    //            const span = label.querySelector('.iborrainputfile');
+    //            if (span) {
+    //                span.textContent = fileName;
+    //                fileInput.closest('.container-input').classList.add('has-file');
+    //            }
+
+    //            // Habilitar la fecha de registro asociada
+    //            const registroInputId = fileInputId.replace('file-', 'Registro'); // Generar el ID del input de fecha de registro
+    //            const registroInput = document.getElementById(registroInputId);
+    //            if (registroInput) {
+    //                registroInput.removeAttribute("disabled"); // Habilitar el input
+    //                registroInput.setAttribute("required", "true"); // Hacerlo obligatorio
+    //            }
+    //        }
+    //    });
+    //}
+
+</script>

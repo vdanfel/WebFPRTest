@@ -37,7 +37,7 @@ namespace WebFPRTest.Areas.Externo.Service.Inscripcion
                 _connection.Close();
             }
         }
-        public async Task Archivo_Insertar(int Id_Equipo, int Id_Jugador, int Id_013_TipoArchivo, string RutaArchivo, DateTime FechaRegistro, DateTime FechaVencimiento, int Usuario)
+        public async Task Archivo_Insertar(int Id_Equipo, int Id_Jugador, int Id_013_TipoArchivo, string RutaArchivo, DateTime? FechaRegistro, DateTime? FechaVencimiento, int Usuario)
         {
             var procedure = "usp_Archivos_Insert";
             try

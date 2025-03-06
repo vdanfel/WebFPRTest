@@ -2,6 +2,9 @@
 {
     public class JugadorDocumentosViewModel
     {
+        public int Id_009_EstadoJugador { get; set; }
+        public bool Flag_Aprobacion1 { get; set; }
+        public string Observacion { get; set; }
         public string RutaActaMedica { get; set; }
         public IFormFile ActaMedica { get; set; }
         public DateTime FechaRegistroActaMedica { get; set; }

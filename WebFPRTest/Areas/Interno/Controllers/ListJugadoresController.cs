@@ -129,8 +129,27 @@ namespace WebFPRTest.Areas.Interno.Controllers
             TempData.Keep("Id_Equipo");
             JugadorDocumentosViewModel jugadorDocumentosViewModel = new JugadorDocumentosViewModel();
             var archivos = await _listJugadoresService.ArchivosInscripcion(Id_Equipo, Id_Jugador);
-            jugadorDocumentosViewModel.RutaActaMedica = archivos.RutaActaMedica;
-            jugadorDocumentosViewModel.FechaRegistroActaMedica = archivos.FechaRegistroActaMedica;
+            if (archivos != null)
+            {
+                jugadorDocumentosViewModel.RutaActaMedica = archivos.RutaActaMedica;
+                jugadorDocumentosViewModel.FechaRegistroActaMedica = archivos.FechaRegistroActaMedica;
+                jugadorDocumentosViewModel.FechaVencimientoActaMedica = archivos.FechaVencimientoActaMedica;
+                jugadorDocumentosViewModel.RutaRugbyReady = archivos.RutaRugbyReady;
+                jugadorDocumentosViewModel.FechaRegistroRugbyReady = archivos.FechaRegistroRugbyReady;
+                jugadorDocumentosViewModel.FechaVencimientoRugbyReady = archivos.FechaVencimientoRugbyReady;
+                jugadorDocumentosViewModel.RutaRugbyLaws = archivos.RutaRugbyLaws;
+                jugadorDocumentosViewModel.FechaRegistroRugbyLaws = archivos.FechaRegistroRugbyLaws;
+                jugadorDocumentosViewModel.FechaVencimientoRugbyLaws = archivos.FechaVencimientoRugbyLaws;
+                jugadorDocumentosViewModel.RutaKeepRugbyClean = archivos.RutaKeepRugbyClean;
+                jugadorDocumentosViewModel.FechaRegistroKeepRugbyClean = archivos.FechaRegistroKeepRugbyClean;
+                jugadorDocumentosViewModel.FechaVencimientoKeepRugbyClean = archivos.FechaVencimientoKeepRugbyClean;
+                jugadorDocumentosViewModel.RutaPrimerosAuxilios = archivos.RutaPrimerosAuxilios;
+                jugadorDocumentosViewModel.FechaRegistroPrimerosAuxilios = archivos.FechaRegistroPrimerosAuxilios;
+                jugadorDocumentosViewModel.FechaVencimientoPrimerosAuxilios = archivos.FechaVencimientoPrimerosAuxilios;
+                jugadorDocumentosViewModel.RutaConmocionCerebral = archivos.RutaConmocionCerebral;
+                jugadorDocumentosViewModel.FechaRegistroConmocionCerebral = archivos.FechaRegistroConmocionCerebral;
+                jugadorDocumentosViewModel.FechaVencimientoConmocionCerebral = archivos.FechaVencimientoConmocionCerebral;
+            }
             ViewData["ActiveTab"] = "DocumentosInscripcion";
             return View(jugadorDocumentosViewModel);
         }
