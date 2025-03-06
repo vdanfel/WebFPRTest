@@ -9,6 +9,8 @@
      string nRutaConmocionCerebral = System.IO.Path.GetFileName(Model.RutaConmocionCerebral);
 }
 <form asp-asp-area="Interno" asp-action="JugadorDocumentos" asp-asp-controller="ListJugadores">
+    <input type="hidden" asp-for="Id_Jugador"/>
+    <input type="hidden" asp-for="Id_009_EstadoJugador"/>
     <div class="container" style="border-left: 1px solid #dee2e6;border-right:1px solid #dee2e6;border-bottom:1px solid #dee2e6;
     border-radius: 1rem;
     padding: 1rem;
@@ -169,7 +171,7 @@
             <div class="col-12">
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" asp-for="Flag_Aprobacion1">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Habilitado</label>
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Inscrito</label>
                 </div>
                 <input type="hidden" id="estadoJugador" value="@Model.Id_009_EstadoJugador">
             </div>
@@ -207,6 +209,15 @@
             $('#myModal').modal('show');
         }
 
+        let estadoJugador = document.getElementById("estadoJugador").value;
+        let checkbox = document.getElementById("flexSwitchCheckDefault");
+
+        if (estadoJugador !== "445" && estadoJugador !== "446") {
+            checkbox.disabled = true; // Deshabilita el checkbox
+        }
+
+        // Deshabilitar el botón si no es 441 o 442
+        btnGrabar.disabled = !(estadoJugador === "445" || estadoJugador === "446");
         //initializeFileNames();
     });
 
@@ -249,9 +260,9 @@
     // Función auxiliar para formatear rutas
     function formatPath(path) {
         let webPath = path
-            .replace('wwwroot\\', '')  // Eliminar "wwwroot\" en rutas de servidor
+            .replace('wwwroot\\', '')  
             .replace('wwwroot/', '')
-            .replace(/\\/g, '/'); // Convertir backslashes a slashes
+            .replace(/\\/g, '/'); 
 
         if (!webPath.startsWith('/')) {
             webPath = '/' + webPath;

@@ -2,6 +2,7 @@
 {
     public class JugadorDocumentosViewModel
     {
+        public int Id_Jugador { get; set; }
         public int Id_009_EstadoJugador { get; set; }
         public bool Flag_Aprobacion1 { get; set; }
         public string Observacion { get; set; }

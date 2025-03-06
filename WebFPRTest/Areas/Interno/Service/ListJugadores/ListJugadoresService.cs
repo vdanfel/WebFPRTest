@@ -166,6 +166,6 @@ namespace WebFPRTest.Areas.Interno.Service.ListJugadores
                 _connection.Close();
             }
         }
-
+        
     }
 }
