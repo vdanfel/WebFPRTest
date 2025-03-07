@@ -126,13 +126,16 @@
                             <td style="min-width:10rem">@jugadores.Division</td>
                             <td>@jugadores.Situacion</td>
                             <td class="text-end">
-                                <a class="btn btn-outline-warning" asp-area="Externo" asp-controller="Jugador" asp-action="GuardarJugadorSeleccionado" asp-route-Id_Jugador="@jugadores.Id_Jugador" asp-route-Pagina="1">
+                                <a class="btn btn-outline-warning" asp-area="Externo" asp-controller="Jugador" asp-action="GuardarJugadorSeleccionado"
+                                   asp-route-Id_Jugador="@jugadores.Id_Jugador" asp-route-Pagina="1" data-bs-toggle="tooltip"
+                                   data-bs-title="Ver Jugador">
                                     <i class="bi-eye"></i>
                                 </a>
                             </td>
                             <td class="text-end">
                                 <a class="btn btn-outline-primary" style="@(esHabilitado ? "" : estiloInscripcion)"
-                                   asp-area="Externo" asp-controller="Jugador" asp-action="GuardarJugadorSeleccionado" asp-route-Id_Jugador="@jugadores.Id_Jugador" asp-route-Pagina="2">
+                                   asp-area="Externo" asp-controller="Jugador" asp-action="GuardarJugadorSeleccionado" asp-route-Id_Jugador="@jugadores.Id_Jugador"
+                                   asp-route-Pagina="2" data-bs-toggle="tooltip" data-bs-title="Inscripcion">
                                     <i class="bi-files"></i>
                                 </a>
                             </td>
@@ -193,6 +196,12 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        tooltipTriggerList.forEach(tooltipTriggerEl => {
+            new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
     function subirArchivoExcel() {
        let fileInput = document.getElementById("archivoExcel");
        let file = fileInput.files[0];

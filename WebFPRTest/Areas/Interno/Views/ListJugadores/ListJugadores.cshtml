@@ -136,12 +136,15 @@
                             <td>@jugadores.Division</td>
                             <td>@jugadores.Situacion</td>
                             <td class="text-end">
-                                <a class="btn btn-outline-warning" asp-area="Interno" asp-controller="ListJugadores" asp-action="GuardarJugadorSeleccionado" asp-route-Id_Jugador="@jugadores.Id_Jugador" asp-route-Id_Equipo ="@jugadores.Id_Equipo">
+                                <a class="btn btn-outline-warning" asp-area="Interno" asp-controller="ListJugadores" asp-action="GuardarJugadorSeleccionado"
+                                   asp-route-Id_Jugador="@jugadores.Id_Jugador" asp-route-Id_Equipo="@jugadores.Id_Equipo" data-bs-toggle="tooltip"
+                                   data-bs-title="Ver Datos Jugador">
                                     <i class="bi-eye"></i>
                                 </a>
                             </td>
                             <td class="text-end">
-                                <a class="btn btn-outline-primary">
+                                <a class="btn btn-outline-primary" asp-area="Interno" asp-controller="CartaPase" asp-action="GuardarJugadorSeleccionado" data-bs-toggle="tooltip"
+                                   data-bs-title="Carta Pase" asp-route-Id_Jugador="@jugadores.Id_Jugador">
                                     <i class="bi-files"></i>
                                 </a>
                             </td>
@@ -153,3 +156,16 @@
 
     </div>
 </form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        tooltipTriggerList.forEach(tooltipTriggerEl => {
+            new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+
+</script>
