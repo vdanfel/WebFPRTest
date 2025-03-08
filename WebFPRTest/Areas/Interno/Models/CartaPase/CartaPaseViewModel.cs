@@ -13,8 +13,10 @@ namespace WebFPRTest.Areas.Interno.Models.CartaPase
         public string Documento { get; set; }
         public string Correo { get; set; }
         public string NombreEquipo { get; set; }
-        public int Id_Equipo { get; set; }
+        public int Id_EquipoNuevo { get; set; }
         public List<EquipoListResult> EquipoList { get; set;}
         public bool JugadorLibre { get; set; }
+        public string RutaCartaPase { get; set; }
+        public IFormFile CartaPase { get; set; }
     }
 }

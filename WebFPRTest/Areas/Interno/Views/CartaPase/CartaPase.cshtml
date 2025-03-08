@@ -3,41 +3,259 @@
 @{
     Layout = "_LayoutInterno";
 }
-<form>
+<form asp-action="CartaPase" asp-controller="CartaPase" method="post" >
+    <input type="hidden" asp-for="Id_Jugador"/>
     <div class="container">
         <div class="row g-2">
             <div class="col col-6 col-sm-6 col-md-3 col-lg-3">
                 <div class="form-floating">
-                    <input id="Paterno" type="text" class="form-control" asp-for="Paterno"/>
+                    <input id="Paterno" type="text" class="form-control" asp-for="Paterno" disabled/>
                     <label for="Paterno">Ape. Paterno</label>
                 </div>
             </div>
             <div class="col col-6 col-sm-6 col-md-3 col-lg-3">
                 <div class="form-floating">
-                    <input id="Materno" type="text" class="form-control" asp-for="Materno" />
+                    <input id="Materno" type="text" class="form-control" asp-for="Materno" disabled />
                     <label for="Materno">Ape. Materno</label>
                 </div>
             </div>
             <div class="col col-6">
                 <div class="form-floating">
-                    <input id="Nombres" type="text" class="form-control" asp-for="Nombres" />
+                    <input id="Nombres" type="text" class="form-control" asp-for="Nombres" disabled />
                     <label for="Nombres">Nombres</label>
                 </div>
             </div>
             <div class="col col-6 col-sm-6 col-md-3 col-lg-3">
                 <div class="form-floating">
-                    <select id="Id_001_TipoDocumento" class="form-select" asp-for="Id_001_TipoDocumento">
-                        <option></option>
+                    <select id="Id_001_TipoDocumento" class="form-select" asp-for="Id_001_TipoDocumento" disabled>
+                        @foreach (var tipoDocumento in Model.TipoDocumentos)
+                        {
+                            <option value="@tipoDocumento.Id_Parametros">@tipoDocumento.Abreviatura</option>
+                        }
                     </select>
                     <label for="Id_001_TipoDocumento">Tipo Documento</label>
                 </div>
             </div>
             <div class="col col-6 col-sm-6 col-md-3 col-lg-3">
                 <div class="form-floating">
-                    <input id="Documento" type="text" class="form-control" asp-for="Documento" />
+                    <input id="Documento" type="text" class="form-control" asp-for="Documento" disabled />
                     <label for="Documento">N° Documento</label>
+                </div>
+            </div>
+            <div class="col col-12">
+                <div class="form-floating">
+                    <input id="NombreEquipo" type="text" class="form-control" asp-for="NombreEquipo" disabled />
+                    <label for="NombreEquipo">Equipo Actual</label>
+                </div>
+            </div>
+            <div class="col col-12">
+                <div class="form-floating">
+                    <select id="Id_EquipoNuevo" class="form-select" asp-for="Id_EquipoNuevo" required>
+                        <option></option>
+                        @foreach (var equipoNuevo in Model.EquipoList)
+                        {
+                            <option value="@equipoNuevo.Id_Equipo">@equipoNuevo.Nombre</option>    
+                        }
+                    </select>
+                    <label>Nuevo Equipo</label>
+                </div>
+            </div>
+            <input type="hidden" id="rutaHidden-CartaPase" value="@Model.RutaCartaPase" />
+            <div class="col-12 d-flex align-items-center">
+                <div class="container-input">
+                    <input type="file"
+                           id="file-CartaPase"
+                           class="inputfile inputfile-1"
+                           asp-for="CartaPase"
+                           accept=".pdf"
+                           onchange="previewFile(event, 'file-CartaPase')"
+                           data-val="false" />
+                    <label for="file-CartaPase">
+                        <div class="label-text">Documento Carta Pase</div>
+                        <span class="iborrainputfile">Seleccionar Documento Carta Pase</span>
+                    </label>
+                </div>
+                <div class="ms-auto px-3">
+                    <a href="#" onclick="showFilePreview('file-CartaPase')" data-bs-toggle="modal" data-bs-target="#pdfModal">Ver</a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-2">
+            <button type="submit" class="btn btn-outline-success">Registrar</button>
+        </div>
+    </div>
+</form>
+<!--Modal para alerta inicial de la pagina-->
+@if (TempData["Mensaje"] != null)
+{
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @TempData["Mensaje"]
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
     </div>
-</form>
+}
+<!-- Modal para PDFs -->
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfModalLabel">Vista previa del PDF</h5>
+            </div>
+            <div class="modal-body">
+                <embed id="pdfPreview" src="" type="application/pdf" width="100%" height="600px" />
+            </div>
+            <div class="modal-footer">
+                <a id="pdfDownloadBtn" href="#" class="btn btn-primary" download>
+                    Descargar PDF Original
+                </a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        //Mostrar modal al cargar la pagina
+        var mensaje = '@TempData["Mensaje"]';
+        if (mensaje && mensaje.trim() !== '') {
+            $('#myModal').modal('show');
+        }
+        let inputs = document.querySelectorAll('.inputfile');
+        inputs.forEach(input => {
+            let label = input.nextElementSibling;
+            let labelVal = label.querySelector('.iborrainputfile').innerHTML;
+
+            input.addEventListener('change', function (e) {
+                let fileName = '';
+                let file = this.files[0];
+
+                // Validar si es un archivo PDF
+                if (file && file.type !== "application/pdf") {
+                    alert("Solo se permiten archivos PDF.");
+                    this.value = ""; // Limpiar el input
+                    label.querySelector('.iborrainputfile').innerHTML = labelVal;
+                    input.closest('.container-input').classList.remove('has-file');
+                    return;
+                }
+
+                if (file) {
+                    fileName = file.name;
+                    label.querySelector('.iborrainputfile').innerHTML = fileName;
+                    input.closest('.container-input').classList.add('has-file');
+                } else {
+                    label.querySelector('.iborrainputfile').innerHTML = labelVal;
+                    input.closest('.container-input').classList.remove('has-file');
+                }
+            });
+        });
+        initializeFileNames();
+    });
+    function previewFile(event, inputId) {
+        const fileInput = document.getElementById(inputId);
+        if (!fileInput) return;
+
+        const file = fileInput.files[0];
+        if (!file) return;
+
+        const maxSize = 3 * 1024 * 1024; // 3MB
+
+        // Validar si el archivo es PDF
+        if (file.type !== "application/pdf") {
+            alert("Por favor, seleccione un archivo PDF válido.");
+            return;
+        }
+
+        // Validar tamaño del archivo
+        if (file.size > maxSize) {
+            alert(`El archivo seleccionado excede el tamaño máximo permitido (3MB).`);
+            return;
+        }
+
+        // Actualizar el texto del input con el nombre del archivo
+        const span = fileInput.nextElementSibling.querySelector('.iborrainputfile');
+        if (span) {
+            span.textContent = file.name;
+        }
+    }
+    //Funcion para mostrar la previsualizacion del archivo
+    function showFilePreview(inputId) {
+        const fileInput = document.getElementById(inputId);
+        const pdfPreview = document.getElementById('pdfPreview');
+        const rutaPdfHidden = document.getElementById(inputId.replace('file-', 'rutaHidden-'));
+        const downloadBtn = document.getElementById('pdfDownloadBtn');
+
+        if (!fileInput || !pdfPreview || !rutaPdfHidden || !downloadBtn) {
+            console.warn(`Elementos no encontrados para: ${inputId}`);
+            return;
+        }
+
+        const file = fileInput.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                pdfPreview.src = e.target.result;
+                downloadBtn.href = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        } else {
+            const rutaPdf = rutaPdfHidden.value;
+            if (rutaPdf) {
+                let webPath = formatPath(rutaPdf);
+                pdfPreview.src = webPath;
+                downloadBtn.href = webPath;
+            }
+        }
+    }
+
+    // Función auxiliar para formatear las rutas
+    function formatPath(path) {
+        let webPath = path
+            .replace('wwwroot\\', '')
+            .replace('wwwroot/', '')
+            .replace(/\\/g, '/');
+
+        if (!webPath.startsWith('/')) {
+            webPath = '/' + webPath;
+        }
+        return webPath;
+    }
+    function initializeFileNames() {
+        document.querySelectorAll('input[type="hidden"][id^="rutaHidden-"]').forEach(hiddenInput => {
+            const filePath = hiddenInput.value;
+            if (!filePath) return;
+
+            const fileName = filePath.split('\\').pop(); // Extrae solo el nombre del archivo
+            const fileInputId = hiddenInput.id.replace('rutaHidden-', 'file-'); // Genera el ID del input file
+
+            const fileInput = document.getElementById(fileInputId);
+            if (fileInput) {
+                const label = fileInput.nextElementSibling;
+                const span = label.querySelector('.iborrainputfile');
+                if (span) {
+                    span.textContent = fileName;
+                    fileInput.closest('.container-input').classList.add('has-file');
+                }
+
+                // // Habilitar la fecha de registro asociada
+                // const registroInputId = fileInputId.replace('file-', 'Registro'); // Generar el ID del input de fecha de registro
+                // const registroInput = document.getElementById(registroInputId);
+                // if (registroInput) {
+                //     registroInput.removeAttribute("disabled"); // Habilitar el input
+                //     registroInput.setAttribute("required", "true"); // Hacerlo obligatorio
+                // }
+            }
+        });
+    }
+</script>
