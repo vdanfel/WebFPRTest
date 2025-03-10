@@ -3,8 +3,9 @@
 @{
     Layout = "_LayoutInterno";
 }
-<form asp-action="CartaPase" asp-controller="CartaPase" method="post" >
-    <input type="hidden" asp-for="Id_Jugador"/>
+<form asp-action="CartaPase" asp-controller="CartaPase" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id_JugadorActual"/>
+    <input type="hidden" asp-for="Id_EquipoActual"/>
     <div class="container">
         <div class="row g-2">
             <div class="col col-6 col-sm-6 col-md-3 col-lg-3">
@@ -77,6 +78,12 @@
                 </div>
                 <div class="ms-auto px-3">
                     <a href="#" onclick="showFilePreview('file-CartaPase')" data-bs-toggle="modal" data-bs-target="#pdfModal">Ver</a>
+                </div>
+                <div class="ms-auto px-3" style="min-width:10rem">
+                    <div class="form-check ">
+                        <input class="form-check-input" type="checkbox"asp-for="JugadorLibre" />
+                        <label class="form-check-label">Jugador Libre</label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -247,14 +254,6 @@
                     span.textContent = fileName;
                     fileInput.closest('.container-input').classList.add('has-file');
                 }
-
-                // // Habilitar la fecha de registro asociada
-                // const registroInputId = fileInputId.replace('file-', 'Registro'); // Generar el ID del input de fecha de registro
-                // const registroInput = document.getElementById(registroInputId);
-                // if (registroInput) {
-                //     registroInput.removeAttribute("disabled"); // Habilitar el input
-                //     registroInput.setAttribute("required", "true"); // Hacerlo obligatorio
-                // }
             }
         });
     }
