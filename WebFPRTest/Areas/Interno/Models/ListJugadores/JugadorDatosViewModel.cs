@@ -45,6 +45,7 @@ namespace WebFPRTest.Areas.Interno.Models.ListJugadores
         public string? RutaDeslinde { get; set; }
         public IFormFile? Deslinde { get; set; }
         public bool Flag_Aprobacion1 { get; set; }
+        public int Id_016_CostoAcreditacion { get; set; }
     }
     public class JugadorApoderado
     {

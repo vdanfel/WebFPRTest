@@ -7,6 +7,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
+using System.Globalization;
 using System.Security.Claims;
 using WebFPRTest.Areas.Externo.Interface.Jugador;
 using WebFPRTest.Areas.Externo.Models.Jugador;
@@ -177,7 +178,21 @@ namespace WebFPRTest.Areas.Externo.Controllers
                             persona.Nombres = jugador.ContainsKey("Nombres") ? jugador["Nombres"] : null;
                             persona.Id_001_TipoDocumento = idTipoDocumento;
                             persona.Documento = nroDocumento;
-                            persona.FechaNacimiento = jugador.ContainsKey("FechaNacimiento") && DateTime.TryParse(jugador["FechaNacimiento"], out DateTime fechaNacimiento) ? fechaNacimiento : default;
+                            if (jugador.ContainsKey("FechaNacimiento"))
+                            {
+                                var fechaValor = jugador["FechaNacimiento"];
+
+                                if (DateTime.TryParse(fechaValor, out DateTime fechaNacimiento))
+                                {
+                                    persona.FechaNacimiento = fechaNacimiento;
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"Error al convertir la fecha: {fechaValor}");
+                                    persona.FechaNacimiento = null; // o alguna otra lógica de manejo de errores
+                                }
+                            }
+
                             persona.Celular = jugador.ContainsKey("Celular") ? jugador["Celular"] : null;
                             persona.Correo = jugador.ContainsKey("Correo") ? jugador["Correo"] : null;
                             persona.Id_002_Sexo = jugador.ContainsKey("Sexo") && int.TryParse(jugador["Sexo"], out int sexo) ? sexo : 0;

@@ -9,6 +9,7 @@
     <input type="text" asp-for="Id_Equipo" hidden />
     <input type="text" asp-for="Id_Persona" hidden />
     <input type="text" asp-for="Id_009_EstadoJugador" hidden />
+    <input type="text" asp-for="Id_016_CostoAcreditacion" hidden />
     <div class="container" style="border-left: 1px solid #dee2e6;border-right:1px solid #dee2e6;border-bottom:1px solid #dee2e6;
     border-radius: 1rem;
     padding: 1rem;
@@ -344,6 +345,20 @@
 
         // Deshabilitar el botón si no es 441 o 442
         btnGrabar.disabled = !(estadoJugador === "441" || estadoJugador === "442");
+
+        // Obtener el valor del input hidden
+        var costoAcreditacion = parseInt(document.getElementById("Id_016_CostoAcreditacion").value, 10);
+
+        // Obtener el div que queremos mostrar u ocultar
+        var datosApoderadoDiv = document.getElementById("DatosApoderado");
+
+        // Validar el valor y mostrar/ocultar el div
+        if (costoAcreditacion < 452) {
+            datosApoderadoDiv.style.display = "block"; // Mostrar si es menor a 452
+        } else {
+            datosApoderadoDiv.style.display = "none"; // Ocultar si es 452 o mayor
+        }
+
 
         //Mostrar modal al cargar la pagina
         var mensaje = '@TempData["Mensaje"]';

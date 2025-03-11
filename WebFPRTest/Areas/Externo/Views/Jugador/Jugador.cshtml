@@ -145,19 +145,19 @@
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" asp-for="DatosApoderado.ApoderadoPaterno" id="ApoderadoPaterno" />
-                                        <label>Paterno</label>
+                                        <label>Paterno*</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" asp-for="DatosApoderado.ApoderadoMaterno" id="ApoderadoMaterno" />
-                                        <label>Materno</label>
+                                        <label>Materno*</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" asp-for="DatosApoderado.ApoderadoNombres" id="ApoderadoNombres" />
-                                        <label>Nombres</label>
+                                        <label>Nombres*</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-4 col-lg-3">
@@ -169,13 +169,13 @@
                                                 <option value="@tipoDocumento.Id_Parametros">@tipoDocumento.Abreviatura</option>
                                             }
                                         </select>
-                                        <label>Tipo Documento</label>
+                                        <label>Tipo Documento*</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" asp-for="DatosApoderado.ApoderadoDocumento" id="ApoderadoDocumento" />
-                                        <label>Numero Documento</label>
+                                        <label>Numero Documento*</label>
                                     </div>
                                 </div>
                             </div>
@@ -589,14 +589,14 @@
         }
         //console.log(edad);
         var divApoderado = document.getElementById("DatosApoderado");
-        //var campos = ["ApoderadoPaterno", "ApoderadoMaterno", "ApoderadoNombres", "ApoderadoTipoDocumento", "ApoderadoDocumento"];
+        var campos = ["ApoderadoPaterno", "ApoderadoMaterno", "ApoderadoNombres", "ApoderadoTipoDocumento", "ApoderadoDocumento"];
 
         if (edad < 18) {
             divApoderado.style.display = "block"; // Mostrar el div
-            //campos.forEach(id => document.getElementById(id).setAttribute("required", "required"));
+            campos.forEach(id => document.getElementById(id).setAttribute("required", "required"));
         } else {
             divApoderado.style.display = "none"; // Ocultar el div
-            //campos.forEach(id => document.getElementById(id).removeAttribute("required"));
+            campos.forEach(id => document.getElementById(id).removeAttribute("required"));
         }
     }
 

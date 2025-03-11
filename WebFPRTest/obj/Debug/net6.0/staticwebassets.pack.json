@@ -37,38 +37,6 @@
       "PackagePath": "staticwebassets\\Archivos\\2\\23\\23_FOTO JUGADOR.jpg"
     },
     {
-      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\24\\24_ACTA MEDICA.pdf",
-      "PackagePath": "staticwebassets\\Archivos\\2\\24\\24_ACTA MEDICA.pdf"
-    },
-    {
-      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\24\\24_CONMOCION CEREBRAL.pdf",
-      "PackagePath": "staticwebassets\\Archivos\\2\\24\\24_CONMOCION CEREBRAL.pdf"
-    },
-    {
-      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\24\\24_DOCUMENTO DESLINDE.pdf",
-      "PackagePath": "staticwebassets\\Archivos\\2\\24\\24_DOCUMENTO DESLINDE.pdf"
-    },
-    {
-      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\24\\24_FOTO JUGADOR.jpg",
-      "PackagePath": "staticwebassets\\Archivos\\2\\24\\24_FOTO JUGADOR.jpg"
-    },
-    {
-      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\24\\24_KEEP RUGBY CLEAN.pdf",
-      "PackagePath": "staticwebassets\\Archivos\\2\\24\\24_KEEP RUGBY CLEAN.pdf"
-    },
-    {
-      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\24\\24_PRIMEROS AUXILIOS.pdf",
-      "PackagePath": "staticwebassets\\Archivos\\2\\24\\24_PRIMEROS AUXILIOS.pdf"
-    },
-    {
-      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\24\\24_RUGBY LAWS.pdf",
-      "PackagePath": "staticwebassets\\Archivos\\2\\24\\24_RUGBY LAWS.pdf"
-    },
-    {
-      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\24\\24_RUGBY READY.pdf",
-      "PackagePath": "staticwebassets\\Archivos\\2\\24\\24_RUGBY READY.pdf"
-    },
-    {
       "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\26\\26_ACTA MEDICA.pdf",
       "PackagePath": "staticwebassets\\Archivos\\2\\26\\26_ACTA MEDICA.pdf"
     },
@@ -137,6 +105,22 @@
       "PackagePath": "staticwebassets\\Archivos\\2\\35\\35_FOTO JUGADOR.png"
     },
     {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\538\\538_DOCUMENTO DESLINDE.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\2\\538\\538_DOCUMENTO DESLINDE.pdf"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\538\\538_FOTO JUGADOR.jpg",
+      "PackagePath": "staticwebassets\\Archivos\\2\\538\\538_FOTO JUGADOR.jpg"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\546\\546_DOCUMENTO DESLINDE.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\2\\546\\546_DOCUMENTO DESLINDE.pdf"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\546\\546_FOTO JUGADOR.jpg",
+      "PackagePath": "staticwebassets\\Archivos\\2\\546\\546_FOTO JUGADOR.jpg"
+    },
+    {
       "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\Comprobantes\\2_Comprobante1.jpg",
       "PackagePath": "staticwebassets\\Archivos\\2\\Comprobantes\\2_Comprobante1.jpg"
     },
@@ -175,6 +159,42 @@
     {
       "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\391\\391_CARTA PASE.pdf",
       "PackagePath": "staticwebassets\\Archivos\\4\\391\\391_CARTA PASE.pdf"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\394\\394_ACTA MEDICA.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\4\\394\\394_ACTA MEDICA.pdf"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\394\\394_CARTA PASE.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\4\\394\\394_CARTA PASE.pdf"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\394\\394_CONMOCION CEREBRAL.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\4\\394\\394_CONMOCION CEREBRAL.pdf"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\394\\394_DOCUMENTO DESLINDE.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\4\\394\\394_DOCUMENTO DESLINDE.pdf"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\394\\394_FOTO JUGADOR.jpg",
+      "PackagePath": "staticwebassets\\Archivos\\4\\394\\394_FOTO JUGADOR.jpg"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\394\\394_KEEP RUGBY CLEAN.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\4\\394\\394_KEEP RUGBY CLEAN.pdf"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\394\\394_PRIMEROS AUXILIOS.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\4\\394\\394_PRIMEROS AUXILIOS.pdf"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\394\\394_RUGBY LAWS.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\4\\394\\394_RUGBY LAWS.pdf"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\394\\394_RUGBY READY.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\4\\394\\394_RUGBY READY.pdf"
     },
     {
       "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\4_LOGO.png",
@@ -443,6 +463,10 @@
     {
       "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\logs\\LogErrores_20250227094921.txt",
       "PackagePath": "staticwebassets\\logs\\LogErrores_20250227094921.txt"
+    },
+    {
+      "Id": "E:\\WebFPRTest\\WebFPRTest\\wwwroot\\logs\\LogErrores_20250311004102.txt",
+      "PackagePath": "staticwebassets\\logs\\LogErrores_20250311004102.txt"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.WebFPRTest.Microsoft.AspNetCore.StaticWebAssets.props",
