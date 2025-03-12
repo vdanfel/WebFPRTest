@@ -4,11 +4,11 @@
     var nombreEquipo = Context.Session.GetString("NombreEquipo");
 }
 <form method="post" asp-area="Externo" asp-controller="Jugador" asp-action="Jugador" enctype="multipart/form-data">
-    <input type="text" asp-for="Id_Jugador" hidden/>
-    <input type="text" asp-for="Id_Equipo" hidden/>
-    <input type="text" asp-for="Id_Persona" hidden/>
-    <input type="text" asp-for="Id_009_EstadoJugador" hidden/>
-     <div class="container">
+    <input type="text" asp-for="Id_Jugador" hidden />
+    <input type="text" asp-for="Id_Equipo" hidden />
+    <input type="text" asp-for="Id_Persona" hidden />
+    <input type="text" asp-for="Id_009_EstadoJugador" hidden />
+    <div class="container">
         <div class="card">
             <div class="card-header">
                 <h2>@nombreEquipo</h2>
@@ -373,6 +373,9 @@
             $('#myModal').modal('show');
         }
 
+        //Inicializar el nombre
+        initializeFileNames();
+
         //mostrar datos apoderado
         var fechaInput = document.getElementById("FechaNacimiento");
         if (fechaInput) {
@@ -418,8 +421,7 @@
                 input.classList.add('is-invalid');
             }
         });
-        //Inicializar el nombre 
-        initializeFileNames();
+        
     });
     function ValidarPersona() {
         var idTipoDocumento = $("#Id_001_TipoDocumento").val();
@@ -525,7 +527,7 @@
 
             if (selectedImage) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     imagePreview.src = e.target.result;
                     downloadBtn.href = e.target.result;
                 }
@@ -542,7 +544,7 @@
 
             if (selectedPdf) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     pdfPreview.src = e.target.result;
                     downloadBtn.href = e.target.result;
                 }
@@ -561,7 +563,7 @@
             .replace('wwwroot\\', '')
             .replace('wwwroot/', '')
             .replace(/\\/g, '/');
-    
+
         if (!webPath.startsWith('/')) {
             webPath = '/' + webPath;
         }
@@ -600,17 +602,50 @@
         }
     }
 
-    // Inicializar nombres de archivos al cargar la página
-    function initializeFileNames() {
-        const rutaFoto = document.getElementById('rutaFotoHidden').value;
-        const rutaPdf = document.getElementById('rutaPdfHidden').value;
+    // // Inicializar nombres de archivos al cargar la página
+    // function initializeFileNames() {
+    //     const rutaFoto = document.getElementById('rutaFotoHidden').value;
+    //     const rutaPdf = document.getElementById('rutaPdfHidden').value;
 
-        if (rutaFoto) {
-            const fileName = rutaFoto.split('\\').pop(); // Obtiene el último segmento después de \
+    //     if (rutaFoto) {
+    //         const fileName = rutaFoto.split('\\').pop(); // Obtiene el último segmento después de \
+    //         const fotoInput = document.getElementById('file-foto');
+    //         if (fotoInput) {
+    //             const label = fotoInput.nextElementSibling;
+    //             const span = label.querySelector('.iborrainputfile');
+    //             if (span) {
+    //                 span.textContent = fileName;
+    //                 fotoInput.closest('.container-input').classList.add('has-file');
+    //             }
+    //         }
+    //     }
+
+    //     if (rutaPdf) {
+    //         const fileName = rutaPdf.split('\\').pop();
+    //         const pdfInput = document.getElementById('file-pdf');
+    //         if (pdfInput) {
+    //             const label = pdfInput.nextElementSibling;
+    //             const span = label.querySelector('.iborrainputfile');
+    //             if (span) {
+    //                 span.textContent = fileName;
+    //                 pdfInput.closest('.container-input').classList.add('has-file');
+    //             }
+    //         }
+    //     }
+    // }
+    function initializeFileNames() {
+        const rutaFoto = document.getElementById('rutaFotoHidden')?.value || '';
+        const rutaPdf = document.getElementById('rutaPdfHidden')?.value || '';
+
+        console.log("Ruta Foto:", rutaFoto);  // Verifica qué valor tiene
+        console.log("Ruta PDF:", rutaPdf);
+
+        if (rutaFoto.trim()) {
+            const fileName = rutaFoto.split('\\').pop(); // Obtiene solo el nombre del archivo
             const fotoInput = document.getElementById('file-foto');
             if (fotoInput) {
                 const label = fotoInput.nextElementSibling;
-                const span = label.querySelector('.iborrainputfile');
+                const span = label?.querySelector('.iborrainputfile');
                 if (span) {
                     span.textContent = fileName;
                     fotoInput.closest('.container-input').classList.add('has-file');
@@ -618,12 +653,12 @@
             }
         }
 
-        if (rutaPdf) {
+        if (rutaPdf.trim()) {
             const fileName = rutaPdf.split('\\').pop();
             const pdfInput = document.getElementById('file-pdf');
             if (pdfInput) {
                 const label = pdfInput.nextElementSibling;
-                const span = label.querySelector('.iborrainputfile');
+                const span = label?.querySelector('.iborrainputfile');
                 if (span) {
                     span.textContent = fileName;
                     pdfInput.closest('.container-input').classList.add('has-file');
@@ -631,4 +666,5 @@
             }
         }
     }
+
 </script>

@@ -91,6 +91,7 @@
                         <th>Numero Operacion</th>
                         <th>Nombre club</th>
                         <th>Nombre Jugador</th>
+                        <th>Fecha Comprobante</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -103,6 +104,7 @@
                             <td>@jugadoresComprobantes.NumeroComprobante</td>
                             <td>@jugadoresComprobantes.NombreEquipo</td>
                             <td>@jugadoresComprobantes.NombreJugador</td>
+                            <td>@jugadoresComprobantes.FechaCreacion</td>
                             <td>
                                 <a class="btn btn-outline-warning" asp-action="GuardarComprobante" asp-controller="ListAcreditacion" asp-route-Id_Comprobante="@jugadoresComprobantes.Id_Comprobante">
                                     <i class="bi-eye"></i>

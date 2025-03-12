@@ -30,5 +30,6 @@ namespace WebFPRTest.Areas.Interno.Models.ListAcreditacion
         public string NumeroComprobante { get; set; }
         public string NombreEquipo { get; set; }
         public string NombreJugador { get; set; }
+        public DateTime FechaCreacion { get; set; }
     }
 }

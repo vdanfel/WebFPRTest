@@ -307,6 +307,8 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 return RedirectToAction("Equipo", "Equipo");
             }
             JugadorViewModel jugadorViewModel = new JugadorViewModel();
+            jugadorViewModel.Id_Equipo = Id_Equipo;
+            jugadorViewModel.Id_Jugador = TempData.Peek("Id_Jugador") as int? ?? 0;
             jugadorViewModel.TipoDocumentos = await _tiposService.ParametroTipo_Listar(1);
             jugadorViewModel.Paises = await _tiposService.ParametroTipo_Listar(3);
             jugadorViewModel.Nacionalidades = await _tiposService.ParametroTipo_Listar(4);
@@ -316,25 +318,38 @@ namespace WebFPRTest.Areas.Externo.Controllers
             jugadorViewModel.DivisionList = await _tiposService.ParametroTipo_Listar(7);
             jugadorViewModel.SituacionList = await _tiposService.ParametroTipo_Listar(8);
             jugadorViewModel.TipoSangre = await _tiposService.ParametroTipo_Listar(14);
-            jugadorViewModel.RutaFoto = await _jugadorService.Archivo_Ruta(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, 431);
-            jugadorViewModel.RutaDeslinde = await _jugadorService.Archivo_Ruta(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, 432);
-            jugadorViewModel.Id_Equipo = Id_Equipo;
-            jugadorViewModel.Id_Jugador = TempData.Peek("Id_Jugador") as int? ?? 0;
+            
             if (jugadorViewModel.Id_Jugador > 0)
-            {
-                jugadorViewModel = await _jugadorService.Jugador_Select(jugadorViewModel.Id_Jugador);
+            { 
+                var jugador = await _jugadorService.Jugador_Select(jugadorViewModel.Id_Jugador);
+                jugadorViewModel.Id_Persona = jugador.Id_Persona;
+                jugadorViewModel.Paterno = jugador.Paterno;
+                jugadorViewModel.Materno = jugador.Materno;
+                jugadorViewModel.Nombres = jugador.Nombres;
                 jugadorViewModel.DatosApoderado = await _jugadorService.Apoderado_Select(jugadorViewModel.Id_Persona);
-                jugadorViewModel.TipoDocumentos = await _tiposService.ParametroTipo_Listar(1);
-                jugadorViewModel.Paises = await _tiposService.ParametroTipo_Listar(3);
-                jugadorViewModel.Nacionalidades = await _tiposService.ParametroTipo_Listar(4);
-                jugadorViewModel.Sexos = await _tiposService.ParametroTipo_Listar(2);
-                jugadorViewModel.TipoSeguros = await _tiposService.ParametroTipo_Listar(5);
-                jugadorViewModel.TipoVehiculos = await _tiposService.ParametroTipo_Listar(6);
-                jugadorViewModel.DivisionList = await _tiposService.ParametroTipo_Listar(7);
-                jugadorViewModel.SituacionList = await _tiposService.ParametroTipo_Listar(8);
-                jugadorViewModel.TipoSangre = await _tiposService.ParametroTipo_Listar(14);
+                jugadorViewModel.Id_001_TipoDocumento = jugador.Id_001_TipoDocumento;
+                jugadorViewModel.Documento = jugador.Documento;
+                jugadorViewModel.FechaNacimiento = jugador.FechaNacimiento;
+                jugadorViewModel.Id_003_Pais = jugador.Id_003_Pais;
+                jugadorViewModel.Id_004_Nacionalidad = jugador.Id_004_Nacionalidad;
+                jugadorViewModel.Id_002_Sexo = jugador.Id_002_Sexo;
+                jugadorViewModel.Celular = jugador.Celular;
+                jugadorViewModel.Correo = jugador.Correo;
+                jugadorViewModel.Id_005_TipoSeguro = jugador.Id_005_TipoSeguro;
+                jugadorViewModel.NumeroPoliza = jugador.NumeroPoliza;
+                jugadorViewModel.FechaPoliza = jugador.FechaPoliza;
+                jugadorViewModel.FechaVencimientoPoliza = jugador.FechaVencimientoPoliza;
+                jugadorViewModel.Id_006_TipoVehiculo = jugador.Id_006_TipoVehiculo;
+                jugadorViewModel.NumeroPlaca = jugador.NumeroPlaca;
+                jugadorViewModel.Id_007_Division = jugador.Id_007_Division;
+                jugadorViewModel.Id_008_Situacion = jugador.Id_008_Situacion;
+                jugadorViewModel.Id_009_EstadoJugador = jugador.Id_009_EstadoJugador;
+                jugadorViewModel.Observacion = jugador.Observacion;
+                jugadorViewModel.MotivoAnulacion = jugador.MotivoAnulacion;
+                jugadorViewModel.Id_014_TipoSangre = jugador.Id_014_TipoSangre;
                 jugadorViewModel.RutaFoto = await _jugadorService.Archivo_Ruta(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, 431);
                 jugadorViewModel.RutaDeslinde = await _jugadorService.Archivo_Ruta(jugadorViewModel.Id_Equipo, jugadorViewModel.Id_Jugador, 432);
+                jugadorViewModel.MotivoAnulacion = jugador.MotivoAnulacion;
             }
             else
             {
@@ -371,7 +386,6 @@ namespace WebFPRTest.Areas.Externo.Controllers
 
                 }
             }
-            
             return View(jugadorViewModel);
         }
         [HttpPost]
