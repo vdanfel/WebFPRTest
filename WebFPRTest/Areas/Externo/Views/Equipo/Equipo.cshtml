@@ -286,7 +286,8 @@
             $('#myModal').modal('show');
         }
         
-        
+        ///Inicializar el nombre
+        initializeFileNames();
 
         // Función que habilita o deshabilita los campos de horario según el estado del checkbox
         function toggleHorario(dia) {
@@ -361,8 +362,26 @@
             }
         });
 
-        ///Inicializar el nombre
-        initializeFileNames();
+        const rucInput = document.getElementById("ruc");
+
+        rucInput.addEventListener("input", function () {
+            // Eliminar caracteres no numéricos
+            this.value = this.value.replace(/\D/g, '');
+
+            // Limitar a 11 caracteres
+            if (this.value.length > 11) {
+                this.value = this.value.slice(0, 11);
+            }
+        });
+
+        rucInput.addEventListener("blur", function () {
+            if (this.value.length !== 11) {
+                alert("El RUC debe tener exactamente 11 dígitos.");
+                this.classList.add("is-invalid"); // Agrega un borde rojo si es inválido
+            } else {
+                this.classList.remove("is-invalid"); // Remueve el borde rojo si es válido
+            }
+        });
     });
     
     // Para manejar archivos de imagen

@@ -514,7 +514,7 @@ namespace WebFPRTest.Areas.Externo.Controllers
             }
             else if (Id_Jugador > 0)
             {
-                return Json(new { success = true, redirectUrl = Url.Action("GuardarJugadorSeleccionado", "Jugador", new { Id_Jugador }) });
+                return Json(new { success = true, redirectUrl = Url.Action("GuardarJugadorSeleccionado", "Jugador", new { Id_Jugador = Id_Jugador, Pagina = 1 }) });
             }
             else
             {
