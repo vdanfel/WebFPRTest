@@ -602,37 +602,7 @@
         }
     }
 
-    // // Inicializar nombres de archivos al cargar la página
-    // function initializeFileNames() {
-    //     const rutaFoto = document.getElementById('rutaFotoHidden').value;
-    //     const rutaPdf = document.getElementById('rutaPdfHidden').value;
-
-    //     if (rutaFoto) {
-    //         const fileName = rutaFoto.split('\\').pop(); // Obtiene el último segmento después de \
-    //         const fotoInput = document.getElementById('file-foto');
-    //         if (fotoInput) {
-    //             const label = fotoInput.nextElementSibling;
-    //             const span = label.querySelector('.iborrainputfile');
-    //             if (span) {
-    //                 span.textContent = fileName;
-    //                 fotoInput.closest('.container-input').classList.add('has-file');
-    //             }
-    //         }
-    //     }
-
-    //     if (rutaPdf) {
-    //         const fileName = rutaPdf.split('\\').pop();
-    //         const pdfInput = document.getElementById('file-pdf');
-    //         if (pdfInput) {
-    //             const label = pdfInput.nextElementSibling;
-    //             const span = label.querySelector('.iborrainputfile');
-    //             if (span) {
-    //                 span.textContent = fileName;
-    //                 pdfInput.closest('.container-input').classList.add('has-file');
-    //             }
-    //         }
-    //     }
-    // }
+    // Inicializar nombres de archivos al cargar la página
     function initializeFileNames() {
         const rutaFoto = document.getElementById('rutaFotoHidden')?.value || '';
         const rutaPdf = document.getElementById('rutaPdfHidden')?.value || '';

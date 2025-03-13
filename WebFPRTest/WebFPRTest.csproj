@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Interno\Result\" />
     <Folder Include="wwwroot\logs\" />
   </ItemGroup>
 

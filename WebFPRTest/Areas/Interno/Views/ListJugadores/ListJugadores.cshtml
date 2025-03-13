@@ -38,7 +38,7 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="form-floating">
-                            <select class="form-select" asp-for="Id_007_Division">
+                            <select class="form-select" asp-for="Id_007_Division" id="Id_007_Division">
                                 <option></option>
                                 @foreach (var divisiones in Model.ListaDivisiones)
                                 {
@@ -73,33 +73,23 @@
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex justify-content-end align-items-center">
-                        <button type="submit" class="btn btn-outline-primary me-2">Filtrar</button>
+                        <button type="button" class="btn btn-outline-secondary" onclick="descargarReporteJugadores()">
+                            Reporte Jugadores <i class="bi-file-earmark-spreadsheet"></i>
+                        </button>
+
+                        <button type="submit" class="btn btn-outline-primary ms-2">Filtrar <i class="bi-search"></i></button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row my-2" style="font-size:0.7rem">
-            <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
-                <p class="leyenda-Creado">1. Creado</p>
-            </div>
-            <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
-                <p class="leyenda-SolicitudHabilitacion">2. Solicitud Habilitacion</p>
-            </div>
-            <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
-                <p class="leyenda-Habilitado">3. Habilitado</p>
-            </div>
-            <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
-                <p class="leyenda-SolicitudAcreditacion">4. Solicitud Acreditacion</p>
-            </div>
-            <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
-                <p class="leyenda-Acreditado">5.Acreditado</p>
-            </div>
-            <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
-                <p class="leyenda-SolicitudInscripcion">6. Solicitud Inscripcion</p>
-            </div>
-            <div class="col col-4 col-sm-4 col-md-3 col-lg-2">
-                <p class="leyenda-Inscrito">7. Inscrito</p>
-            </div>
+        <div class="d-flex flex-wrap mt-2" style="font-size:0.7rem">
+            <div class="flex-fill border text-center p-2 leyenda-Creado">1. Creado</div>
+            <div class="flex-fill border text-center p-2 leyenda-SolicitudHabilitacion">2. Solicitud Habilitacion</div>
+            <div class="flex-fill border text-center p-2 leyenda-Habilitado">3. Habilitado</div>
+            <div class="flex-fill border text-center p-2 leyenda-SolicitudAcreditacion">4. Solicitud Acreditacion</div>
+            <div class="flex-fill border text-center p-2 leyenda-Acreditado">5.Acreditado</div>
+            <div class="flex-fill border text-center p-2 leyenda-SolicitudInscripcion">6. Solicitud Inscripcion</div>
+            <div class="flex-fill border text-center p-2 leyenda-Inscrito">7. Inscrito</div>
         </div>
         <div class="table-responsive-md mt-2">
             <table class="table table-hover">
@@ -168,4 +158,20 @@
         });
     });
 
+    function descargarReporteJugadores() {
+        // Obtener los valores de los inputs y selects
+        var idEquipo = document.getElementById("Id_Equipo").value;
+        var paterno = document.getElementById("Paterno").value;
+        var materno = document.getElementById("Materno").value;
+        var nombres = document.getElementById("Nombres").value;
+        var documento = document.getElementById("Documento").value;
+        var idDivision = document.getElementById("Id_007_Division").value;
+        var idEstadoJugador = document.getElementById("Id_009_EstadoJugador").value;
+
+        // Crear la URL con parámetros
+        var url = `/Interno/ListJugadores/DescargarReporteJugadores?idEquipo=${encodeURIComponent(idEquipo)}&paterno=${encodeURIComponent(paterno)}&materno=${encodeURIComponent(materno)}&nombres=${encodeURIComponent(nombres)}&documento=${encodeURIComponent(documento)}&idDivision=${encodeURIComponent(idDivision)}&idEstadoJugador=${encodeURIComponent(idEstadoJugador)}`;
+
+        // Redirigir para descargar el archivo
+        window.location.href = url;
+    }
 </script>

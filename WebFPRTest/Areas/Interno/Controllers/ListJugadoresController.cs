@@ -201,5 +201,19 @@ namespace WebFPRTest.Areas.Interno.Controllers
             }
             return RedirectToAction("GuardarJugadorSeleccionado", "ListJugadores", new { Id_Jugador = jugadorDocumentosViewModel.Id_Jugador, jugador.Id_Equipo, Pagina = 2 });
         }
+
+        public async Task<IActionResult> DescargarReporteJugadores(int idEquipo, string paterno, string materno, string nombres, string documento, int idDivision, int idEstadoJugador)
+        {
+            // Llamar al servicio que ejecuta el SP y obtiene el archivo Excel
+            var archivoExcel = await _listJugadoresService.DescargarExcel(idEquipo, paterno, materno, nombres, documento, idDivision, idEstadoJugador);
+
+            if (archivoExcel == null || archivoExcel.Length == 0)
+            {
+                return NotFound("No se pudo generar el archivo.");
+            }
+
+            return File(archivoExcel, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Reporte_Jugadores.xlsx");
+        }
+
     }
 }

@@ -11,5 +11,6 @@ namespace WebFPRTest.Areas.Interno.Interface.ListJugadores
         Task<JugadorDatosViewModel> Jugador_Select(int Id_Jugador);
         Task Jugador_Actualizar(JugadorDatosViewModel jugadorDatosViewModel, int Id_Usuario);
         Task<JugadorDocumentosViewModel> ArchivosInscripcion(int Id_Equipo, int Id_Jugador);
+        Task<byte[]> DescargarExcel(int idEquipo, string paterno, string materno, string nombres, string documento, int idDivision, int idEstadoJugador);
     }
 }

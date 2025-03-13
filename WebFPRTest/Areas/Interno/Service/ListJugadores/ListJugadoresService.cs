@@ -1,8 +1,10 @@
-﻿using Dapper;
+﻿using ClosedXML.Excel;
+using Dapper;
 using Microsoft.Data.SqlClient;
 using System.Data;
 using WebFPRTest.Areas.Interno.Interface.ListJugadores;
 using WebFPRTest.Areas.Interno.Models.ListJugadores;
+using WebFPRTest.Areas.Interno.Result;
 
 namespace WebFPRTest.Areas.Interno.Service.ListJugadores
 {
@@ -168,6 +170,90 @@ namespace WebFPRTest.Areas.Interno.Service.ListJugadores
                 _connection.Close();
             }
         }
-        
+        public async Task<byte[]> DescargarExcel(int idEquipo, string paterno, string materno, string nombres, string documento, int idDivision, int idEstadoJugador)
+        {
+            var procedure = "usp_Jugador_Reporte";
+
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Equipo", idEquipo, DbType.Int32);
+                parameters.Add("@Paterno", paterno, DbType.String);
+                parameters.Add("@Materno", materno, DbType.String);
+                parameters.Add("@Nombres", nombres, DbType.String);
+                parameters.Add("@Documento", documento, DbType.String);
+                parameters.Add("@Id_007_Division", idDivision, DbType.Int32);
+                parameters.Add("@Id_009_EstadoJugador", idEstadoJugador, DbType.Int32);
+
+                var jugadores = await _connection.QueryAsync<ReporteJugadorResult>(
+                    procedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+
+                if (jugadores == null || !jugadores.Any())
+                {
+                    throw new Exception("No se encontraron datos para exportar.");
+                }
+
+                return GenerarExcel(jugadores);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error al generar el reporte de jugadores.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+        private byte[] GenerarExcel(IEnumerable<ReporteJugadorResult> jugadores)
+        {
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Reporte de Jugadores");
+
+                // Agregar encabezados
+                worksheet.Cell(1, 1).Value = "Índice";
+                worksheet.Cell(1, 2).Value = "Apellidos y Nombres";
+                worksheet.Cell(1, 3).Value = "Nombre Equipo";
+                worksheet.Cell(1, 4).Value = "Tipo Documento";
+                worksheet.Cell(1, 5).Value = "Documento";
+                worksheet.Cell(1, 6).Value = "Fecha Nacimiento";
+                worksheet.Cell(1, 7).Value = "Género";
+                worksheet.Cell(1, 8).Value = "Tipo Sangre";
+                worksheet.Cell(1, 9).Value = "División";
+                worksheet.Cell(1, 10).Value = "Situación";
+                worksheet.Cell(1, 11).Value = "Estado Jugador";
+                worksheet.Cell(1, 12).Value = "Fecha Inscripción";
+                worksheet.Cell(1, 13).Value = "Última Modificación";
+
+                int row = 2;
+                foreach (var jugador in jugadores)
+                {
+                    worksheet.Cell(row, 1).Value = jugador.Indice;
+                    worksheet.Cell(row, 2).Value = jugador.ApellidosYNombre;
+                    worksheet.Cell(row, 3).Value = jugador.NombreEquipo;
+                    worksheet.Cell(row, 4).Value = jugador.TipoDocumento;
+                    worksheet.Cell(row, 5).Value = jugador.Documento;
+                    worksheet.Cell(row, 6).Value = jugador.FechaNacimiento;
+                    worksheet.Cell(row, 7).Value = jugador.Genero;
+                    worksheet.Cell(row, 8).Value = jugador.TipoSangre;
+                    worksheet.Cell(row, 9).Value = jugador.Division;
+                    worksheet.Cell(row, 10).Value = jugador.Situacion;
+                    worksheet.Cell(row, 11).Value = jugador.EstadoJugador;
+                    worksheet.Cell(row, 12).Value = jugador.FechaInscripcion;
+                    worksheet.Cell(row, 13).Value = jugador.UltimaModificacion;
+                    row++;
+                }
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    return stream.ToArray();
+                }
+            }
+        }
+
     }
 }
