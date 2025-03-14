@@ -3,7 +3,9 @@
     public class ReporteJugadorResult
     {
         public int Indice { get; set; }
-        public string ApellidosYNombre { get; set; }
+        public string Paterno { get; set; }
+        public string Materno { get; set; }
+        public string Nombres { get; set; }
         public string NombreEquipo { get; set; }
         public string TipoDocumento { get; set; }
         public string Documento { get; set; }

@@ -215,35 +215,39 @@ namespace WebFPRTest.Areas.Interno.Service.ListJugadores
 
                 // Agregar encabezados
                 worksheet.Cell(1, 1).Value = "Índice";
-                worksheet.Cell(1, 2).Value = "Apellidos y Nombres";
-                worksheet.Cell(1, 3).Value = "Nombre Equipo";
-                worksheet.Cell(1, 4).Value = "Tipo Documento";
-                worksheet.Cell(1, 5).Value = "Documento";
-                worksheet.Cell(1, 6).Value = "Fecha Nacimiento";
-                worksheet.Cell(1, 7).Value = "Género";
-                worksheet.Cell(1, 8).Value = "Tipo Sangre";
-                worksheet.Cell(1, 9).Value = "División";
-                worksheet.Cell(1, 10).Value = "Situación";
-                worksheet.Cell(1, 11).Value = "Estado Jugador";
-                worksheet.Cell(1, 12).Value = "Fecha Inscripción";
-                worksheet.Cell(1, 13).Value = "Última Modificación";
+                worksheet.Cell(1, 2).Value = "Paterno";
+                worksheet.Cell(1, 3).Value = "Materno";
+                worksheet.Cell(1, 4).Value = "Nombres";
+                worksheet.Cell(1, 5).Value = "Nombre Equipo";
+                worksheet.Cell(1, 6).Value = "Tipo Documento";
+                worksheet.Cell(1, 7).Value = "Documento";
+                worksheet.Cell(1, 8).Value = "Fecha Nacimiento";
+                worksheet.Cell(1, 9).Value = "Género";
+                worksheet.Cell(1, 10).Value = "Tipo Sangre";
+                worksheet.Cell(1, 11).Value = "División";
+                worksheet.Cell(1, 12).Value = "Situación";
+                worksheet.Cell(1, 13).Value = "Estado Jugador";
+                worksheet.Cell(1, 14).Value = "Fecha Inscripción";
+                worksheet.Cell(1, 15).Value = "Última Modificación";
 
                 int row = 2;
                 foreach (var jugador in jugadores)
                 {
                     worksheet.Cell(row, 1).Value = jugador.Indice;
-                    worksheet.Cell(row, 2).Value = jugador.ApellidosYNombre;
-                    worksheet.Cell(row, 3).Value = jugador.NombreEquipo;
-                    worksheet.Cell(row, 4).Value = jugador.TipoDocumento;
-                    worksheet.Cell(row, 5).Value = jugador.Documento;
-                    worksheet.Cell(row, 6).Value = jugador.FechaNacimiento;
-                    worksheet.Cell(row, 7).Value = jugador.Genero;
-                    worksheet.Cell(row, 8).Value = jugador.TipoSangre;
-                    worksheet.Cell(row, 9).Value = jugador.Division;
-                    worksheet.Cell(row, 10).Value = jugador.Situacion;
-                    worksheet.Cell(row, 11).Value = jugador.EstadoJugador;
-                    worksheet.Cell(row, 12).Value = jugador.FechaInscripcion;
-                    worksheet.Cell(row, 13).Value = jugador.UltimaModificacion;
+                    worksheet.Cell(row, 2).Value = jugador.Paterno;
+                    worksheet.Cell(row, 3).Value = jugador.Materno ;
+                    worksheet.Cell(row, 4).Value = jugador.Nombres;
+                    worksheet.Cell(row, 5).Value = jugador.NombreEquipo;
+                    worksheet.Cell(row, 6).Value = jugador.TipoDocumento;
+                    worksheet.Cell(row, 7).Value = jugador.Documento;
+                    worksheet.Cell(row, 8).Value = jugador.FechaNacimiento;
+                    worksheet.Cell(row, 9).Value = jugador.Genero;
+                    worksheet.Cell(row, 10).Value = jugador.TipoSangre;
+                    worksheet.Cell(row, 11).Value = jugador.Division;
+                    worksheet.Cell(row, 12).Value = jugador.Situacion;
+                    worksheet.Cell(row, 13).Value = jugador.EstadoJugador;
+                    worksheet.Cell(row, 14).Value = jugador.FechaInscripcion;
+                    worksheet.Cell(row, 15).Value = jugador.UltimaModificacion;
                     row++;
                 }
 
