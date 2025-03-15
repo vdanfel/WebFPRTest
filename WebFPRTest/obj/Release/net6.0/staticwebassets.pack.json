@@ -145,8 +145,48 @@
       "PackagePath": "staticwebassets\\Archivos\\2\\551\\551_FOTO JUGADOR.jpg"
     },
     {
+      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\600\\600_ACTA MEDICA.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\2\\600\\600_ACTA MEDICA.pdf"
+    },
+    {
+      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\600\\600_CARTA PASE.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\2\\600\\600_CARTA PASE.pdf"
+    },
+    {
+      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\600\\600_CONMOCION CEREBRAL.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\2\\600\\600_CONMOCION CEREBRAL.pdf"
+    },
+    {
+      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\600\\600_DOCUMENTO DESLINDE.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\2\\600\\600_DOCUMENTO DESLINDE.pdf"
+    },
+    {
+      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\600\\600_FOTO JUGADOR.jpg",
+      "PackagePath": "staticwebassets\\Archivos\\2\\600\\600_FOTO JUGADOR.jpg"
+    },
+    {
+      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\600\\600_KEEP RUGBY CLEAN.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\2\\600\\600_KEEP RUGBY CLEAN.pdf"
+    },
+    {
+      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\600\\600_PRIMEROS AUXILIOS.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\2\\600\\600_PRIMEROS AUXILIOS.pdf"
+    },
+    {
+      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\600\\600_RUGBY LAWS.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\2\\600\\600_RUGBY LAWS.pdf"
+    },
+    {
+      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\600\\600_RUGBY READY.pdf",
+      "PackagePath": "staticwebassets\\Archivos\\2\\600\\600_RUGBY READY.pdf"
+    },
+    {
       "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\Comprobantes\\2_Comprobante1.jpg",
       "PackagePath": "staticwebassets\\Archivos\\2\\Comprobantes\\2_Comprobante1.jpg"
+    },
+    {
+      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\Comprobantes\\2_Comprobante10.jpg",
+      "PackagePath": "staticwebassets\\Archivos\\2\\Comprobantes\\2_Comprobante10.jpg"
     },
     {
       "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\2\\Comprobantes\\2_Comprobante2.jpg",
@@ -183,42 +223,6 @@
     {
       "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\391\\391_CARTA PASE.pdf",
       "PackagePath": "staticwebassets\\Archivos\\4\\391\\391_CARTA PASE.pdf"
-    },
-    {
-      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\394\\394_ACTA MEDICA.pdf",
-      "PackagePath": "staticwebassets\\Archivos\\4\\394\\394_ACTA MEDICA.pdf"
-    },
-    {
-      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\394\\394_CARTA PASE.pdf",
-      "PackagePath": "staticwebassets\\Archivos\\4\\394\\394_CARTA PASE.pdf"
-    },
-    {
-      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\394\\394_CONMOCION CEREBRAL.pdf",
-      "PackagePath": "staticwebassets\\Archivos\\4\\394\\394_CONMOCION CEREBRAL.pdf"
-    },
-    {
-      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\394\\394_DOCUMENTO DESLINDE.pdf",
-      "PackagePath": "staticwebassets\\Archivos\\4\\394\\394_DOCUMENTO DESLINDE.pdf"
-    },
-    {
-      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\394\\394_FOTO JUGADOR.jpg",
-      "PackagePath": "staticwebassets\\Archivos\\4\\394\\394_FOTO JUGADOR.jpg"
-    },
-    {
-      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\394\\394_KEEP RUGBY CLEAN.pdf",
-      "PackagePath": "staticwebassets\\Archivos\\4\\394\\394_KEEP RUGBY CLEAN.pdf"
-    },
-    {
-      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\394\\394_PRIMEROS AUXILIOS.pdf",
-      "PackagePath": "staticwebassets\\Archivos\\4\\394\\394_PRIMEROS AUXILIOS.pdf"
-    },
-    {
-      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\394\\394_RUGBY LAWS.pdf",
-      "PackagePath": "staticwebassets\\Archivos\\4\\394\\394_RUGBY LAWS.pdf"
-    },
-    {
-      "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\394\\394_RUGBY READY.pdf",
-      "PackagePath": "staticwebassets\\Archivos\\4\\394\\394_RUGBY READY.pdf"
     },
     {
       "Id": "D:\\Desarrollos\\WebFPRTest\\WebFPRTest\\wwwroot\\Archivos\\4\\4_LOGO.png",

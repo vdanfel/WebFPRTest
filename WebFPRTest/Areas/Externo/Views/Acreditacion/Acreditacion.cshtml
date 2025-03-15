@@ -79,10 +79,10 @@
             <table class="table table-hover">
                 <thead class="table-dark">
                     <tr>
-                        <th>Apellidos y Nombres</th>
-                        <th>Division</th>
-                        <th>Situacion</th>
-                        <th>Costo<br />Acreditación</th>
+                        <th class="align-middle">Apellidos y Nombres</th>
+                        <th class="align-middle">Division</th>
+                        <th class="align-middle">Situacion</th>
+                        <th class="align-middle">Costo<br />Acreditación</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -93,7 +93,7 @@
                             <td>@jugador.NombreCompleto</td>
                             <td>@jugador.Division</td>
                             <td>@jugador.Situacion</td>
-                            <td>@jugador.CostoAcreditacion</td>
+                            <td>@jugador.CostoAcreditacion.ToString("F2")</td>
                             <td>
                                 <input type="checkbox" class="form-check-input check-acreditacion"
                                        data-idjugador="@jugador.Id_Jugador"
