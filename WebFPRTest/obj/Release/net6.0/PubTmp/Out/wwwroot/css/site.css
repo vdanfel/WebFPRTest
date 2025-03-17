@@ -166,11 +166,60 @@ body {
     border-radius: 0.25em;
 }
 .leyenda-Inscrito {
-    border: 1px solid #5A9F55;
-    background-color: #C3F6BF;
-    color: #5A9F55;
+    border: 1px solid #555454;
+    background-color: #bfbfbf;
+    color: #555454;
     padding: 0.4em 0em 0.4em 0.5em;
     border-radius: 0.25em;
+}
+
+.d-flex.flex-wrap a {
+    text-decoration: none; /* Elimina el subrayado */
+    font-weight: bold; /* Texto en negrita */
+    transition: all 0.3s ease; /* Suaviza la transición de colores */
+    cursor: pointer;
+}
+
+/* Efecto hover para cada estado - invierte los colores */
+.leyenda-Creado:hover {
+    background-color: #999999;
+    color: #FFFFFF;
+}
+
+.leyenda-SolicitudHabilitacion:hover {
+    background-color: #C4B559;
+    color: #FFF8B5;
+}
+
+.leyenda-Habilitado:hover {
+    background-color: #B59D40;
+    color: #F0E5A3;
+}
+
+.leyenda-SolicitudAcreditacion:hover {
+    background-color: #B3813D;
+    color: #FFDB99;
+}
+
+.leyenda-Acreditado:hover {
+    background-color: #B37B1D;
+    color: #FFC966;
+}
+
+.leyenda-SolicitudInscripcion:hover {
+    background-color: #71A969;
+    color: #E2FBDF;
+}
+
+.leyenda-Inscrito:hover {
+    background-color: #555454;
+    color: #bfbfbf;
+}
+
+/* Estilo para elemento seleccionado - mantén esto si ya lo usas */
+.seleccionado {
+    background-color: #e9ecef;
+    font-weight: bold;
 }
 
 .tabla-compacta {

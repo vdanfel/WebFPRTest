@@ -15,9 +15,41 @@ namespace WebFPRTest.Areas.Interno.Service.ListJugadores
         {
             _connection = connection;
         }
-        public async Task<List<JugadoresTablaViewModel>> Jugador_Bandeja(JugadoresFiltroViewModel jugadorFiltroViewModel)
+        //public async Task<List<JugadoresTablaViewModel>> Jugador_Bandeja(JugadoresFiltroViewModel jugadorFiltroViewModel)
+        //{
+        //    var procedure = "usp_Jugador_Bandeja";
+        //    try
+        //    {
+        //        var parameters = new DynamicParameters();
+        //        parameters.Add("@Id_Equipo", jugadorFiltroViewModel.Id_Equipo, DbType.Int32);
+        //        parameters.Add("@Paterno", jugadorFiltroViewModel.Paterno, DbType.String);
+        //        parameters.Add("@Materno", jugadorFiltroViewModel.Materno, DbType.String);
+        //        parameters.Add("@Nombres", jugadorFiltroViewModel.Nombres, DbType.String);
+        //        parameters.Add("@Documento", jugadorFiltroViewModel.Documento, DbType.String);
+        //        parameters.Add("@Id_007_Division", jugadorFiltroViewModel.Id_007_Division, DbType.Int32);
+        //        parameters.Add("@Id_009_EstadoJugador", jugadorFiltroViewModel.Id_009_EstadoJugador, DbType.Int32);
+
+        //        var jugadores = await _connection.QueryAsync<JugadoresTablaViewModel>(
+        //            procedure,
+        //            parameters,
+        //            commandType: CommandType.StoredProcedure
+        //        );
+
+        //        return jugadores.ToList();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception("Ocurrió un error al insertar la persona.", ex);
+        //    }
+        //    finally
+        //    {
+        //        _connection.Close();
+        //    }
+        //}
+        public async Task<(List<JugadoresTablaViewModel> jugadores, int totalRegistros)> Jugador_Bandeja(JugadoresFiltroViewModel jugadorFiltroViewModel)
         {
             var procedure = "usp_Jugador_Bandeja";
+
             try
             {
                 var parameters = new DynamicParameters();
@@ -28,24 +60,27 @@ namespace WebFPRTest.Areas.Interno.Service.ListJugadores
                 parameters.Add("@Documento", jugadorFiltroViewModel.Documento, DbType.String);
                 parameters.Add("@Id_007_Division", jugadorFiltroViewModel.Id_007_Division, DbType.Int32);
                 parameters.Add("@Id_009_EstadoJugador", jugadorFiltroViewModel.Id_009_EstadoJugador, DbType.Int32);
+                parameters.Add("@PaginaActual", jugadorFiltroViewModel.PaginaActual, DbType.Int32);
+                parameters.Add("@FilasPorPagina", jugadorFiltroViewModel.FilasPorPagina, DbType.Int32);
 
-                var jugadores = await _connection.QueryAsync<JugadoresTablaViewModel>(
-                    procedure,
-                    parameters,
-                    commandType: CommandType.StoredProcedure
-                );
+                using (var multi = await _connection.QueryMultipleAsync(procedure, parameters, commandType: CommandType.StoredProcedure))
+                {
+                    var jugadores = (await multi.ReadAsync<JugadoresTablaViewModel>()).ToList();
+                    var totalRegistros = await multi.ReadFirstOrDefaultAsync<int>(); // Lee el segundo conjunto de resultados
 
-                return jugadores.ToList();
+                    return (jugadores, totalRegistros);
+                }
             }
             catch (Exception ex)
             {
-                throw new Exception("Ocurrió un error al insertar la persona.", ex);
+                throw new Exception("Ocurrió un error al obtener los jugadores.", ex);
             }
             finally
             {
                 _connection.Close();
             }
         }
+
         public async Task<JugadorDatosViewModel> Jugador_Select(int Id_Jugador)
         {
             var procedure = "usp_Jugador_Select";

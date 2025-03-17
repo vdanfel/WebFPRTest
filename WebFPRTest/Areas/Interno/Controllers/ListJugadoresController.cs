@@ -4,7 +4,9 @@ using System.Security.Claims;
 using WebFPRTest.Areas.Externo.Models.Jugador;
 using WebFPRTest.Areas.Interno.Interface.ListJugadores;
 using WebFPRTest.Areas.Interno.Models.ListJugadores;
+using WebFPRTest.Areas.Interno.Service.ListJugadores;
 using WebFPRTest.Interface;
+using WebFPRTest.Service;
 
 namespace WebFPRTest.Areas.Interno.Controllers
 {
@@ -29,7 +31,9 @@ namespace WebFPRTest.Areas.Interno.Controllers
             }
             JugadoresFiltroViewModel jugadoresFiltroViewModel = new JugadoresFiltroViewModel();
             jugadoresFiltroViewModel.ListaDivisiones = await _tiposService.ParametroTipo_Listar(7);
-            jugadoresFiltroViewModel.ListaJugadores = await _listJugadoresService.Jugador_Bandeja(jugadoresFiltroViewModel);
+            var (jugadores, totalRegistros) = await _listJugadoresService.Jugador_Bandeja(jugadoresFiltroViewModel);
+            jugadoresFiltroViewModel.ListaJugadores = jugadores;
+            jugadoresFiltroViewModel.TotalRegistros = totalRegistros;
             jugadoresFiltroViewModel.EquiposList = await _tiposService.Equipo_Listar();
             var estadoJugadores = await _tiposService.ParametroTipo_Listar(9);
             jugadoresFiltroViewModel.ListaEstadoJugador = estadoJugadores.OrderBy(d => d.Id_Parametros).ToList();
@@ -45,12 +49,32 @@ namespace WebFPRTest.Areas.Interno.Controllers
                 return RedirectToAction("Login", "Account");
             }
             jugadoresFiltroViewModel.ListaDivisiones = await _tiposService.ParametroTipo_Listar(7);
-            jugadoresFiltroViewModel.ListaJugadores = await _listJugadoresService.Jugador_Bandeja(jugadoresFiltroViewModel);
+            var (jugadores, totalRegistros) = await _listJugadoresService.Jugador_Bandeja(jugadoresFiltroViewModel);
+            jugadoresFiltroViewModel.ListaJugadores = jugadores;
+            jugadoresFiltroViewModel.TotalRegistros = totalRegistros;
             jugadoresFiltroViewModel.EquiposList = await _tiposService.Equipo_Listar();
             var estadoJugadores = await _tiposService.ParametroTipo_Listar(9);
             jugadoresFiltroViewModel.ListaEstadoJugador = estadoJugadores.OrderBy(d => d.Id_Parametros).ToList();
             return View(jugadoresFiltroViewModel);
         }
+        [HttpGet]
+        public async Task<IActionResult> CambiarPagina(JugadoresFiltroViewModel filtro, int pagina)
+        {
+            filtro.PaginaActual = pagina;
+
+            // Obtenemos los jugadores paginados y el total de registros
+            var resultado = await _listJugadoresService.Jugador_Bandeja(filtro);
+            filtro.ListaJugadores = resultado.Item1;
+            filtro.TotalRegistros = resultado.Item2;
+
+            filtro.ListaDivisiones = await _tiposService.ParametroTipo_Listar(7);
+            filtro.EquiposList = await _tiposService.Equipo_Listar();
+            var estadoJugadores = await _tiposService.ParametroTipo_Listar(9);
+            filtro.ListaEstadoJugador = estadoJugadores.OrderBy(d => d.Id_Parametros).ToList();
+
+            return View("ListJugadores", filtro);
+        }
+
         public IActionResult GuardarJugadorSeleccionado(int Id_Jugador, int Id_Equipo, int Pagina)
         {
             var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");

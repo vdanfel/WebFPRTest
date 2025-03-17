@@ -2,7 +2,7 @@
 @{
     Layout = "_LayoutInterno";
 }
-<form asp-area="Interno" asp-controller="ListJugadores" asp-action="ListJugadores" method="post">
+<form id="formJugador" asp-area="Interno" asp-controller="ListJugadores" asp-action="ListJugadores" method="post">
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -82,14 +82,14 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex flex-wrap mt-2" style="font-size:0.7rem">
-            <div class="flex-fill border text-center p-2 leyenda-Creado">1. Creado</div>
-            <div class="flex-fill border text-center p-2 leyenda-SolicitudHabilitacion">2. Solicitud Habilitacion</div>
-            <div class="flex-fill border text-center p-2 leyenda-Habilitado">3. Habilitado</div>
-            <div class="flex-fill border text-center p-2 leyenda-SolicitudAcreditacion">4. Solicitud Acreditacion</div>
-            <div class="flex-fill border text-center p-2 leyenda-Acreditado">5.Acreditado</div>
-            <div class="flex-fill border text-center p-2 leyenda-SolicitudInscripcion">6. Solicitud Inscripcion</div>
-            <div class="flex-fill border text-center p-2 leyenda-Inscrito">7. Inscrito</div>
+        <div class="d-flex flex-wrap mt-2" style="font-size:0.8rem">
+            <a href="javascript:void(0);" onclick="setSelectValue(401)" class="flex-fill border text-center p-2 leyenda-Creado">1. Creado</a>
+            <a href="javascript:void(0);" onclick="setSelectValue(441)" class="flex-fill border text-center p-2 leyenda-SolicitudHabilitacion">2. Solicitud Habilitacion</a>
+            <a href="javascript:void(0);" onclick="setSelectValue(442)" class="flex-fill border text-center p-2 leyenda-Habilitado">3. Habilitado</a>
+            <a href="javascript:void(0);" onclick="setSelectValue(443)" class="flex-fill border text-center p-2 leyenda-SolicitudAcreditacion">4. Solicitud Acreditacion</a>
+            <a href="javascript:void(0);" onclick="setSelectValue(444)" class="flex-fill border text-center p-2 leyenda-Acreditado">5. Acreditado</a>
+            <a href="javascript:void(0);" onclick="setSelectValue(445)" class="flex-fill border text-center p-2 leyenda-SolicitudInscripcion">6. Solicitud Inscripcion</a>
+            <a href="javascript:void(0);" onclick="setSelectValue(446)" class="flex-fill border text-center p-2 leyenda-Inscrito">7. Inscrito</a>
         </div>
         <div class="table-responsive-md mt-2">
             <table class="table table-hover">
@@ -114,7 +114,7 @@
                         jugadores.Id_009_EstadoJugador == 443 ? "#FFDB99" :
                         jugadores.Id_009_EstadoJugador == 444 ? "#FFC966" :
                         jugadores.Id_009_EstadoJugador == 445 ? "#E2FBDF" :
-                        jugadores.Id_009_EstadoJugador == 446 ? "#C3F6BF" :
+                        jugadores.Id_009_EstadoJugador == 446 ? "#bfbfbf" :
                         "#FFFFFF";
                         bool esHabilitado = jugadores.Id_009_EstadoJugador >= 444;
                         <tr class="align-middle">
@@ -143,7 +143,141 @@
                 </tbody>
             </table>
         </div>
+        @if (Model.TotalPaginas > 1)
+        {
+            <nav aria-label="Navegación de páginas">
+                <ul class="pagination justify-content-center">
+                    <!-- Botón Previous -->
+                    <li class="page-item @(Model.PaginaActual == 1 ? "disabled" : "")">
+                        <a class="page-link"
+                           asp-action="CambiarPagina"
+                           asp-route-pagina="@(Model.PaginaActual - 1)"
+                           asp-route-Id_Equipo="@Model.Id_Equipo"
+                           asp-route-Paterno="@Model.Paterno"
+                           asp-route-Materno="@Model.Materno"
+                           asp-route-Nombres="@Model.Nombres"
+                           asp-route-Documento="@Model.Documento"
+                           asp-route-Id_007_Division="@Model.Id_007_Division"
+                           asp-route-Id_009_EstadoJugador="@Model.Id_009_EstadoJugador">
+                            Anterior
+                        </a>
+                    </li>
 
+                    @{
+                        // Definimos cuántos números de página mostrar
+                        int paginaInicio = Math.Max(1, Model.PaginaActual - 2);
+                        int paginaFin = Math.Min(Model.TotalPaginas, Model.PaginaActual + 2);
+
+                        // Si estamos cerca del inicio, mostramos más páginas al final
+                        if (paginaInicio <= 3)
+                        {
+                            paginaFin = Math.Min(Model.TotalPaginas, 5);
+                        }
+
+                        // Si estamos cerca del final, mostramos más páginas al inicio
+                        if (paginaFin >= Model.TotalPaginas - 2)
+                        {
+                            paginaInicio = Math.Max(1, Model.TotalPaginas - 4);
+                        }
+                    }
+
+                    <!-- Primera página siempre visible -->
+                    @if (paginaInicio > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link"
+                               asp-action="CambiarPagina"
+                               asp-route-pagina="1"
+                               asp-route-Id_Equipo="@Model.Id_Equipo"
+                               asp-route-Paterno="@Model.Paterno"
+                               asp-route-Materno="@Model.Materno"
+                               asp-route-Nombres="@Model.Nombres"
+                               asp-route-Documento="@Model.Documento"
+                               asp-route-Id_007_Division="@Model.Id_007_Division"
+                               asp-route-Id_009_EstadoJugador="@Model.Id_009_EstadoJugador">
+                                1
+                            </a>
+                        </li>
+
+                        <!-- Puntos suspensivos -->
+                        @if (paginaInicio > 2)
+                        {
+                            <li class="page-item disabled">
+                                <span class="page-link">...</span>
+                            </li>
+                        }
+                    }
+
+                    <!-- Números de página -->
+                    @for (int i = paginaInicio; i <= paginaFin; i++)
+                    {
+                        <li class="page-item @(Model.PaginaActual == i ? "active" : "")">
+                            <a class="page-link"
+                               asp-action="CambiarPagina"
+                               asp-route-pagina="@i"
+                               asp-route-Id_Equipo="@Model.Id_Equipo"
+                               asp-route-Paterno="@Model.Paterno"
+                               asp-route-Materno="@Model.Materno"
+                               asp-route-Nombres="@Model.Nombres"
+                               asp-route-Documento="@Model.Documento"
+                               asp-route-Id_007_Division="@Model.Id_007_Division"
+                               asp-route-Id_009_EstadoJugador="@Model.Id_009_EstadoJugador">
+                                @i
+                            </a>
+                        </li>
+                    }
+
+                    <!-- Última página siempre visible -->
+                    @if (paginaFin < Model.TotalPaginas)
+                    {
+                        <!-- Puntos suspensivos -->
+                        @if (paginaFin < Model.TotalPaginas - 1)
+                        {
+                            <li class="page-item disabled">
+                                <span class="page-link">...</span>
+                            </li>
+                        }
+
+                        <li class="page-item">
+                            <a class="page-link"
+                               asp-action="CambiarPagina"
+                               asp-route-pagina="@Model.TotalPaginas"
+                               asp-route-Id_Equipo="@Model.Id_Equipo"
+                               asp-route-Paterno="@Model.Paterno"
+                               asp-route-Materno="@Model.Materno"
+                               asp-route-Nombres="@Model.Nombres"
+                               asp-route-Documento="@Model.Documento"
+                               asp-route-Id_007_Division="@Model.Id_007_Division"
+                               asp-route-Id_009_EstadoJugador="@Model.Id_009_EstadoJugador">
+                                @Model.TotalPaginas
+                            </a>
+                        </li>
+                    }
+
+                    <!-- Botón Next -->
+                    <li class="page-item @(Model.PaginaActual == Model.TotalPaginas ? "disabled" : "")">
+                        <a class="page-link"
+                           asp-action="CambiarPagina"
+                           asp-route-pagina="@(Model.PaginaActual + 1)"
+                           asp-route-Id_Equipo="@Model.Id_Equipo"
+                           asp-route-Paterno="@Model.Paterno"
+                           asp-route-Materno="@Model.Materno"
+                           asp-route-Nombres="@Model.Nombres"
+                           asp-route-Documento="@Model.Documento"
+                           asp-route-Id_007_Division="@Model.Id_007_Division"
+                           asp-route-Id_009_EstadoJugador="@Model.Id_009_EstadoJugador">
+                            Siguiente
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="text-center mb-3">
+                <span class="text-muted">
+                    Mostrando página @Model.PaginaActual de @Model.TotalPaginas (Total: @Model.TotalRegistros registros)
+                </span>
+            </div>
+        }
     </div>
 </form>
 @section Scripts {
@@ -173,5 +307,34 @@
 
         // Redirigir para descargar el archivo
         window.location.href = url;
+    }
+
+    function setSelectValue(valor) {
+        // Obtener referencia al select
+        const select = document.getElementById('Id_009_EstadoJugador');
+
+        // Establecer el valor en el select
+        select.value = valor;
+
+        // Simular el evento change para que cualquier evento vinculado al select se active
+        const event = new Event('change', { bubbles: true });
+        select.dispatchEvent(event);
+
+        // Resaltar el elemento seleccionado
+        const elementos = document.querySelectorAll('.d-flex.flex-wrap a');
+        elementos.forEach(elem => elem.classList.remove('seleccionado'));
+        event.target.classList.add('seleccionado');
+
+        // Buscar el botón de filtrado y hacer clic en él
+        const botonFiltrar = document.querySelector('button[type="submit"]');
+        if (botonFiltrar) {
+            botonFiltrar.click();
+        } else {
+            // Si no se encuentra el botón, enviar el formulario directamente
+            const form = document.querySelector('form');
+            if (form) {
+                form.submit();
+            }
+        }
     }
 </script>

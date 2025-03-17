@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebFPRTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3af31b78032a3fb5a63a28e9d3002dc8a1b92b6b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebFPRTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebFPRTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -3,7 +3,7 @@
     Layout = "_LayoutExterno";
     var nombreEquipo = Context.Session.GetString("NombreEquipo");
 }
-<form asp-area="Externo" asp-action="Index" asp-controller="Jugador" method="post">
+<form id="formJugador" asp-area="Externo" asp-action="Index" asp-controller="Jugador" method="post">
     <input type="text" asp-for="Id_Equipo" hidden/>
     <div class="container">
         <div class="card">
@@ -64,19 +64,23 @@
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-3 d-flex justify-content-end align-items-center">
-                        <button type="submit" class="btn btn-outline-primary me-2">Filtrar</button>
+                        <button id="btnFiltrar" type="submit" class="btn btn-outline-primary me-2">Filtrar</button>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Campo oculto para almacenar el valor seleccionado -->
+        <input type="hidden" id="Id_009_EstadoJugador" name="Id_009_EstadoJugador" value="" asp-for="Id_009_EstadoJugador"/>
+
+        <!-- Leyenda como botones que establecen el valor pero no envían el formulario -->
         <div class="d-flex flex-wrap mt-2" style="font-size:0.8rem">
-            <div class="flex-fill border text-center p-2 leyenda-Creado">1. Creado</div>
-            <div class="flex-fill border text-center p-2 leyenda-SolicitudHabilitacion">2. Solicitud Habilitacion</div>
-            <div class="flex-fill border text-center p-2 leyenda-Habilitado">3. Habilitado</div>
-            <div class="flex-fill border text-center p-2 leyenda-SolicitudAcreditacion">4. Solicitud Acreditacion</div>
-            <div class="flex-fill border text-center p-2 leyenda-Acreditado">5.Acreditado</div>
-            <div class="flex-fill border text-center p-2 leyenda-SolicitudInscripcion">6. Solicitud Inscripcion</div>
-            <div class="flex-fill border text-center p-2 leyenda-Inscrito">7. Inscrito</div>
+            <a href="javascript:void(0);" onclick="setEstadoJugador(401)" class="flex-fill border text-center p-2 leyenda-Creado">1. Creado</a>
+            <a href="javascript:void(0);" onclick="setEstadoJugador(441)" class="flex-fill border text-center p-2 leyenda-SolicitudHabilitacion">2. Solicitud Habilitacion</a>
+            <a href="javascript:void(0);" onclick="setEstadoJugador(442)" class="flex-fill border text-center p-2 leyenda-Habilitado">3. Habilitado</a>
+            <a href="javascript:void(0);" onclick="setEstadoJugador(443)" class="flex-fill border text-center p-2 leyenda-SolicitudAcreditacion">4. Solicitud Acreditacion</a>
+            <a href="javascript:void(0);" onclick="setEstadoJugador(444)" class="flex-fill border text-center p-2 leyenda-Acreditado">5. Acreditado</a>
+            <a href="javascript:void(0);" onclick="setEstadoJugador(445)" class="flex-fill border text-center p-2 leyenda-SolicitudInscripcion">6. Solicitud Inscripcion</a>
+            <a href="javascript:void(0);" onclick="setEstadoJugador(446)" class="flex-fill border text-center p-2 leyenda-Inscrito">7. Inscrito</a>
         </div>
         <div class="table-responsive-md mt-2">
             <table class="table table-hover">
@@ -100,7 +104,7 @@
                         jugadores.Id_009_EstadoJugador == 443 ? "#FFDB99" :
                         jugadores.Id_009_EstadoJugador == 444 ? "#FFC966" :
                         jugadores.Id_009_EstadoJugador == 445 ? "#E2FBDF" :
-                        jugadores.Id_009_EstadoJugador == 446 ? "#C3F6BF" :
+                        jugadores.Id_009_EstadoJugador == 446 ? "#bfbfbf" :
                         "#FFFFFF";
                         bool esHabilitado = jugadores.Id_009_EstadoJugador >= 444;
                         string estiloInscripcion = "pointer-events: none; opacity: 0.5; cursor: not-allowed;";
@@ -243,6 +247,19 @@
     document.getElementById("modalResultado").addEventListener("hidden.bs.modal", function () {
         location.reload();
     });
+
+    function setEstadoJugador(valor) {
+        // Establecer el valor en el campo oculto
+        document.getElementById('Id_009_EstadoJugador').value = valor;
+
+        // Resaltar el elemento seleccionado
+        const elementos = document.querySelectorAll('.d-flex.flex-wrap a');
+        elementos.forEach(elem => elem.classList.remove('seleccionado'));
+        event.target.classList.add('seleccionado');
+
+        // Enviar automáticamente el formulario
+        document.getElementById('formJugador').submit();
+    }
 
 </script>
 

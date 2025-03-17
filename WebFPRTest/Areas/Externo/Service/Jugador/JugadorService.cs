@@ -151,6 +151,7 @@ namespace WebFPRTest.Areas.Externo.Service.Jugador
                 parameters.Add("@Nombres", jugadorFiltroViewModel.Nombres, DbType.String);
                 parameters.Add("@Documento", jugadorFiltroViewModel.Documento, DbType.String);
                 parameters.Add("@Id_007_Division", jugadorFiltroViewModel.Id_007_Division, DbType.Int32);
+                parameters.Add("@Id_009_EstadoJugador", jugadorFiltroViewModel.Id_009_EstadoJugador, DbType.Int32);
                 
                 var jugadores = await _connection.QueryAsync<JugadorTablaViewModel>(
                     procedure,

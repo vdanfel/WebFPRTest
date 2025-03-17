@@ -20,6 +20,11 @@ namespace WebFPRTest.Areas.Interno.Models.ListJugadores
         {
             ListaJugadores = new List<JugadoresTablaViewModel>();
         }
+        // Nuevas propiedades para la paginación
+        public int PaginaActual { get; set; } = 1;
+        public int FilasPorPagina { get; set; } = 100;
+        public int TotalRegistros { get; set; }
+        public int TotalPaginas => (int)Math.Ceiling((double)TotalRegistros / FilasPorPagina);
     }
     public class JugadoresTablaViewModel
     {

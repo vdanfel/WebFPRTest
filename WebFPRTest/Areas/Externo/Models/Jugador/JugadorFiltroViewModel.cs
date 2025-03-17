@@ -11,6 +11,7 @@ namespace WebFPRTest.Areas.Externo.Models.Jugador
         public string? Nombres{ get; set; }
         public string? Documento { get; set; }
         public int? Id_007_Division { get; set; }
+        public int? Id_009_EstadoJugador { get; set; }
         public List<JugadorTablaViewModel> ListaJugadores { get; set; }
         public List<ParametrosTipoResult> ListaDivisiones { get; set; }
         public JugadorFiltroViewModel() 
