@@ -398,7 +398,6 @@ namespace WebFPRTest.Areas.Externo.Service.Jugador
                 parameters.Add("@Nombres", jugadorViewModel.DatosApoderado.ApoderadoNombres, DbType.String);
                 parameters.Add("@Id_001_TipoDocumento", jugadorViewModel.DatosApoderado.ApoderadoId_001_TipoDocumento, DbType.Int32);
                 parameters.Add("@Documento", jugadorViewModel.DatosApoderado.ApoderadoDocumento, DbType.String);
-                parameters.Add("@Paterno", jugadorViewModel.DatosApoderado.ApoderadoDocumento, DbType.String);
                 parameters.Add("@Id_Usuario", Id_Usuario, DbType.Int32);
                 await _connection.ExecuteAsync(procedure, parameters, commandType: CommandType.StoredProcedure);
             }
