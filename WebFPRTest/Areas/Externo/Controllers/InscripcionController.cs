@@ -87,7 +87,16 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 if (!string.IsNullOrEmpty(nuevaRutaActaMedica))
                 {
                     await _inscripcionService.Archivo_Insertar(inscripcionViewModel.Id_Equipo, inscripcionViewModel.Id_Jugador, Id_013_TipoArchivo, nuevaRutaActaMedica,
-                        inscripcionViewModel.FechaRegistroActaMedica,inscripcionViewModel.FechaVencimientoActaMedica, Id_Usuario);
+                        inscripcionViewModel.FechaRegistroActaMedica, inscripcionViewModel.FechaVencimientoActaMedica, Id_Usuario);
+                }
+            }
+            else
+            {
+                if (inscripcionViewModel.RutaActaMedica != null)
+                {
+                    int Id_013_TipoArchivo = 456;
+                    await _inscripcionService.Archivo_Insertar(inscripcionViewModel.Id_Equipo, inscripcionViewModel.Id_Jugador, Id_013_TipoArchivo, inscripcionViewModel.RutaActaMedica,
+                            inscripcionViewModel.FechaRegistroActaMedica, inscripcionViewModel.FechaVencimientoActaMedica, Id_Usuario);
                 }
             }
             if (inscripcionViewModel.RugbyReady != null)
@@ -107,6 +116,15 @@ namespace WebFPRTest.Areas.Externo.Controllers
                         inscripcionViewModel.FechaRegistroRugbyReady, inscripcionViewModel.FechaVencimientoRugbyReady, Id_Usuario);
                 }
             }
+            else
+            {
+                if (inscripcionViewModel.RutaRugbyReady != null)
+                {
+                    int Id_013_TipoArchivo = 457;
+                    await _inscripcionService.Archivo_Insertar(inscripcionViewModel.Id_Equipo, inscripcionViewModel.Id_Jugador, Id_013_TipoArchivo, inscripcionViewModel.RutaRugbyReady,
+                            inscripcionViewModel.FechaRegistroRugbyReady, inscripcionViewModel.FechaVencimientoRugbyReady, Id_Usuario);
+                }
+            }
             if (inscripcionViewModel.RugbyLaws != null)
             {
                 int Id_013_TipoArchivo = 458;
@@ -122,6 +140,15 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 {
                     await _inscripcionService.Archivo_Insertar(inscripcionViewModel.Id_Equipo, inscripcionViewModel.Id_Jugador, Id_013_TipoArchivo, nuevaRutaRugbyLaws,
                         inscripcionViewModel.FechaRegistroRugbyLaws, inscripcionViewModel.FechaVencimientoRugbyLaws, Id_Usuario);
+                }
+            }
+            else
+            {
+                if (inscripcionViewModel.RutaRugbyLaws != null)
+                {
+                    int Id_013_TipoArchivo = 458;
+                    await _inscripcionService.Archivo_Insertar(inscripcionViewModel.Id_Equipo, inscripcionViewModel.Id_Jugador, Id_013_TipoArchivo, inscripcionViewModel.RutaRugbyLaws,
+                            inscripcionViewModel.FechaRegistroRugbyLaws, inscripcionViewModel.FechaVencimientoRugbyLaws, Id_Usuario);
                 }
             }
             if (inscripcionViewModel.KeepRugbyClean != null)
@@ -141,6 +168,15 @@ namespace WebFPRTest.Areas.Externo.Controllers
                         inscripcionViewModel.FechaRegistroKeepRugbyClean, inscripcionViewModel.FechaVencimientoKeepRugbyClean, Id_Usuario);
                 }
             }
+            else
+            {
+                if (inscripcionViewModel.RutaKeepRugbyClean != null)
+                {
+                    int Id_013_TipoArchivo = 459;
+                    await _inscripcionService.Archivo_Insertar(inscripcionViewModel.Id_Equipo, inscripcionViewModel.Id_Jugador, Id_013_TipoArchivo, inscripcionViewModel.RutaKeepRugbyClean,
+                            inscripcionViewModel.FechaRegistroKeepRugbyClean, inscripcionViewModel.FechaVencimientoKeepRugbyClean, Id_Usuario);
+                }
+            }
             if (inscripcionViewModel.PrimerosAuxilios != null)
             {
                 int Id_013_TipoArchivo = 460;
@@ -158,6 +194,15 @@ namespace WebFPRTest.Areas.Externo.Controllers
                         inscripcionViewModel.FechaRegistroPrimerosAuxilios, inscripcionViewModel.FechaVencimientoPrimerosAuxilios, Id_Usuario);
                 }
             }
+            else
+            {
+                if (inscripcionViewModel.RutaPrimerosAuxilios != null)
+                {
+                    int Id_013_TipoArchivo = 460;
+                    await _inscripcionService.Archivo_Insertar(inscripcionViewModel.Id_Equipo, inscripcionViewModel.Id_Jugador, Id_013_TipoArchivo, inscripcionViewModel.RutaPrimerosAuxilios,
+                            inscripcionViewModel.FechaRegistroPrimerosAuxilios, inscripcionViewModel.FechaVencimientoPrimerosAuxilios, Id_Usuario);
+                }
+            }
             if (inscripcionViewModel.ConmocionCerebral != null)
             {
                 int Id_013_TipoArchivo = 461;
@@ -173,6 +218,15 @@ namespace WebFPRTest.Areas.Externo.Controllers
                 {
                     await _inscripcionService.Archivo_Insertar(inscripcionViewModel.Id_Equipo, inscripcionViewModel.Id_Jugador, Id_013_TipoArchivo, nuevaRutaConmocionCerebral,
                         inscripcionViewModel.FechaRegistroConmocionCerebral, inscripcionViewModel.FechaVencimientoConmocionCerebral, Id_Usuario);
+                }
+            }
+            else
+            {
+                if (inscripcionViewModel.RutaConmocionCerebral != null)
+                {
+                    int Id_013_TipoArchivo = 461;
+                    await _inscripcionService.Archivo_Insertar(inscripcionViewModel.Id_Equipo, inscripcionViewModel.Id_Jugador, Id_013_TipoArchivo, inscripcionViewModel.RutaConmocionCerebral,
+                            inscripcionViewModel.FechaRegistroConmocionCerebral, inscripcionViewModel.FechaVencimientoConmocionCerebral, Id_Usuario);
                 }
             }
 
