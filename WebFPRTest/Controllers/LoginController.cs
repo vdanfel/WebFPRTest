@@ -63,5 +63,10 @@ namespace WebFPRTest.Controllers
             ViewBag.Mensaje = mensaje;
             return View(login);
         }
+        [HttpGet]
+        public IActionResult AccesoDenegado() 
+        {
+            return View();
+        }
     }
 }

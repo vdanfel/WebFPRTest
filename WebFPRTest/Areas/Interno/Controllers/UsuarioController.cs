@@ -26,11 +26,20 @@ namespace WebFPRTest.Areas.Interno.Controllers
         [HttpGet]
         public async Task<IActionResult> Index() 
         {
-            var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
-            if (tipoUsuario == null || (tipoUsuario != "406" && tipoUsuario != "407" && tipoUsuario != "408"))
+            int Id_Controlador = 10;
+            int tipoUsuario = int.TryParse(User.FindFirstValue("Id_011_TipoUsuario"), out int result) ? result : 0;
+
+            var acceso = await _tiposService.ControladorTipoUsuario(Id_Controlador, tipoUsuario);
+
+            if (!acceso)
             {
-                return RedirectToAction("Login", "Login");
+                return RedirectToAction("AccesoDenegado", "Login");
             }
+            //var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
+            //if (tipoUsuario == null || (tipoUsuario != "406" && tipoUsuario != "407" && tipoUsuario != "408"))
+            //{
+            //    return RedirectToAction("Login", "Login");
+            //}
             UsuarioFiltroViewModel indexView = new UsuarioFiltroViewModel();
             indexView.ListaUsuarios = await _usuarioService.Usuario_Bandeja(indexView);
             return View(indexView);
@@ -66,12 +75,12 @@ namespace WebFPRTest.Areas.Interno.Controllers
         [HttpGet]
         public async Task<IActionResult> Usuario_Eliminar(int Id_Usuario)
         {
-            var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
-
-            if (tipoUsuario == null || (tipoUsuario != "406" && tipoUsuario != "407"))
+            int Id_Controlador = 11;
+            int tipoUsuario = int.TryParse(User.FindFirstValue("Id_011_TipoUsuario"), out int result) ? result : 0;
+            var acceso = await _tiposService.ControladorTipoUsuario(Id_Controlador, tipoUsuario);
+            if (!acceso)
             {
-                TempData["Mensaje"] = "Usted no tiene permisos para entrar a esta ventana.";
-                return RedirectToAction("Index", "Usuario", new { area = "Interno" });
+                return RedirectToAction("AccesoDenegado", "Login");
             }
             await _usuarioService.Usuario_Eliminar(Id_Usuario);
             TempData["Mensaje"] = "Usuario Eliminado con éxito";
@@ -80,13 +89,13 @@ namespace WebFPRTest.Areas.Interno.Controllers
         [HttpGet]
         public async Task<IActionResult> Usuario()
         {
-            var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
-            if (tipoUsuario == null || (tipoUsuario != "406" && tipoUsuario != "407"))
+            int Id_Controlador = 12;
+            int tipoUsuario = int.TryParse(User.FindFirstValue("Id_011_TipoUsuario"), out int result) ? result : 0;
+            var acceso = await _tiposService.ControladorTipoUsuario(Id_Controlador, tipoUsuario);
+            if (!acceso)
             {
-                return RedirectToAction("Login", "Login");
+                return RedirectToAction("AccesoDenegado", "Login");
             }
-
-            
             UsuarioViewModel usuario = new UsuarioViewModel();
             usuario.Id_Usuario = TempData.Peek("Id_Usuario") as int? ?? 0;
             usuario.Id_Persona = TempData.Peek("Id_Persona") as int? ?? 0;

@@ -1,0 +1,25 @@
+﻿@{
+
+}
+<!-- Bootstrap Modal -->
+<div class="modal fade show" id="alertaModal" tabindex="-1" aria-labelledby="alertaModalLabel" aria-hidden="true" style="display: block; background: rgba(0,0,0,0.5);">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Acceso Denegado</h5>
+            </div>
+            <div class="modal-body">
+                <p>No tienes acceso para entrar a esta página.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAceptar">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("btnAceptar").addEventListener("click", function () {
+        window.history.back(); // Regresar a la página anterior
+    });
+</script>

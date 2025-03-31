@@ -24,10 +24,14 @@ namespace WebFPRTest.Areas.Interno.Controllers
         [HttpGet]
         public async Task<IActionResult> ListJugadores() 
         {
-            var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
-            if (tipoUsuario == null || (tipoUsuario != "406" && tipoUsuario != "407" && tipoUsuario != "408"))
+            int Id_Controlador = 13;
+            int tipoUsuario = int.TryParse(User.FindFirstValue("Id_011_TipoUsuario"), out int result) ? result : 0;
+
+            var acceso = await _tiposService.ControladorTipoUsuario(Id_Controlador, tipoUsuario);
+
+            if (!acceso)
             {
-                return RedirectToAction("Login", "Login");
+                return RedirectToAction("AccesoDenegado", "Login");
             }
             JugadoresFiltroViewModel jugadoresFiltroViewModel = new JugadoresFiltroViewModel();
             jugadoresFiltroViewModel.ListaDivisiones = await _tiposService.ParametroTipo_Listar(7);
@@ -97,10 +101,14 @@ namespace WebFPRTest.Areas.Interno.Controllers
         [HttpGet]
         public async Task<IActionResult> JugadorDatos()
         {
-            var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
-            if (tipoUsuario == null || (tipoUsuario != "406" && tipoUsuario != "407" && tipoUsuario != "408"))
+            int Id_Controlador = 8;
+            int tipoUsuario = int.TryParse(User.FindFirstValue("Id_011_TipoUsuario"), out int result) ? result : 0;
+
+            var acceso = await _tiposService.ControladorTipoUsuario(Id_Controlador, tipoUsuario);
+
+            if (!acceso)
             {
-                return RedirectToAction("Login", "Login");
+                return RedirectToAction("AccesoDenegado", "Login");
             }
             int Id_Jugador = TempData.Peek("Id_Jugador") as int? ?? 0;
             TempData.Keep("Id_Jugador");
@@ -155,10 +163,12 @@ namespace WebFPRTest.Areas.Interno.Controllers
         [HttpGet]
         public async Task<IActionResult> JugadorDocumentos() 
         {
-            var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
-            if (tipoUsuario == null || (tipoUsuario != "406" && tipoUsuario != "407" && tipoUsuario != "408"))
+            int Id_Controlador = 9;
+            int tipoUsuario = int.TryParse(User.FindFirstValue("Id_011_TipoUsuario"), out int result) ? result : 0;
+            var acceso = await _tiposService.ControladorTipoUsuario(Id_Controlador, tipoUsuario);
+            if (!acceso)
             {
-                return RedirectToAction("Login", "Login");
+                return RedirectToAction("AccesoDenegado", "Login");
             }
             int Id_Jugador = TempData.Peek("Id_Jugador") as int? ?? 0;
             TempData.Keep("Id_Jugador");

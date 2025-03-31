@@ -23,10 +23,14 @@ namespace WebFPRTest.Areas.Interno.Controllers
         [HttpGet]
         public async Task<IActionResult> ListAcreditacion()
         {
-            var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
-            if (tipoUsuario == null || (tipoUsuario != "406" && tipoUsuario != "407" && tipoUsuario != "408"))
+            int Id_Controlador = 7;
+            int tipoUsuario = int.TryParse(User.FindFirstValue("Id_011_TipoUsuario"), out int result) ? result : 0;
+
+            var acceso = await _tiposService.ControladorTipoUsuario(Id_Controlador, tipoUsuario);
+
+            if (!acceso)
             {
-                return RedirectToAction("Login", "Login");
+                return RedirectToAction("AccesoDenegado", "Login");
             }
             ComprobanteFiltroViewModel comprobanteFiltroViewModel = new ComprobanteFiltroViewModel();
             comprobanteFiltroViewModel.ListaComprobantes = await _listAcreditacionService.Comprobante_Bandeja(comprobanteFiltroViewModel);
@@ -64,6 +68,15 @@ namespace WebFPRTest.Areas.Interno.Controllers
         [HttpGet]
         public async Task<IActionResult> AcreditacionJugadores()
         {
+            int Id_Controlador = 14;
+            int tipoUsuario = int.TryParse(User.FindFirstValue("Id_011_TipoUsuario"), out int result) ? result : 0;
+
+            var acceso = await _tiposService.ControladorTipoUsuario(Id_Controlador, tipoUsuario);
+
+            if (!acceso)
+            {
+                return RedirectToAction("AccesoDenegado", "Login");
+            }
             int Id_Comprobante = (int)TempData.Peek("Id_Comprobante");
             var acreditacionJugadoresViewModel = await _listAcreditacionService.Comprobante_Select(Id_Comprobante);
             acreditacionJugadoresViewModel.TipoPagos = await _tiposService.ParametroTipo_Listar(15);

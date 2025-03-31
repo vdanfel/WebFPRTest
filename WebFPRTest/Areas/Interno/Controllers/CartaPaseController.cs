@@ -36,10 +36,14 @@ namespace WebFPRTest.Areas.Interno.Controllers
         [HttpGet]
         public async Task<IActionResult> CartaPase()
         {
-            var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
-            if (tipoUsuario == null || (tipoUsuario != "406" && tipoUsuario != "407" && tipoUsuario != "408"))
+            int Id_Controlador = 6;
+            int tipoUsuario = int.TryParse(User.FindFirstValue("Id_011_TipoUsuario"), out int result) ? result : 0;
+
+            var acceso = await _tiposService.ControladorTipoUsuario(Id_Controlador, tipoUsuario);
+
+            if (!acceso)
             {
-                return RedirectToAction("Login", "Login");
+                return RedirectToAction("AccesoDenegado", "Login");
             }
             int Id_Jugador = TempData.Peek("Id_Jugador") as int? ?? 0;
             int Id_Equipo = TempData.Peek("Id_Equipo") as int? ?? 0;
@@ -125,7 +129,6 @@ namespace WebFPRTest.Areas.Interno.Controllers
                 }
             }
         }
-
         private async Task LimpiarArchivosExistentes(int Id_Equipo, int Id_Jugador, int Id_013_TipoArchivo, string[] extensionesPermitidas)
         {
             var NombreTipoArchivo = await _tiposService.TipoArchivo_Descripcion(Id_013_TipoArchivo);
@@ -187,7 +190,6 @@ namespace WebFPRTest.Areas.Interno.Controllers
 
             return Path.Combine("Archivos", Id_Equipo.ToString(), Id_Jugador.ToString(), fileName);
         }
-
         private async Task MoverArchivos(List<RutasArchivos> rutaArchivos, int Id_EquipoActual, int Id_EquipoNuevo, int Id_JugadorActual, int Id_JugadorNuevo)
         {
             string nuevaCarpeta = Path.Combine(_webHostEnvironment.WebRootPath, "Archivos", Id_EquipoNuevo.ToString(), Id_JugadorNuevo.ToString());
@@ -237,8 +239,5 @@ namespace WebFPRTest.Areas.Interno.Controllers
                 }
             }
         }
-
-
-
     }
 }

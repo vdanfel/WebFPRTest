@@ -82,5 +82,34 @@ namespace WebFPRTest.Service
                 _connection.Close();
             }
         }
+        public async Task<bool> ControladorTipoUsuario(int Id_Controlador, int Id_011_TipoUsuario)
+        {
+            var procedure = "usp_ControladorTipoUsuario_Existe";
+
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@Id_Controlador", Id_Controlador);
+                parameters.Add("@Id_011_TipoUsuario", Id_011_TipoUsuario);
+
+                var id = await _connection.QueryFirstOrDefaultAsync<int?>(
+                    procedure,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+
+                // Si `id` es distinto de null, significa que existe el registro
+                return id.HasValue;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al verificar la existencia del ControladorTipoUsuario.", ex);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+
     }
 }

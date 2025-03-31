@@ -25,10 +25,14 @@ namespace WebFPRTest.Areas.Externo.Controllers
         [HttpGet]
         public async Task<IActionResult> Inscripcion()
         {
-            var tipoUsuario = User.FindFirstValue("Id_011_TipoUsuario");
-            if (tipoUsuario == null || tipoUsuario != "409")
+            int Id_Controlador = 4;
+            int tipoUsuario = int.TryParse(User.FindFirstValue("Id_011_TipoUsuario"), out int result) ? result : 0;
+
+            var acceso = await _tiposService.ControladorTipoUsuario(Id_Controlador, tipoUsuario);
+
+            if (!acceso)
             {
-                return RedirectToAction("Login", "Login");
+                return RedirectToAction("AccesoDenegado", "Login");
             }
             var idEquipoStr = User.FindFirst("Id_Equipo")?.Value ?? "0";
             var Id_Equipo = int.Parse(idEquipoStr);
