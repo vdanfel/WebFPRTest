@@ -271,6 +271,22 @@
         </div>
     </div>
 </form>
+<!--Modal para alerta inicial de la pagina-->
+@if (TempData["Mensaje"] != null)
+{
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @TempData["Mensaje"]
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 <!-- Modal para PDFs -->
 <div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -297,6 +313,12 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        //Mostrar modal al cargar la pagina
+        var mensaje = '@TempData["Mensaje"]';
+        if (mensaje && mensaje.trim() !== '') {
+            $('#myModal').modal('show');
+        }
+
         let inputs = document.querySelectorAll('.inputfile');
         inputs.forEach(input => {
             let label = input.nextElementSibling;
